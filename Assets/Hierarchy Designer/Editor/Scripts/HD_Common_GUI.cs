@@ -118,16 +118,16 @@ namespace HierarchyDesigner
         });
         public static GUIStyle FieldsCategoryLabelStyle => _fieldsCategoryLabelStyle.Value;
 
-        private static readonly Lazy<GUIStyle> _fieldsCategoryCenterLabelStyle = new(() => new()
+        private static readonly Lazy<GUIStyle> _fieldsCategoryLeftLabelStyle = new(() => new()
         {
             font = HD_Common_Resources.Fonts.Bold,
             fontSize = 18,
-            alignment = TextAnchor.MiddleCenter,
+            alignment = TextAnchor.MiddleLeft,
             wordWrap = false,
-            padding = new(0, 5, 0, 5),
+            padding = new(2, 5, 0, 5),
             normal = { textColor = HD_Common_Color.GetSecondaryFontColor() }
         });
-        public static GUIStyle FieldsCategoryCenterLabelStyle => _fieldsCategoryCenterLabelStyle.Value;
+        public static GUIStyle FieldsCategoryLeftLabelStyle => _fieldsCategoryLeftLabelStyle.Value;
 
         private static readonly Lazy<GUIStyle> _boldLabelStyle = new(() => new()
         {
@@ -148,15 +148,16 @@ namespace HierarchyDesigner
         });
         public static GUIStyle MiniBoldLabelStyle => _miniBoldLabelStyle.Value;
 
-        private static readonly Lazy<GUIStyle> _miniBoldLabelCenterStyle = new(() => new()
+        private static readonly Lazy<GUIStyle> _miniBoldLabelLeftStyle = new(() => new()
         {
             font = HD_Common_Resources.Fonts.Bold,
             fontSize = 16,
             wordWrap = false,
-            alignment = TextAnchor.MiddleCenter,
+            alignment = TextAnchor.MiddleLeft,
+            contentOffset = new(4, 0),
             normal = { textColor = HD_Common_Color.GetTertiaryFontColor() }
         });
-        public static GUIStyle MiniBoldLabelCenterStyle => _miniBoldLabelCenterStyle.Value;
+        public static GUIStyle MiniBoldLabelLeftStyle => _miniBoldLabelLeftStyle.Value;
 
         private static readonly Lazy<GUIStyle> _regularLabelStyle = new(() => new()
         {
@@ -168,15 +169,16 @@ namespace HierarchyDesigner
         });
         public static GUIStyle RegularLabelStyle => _regularLabelStyle.Value;
 
-        private static readonly Lazy<GUIStyle> _regularLabelCenterStyle = new(() => new()
+        private static readonly Lazy<GUIStyle> _regularLabelLeftStyle = new(() => new()
         {
             font = HD_Common_Resources.Fonts.Regular,
-            alignment = TextAnchor.MiddleCenter,
+            alignment = TextAnchor.MiddleLeft,
             fontSize = 14,
             wordWrap = true,
+            contentOffset = new(4, 0),
             normal = { textColor = HD_Common_Color.GetPrimaryFontColor() }
         });
-        public static GUIStyle RegularLabelCenterStyle => _regularLabelCenterStyle.Value;
+        public static GUIStyle RegularLabelLeftStyle => _regularLabelLeftStyle.Value;
 
         private static readonly Lazy<GUIStyle> _layoutLabelStyle = new(() => new()
         {
@@ -374,14 +376,6 @@ namespace HierarchyDesigner
         });
         public static GUIStyle ResetButtonStyle => _resetButtonStyle.Value;
 
-        private static readonly Lazy<GUIStyle> _promotionalPicEaseStyle = new(() => new()
-        {
-            fixedHeight = 68,
-            fixedWidth = 68,
-            normal = { background = HD_Common_Resources.Promotional.PicEasePromotionalIcon }
-        });
-        public static GUIStyle PromotionalPicEaseStyle => _promotionalPicEaseStyle.Value;
-
         private static readonly Lazy<GUIStyle> _tooltipButtonStyle = new(() => new(GUI.skin.button)
         {
             fixedHeight = 25,
@@ -391,6 +385,38 @@ namespace HierarchyDesigner
             normal = { background = HD_Common_Resources.Icons.Tooltip }
         });
         public static GUIStyle TooltipButtonStyle => _tooltipButtonStyle.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalPicEaseStyle = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Common_Resources.Promotional.PicEasePromotionalIcon }
+        });
+        public static GUIStyle PromotionalPicEaseStyle => _promotionalPicEaseStyle.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalPicEaseMiniStyle = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Common_Resources.Promotional.PicEaseMiniPromotionalIcon }
+        });
+        public static GUIStyle PromotionalPicEaseMiniStyle => _promotionalPicEaseMiniStyle.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalSeamlessSandTexturesMiniStyle = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Common_Resources.Promotional.SeamlessSandTexturesPromotionalIcon }
+        });
+        public static GUIStyle PromotionalSeamlessSandTexturesMiniStyle => _promotionalSeamlessSandTexturesMiniStyle.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalSeamlessSnowTexturesMiniStyle = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Common_Resources.Promotional.SeamlessSnowTexturesPromotionalIcon }
+        });
+        public static GUIStyle PromotionalSeamlessSnowTexturesMiniStyle => _promotionalSeamlessSnowTexturesMiniStyle.Value;
         #endregion
 
         #region Modifiables

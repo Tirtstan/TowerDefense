@@ -741,40 +741,83 @@ namespace HierarchyDesigner
 
         private void DrawMyOtherAssets()
         {
-            EditorGUILayout.BeginHorizontal(HD_Common_GUI.SecondaryPanelStyle);
+            EditorGUILayout.BeginVertical(HD_Common_GUI.SecondaryPanelStyle, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
             aboutMyOtherAssetsScroll = EditorGUILayout.BeginScrollView(aboutMyOtherAssetsScroll, GUILayout.MinHeight(200), GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
 
-            EditorGUILayout.BeginVertical(GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
-            GUILayout.Label("My Other Assets", HD_Common_GUI.FieldsCategoryCenterLabelStyle);
-
-            EditorGUILayout.BeginHorizontal(GUILayout.ExpandWidth(true));
-            GUILayout.FlexibleSpace();
+            GUILayout.Label("My Other Assets", HD_Common_GUI.FieldsCategoryLeftLabelStyle);
+            GUILayout.Space(5);
 
             #region PicEase
-            EditorGUILayout.BeginVertical(GUILayout.Width(200));
-            GUILayout.Label("PicEase", HD_Common_GUI.MiniBoldLabelCenterStyle);
-            GUILayout.Space(5);
             EditorGUILayout.BeginHorizontal();
-            GUILayout.FlexibleSpace();
             if (GUILayout.Button(string.Empty, HD_Common_GUI.PromotionalPicEaseStyle))
             {
                 Application.OpenURL("https://assetstore.unity.com/packages/tools/utilities/picease-297051");
             }
-            GUILayout.FlexibleSpace();
-            EditorGUILayout.EndHorizontal();
-            GUILayout.Space(10);
-            GUILayout.Label("An image editor, map generator and screenshot tool.", HD_Common_GUI.RegularLabelCenterStyle);
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("PicEase", HD_Common_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("An image editor, map generator and screenshot tool.", HD_Common_GUI.RegularLabelLeftStyle);
             EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
             #endregion
 
-            GUILayout.FlexibleSpace();
+            GUILayout.Space(10);
 
-            EditorGUILayout.EndHorizontal();
-
+            #region PicEase Mini
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_Common_GUI.PromotionalPicEaseMiniStyle))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/tools/utilities/picease-mini-314430");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("PicEase Mini", HD_Common_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("An image editor and screenshot tool.", HD_Common_GUI.RegularLabelLeftStyle);
             EditorGUILayout.EndVertical();
-            EditorGUILayout.EndScrollView();
             EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(10);
+
+            #region Seamless Sand Textures
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_Common_GUI.PromotionalSeamlessSandTexturesMiniStyle))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/2d/textures-materials/seamless-sand-textures-326364");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("Seamless Sand Textures", HD_Common_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("Seamless sand textures, optimized for terrain use.", HD_Common_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(10);
+
+            #region Seamless Snow Textures
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_Common_GUI.PromotionalSeamlessSnowTexturesMiniStyle))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/2d/textures-materials/seamless-snow-textures-326153");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("Seamless Snow Textures", HD_Common_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("Seamless snow textures, optimized for terrain use.", HD_Common_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(5);
+            EditorGUILayout.EndScrollView();
+            EditorGUILayout.EndVertical();
         }
+
         #endregion
 
         #region Folders

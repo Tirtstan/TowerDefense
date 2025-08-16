@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0842a17aa4467994aa2c27872e4aac7b, type: 3}
+  m_Name: KeyboardNumberGlyphTextureMap
+  m_EditorClassIdentifier: 
+  TextureDetails:
+  - InputLayoutLocalPath: 0
+    GlyphTexture: {fileID: 2800000, guid: 8c507fcd1a20eda4987169733838cd16, type: 3}
+  - InputLayoutLocalPath: 1
+    GlyphTexture: {fileID: 2800000, guid: 84b06334721e45d499d9394b8f9f9484, type: 3}
+  - InputLayoutLocalPath: 2
+    GlyphTexture: {fileID: 2800000, guid: 31079932965d9b04aa2aeaec3dfafc8c, type: 3}
+  - InputLayoutLocalPath: 3
+    GlyphTexture: {fileID: 2800000, guid: 358be569faa2f5643afb18f7b1530279, type: 3}
+  - InputLayoutLocalPath: 4
+    GlyphTexture: {fileID: 2800000, guid: 0f9401dbaa0f9894787a45d6da1d42b2, type: 3}
+  - InputLayoutLocalPath: 5
+    GlyphTexture: {fileID: 2800000, guid: 4c676f55f70e15b4ebe40db02abda32f, type: 3}
+  - InputLayoutLocalPath: 6
+    GlyphTexture: {fileID: 2800000, guid: 7522bc618b0ddf44fb66333732a26248, type: 3}
+  - InputLayoutLocalPath: 7
+    GlyphTexture: {fileID: 2800000, guid: 92c391b25e0e6c24e94487eafd918c5a, type: 3}
+  - InputLayoutLocalPath: 8
+    GlyphTexture: {fileID: 2800000, guid: 99ec09d3504c1024485e665aa32a2895, type: 3}
+  - InputLayoutLocalPath: 9
+    GlyphTexture: {fileID: 2800000, guid: dc52e19f26c5a6b42b48e76fea64d3fd, type: 3}

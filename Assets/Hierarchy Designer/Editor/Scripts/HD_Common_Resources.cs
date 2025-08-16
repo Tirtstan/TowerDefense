@@ -86,6 +86,9 @@ namespace HierarchyDesigner
 
             #region Promotional
             internal const string PromotionalPicEase = "Hierarchy Designer Promotional PicEase";
+            internal const string PromotionalPicEaseMini = "Hierarchy Designer Promotional PicEase Mini";
+            internal const string PromotionalSeamlessSandTextures = "Hierarchy Designer Promotional Seamless Sand Textures";
+            internal const string PromotionalSeamlessSnowTextures = "Hierarchy Designer Promotional Seamless Snow Textures";
             #endregion
         }
 
@@ -286,6 +289,15 @@ namespace HierarchyDesigner
         {
             private static readonly Lazy<Texture2D> _picEasePromotionalIcon = new(() => HD_Common_Texture.LoadTexture(ResourceNames.PromotionalPicEase));
             public static Texture2D PicEasePromotionalIcon => _picEasePromotionalIcon.Value;
+
+            private static readonly Lazy<Texture2D> _picEaseMiniPromotionalIcon = new(() => HD_Common_Texture.LoadTexture(ResourceNames.PromotionalPicEaseMini));
+            public static Texture2D PicEaseMiniPromotionalIcon => _picEaseMiniPromotionalIcon.Value;
+
+            private static readonly Lazy<Texture2D> _seamlessSandTexturesPromotionalIcon = new(() => HD_Common_Texture.LoadTexture(ResourceNames.PromotionalSeamlessSandTextures));
+            public static Texture2D SeamlessSandTexturesPromotionalIcon => _seamlessSandTexturesPromotionalIcon.Value;
+
+            private static readonly Lazy<Texture2D> _seamlessSnowTexturesPromotionalIcon = new(() => HD_Common_Texture.LoadTexture(ResourceNames.PromotionalSeamlessSnowTextures));
+            public static Texture2D SeamlessSnowTexturesPromotionalIcon => _seamlessSnowTexturesPromotionalIcon.Value;
         }
         #endregion
 

@@ -1,3 +1,6 @@
+| Version 1.8.2
+• (Other) Minor changes.
+
 | Version 1.8.1f
 • Fixed a minor GUI bug related to notes.
 • Fixed a bug where the right arrow for child prefab folders would not appear.
