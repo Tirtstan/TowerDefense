@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+// Anthropic, 2025
 public class MapGenerator : MonoBehaviour
 {
     [Header("Map Settings")]
@@ -99,16 +100,15 @@ public class MapGenerator : MonoBehaviour
 
     private TileType[,] grid;
     private Vector2Int startPoint;
-    private List<Vector2Int> towerPositions = new List<Vector2Int>();
-    private List<List<Vector2Int>> paths = new List<List<Vector2Int>>();
-    private HashSet<Vector2Int> occupiedTiles = new HashSet<Vector2Int>();
-    private HashSet<Vector2Int> towerTiles = new HashSet<Vector2Int>();
-    private Dictionary<Vector2Int, int> pathConnectionCount = new Dictionary<Vector2Int, int>();
-    private Dictionary<Vector2Int, List<Vector2Int>> junctionConnections =
-        new Dictionary<Vector2Int, List<Vector2Int>>();
-    private HashSet<Vector2Int> directPathEndpoints = new HashSet<Vector2Int>();
+    private readonly List<Vector2Int> towerPositions = new();
+    private readonly List<List<Vector2Int>> paths = new();
+    private readonly HashSet<Vector2Int> occupiedTiles = new();
+    private readonly HashSet<Vector2Int> towerTiles = new();
+    private readonly Dictionary<Vector2Int, int> pathConnectionCount = new();
+    private readonly Dictionary<Vector2Int, List<Vector2Int>> junctionConnections = new();
+    private readonly HashSet<Vector2Int> directPathEndpoints = new();
 
-    private enum TileType
+    public enum TileType
     {
         Ground,
         Path,
@@ -145,9 +145,7 @@ public class MapGenerator : MonoBehaviour
         for (int x = 0; x < gridSize; x++)
         {
             for (int z = 0; z < gridSize; z++)
-            {
                 grid[x, z] = TileType.Ground;
-            }
         }
     }
 
@@ -170,7 +168,7 @@ public class MapGenerator : MonoBehaviour
             Vector2Int bestPosition = Vector2Int.zero;
             bool foundValidPosition = false;
 
-            // Try to find a position that's far enough from existing towers
+            // try to find a position that's far enough from existing towers
             for (int j = 0; j < edgePositions.Count; j++)
             {
                 Vector2Int candidate = edgePositions[j];
@@ -191,7 +189,7 @@ public class MapGenerator : MonoBehaviour
             }
             else if (towerPositions.Count == 0)
             {
-                // Force place at least one tower if none found
+                // force place at least one tower if none found
                 bestPosition = edgePositions[0];
                 towerPositions.Add(bestPosition);
                 towerTiles.Add(bestPosition);
@@ -202,24 +200,22 @@ public class MapGenerator : MonoBehaviour
                 Debug.LogWarning($"Could not place tower {i + 1} with minimum distance {actualMinDistance}");
             }
         }
-
-        Debug.Log($"Placed {towerPositions.Count} tower positions out of {numEndPoints} requested");
     }
 
     private List<Vector2Int> GetEdgePositions()
     {
-        List<Vector2Int> edgePositions = new List<Vector2Int>();
+        List<Vector2Int> edgePositions = new();
 
         if (preferEdgeCenters)
         {
-            // Add edge center positions first
+            // add edge center positions first
             edgePositions.Add(new Vector2Int(gridSize / 2, 0)); // Bottom center
             edgePositions.Add(new Vector2Int(gridSize / 2, gridSize - 1)); // Top center
             edgePositions.Add(new Vector2Int(0, gridSize / 2)); // Left center
             edgePositions.Add(new Vector2Int(gridSize - 1, gridSize / 2)); // Right center
         }
 
-        // Add all edge positions
+        // add all edge positions
         for (int x = 0; x < gridSize; x++)
         {
             if (!allowCornerTowers && (x == 0 || x == gridSize - 1))
@@ -246,16 +242,12 @@ public class MapGenerator : MonoBehaviour
         foreach (var existingTower in towerPositions)
         {
             if (Vector2Int.Distance(candidate, existingTower) < minDistance)
-            {
                 return false;
-            }
         }
 
         // Additional check: don't place too close to center
         if (Vector2Int.Distance(candidate, startPoint) < minDistance / 2)
-        {
             return false;
-        }
 
         return true;
     }
@@ -277,14 +269,10 @@ public class MapGenerator : MonoBehaviour
                 TrackPathConnections(path);
 
                 if (path.Count >= 2)
-                {
                     directPathEndpoints.Add(path[path.Count - 2]);
-                }
 
                 for (int i = 1; i < path.Count - 1; i++)
-                {
                     occupiedTiles.Add(path[i]);
-                }
             }
             else
             {
@@ -303,9 +291,7 @@ public class MapGenerator : MonoBehaviour
                 TrackPathConnections(path);
 
                 for (int i = 1; i < path.Count - 1; i++)
-                {
                     occupiedTiles.Add(path[i]);
-                }
             }
             else
             {
@@ -322,6 +308,7 @@ public class MapGenerator : MonoBehaviour
             if (path != null)
                 return path;
         }
+
         return null;
     }
 
@@ -330,9 +317,13 @@ public class MapGenerator : MonoBehaviour
         foreach (var position in path)
         {
             if (pathConnectionCount.ContainsKey(position))
+            {
                 pathConnectionCount[position]++;
+            }
             else
+            {
                 pathConnectionCount[position] = 1;
+            }
         }
 
         for (int i = 0; i < path.Count; i++)
@@ -415,9 +406,7 @@ public class MapGenerator : MonoBehaviour
                 if (forceDirect)
                 {
                     if (IsNearExistingPath(neighbor) && !IsAdjacentToCenter(neighbor))
-                    {
                         moveCost += directPathAvoidancePenalty;
-                    }
                 }
                 else
                 {
@@ -483,10 +472,7 @@ public class MapGenerator : MonoBehaviour
         return false;
     }
 
-    private bool IsAdjacentToCenter(Vector2Int position)
-    {
-        return Vector2Int.Distance(position, startPoint) <= 1.5f;
-    }
+    private bool IsAdjacentToCenter(Vector2Int position) => Vector2Int.Distance(position, startPoint) <= 1.5f;
 
     private bool IsNearExistingPath(Vector2Int position)
     {
@@ -496,6 +482,7 @@ public class MapGenerator : MonoBehaviour
             if (occupiedTiles.Contains(neighbor))
                 return true;
         }
+
         return false;
     }
 
@@ -530,15 +517,10 @@ public class MapGenerator : MonoBehaviour
         return neighbors;
     }
 
-    private bool IsInBounds(Vector2Int position)
-    {
-        return position.x >= 0 && position.x < gridSize && position.y >= 0 && position.y < gridSize;
-    }
+    private bool IsInBounds(Vector2Int position) =>
+        position.x >= 0 && position.x < gridSize && position.y >= 0 && position.y < gridSize;
 
-    private float ManhattanDistance(Vector2Int a, Vector2Int b)
-    {
-        return Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
-    }
+    private float ManhattanDistance(Vector2Int a, Vector2Int b) => Mathf.Abs(a.x - b.x) + Mathf.Abs(a.y - b.y);
 
     private List<Vector2Int> ReconstructPath(Dictionary<Vector2Int, Vector2Int> cameFrom, Vector2Int current)
     {
@@ -548,6 +530,7 @@ public class MapGenerator : MonoBehaviour
             current = cameFrom[current];
             path.Insert(0, current);
         }
+
         return path;
     }
 
@@ -578,7 +561,7 @@ public class MapGenerator : MonoBehaviour
         {
             for (int z = 0; z < gridSize; z++)
             {
-                Vector3 position = new Vector3(x * tileSize, 0, z * tileSize);
+                Vector3 position = new(x * tileSize, 0, z * tileSize);
 
                 switch (grid[x, z])
                 {
@@ -643,7 +626,7 @@ public class MapGenerator : MonoBehaviour
         }
 
         // Fallback analysis
-        Dictionary<Vector2Int, int> directionUsage = new Dictionary<Vector2Int, int>();
+        Dictionary<Vector2Int, int> directionUsage = new();
 
         foreach (var path in paths)
         {
@@ -687,12 +670,12 @@ public class MapGenerator : MonoBehaviour
 
     private void SpawnTowers()
     {
-        Vector3 centerPosition = new Vector3(startPoint.x * tileSize, towerHeightOffset, startPoint.y * tileSize);
+        Vector3 centerPosition = new(startPoint.x * tileSize, towerHeightOffset, startPoint.y * tileSize);
         Instantiate(playerBasePrefab, centerPosition, Quaternion.identity, transform);
 
         foreach (var towerPos in towerPositions)
         {
-            Vector3 position = new Vector3(towerPos.x * tileSize, towerHeightOffset, towerPos.y * tileSize);
+            Vector3 position = new(towerPos.x * tileSize, towerHeightOffset, towerPos.y * tileSize);
             Quaternion towerRotation = GetEnemyTowerRotation(towerPos);
             Instantiate(enemyTowerPrefab, position, towerRotation, transform);
         }
@@ -713,6 +696,7 @@ public class MapGenerator : MonoBehaviour
                     return Quaternion.identity;
             }
         }
+
         return Quaternion.identity;
     }
 
@@ -748,6 +732,7 @@ public class MapGenerator : MonoBehaviour
                     return Quaternion.Euler(0, 270, 0);
             }
         }
+
         return Quaternion.identity;
     }
 
@@ -769,6 +754,7 @@ public class MapGenerator : MonoBehaviour
                     return Quaternion.Euler(0, 270, 0);
             }
         }
+
         return Quaternion.identity;
     }
 
@@ -783,7 +769,7 @@ public class MapGenerator : MonoBehaviour
             {
                 if (grid[x, z] == TileType.Ground && Random.value < decorationDensity)
                 {
-                    Vector3 position = new Vector3(
+                    var position = new Vector3(
                         (x + Random.Range(-decorationPositionVariance, decorationPositionVariance)) * tileSize,
                         0,
                         (z + Random.Range(-decorationPositionVariance, decorationPositionVariance)) * tileSize
@@ -797,7 +783,6 @@ public class MapGenerator : MonoBehaviour
 
                     GameObject decoration = Instantiate(prefab, position, rotation, transform);
 
-                    // Apply random scale
                     float randomScale = Random.Range(decorationScaleRange.x, decorationScaleRange.y);
                     decoration.transform.localScale = Vector3.one * randomScale;
                 }
