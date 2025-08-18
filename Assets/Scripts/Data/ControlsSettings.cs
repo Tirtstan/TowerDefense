@@ -12,7 +12,7 @@ public class ControlsSettings : IResetable
     public void ResetToDefault()
     {
         KeyNavSensitivity = 1.5f;
-        MouseDragSensitivity = 6f;
+        MouseDragSensitivity = 4.5f;
         GamepadLookSensitivity = 1.5f;
     }
 }

@@ -3,9 +3,9 @@ using System;
 [Serializable]
 public class GameSettings : IResetable
 {
-    public readonly VideoSettings Video = new();
-    public readonly AudioSettings Audio = new();
-    public readonly ControlsSettings Controls = new();
+    public VideoSettings Video = new();
+    public AudioSettings Audio = new();
+    public ControlsSettings Controls = new();
 
     public GameSettings() => ResetToDefault();
 
