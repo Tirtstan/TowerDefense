@@ -258,7 +258,6 @@ public class MapGeneratorEditor : Editor
         }
     }
 
-    // Scene view grid preview
     private void OnSceneGUI()
     {
         if (!showPreview)
@@ -311,22 +310,6 @@ public class MapGeneratorEditor : Editor
         };
 
         foreach (var corner in corners)
-        {
-            Handles.DrawWireCube(corner, Vector3.one * tileSize * 0.6f);
-        }
-    }
-
-    [MenuItem("Tools/Map Generator/Create Map Generator")]
-    private static void CreateMapGenerator()
-    {
-        GameObject go = new GameObject("Map Generator");
-        go.AddComponent<MapGenerator>();
-        Selection.activeGameObject = go;
-
-        // Center it in scene view
-        if (SceneView.lastActiveSceneView != null)
-        {
-            go.transform.position = SceneView.lastActiveSceneView.pivot;
-        }
+            Handles.DrawWireCube(corner, 0.6f * tileSize * Vector3.one);
     }
 }

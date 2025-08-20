@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d8a9378ecbeaa44dab124afcc318cbe, type: 3}
+  m_Name: CursorPack Kenney
+  m_EditorClassIdentifier: NativeCursor.Runtime::Riten.Native.Cursors.CursorPack
+  default: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
+  pointer: {fileID: 11400000, guid: 15842846095c52941b1a08d916f1c2cf, type: 2}
+  ibeam: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
+  wait: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
+  cross: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
+  grab: {fileID: 11400000, guid: 9c73aa2468847ac4ab6f1f1bef9aa10a, type: 2}
+  grabbing: {fileID: 11400000, guid: 91dbcff95277a4f43b8c79671c73fae7, type: 2}
+  denied: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
+  move: {fileID: 11400000, guid: 7590caf465c13c54b98960d49da21666, type: 2}
+  resizeHorizontal: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
+  resizeVertical: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
+  resizeDiagonal1: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
+  resizeDiagonal2: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}

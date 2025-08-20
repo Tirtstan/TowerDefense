@@ -1,11 +1,18 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 // Anthropic, 2025
 public class MapGenerator : MonoBehaviour
 {
+    public static event Action OnMapGenerated;
+
     [Header("Map Settings")]
+    [SerializeField]
+    private Transform mapParent;
+
     [SerializeField, Tooltip("Size of the grid (width and height in tiles)")]
     private int gridSize = 27;
 
@@ -15,11 +22,9 @@ public class MapGenerator : MonoBehaviour
     [SerializeField, Tooltip("Size of each tile in Unity units")]
     private float tileSize = 1f;
 
-    [
-        SerializeField,
-        Range(2, 10),
-        Tooltip("Minimum number of paths that must connect directly to the center (prevents single bottleneck)")
-    ]
+    [SerializeField]
+    [Range(2, 10)]
+    [Tooltip("Minimum number of paths that must connect directly to the center (prevents single bottleneck)")]
     private int minDirectPaths = 2;
 
     [Header("Tower Spacing")]
@@ -39,11 +44,9 @@ public class MapGenerator : MonoBehaviour
     [SerializeField, Range(10f, 200f), Tooltip("High penalty to prevent merging paths at direct connection points")]
     private float directPathMergePenalty = 100f;
 
-    [
-        SerializeField,
-        Range(1f, 15f),
-        Tooltip("Penalty for direct paths avoiding existing paths (higher = more isolated direct paths)")
-    ]
+    [SerializeField]
+    [Range(1f, 15f)]
+    [Tooltip("Penalty for direct paths avoiding existing paths (higher = more isolated direct paths)")]
     private float directPathAvoidancePenalty = 10f;
 
     [Header("Tile Prefabs")]
@@ -72,22 +75,6 @@ public class MapGenerator : MonoBehaviour
     [SerializeField, Tooltip("Enemy tower prefab (spawned at map edges)")]
     private GameObject enemyTowerPrefab;
 
-    [Header("Decoration")]
-    [SerializeField, Tooltip("Array of decoration prefabs to randomly place on ground tiles")]
-    private GameObject[] decorationPrefabs;
-
-    [SerializeField, Range(0f, 1f), Tooltip("Probability of spawning a decoration on each ground tile")]
-    private float decorationDensity = 0.1f;
-
-    [SerializeField, Tooltip("Random scale range for decorations (min, max)")]
-    private Vector2 decorationScaleRange = new Vector2(0.8f, 1.2f);
-
-    [SerializeField, Range(-0.5f, 0.5f), Tooltip("How far decorations can randomly offset from tile center")]
-    private float decorationPositionVariance = 0.3f;
-
-    [SerializeField, Tooltip("Whether to randomly rotate decorations")]
-    private bool randomizeDecorationRotation = true;
-
     [Header("Generation Options")]
     [SerializeField, Tooltip("Allow towers to spawn in the corner positions of the map")]
     private bool allowCornerTowers = true;
@@ -108,15 +95,17 @@ public class MapGenerator : MonoBehaviour
     private readonly Dictionary<Vector2Int, List<Vector2Int>> junctionConnections = new();
     private readonly HashSet<Vector2Int> directPathEndpoints = new();
 
-    public enum TileType
+    private void Awake()
     {
-        Ground,
-        Path,
-        Turn,
-        TJunction,
-        CrossJunction,
-        CenterTile
+        if (mapParent == null)
+            mapParent = transform;
     }
+
+    public int GetGridSize() => gridSize;
+
+    public float GetTileSize() => tileSize;
+
+    public TileType GetTileType(int x, int z) => grid[x, z];
 
     public void GenerateMap()
     {
@@ -128,7 +117,11 @@ public class MapGenerator : MonoBehaviour
         IdentifyJunctions();
         InstantiateTiles();
         SpawnTowers();
-        AddDecorations();
+
+        if (TryGetComponent(out DecorationSpawner decorationSpawner))
+            decorationSpawner.SpawnDecorations();
+
+        OnMapGenerated?.Invoke();
     }
 
     private void InitializeGrid()
@@ -269,7 +262,7 @@ public class MapGenerator : MonoBehaviour
                 TrackPathConnections(path);
 
                 if (path.Count >= 2)
-                    directPathEndpoints.Add(path[path.Count - 2]);
+                    directPathEndpoints.Add(path[^2]);
 
                 for (int i = 1; i < path.Count - 1; i++)
                     occupiedTiles.Add(path[i]);
@@ -566,30 +559,30 @@ public class MapGenerator : MonoBehaviour
                 switch (grid[x, z])
                 {
                     case TileType.Ground:
-                        Instantiate(groundTilePrefab, position, Quaternion.identity, transform);
+                        Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
                         break;
 
                     case TileType.Path:
                         Quaternion pathRotation = GetPathRotation(new Vector2Int(x, z));
-                        Instantiate(pathStraightPrefab, position, pathRotation, transform);
+                        Instantiate(pathStraightPrefab, position, pathRotation, mapParent);
                         break;
 
                     case TileType.Turn:
                         Quaternion turnRotation = GetTurnRotation(new Vector2Int(x, z));
-                        Instantiate(pathTurnPrefab, position, turnRotation, transform);
+                        Instantiate(pathTurnPrefab, position, turnRotation, mapParent);
                         break;
 
                     case TileType.TJunction:
                         Quaternion tJunctionRotation = GetTJunctionRotation(new Vector2Int(x, z));
-                        Instantiate(pathTJunctionPrefab, position, tJunctionRotation, transform);
+                        Instantiate(pathTJunctionPrefab, position, tJunctionRotation, mapParent);
                         break;
 
                     case TileType.CrossJunction:
-                        Instantiate(pathCrossJunctionPrefab, position, Quaternion.identity, transform);
+                        Instantiate(pathCrossJunctionPrefab, position, Quaternion.identity, mapParent);
                         break;
 
                     case TileType.CenterTile:
-                        Instantiate(centerTowerTilePrefab, position, Quaternion.identity, transform);
+                        Instantiate(centerTowerTilePrefab, position, Quaternion.identity, mapParent);
                         break;
                 }
             }
@@ -671,13 +664,13 @@ public class MapGenerator : MonoBehaviour
     private void SpawnTowers()
     {
         Vector3 centerPosition = new(startPoint.x * tileSize, towerHeightOffset, startPoint.y * tileSize);
-        Instantiate(playerBasePrefab, centerPosition, Quaternion.identity, transform);
+        Instantiate(playerBasePrefab, centerPosition, Quaternion.identity, mapParent);
 
         foreach (var towerPos in towerPositions)
         {
             Vector3 position = new(towerPos.x * tileSize, towerHeightOffset, towerPos.y * tileSize);
             Quaternion towerRotation = GetEnemyTowerRotation(towerPos);
-            Instantiate(enemyTowerPrefab, position, towerRotation, transform);
+            Instantiate(enemyTowerPrefab, position, towerRotation, mapParent);
         }
     }
 
@@ -758,42 +751,16 @@ public class MapGenerator : MonoBehaviour
         return Quaternion.identity;
     }
 
-    private void AddDecorations()
-    {
-        if (decorationPrefabs == null || decorationPrefabs.Length == 0)
-            return;
-
-        for (int x = 0; x < gridSize; x++)
-        {
-            for (int z = 0; z < gridSize; z++)
-            {
-                if (grid[x, z] == TileType.Ground && Random.value < decorationDensity)
-                {
-                    var position = new Vector3(
-                        (x + Random.Range(-decorationPositionVariance, decorationPositionVariance)) * tileSize,
-                        0,
-                        (z + Random.Range(-decorationPositionVariance, decorationPositionVariance)) * tileSize
-                    );
-
-                    GameObject prefab = decorationPrefabs[Random.Range(0, decorationPrefabs.Length)];
-
-                    Quaternion rotation = randomizeDecorationRotation
-                        ? Quaternion.Euler(0, Random.Range(0, 360), 0)
-                        : Quaternion.identity;
-
-                    GameObject decoration = Instantiate(prefab, position, rotation, transform);
-
-                    float randomScale = Random.Range(decorationScaleRange.x, decorationScaleRange.y);
-                    decoration.transform.localScale = Vector3.one * randomScale;
-                }
-            }
-        }
-    }
-
     private void ClearExistingMap()
     {
-        for (int i = transform.childCount - 1; i >= 0; i--)
-            DestroyImmediate(transform.GetChild(i).gameObject);
+        for (int i = mapParent.childCount - 1; i >= 0; i--)
+        {
+#if UNITY_EDITOR
+            DestroyImmediate(mapParent.GetChild(i).gameObject);
+#else
+            Destroy(mapParent.GetChild(i).gameObject);
+#endif
+        }
 
         paths.Clear();
         towerPositions.Clear();
