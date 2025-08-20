@@ -24,6 +24,20 @@ public class DecorationSpawner : MonoBehaviour
     [SerializeField]
     private bool randomizeNoiseOffset = true;
 
+    [Header("Scale Noise Settings")]
+    [SerializeField, Range(0.1f, 20f)]
+    private float scaleNoiseScale = 3f;
+
+    [SerializeField]
+    private Vector2 scaleNoiseOffset;
+
+    [SerializeField]
+    private bool randomizeScaleNoiseOffset = true;
+
+    [SerializeField, Tooltip("How much the noise affects the scale (0 = pure noise-based, 1 = some randomness)")]
+    [Range(0f, 1f)]
+    private float scaleRandomness = 0.2f;
+
     [Header("Default Spawning Parent")]
     [SerializeField, Tooltip("Default parent for all decorations. If null, uses this transform")]
     private Transform defaultParent;
@@ -49,6 +63,9 @@ public class DecorationSpawner : MonoBehaviour
 
         if (randomizeNoiseOffset)
             noiseOffset = new Vector2(Random.Range(-1000f, 1000f), Random.Range(-1000f, 1000f));
+
+        if (randomizeScaleNoiseOffset)
+            scaleNoiseOffset = new Vector2(Random.Range(-1000f, 1000f), Random.Range(-1000f, 1000f));
 
         ClearExistingDecorations();
         SetupParentTransforms();
@@ -83,7 +100,7 @@ public class DecorationSpawner : MonoBehaviour
                 string parentName = config.createChildParent
                     ? config.childParentName
                     : $"{config.prefabs[0].name} Group";
-                GameObject childParent = new(parentName);
+                var childParent = new GameObject(parentName);
                 childParent.transform.SetParent(defaultParent != null ? defaultParent : transform);
                 parentToUse = childParent.transform;
             }
@@ -110,7 +127,17 @@ public class DecorationSpawner : MonoBehaviour
         if (selectedConfig == null || selectedConfig.prefabs.Length == 0)
             return;
 
-        float randomScale = Random.Range(selectedConfig.scaleRange.x, selectedConfig.scaleRange.y);
+        // Calculate noise-based scale
+        float scaleNoiseX = (gridX + scaleNoiseOffset.x) / scaleNoiseScale;
+        float scaleNoiseZ = (gridZ + scaleNoiseOffset.y) / scaleNoiseScale;
+        float scaleNoiseValue = Mathf.PerlinNoise(scaleNoiseX, scaleNoiseZ);
+
+        // Map noise value (0-1) to scale range
+        float noiseBasedScale = Mathf.Lerp(selectedConfig.scaleRange.x, selectedConfig.scaleRange.y, scaleNoiseValue);
+
+        // Optionally add some randomness
+        float randomComponent = Random.Range(selectedConfig.scaleRange.x, selectedConfig.scaleRange.y);
+        float finalScale = Mathf.Lerp(noiseBasedScale, randomComponent, scaleRandomness);
 
         Vector3 position =
             new(
@@ -119,7 +146,7 @@ public class DecorationSpawner : MonoBehaviour
                 (gridZ + Random.Range(-selectedConfig.positionVariance, selectedConfig.positionVariance)) * tileSize
             );
 
-        float effectiveAvoidanceRadius = selectedConfig.pathAvoidanceRadius * randomScale;
+        float effectiveAvoidanceRadius = selectedConfig.pathAvoidanceRadius * finalScale;
 
         if (selectedConfig.avoidPaths && IsTooCloseToPath(position, effectiveAvoidanceRadius, tileSize))
             return;
@@ -136,7 +163,7 @@ public class DecorationSpawner : MonoBehaviour
         Transform parentTransform = configParents.GetValueOrDefault(selectedConfig, transform);
         GameObject decoration = Instantiate(prefab, position, rotation, parentTransform);
 
-        decoration.transform.localScale = Vector3.one * randomScale;
+        decoration.transform.localScale = Vector3.one * finalScale;
     }
 
     private DecorationConfig SelectDecorationByNoise(float noiseValue)

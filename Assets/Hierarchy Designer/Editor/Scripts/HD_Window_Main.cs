@@ -343,6 +343,7 @@ namespace HierarchyDesigner
         private HD_Settings_Advanced.UpdateMode tempLayerUpdateMode;
         private bool tempEnableDynamicBackgroundForGameObjectMainIcon;
         private bool tempEnablePreciseRectForDynamicBackgroundForGameObjectMainIcon;
+        private bool tempEnableMainIconOverride;
         private bool tempEnableCustomizationForGameObjectComponentIcons;
         private bool tempEnableTooltipOnComponentIconHovered;
         private bool tempEnableActiveStateEffectForComponentIcons;
@@ -2808,6 +2809,7 @@ namespace HierarchyDesigner
             EditorGUI.BeginChangeCheck();
             tempEnableDynamicBackgroundForGameObjectMainIcon = HD_Common_GUI.DrawToggle("Enable Dynamic Background", advancedSettingsToggleLabelWidth, tempEnableDynamicBackgroundForGameObjectMainIcon, true, true, "The background of the main icon will match the background color of the Hierarchy window (i.e., Editor Light, Dark Mode, GameObject Selected, Focused, Unfocused).");
             tempEnablePreciseRectForDynamicBackgroundForGameObjectMainIcon = HD_Common_GUI.DrawToggle("Enable Precise Rect For Dynamic Background", advancedSettingsToggleLabelWidth, tempEnablePreciseRectForDynamicBackgroundForGameObjectMainIcon, true, true, "Uses precise rect calculations for pointer/mouse detection utilized by the Dynamic Background feature.");
+            tempEnableMainIconOverride = HD_Common_GUI.DrawToggle("Enable Main Icon Override", advancedSettingsToggleLabelWidth, tempEnableMainIconOverride, true, true, "Allows to override the gameObject's main icon.");
             if (EditorGUI.EndChangeCheck()) { advancedSettingsHasModifiedChanges = true; }
             EditorGUILayout.EndVertical();
         }
@@ -2921,6 +2923,7 @@ namespace HierarchyDesigner
         {
             tempEnableDynamicBackgroundForGameObjectMainIcon = enable;
             tempEnablePreciseRectForDynamicBackgroundForGameObjectMainIcon = enable;
+            tempEnableMainIconOverride = enable;
             tempEnableCustomizationForGameObjectComponentIcons = enable;
             tempEnableTooltipOnComponentIconHovered = enable;
             tempEnableActiveStateEffectForComponentIcons = enable;

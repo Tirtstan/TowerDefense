@@ -1,3 +1,8 @@
+| Version 1.9.0
+• (New) Added a Main Icon Override feature.
+
+Note: Left- or right-click the main icon (*if enabled) to use it.
+
 | Version 1.8.2
 • (Other) Minor changes.
 

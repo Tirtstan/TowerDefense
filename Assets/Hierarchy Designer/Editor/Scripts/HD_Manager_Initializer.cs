@@ -17,6 +17,7 @@ namespace HierarchyDesigner
             HD_Settings_Folders.Initialize();
             HD_Settings_Separators.Initialize();
             HD_Manager_GameObject.Initialize();
+            HD_Settings_IconOverrides.Initialize();
             HD_Settings_Presets.Initialize();
         }
     }

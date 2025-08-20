@@ -236,6 +236,8 @@ namespace HierarchyDesigner
             {
                 if (enableHierarchyButtons) { ProcessHierarchyButtons(gameObject, selectionRect); }
                 if (enableGameObjectComponentIcons) { ProcessComponentIconsClick(gameObject, selectionRect, instanceID, currentEvent); }
+                if (enableGameObjectMainIcon) { ProcessMainIconClick(gameObject, selectionRect, currentEvent); }
+
                 if (enableMajorShortcuts)
                 {
                     if (IsShortcutPressed(toggleGameObjectActiveStateKeyCode))
@@ -338,7 +340,15 @@ namespace HierarchyDesigner
         {
             DrawBackground(selectionRect, instanceID);
             GUI.color = gameObject.activeInHierarchy ? activeColor : inactiveColor;
-            GUI.DrawTexture(new(selectionRect.x, selectionRect.y, selectionRect.height, defaultIconSelectionHeight), DecideGameObjectMainIcon(gameObject, instanceID));
+            string id = GlobalObjectId.GetGlobalObjectIdSlow(gameObject).ToString();
+            if (HD_Settings_IconOverrides.TryGetTexture(id, out Texture2D custom))
+            {
+                GUI.DrawTexture(new(selectionRect.x, selectionRect.y, selectionRect.height, defaultIconSelectionHeight), custom, ScaleMode.ScaleToFit, true);
+            }
+            else
+            {
+                GUI.DrawTexture(new(selectionRect.x, selectionRect.y, selectionRect.height, defaultIconSelectionHeight), DecideGameObjectMainIcon(gameObject, instanceID));
+            }
             if (gameObject.transform.parent != null && PrefabUtility.IsPartOfPrefabInstance(gameObject.transform.parent.gameObject) && PrefabUtility.GetPrefabInstanceStatus(gameObject) == PrefabInstanceStatus.NotAPrefab) { GUI.DrawTexture(new(selectionRect.x, selectionRect.y, selectionRect.height, defaultIconSelectionHeight), prefabOverlayIcon); }
             GUI.color = activeColor;
         }
@@ -460,6 +470,40 @@ namespace HierarchyDesigner
                 return mainComponent == null ? EditorGUIUtility.FindTexture(warningIconTexture) : EditorGUIUtility.ObjectContent(mainComponent, mainComponent.GetType())?.image as Texture2D;
             }
             return null;
+        }
+
+        private static void ProcessMainIconClick(GameObject gameObject, Rect selectionRect, Event evt)
+        {
+            if (evt.type != EventType.MouseDown) return;
+            if ((gameObject.hideFlags & HideFlags.NotEditable) == HideFlags.NotEditable) return;
+
+            Rect iconRect = new(selectionRect.x, selectionRect.y + (selectionRect.height - defaultIconSelectionHeight) * 0.5f, defaultIconSelectionHeight, defaultIconSelectionHeight);
+            if (!iconRect.Contains(evt.mousePosition)) return;
+
+            if (evt.button == 0)
+            {
+                HD_Window_IconPicker.Open(gameObject);
+                evt.Use();
+                GUIUtility.ExitGUI();
+            }
+            else if (evt.button == 1)
+            {
+                GenericMenu menu = new();
+                string globalId = GlobalObjectId.GetGlobalObjectIdSlow(gameObject).ToString();
+                if (HD_Settings_IconOverrides.Has(globalId))
+                {
+                    menu.AddItem(new GUIContent("Clear Icon Override"), false, () => HD_Settings_IconOverrides.Clear(globalId));
+                }
+
+                else
+                {
+                    menu.AddDisabledItem(new GUIContent("Clear Icon Override"));
+                }
+
+                menu.ShowAsContext();
+                evt.Use();
+                GUIUtility.ExitGUI();
+            }
         }
         #endregion
 

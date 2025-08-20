@@ -49,6 +49,17 @@ public class MapGenerator : MonoBehaviour
     [Tooltip("Penalty for direct paths avoiding existing paths (higher = more isolated direct paths)")]
     private float directPathAvoidancePenalty = 10f;
 
+    [SerializeField]
+    [Range(0f, 0.5f)]
+    [Tooltip("Small penalty for staying near edges (higher = slight center preference)")]
+    private float edgePenalty = 0.2f;
+
+    [SerializeField, Range(0f, 0.3f), Tooltip("Small penalty for very long straight lines (minimal turning)")]
+    private float straightLinePenalty = 0.1f;
+
+    [SerializeField, Range(2, 8), Tooltip("Distance from center where fallback connection is allowed")]
+    private int fallbackConnectionRadius = 4;
+
     [Header("Tile Prefabs")]
     [SerializeField, Tooltip("Basic ground tile prefab")]
     private GameObject groundTilePrefab;
@@ -394,7 +405,38 @@ public class MapGenerator : MonoBehaviour
                 if (closedSet.Contains(neighbor) || !IsValidTileForPath(neighbor, end, forceDirect))
                     continue;
 
-                float moveCost = 1f + (attempt * 0.1f); // Slightly increase cost each retry
+                float moveCost = 1f + (attempt * 0.1f);
+
+                // Very mild edge penalty - only for tiles right at the edge
+                if (neighbor.x == 0 || neighbor.y == 0 || neighbor.x == gridSize - 1 || neighbor.y == gridSize - 1)
+                {
+                    moveCost += edgePenalty;
+                }
+
+                // Only apply straight line penalty after many consecutive straight moves
+                int straightCount = 0;
+                Vector2Int tempCurrent = current;
+                Vector2Int direction = neighbor - current;
+
+                while (cameFrom.ContainsKey(tempCurrent))
+                {
+                    Vector2Int prevDirection = tempCurrent - cameFrom[tempCurrent];
+                    if (prevDirection == direction)
+                    {
+                        straightCount++;
+                        tempCurrent = cameFrom[tempCurrent];
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+
+                // Only penalize after 6+ straight moves
+                if (straightCount >= 6)
+                {
+                    moveCost += straightLinePenalty;
+                }
 
                 if (forceDirect)
                 {
@@ -423,6 +465,93 @@ public class MapGenerator : MonoBehaviour
                 cameFrom[neighbor] = current;
                 gScore[neighbor] = tentativeGScore;
                 fScore[neighbor] = tentativeGScore + ManhattanDistance(neighbor, end);
+            }
+        }
+
+        // If normal pathfinding failed, try fallback connection to existing path
+        if (!forceDirect)
+        {
+            return FindFallbackPath(start, end);
+        }
+
+        return null;
+    }
+
+    private List<Vector2Int> FindFallbackPath(Vector2Int start, Vector2Int end)
+    {
+        // Find the closest existing path tile within fallback radius of center
+        Vector2Int bestConnectionPoint = Vector2Int.zero;
+        float bestDistance = float.MaxValue;
+        List<Vector2Int> bestPathToConnection = null;
+
+        foreach (var pathTile in occupiedTiles)
+        {
+            // Only consider path tiles close to center
+            if (Vector2Int.Distance(pathTile, end) <= fallbackConnectionRadius)
+            {
+                // Try to find a path from start to this existing path tile
+                var pathToExisting = FindSimplePath(start, pathTile);
+                if (pathToExisting != null)
+                {
+                    float totalDistance = pathToExisting.Count + Vector2Int.Distance(pathTile, end);
+                    if (totalDistance < bestDistance)
+                    {
+                        bestDistance = totalDistance;
+                        bestConnectionPoint = pathTile;
+                        bestPathToConnection = pathToExisting;
+                    }
+                }
+            }
+        }
+
+        return bestPathToConnection;
+    }
+
+    private List<Vector2Int> FindSimplePath(Vector2Int start, Vector2Int end)
+    {
+        var openSet = new List<Vector2Int>();
+        var closedSet = new HashSet<Vector2Int>();
+        var cameFrom = new Dictionary<Vector2Int, Vector2Int>();
+        var gScore = new Dictionary<Vector2Int, float>();
+        var fScore = new Dictionary<Vector2Int, float>();
+
+        openSet.Add(start);
+        gScore[start] = 0;
+        fScore[start] = ManhattanDistance(start, end);
+
+        while (openSet.Count > 0)
+        {
+            Vector2Int current = FindNodeWithLowestFScore(openSet, fScore);
+
+            if (current == end)
+                return ReconstructPath(cameFrom, current);
+
+            openSet.Remove(current);
+            closedSet.Add(current);
+
+            foreach (var neighbor in GetNeighbors(current))
+            {
+                if (closedSet.Contains(neighbor))
+                    continue;
+
+                // More lenient validation for fallback paths
+                if (!IsInBounds(neighbor) || towerTiles.Contains(neighbor))
+                    continue;
+
+                // Allow connecting to existing paths
+                if (neighbor == end || grid[neighbor.x, neighbor.y] == TileType.Ground)
+                {
+                    float tentativeGScore = gScore[current] + 1f;
+
+                    if (!openSet.Contains(neighbor))
+                        openSet.Add(neighbor);
+                    else if (tentativeGScore >= gScore.GetValueOrDefault(neighbor, float.MaxValue))
+                        continue;
+
+                    cameFrom[neighbor] = current;
+                    gScore[neighbor] = tentativeGScore;
+                    fScore[neighbor] = tentativeGScore + ManhattanDistance(neighbor, end);
+                }
             }
         }
 
