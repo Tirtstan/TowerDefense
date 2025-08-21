@@ -14,6 +14,11 @@ public class DecorationSpawner : MonoBehaviour
     [SerializeField, Range(0.1f, 2f)]
     private float heightOffset = 0.25f;
 
+    [SerializeField]
+    [Tooltip("How much overlap is allowed with decorations.")]
+    [Range(0, 1)]
+    private float overlapAllowance = 0.3f;
+
     [Header("Noise Settings")]
     [SerializeField, Range(0.1f, 20f)]
     private float noiseScale = 5f;
@@ -49,6 +54,7 @@ public class DecorationSpawner : MonoBehaviour
     [SerializeField]
     private DecorationConfig[] decorationConfigs;
     private readonly Dictionary<DecorationConfig, Transform> configParents = new();
+    private readonly List<(Vector3 position, float radius)> spawnedDecorations = new();
 
     private void Awake()
     {
@@ -69,6 +75,8 @@ public class DecorationSpawner : MonoBehaviour
 
         ClearExistingDecorations();
         SetupParentTransforms();
+
+        spawnedDecorations.Clear();
 
         int gridSize = mapGenerator.GetGridSize();
         float tileSize = mapGenerator.GetTileSize();
@@ -139,12 +147,11 @@ public class DecorationSpawner : MonoBehaviour
         float randomComponent = Random.Range(selectedConfig.scaleRange.x, selectedConfig.scaleRange.y);
         float finalScale = Mathf.Lerp(noiseBasedScale, randomComponent, scaleRandomness);
 
-        Vector3 position =
-            new(
-                (gridX + Random.Range(-selectedConfig.positionVariance, selectedConfig.positionVariance)) * tileSize,
-                heightOffset,
-                (gridZ + Random.Range(-selectedConfig.positionVariance, selectedConfig.positionVariance)) * tileSize
-            );
+        Vector3 position = new(
+            (gridX + Random.Range(-selectedConfig.positionVariance, selectedConfig.positionVariance)) * tileSize,
+            heightOffset,
+            (gridZ + Random.Range(-selectedConfig.positionVariance, selectedConfig.positionVariance)) * tileSize
+        );
 
         float effectiveAvoidanceRadius = selectedConfig.pathAvoidanceRadius * finalScale;
 
@@ -152,6 +159,13 @@ public class DecorationSpawner : MonoBehaviour
             return;
 
         if (selectedConfig.avoidPaths && IsTooCloseToTower(position, effectiveAvoidanceRadius, tileSize))
+            return;
+
+        // Calculate decoration radius based on scale and minimum size
+        float decorationRadius = Mathf.Max(selectedConfig.minSize, finalScale) * 0.5f;
+
+        // Check if this decoration would overlap with existing ones
+        if (IsOverlappingWithExistingDecorations(position, decorationRadius))
             return;
 
         GameObject prefab = selectedConfig.prefabs[Random.Range(0, selectedConfig.prefabs.Length)];
@@ -164,6 +178,22 @@ public class DecorationSpawner : MonoBehaviour
         GameObject decoration = Instantiate(prefab, position, rotation, parentTransform);
 
         decoration.transform.localScale = Vector3.one * finalScale;
+
+        spawnedDecorations.Add((position, decorationRadius));
+    }
+
+    private bool IsOverlappingWithExistingDecorations(Vector3 newPosition, float newRadius)
+    {
+        foreach (var (existingPos, existingRadius) in spawnedDecorations)
+        {
+            float distance = Vector3.Distance(newPosition, existingPos);
+            float minDistance = (newRadius + existingRadius) * overlapAllowance;
+
+            if (distance < minDistance)
+                return true;
+        }
+
+        return false;
     }
 
     private DecorationConfig SelectDecorationByNoise(float noiseValue)
@@ -255,7 +285,7 @@ public class DecorationSpawner : MonoBehaviour
 
                     if (IsTowerTile(tileType))
                     {
-                        Vector3 tileWorldPos = new Vector3(x * tileSize, 0, z * tileSize);
+                        Vector3 tileWorldPos = new(x * tileSize, 0, z * tileSize);
                         float distance = Vector3.Distance(worldPosition, tileWorldPos);
 
                         if (distance < avoidanceRadius)
@@ -268,19 +298,19 @@ public class DecorationSpawner : MonoBehaviour
         return false;
     }
 
-    private bool IsPathTile(TileType tileType)
-    {
-        return tileType == TileType.Path
-            || tileType == TileType.Turn
-            || tileType == TileType.TJunction
-            || tileType == TileType.CrossJunction
-            || tileType == TileType.CenterTile;
-    }
+    private bool IsPathTile(TileType tileType) =>
+        tileType == TileType.Path
+        || tileType == TileType.Turn
+        || tileType == TileType.TJunction
+        || tileType == TileType.CrossJunction
+        || tileType == TileType.CenterTile;
 
     private bool IsTowerTile(TileType tileType) => tileType == TileType.CenterTile;
 
     private void ClearExistingDecorations()
     {
+        spawnedDecorations.Clear();
+
         Transform clearTarget = defaultParent != null ? defaultParent : transform;
         for (int i = clearTarget.childCount - 1; i >= 0; i--)
         {
@@ -291,7 +321,7 @@ public class DecorationSpawner : MonoBehaviour
 #endif
         }
 
-        // Also clear any custom parents that were created
+        // clear any custom parents that were created
         foreach (var config in decorationConfigs)
         {
             if (config.customParent != null && config.customParent != clearTarget)

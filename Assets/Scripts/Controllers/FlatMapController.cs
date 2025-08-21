@@ -183,8 +183,9 @@ public class FlatMapController : MonoBehaviour
         return playerInput.currentControlScheme switch
         {
             "Gamepad" => controlsSettings.GamepadLookSensitivity,
-            "Keyboard&Mouse"
-                => isDragging ? controlsSettings.MouseDragSensitivity * 5f : controlsSettings.KeyNavSensitivity,
+            "Keyboard&Mouse" => isDragging
+                ? controlsSettings.MouseDragSensitivity * 5f
+                : controlsSettings.KeyNavSensitivity,
             _ => 1f,
         };
     }

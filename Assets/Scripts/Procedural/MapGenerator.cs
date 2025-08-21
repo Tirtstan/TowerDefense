@@ -632,7 +632,7 @@ public class MapGenerator : MonoBehaviour
             position + Vector2Int.up,
             position + Vector2Int.right,
             position + Vector2Int.down,
-            position + Vector2Int.left
+            position + Vector2Int.left,
         };
 
         neighbors.RemoveAll(n => !IsInBounds(n));
