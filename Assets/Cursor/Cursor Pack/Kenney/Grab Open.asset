@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Grab Open
   m_EditorClassIdentifier: NativeCursor.Runtime::Riten.Native.Cursors.VirtualCursor
   <isMask>k__BackingField: 0
-  <texture>k__BackingField: {fileID: 2800000, guid: 8aa14516579931146bf70e024a9ac806, type: 3}
+  <texture>k__BackingField: {fileID: 2800000, guid: 3931b620798e56f4e9dae90fe7b2b2e3, type: 3}
   <hotspot>k__BackingField: {x: 0.421875, y: 0.296875}
   <backgroundColor>k__BackingField:
     serializedVersion: 2

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Point
   m_EditorClassIdentifier: NativeCursor.Runtime::Riten.Native.Cursors.VirtualCursor
   <isMask>k__BackingField: 0
-  <texture>k__BackingField: {fileID: 2800000, guid: 3925c6d3dead79f45ae3a5217ccf8d5f, type: 3}
-  <hotspot>k__BackingField: {x: 0.234375, y: 0.140625}
+  <texture>k__BackingField: {fileID: 2800000, guid: 63dd8c8bec58dc7458c39e2c0c14ba9c, type: 3}
+  <hotspot>k__BackingField: {x: 0.21875, y: 0.15625}
   <backgroundColor>k__BackingField:
     serializedVersion: 2
     rgba: 0

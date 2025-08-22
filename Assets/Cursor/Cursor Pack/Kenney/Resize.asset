@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Resize
   m_EditorClassIdentifier: NativeCursor.Runtime::Riten.Native.Cursors.VirtualCursor
   <isMask>k__BackingField: 0
-  <texture>k__BackingField: {fileID: 2800000, guid: 0676ed8a0065c794dbc7dc048e43652a, type: 3}
-  <hotspot>k__BackingField: {x: 0.484375, y: 0.5}
+  <texture>k__BackingField: {fileID: 2800000, guid: 07337cde4b995f94a9f69d44eafa3206, type: 3}
+  <hotspot>k__BackingField: {x: 0.46875, y: 0.46875}
   <backgroundColor>k__BackingField:
     serializedVersion: 2
     rgba: 0

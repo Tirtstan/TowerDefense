@@ -85,8 +85,6 @@ public class FlatMapController : MonoBehaviour
 
         if (context.performed && isDragging)
             CursorStack.Push(NTCursors.ClosedHand);
-        else
-            CursorStack.Pop();
     }
 
     private void OnDrag(InputAction.CallbackContext context)
@@ -95,7 +93,7 @@ public class FlatMapController : MonoBehaviour
 
         if (context.performed)
             CursorStack.Push(NTCursors.OpenHand);
-        else
+        else if (context.canceled)
             CursorStack.Clear();
     }
 
@@ -183,9 +181,8 @@ public class FlatMapController : MonoBehaviour
         return playerInput.currentControlScheme switch
         {
             "Gamepad" => controlsSettings.GamepadLookSensitivity,
-            "Keyboard&Mouse" => isDragging
-                ? controlsSettings.MouseDragSensitivity * 5f
-                : controlsSettings.KeyNavSensitivity,
+            "Keyboard&Mouse"
+                => isDragging ? controlsSettings.MouseDragSensitivity * 5f : controlsSettings.KeyNavSensitivity,
             _ => 1f,
         };
     }
