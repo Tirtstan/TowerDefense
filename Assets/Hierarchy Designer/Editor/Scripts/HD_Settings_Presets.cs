@@ -363,6 +363,46 @@ namespace HierarchyDesigner
             );
         }
 
+        private static HD_Preset CyberpunkPreset()
+        {
+            return new(
+                "Cyberpunk",
+                HD_Common_Color.HexToColor("#FF00FF"),
+                12,
+                FontStyle.Bold,
+                HD_Common_Color.HexToColor("#00FFFF"),
+                HD_Settings_Folders.FolderImageType.NeoII,
+                HD_Common_Color.HexToColor("#00FFFF"),
+                true,
+                HD_Common_Color.HexToColor("#0A0A0A"),
+                #if UNITY_2022_3_OR_NEWER
+                HD_Common_Color.CreateGradient(GradientMode.PerceptualBlend, ("#FF00FF", 255, 0f), ("#00FFFF", 255, 100f)),
+                #else
+                HD_Common_Color.CreateGradient(GradientMode.Blend, ("#FF00FF", 255, 0f), ("#00FFFF", 255, 100f)),
+                #endif
+                FontStyle.Bold,
+                13,
+                TextAnchor.MiddleCenter,
+                HD_Settings_Separators.SeparatorImageType.NextGenII,
+                HD_Common_Color.HexToColor("#FF00FF"),
+                FontStyle.BoldAndItalic,
+                10,
+                TextAnchor.MiddleRight,
+                HD_Common_Color.HexToColor("#00FFFF"),
+                FontStyle.BoldAndItalic,
+                10,
+                TextAnchor.MiddleLeft,
+                HD_Common_Color.HexToColor("#00FFFF"),
+                HD_Common_Color.HexToColor("#FF00FF80"),
+                HD_Common_Color.HexToColor("#FF00FF"),
+                HD_Common_Color.HexToColor("#00FFFF"),
+                HD_Common_Color.HexToColor("#FF00FF"),
+                11,
+                FontStyle.Bold,
+                TextAnchor.MiddleCenter
+            );
+        }
+
         private static HD_Preset DeepOceanPreset()
         {
             return new(
@@ -429,6 +469,46 @@ namespace HierarchyDesigner
                 HD_Common_Color.HexToColor("#DDC0A4E1"),
                 HD_Common_Color.HexToColor("#DDC0A480"),
                 HD_Common_Color.HexToColor("#DDC0A4E1"),
+                11,
+                FontStyle.Italic,
+                TextAnchor.MiddleCenter
+            );
+        }
+
+        private static HD_Preset ForestDawnPreset()
+        {
+            return new(
+                "Forest Dawn",
+                HD_Common_Color.HexToColor("#F2E8CF"),
+                11,
+                FontStyle.Italic,
+                HD_Common_Color.HexToColor("#7A9E7E"),
+                HD_Settings_Folders.FolderImageType.ModernI,
+                HD_Common_Color.HexToColor("#FFD97D"),
+                true,
+                HD_Common_Color.HexToColor("#7A9E7E"),
+                #if UNITY_2022_3_OR_NEWER
+                HD_Common_Color.CreateGradient(GradientMode.PerceptualBlend, ("#FFD97D", 255, 0f), ("#7A9E7E", 255, 100f)),
+                #else
+                HD_Common_Color.CreateGradient(GradientMode.Blend, ("#FFD97D", 255, 0f), ("#7A9E7E", 255, 100f)),
+                #endif
+                FontStyle.Italic,
+                12,
+                TextAnchor.MiddleCenter,
+                HD_Settings_Separators.SeparatorImageType.DefaultFadedTop,
+                HD_Common_Color.HexToColor("#FFD97D"),
+                FontStyle.Italic,
+                9,
+                TextAnchor.MiddleRight,
+                HD_Common_Color.HexToColor("#F2E8CF"),
+                FontStyle.Italic,
+                9,
+                TextAnchor.MiddleLeft,
+                HD_Common_Color.HexToColor("#FFD97D"),
+                HD_Common_Color.HexToColor("#FFD97D80"),
+                HD_Common_Color.HexToColor("#7A9E7E"),
+                HD_Common_Color.HexToColor("#FFD97D"),
+                HD_Common_Color.HexToColor("#F2E8CF"),
                 11,
                 FontStyle.Italic,
                 TextAnchor.MiddleCenter
@@ -1224,8 +1304,10 @@ namespace HierarchyDesigner
                 BlackAndWhitePreset(),
                 BloodyMaryPreset(),
                 BlueHarmonyPreset(),
+                CyberpunkPreset(),
                 DeepOceanPreset(),
                 DunesPreset(),
+                ForestDawnPreset(),
                 FreshSwampPreset(),
                 FrostyFogPreset(),
                 HoHoHoPreset(),

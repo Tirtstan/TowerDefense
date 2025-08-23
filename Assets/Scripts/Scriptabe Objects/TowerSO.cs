@@ -6,7 +6,7 @@ public class TowerSO : ScriptableObject
     [Header("Properties")]
     public string Name = "Tower";
     public Sprite Sprite;
-    public GameObject Prefab;
+    public Tower Prefab;
 
     [Header("Stats")]
     public float Health = 100;

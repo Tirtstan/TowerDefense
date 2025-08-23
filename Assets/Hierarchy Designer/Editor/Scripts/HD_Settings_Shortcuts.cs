@@ -14,7 +14,7 @@ namespace HierarchyDesigner
         {
             public KeyCode ToggleGameObjectActiveStateKeyCode = KeyCode.Mouse2;
             public KeyCode ToggleLockStateKeyCode = KeyCode.F1;
-            public KeyCode ChangeTagLayerKeyCode = KeyCode.F2;
+            public KeyCode ChangeTagLayerKeyCode = KeyCode.Mouse0;
             public KeyCode RenameSelectedGameObjectsKeyCode = KeyCode.F3;
         }
         private static HD_ShortcutsSettings shortcutsSettings = new();
@@ -120,7 +120,7 @@ namespace HierarchyDesigner
             {
                 ToggleGameObjectActiveStateKeyCode = KeyCode.Mouse2,
                 ToggleLockStateKeyCode = KeyCode.F1,
-                ChangeTagLayerKeyCode = KeyCode.F2,
+                ChangeTagLayerKeyCode = KeyCode.Mouse0,
                 RenameSelectedGameObjectsKeyCode = KeyCode.F3,
             };
         }

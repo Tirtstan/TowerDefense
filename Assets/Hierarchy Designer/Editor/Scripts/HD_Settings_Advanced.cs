@@ -43,6 +43,7 @@ namespace HierarchyDesigner
             #endregion
 
             #region Hierarchy Tools
+            public bool ExpandHierarchyOnStartup = false;
             public bool ExcludeFoldersFromCountSelectToolCalculations = true;
             public bool ExcludeSeparatorsFromCountSelectToolCalculations = true;
             #endregion
@@ -65,6 +66,14 @@ namespace HierarchyDesigner
             }
 
             LoadHierarchyDesignerManagerGameObjectCaches();
+
+            if (ExpandHierarchyOnStartup)
+            {
+                if (HD_Manager_Session.instance.ExpandHierarchyOnStartupOnce) return;
+
+                HD_Manager_Session.instance.ExpandHierarchyOnStartupOnce = true;
+                EditorApplication.delayCall += () => HD_Common_Operations.ExpandAllGameObjects();
+            }
         }
 
         private static string ReadBaseHierarchyDesigner()
@@ -339,6 +348,18 @@ namespace HierarchyDesigner
         #endregion
 
         #region Hierarchy Tools
+        public static bool ExpandHierarchyOnStartup
+        {
+            get => advancedSettings.ExpandHierarchyOnStartup;
+            set
+            {
+                if (advancedSettings.ExpandHierarchyOnStartup != value)
+                {
+                    advancedSettings.ExpandHierarchyOnStartup = value;
+                }
+            }
+        }
+
         public static bool ExcludeFoldersFromCountSelectToolCalculations
         {
             get => advancedSettings.ExcludeFoldersFromCountSelectToolCalculations;
@@ -414,6 +435,7 @@ namespace HierarchyDesigner
                 EnableCustomInspectorUI = true,
                 EnableEditorUtilities = true,
                 IncludeBackgroundImageForGradientBackground = true,
+                ExpandHierarchyOnStartup = false,
                 ExcludeFoldersFromCountSelectToolCalculations = true,
                 ExcludeSeparatorsFromCountSelectToolCalculations = true,
             };

@@ -351,6 +351,7 @@ namespace HierarchyDesigner
         private bool tempEnableCustomInspectorUI;
         private bool tempEnableEditorUtilities;
         private bool tempIncludeBackgroundImageForGradientBackground;
+        private bool tempExpandHierarchyOnStartup;
         private bool tempExcludeFoldersFromCountSelectToolCalculations;
         private bool tempExcludeSeparatorsFromCountSelectToolCalculations;
         private static bool advancedSettingsHasModifiedChanges = false;
@@ -2862,6 +2863,7 @@ namespace HierarchyDesigner
             EditorGUILayout.LabelField("Hierarchy Tools", HD_Common_GUI.FieldsCategoryLabelStyle);
 
             EditorGUI.BeginChangeCheck();
+            tempExpandHierarchyOnStartup = HD_Common_GUI.DrawToggle("Expand Hierarchy On Startup", advancedSettingsToggleLabelWidth, tempExpandHierarchyOnStartup, true, true, "Expands the Hierarchy window when the project opens.");
             tempExcludeFoldersFromCountSelectToolCalculations = HD_Common_GUI.DrawToggle("Exclude Folders From Count-Select Tool Calculations", advancedSettingsToggleLabelWidth, tempExcludeFoldersFromCountSelectToolCalculations, true, true, "Excludes Folder GameObjects from Count and Select tool calculations.");
             tempExcludeSeparatorsFromCountSelectToolCalculations = HD_Common_GUI.DrawToggle("Exclude Separators From Count-Select Tool Calculations", advancedSettingsToggleLabelWidth, tempExcludeSeparatorsFromCountSelectToolCalculations, true, true, "Excludes Separator GameObjects from Count and Select tool calculations.");
             if (EditorGUI.EndChangeCheck()) { advancedSettingsHasModifiedChanges = true; }
@@ -2887,6 +2889,7 @@ namespace HierarchyDesigner
             HD_Settings_Advanced.EnableCustomInspectorGUI = tempEnableCustomInspectorUI;
             HD_Settings_Advanced.IncludeEditorUtilitiesForHierarchyDesignerRuntimeFolder = tempEnableEditorUtilities;
             HD_Settings_Advanced.IncludeBackgroundImageForGradientBackground = tempIncludeBackgroundImageForGradientBackground;
+            HD_Settings_Advanced.ExpandHierarchyOnStartup = tempExpandHierarchyOnStartup;
             HD_Settings_Advanced.ExcludeFoldersFromCountSelectToolCalculations = tempExcludeFoldersFromCountSelectToolCalculations;
             HD_Settings_Advanced.ExcludeSeparatorsFromCountSelectToolCalculations = tempExcludeSeparatorsFromCountSelectToolCalculations;
             HD_Settings_Advanced.SaveSettings();
@@ -2915,6 +2918,7 @@ namespace HierarchyDesigner
             tempEnableCustomInspectorUI = HD_Settings_Advanced.EnableCustomInspectorGUI;
             tempEnableEditorUtilities = HD_Settings_Advanced.IncludeEditorUtilitiesForHierarchyDesignerRuntimeFolder;
             tempIncludeBackgroundImageForGradientBackground = HD_Settings_Advanced.IncludeBackgroundImageForGradientBackground;
+            tempExpandHierarchyOnStartup = HD_Settings_Advanced.ExpandHierarchyOnStartup;
             tempExcludeFoldersFromCountSelectToolCalculations = HD_Settings_Advanced.ExcludeFoldersFromCountSelectToolCalculations;
             tempExcludeSeparatorsFromCountSelectToolCalculations = HD_Settings_Advanced.ExcludeSeparatorsFromCountSelectToolCalculations;
         }
@@ -2931,6 +2935,7 @@ namespace HierarchyDesigner
             tempEnableCustomInspectorUI = enable;
             tempEnableEditorUtilities = enable;
             tempIncludeBackgroundImageForGradientBackground = enable;
+            tempExpandHierarchyOnStartup = enable;
             tempExcludeFoldersFromCountSelectToolCalculations = enable;
             tempExcludeSeparatorsFromCountSelectToolCalculations = enable;
             advancedSettingsHasModifiedChanges = true;

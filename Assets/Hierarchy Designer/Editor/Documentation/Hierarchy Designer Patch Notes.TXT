@@ -1,26 +1,33 @@
-| Version 1.9.0
+<color=#FFF35A>Version 2.0.0</color>
+• Added a new advanced setting: Expand Hierarchy on Startup (disabled by default).
+• Added two new presets: Cyberpunk and Forest Dawn.
+• Main Icon Override no longer applies to Hierarchy Designer folders.
+• The default value for the Change Tag/Layer major shortcut is now set to KeyCode.Mouse0
+• Minor changes.
+
+<color=#FFF35A>Version 1.9.0</color>
 • (New) Added a Main Icon Override feature.
 
 Note: Left- or right-click the main icon (*if enabled) to use it.
 
-| Version 1.8.2
+<color=#FFF35A>Version 1.8.2</color>
 • (Other) Minor changes.
 
-| Version 1.8.1f
+<color=#FFF35A>Version 1.8.1f</color>
 • Fixed a minor GUI bug related to notes.
 • Fixed a bug where the right arrow for child prefab folders would not appear.
 
-| Version 1.8.0
+<color=#FFF35A>Version 1.8.0</color>
 • (New) Added a Notes feature to the Hierarchy Designer Folders (Editor-Only section).
 • (New) Added a new preset: Summer Break.
 • (Other) Minor changes.
 
-| Version 1.7.1f
+<color=#FFF35A>Version 1.7.1f</color>
 • (Other) Updated to Unity version 2022.3.62f1
 • (Other) Minor changes.
 • (Other) Hierarchy Designer is now a paid asset.
 
-| Version 1.7.0
+<color=#FFF35A>Version 1.7.0</color>
 • (New) Added a new design settings feature: Hierarchy Button Color.
 • (Improvement) Improved the Hierarchy Buttons' GUI.
 • (Other) Included Hierarchy Button Color in the Presets feature.
@@ -28,7 +35,7 @@ Note: Left- or right-click the main icon (*if enabled) to use it.
 • (Other) Tweaked all presets.
 • (Other) Changed the default values of the following design settings: HD Buttons.
 
-| Version 1.6.0
+<color=#FFF35A>Version 1.6.0</color>
 • (New) Added a new feature: Component "Mini-map" (To use: Click Mouse 0 on any component icon).
 • (New) Introduced a new folder series: Classic (e.g., Classic I-II and Classic Outline).
 • (Improvement) Simplified the 'Quick Set Tag Layer' feature and UI.
@@ -39,14 +46,14 @@ Note: Left- or right-click the main icon (*if enabled) to use it.
 
 Credits: Special thanks to Lotus (L.Q.) for implementing the Component Mini-map feature and sending it to me. I refactored and integrated it into HD.
 
-| Version 1.5.0
+<color=#FFF35A>Version 1.5.0</color>
 • (New) Added a new General Settings filtering feature: "Excluded Components Icons".
 • (Improvement) Applying a preset now updates the Default Folder and Separator design values upon saving.
 • (Bug Fix) Removed an invalid entry for the Folder Image Type "Neo III" in Design Settings' default folder image type.
 • (Removed) Removed the Exclude Transform and Canvas Renderer Component Icons from General Filtering Settings (redundant due to the Excluded Components feature; Transform and Canvas Renderer are now default values in the Excluded Components list).
 • (Other) Minor refactoring in a few classes.
 
-| Version 1.4.0
+<color=#FFF35A>Version 1.4.0</color>
 • (New) Added a new folder series: Neo (i.e., Neo I-II and Neo Outline).
 • (New) Added a new advanced folder setting: "Enable Custom Inspector UI."
 • (New) Added a new bool toggle, "Display Parents Only," to the HD Folder Editor–only operations.
@@ -61,13 +68,13 @@ Credits: Special thanks to Lotus (L.Q.) for implementing the Component Mini-map 
 • (Others) Renamed "Hierarchy Designer Folder Icon Inspector" to "Hierarchy Designer Folder Icon Scene."
 • (Others) Made other small changes and refactors in a few classes.
 
-| Version 1.3.0
+<color=#FFF35A>Version 1.3.0</color>
 • (New) Added two new context menus: Expand All and Collapse All.
 • (New) Added two new shortcuts: Expand All GameObjects (Shift + Alt + E) and Collapse All GameObjects (Shift + Alt + C).
 • (Bug Fix) Fixed a NullReferenceException bug related to the main icon of UI GameObjects.
 • (Other) Performed minor refactoring in several classes.
 
-| Version 1.2.0
+<color=#FFF35A>Version 1.2.0</color>
 • (New): Created a new feature, 'Preset Creator,' located under Utilities.
 • (New): Added a new minor shortcut, 'Open Preset Creator Panel.'
 • (New): Added a 'Saved Data' section to the Features Breakdown in the About menu.
@@ -75,7 +82,7 @@ Credits: Special thanks to Lotus (L.Q.) for implementing the Component Mini-map 
 • (Improvement): Made minor GUI and other changes.
 • (Other): Performed major and minor refactors across a few classes.
 
-| Version 1.1.9.1
+<color=#FFF35A>Version 1.1.9.1</color>
 • (New) Added the following presets: 'Ho Ho Ho' and 'Snow'.
 • (New) Created a new design setting: Separator Center Text Anchor Offset.
 • (Bug Fix) Corrected the center alignments for separators, which were previously slightly shifted to the right.
@@ -83,7 +90,7 @@ Credits: Special thanks to Lotus (L.Q.) for implementing the Component Mini-map 
 • (Other) Renamed 'HierarchyDesigner_Inspector_Folder' to 'HierarchyDesigner_Window_Folder'.
 • (Other) Renamed 'HierarchyDesigner_Window_GameObject' to 'HierarchyDesigner_Window_TagLayer'.
 
-| Version 1.1.9
+<color=#FFF35A>Version 1.1.9</color>
 • (Rework) Reworked the Hierarchy Designer's interface.
 • (New) Added tooltips to Hierarchy Designer fields.
 • (New) Added a reset value option for Hierarchy Designer fields.
@@ -98,7 +105,7 @@ Credits: Special thanks to Lotus (L.Q.) for implementing the Component Mini-map 
 • (Others) Major and minor refactors across all classes.
 • (Others) Various minor changes.
 
-| Version 1.1.8
+<color=#FFF35A>Version 1.1.8</color>
 • (New): The left panel of the Hierarchy Designer window now supports a collapsed mode.
 • (New): You can now edit the offset for the 'Separator Left-Right Text Anchor' in Design Settings.
 • (New): Added a new core feature to General Settings, 'Hierarchy Tree Mode', with the following modes: Minimal, Default.
@@ -120,7 +127,7 @@ Credits: Special thanks to Lotus (L.Q.) for implementing the Component Mini-map 
 • (Other): Replaced the resource icons for Tools and Presets.
 • (Other): Made other small changes.
 
-| Version 1.1.7
+<color=#FFF35A>Version 1.1.7</color>
 • (New): Created a centralized window that unifies all previous windows.
 • (New): Introduced 'The Update Board', located in the Home tab, which displays the latest news in real time.
 • (New): Added a 'Check for Latest Updates' feature available on the Home tab, allowing you to always have the newest version of Hierarchy Designer. // New versions, including those in development, will be announced on 'The Update Board'.
@@ -136,7 +143,7 @@ Credits: Special thanks to Lotus (L.Q.) for implementing the Component Mini-map 
 
 Additional Notes: This update requires a fresh download. If you have Hierarchy Designer in your project, please delete it (except the Saved Data) before updating to the new version.
 
-| Version 1.1.6
+<color=#FFF35A>Version 1.1.6</color>
 • (New): Created a new feature, 'Tree Branch Image Type', which allows you to modify the image type of the Hierarchy Tree (available in the Design Settings Window).
 • (New): Created five new presets: 'Fresh Swamp', 'Iron Cinder', 'Jade Lake', 'The Two Realms', and 'Young Monarch'.
 • (New): Added twelve new resource images for the Hierarchy Tree, divided into three new types: 'Curved', 'Dotted', and 'Segmented'.
@@ -153,7 +160,7 @@ Additional Notes: This update requires a fresh download. If you have Hierarchy D
 • (Other): Implemented major and minor changes in a few classes.
 • (Other): Made other small changes.
 
-| Version 1.1.5
+<color=#FFF35A>Version 1.1.5</color>
 • (New): Added a new feature, 'Update Mode (Dynamic, Smart),' found in the Advanced Settings. The following features are available in Update Mode: Main Icon, Components Icons, Hierarchy Tree, Tag, and Layer.
 • (New): Added two new context menu items related to the Folder and Separator: 'Transform Folder into a GameObject' and 'Transform Separator into a GameObject,'.
 • (New): Added seven new context menu items related to Update Mode.
@@ -169,10 +176,10 @@ Additional Notes: This update requires a fresh download. If you have Hierarchy D
 
 Additional notes: In Smart Mode, changes are only checked periodically or when refreshed through the context menu or the refresh minor shortcuts. If you are working on larger scenes or want to increase performance, I recommend setting all features to Smart Mode and refreshing when needed.
 
-| Version 1.1.4.1f
+<color=#FFF35A>Version 1.1.4.1f</color>
 • (Bug fix): Fixed the folder label alignment.
 
-| Version 1.1.4
+<color=#FFF35A>Version 1.1.4</color>
 • (New): Created a new feature, 'Hierarchy Lines,' available in the General and Design Settings.
 • (Improvement): Transforming a GameObject into a folder will check if the GameObject already has the folder script before adding a new one.
 • (Improvement): Minor performance improvements.
@@ -183,7 +190,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 • (Other): Major and/or minor changes in most classes.
 • (Remove): Removed 'HierarchyDesigner_Shared_ImportReload.cs' (obsolete due to new changes).
 
-| Version 1.1.3
+<color=#FFF35A>Version 1.1.3</color>
 • (New): Added 'Text Color', 'Font Size', and 'Font Style' to the folders.
 • (New): Added the following new folder images: 'Modern II', 'Modern III', and 'Modern Outline'.
 • (New): Created two new context menu items: 'Transform GameObject into a Folder' and 'Transform GameObject into a Separator', allowing you to convert GameObjects into folders or separators via context menus.
@@ -199,7 +206,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 • (Other): Updated the default Hierarchy Designer location from the 'Top Bar' to 'Tools' to "follow the guidelines".
 • (Remove): Removed 'Hierarchy Designer Folder Icon Default Outline 2x'.
 
-| Version 1.1.2
+<color=#FFF35A>Version 1.1.2</color>
 • (New): Added 'Context Menu(s)' to the Hierarchy Window.
 • (New): Created a new class 'HierarchyDesigner_Inspector_Folder'.
 • (New): Added three new variables: FlattenEvent, OnFlattenEvent, and OnFolderDestroy to the HierarchyDesignerFolder, allowing you to choose between the Awake or Start method to flatten the folder, and to call events OnFlattenEvent and OnFolderDestroyed.
@@ -217,7 +224,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 • (Others): Made major and/or minor changes in most classes.
 • (Others): Made a few other small changes.
 
-| Version 1.1.1.3p
+<color=#FFF35A>Version 1.1.1.3p</color>
 • (New): Added the 'Lock Label' feature to the presets.
 • (New): Added two new Separator Background types: 'Classic' and 'Neo'. Currently available: 'Classic I-II' and 'Neo I-II'.
 • (New): Created the following new presets: 'Age of Enlightenment', 'Frosty Fog', 'Little Red', 'Strawberry Salmon'.
@@ -226,10 +233,10 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 • (Others): Minor changes to some classes.
 • (Others): A few other small changes.
 
-| Version 1.1.1.2f
+<color=#FFF35A>Version 1.1.1.2f</color>
 • (Bug Fix) Fixed a bug where the gradient background for separators would become null after entering and exiting play mode.
 
-| Version 1.1.1.2p
+<color=#FFF35A>Version 1.1.1.2p</color>
 • (New): Added a new feature, 'Gradient Background', to Separators.
 • (New): Added a new feature, 'Hierarchy Designer Location', in the Advanced Settings window.
 • (New): Added a new 'Advanced Settings' option: 'Include Background Image for Gradient Background'.
@@ -239,7 +246,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 • (Others): Applied major and minor changes to some classes.
 • (Others): Updated the Demo Scene and Asset Store page.
 
-| Version 1.1.1.1p
+<color=#FFF35A>Version 1.1.1.1p</color>
 - (New Feature): You can now re-organize your folders and separators in their manager windows.
 - (New Feature): Added the following new advanced settings values: 'Exclude Folders from Count-Select Tool' and 'Exclude Separators from Count-Select Tool'.
 - (New Feature): Created a new value field, 'Starting Index' (int), for the Rename Tool window.
@@ -255,7 +262,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 - (Bug Fix): 'Unsaved Modified Changes' are no longer flagged when creating a folder or separators without modifying their values.
 - (Others): Major and/or minor changes in some classes.
 
-| Version 1.1.1 (Hierarchy Designer Remake)
+<color=#FFF35A>Version 1.1.1 (Hierarchy Designer Remake)</color>
 - (New Feature): Created two new types of settings (Design and Advanced Settings) which allow you to customize your Hierarchy even further.
 - (New Feature): Disabled Components for each gameObject can now be easily identified in the Hierarchy if enabled by the settings.
 - (New Feature): GameObject Properties (Main Icon, Component Icons, Tag-Layer, Tree, and Buttons) now update their visuals based on the gameObject's active state (Active, Inactive).
@@ -284,17 +291,17 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 - (Bug Fix): Fixed an error that was thrown when trying to rename gameObjects with the Rename tool window due to data loss caused by a script recompilation or similar action.
 - Much more...
 
-| Version 1.1.0.3f
+<color=#FFF35A>Version 1.1.0.3f</color>
 - Hotfix: Fixed a bug where deleting a script from a GameObject while the Hierarchy Buttons were enabled would throw a NullReferenceException.
 
-| Version 1.1.0.2f
+<color=#FFF35A>Version 1.1.0.2f</color>
 - Modified the 'FolderExists()' and 'SeparatorExists()' methods in their respective utility classes to support UNITY_6000_0_OR_NEWER versions. 
 - Added a 'ReadMe.txt' file to the Documentation folder.
 
-| Version 1.1.0.1f
+<color=#FFF35A>Version 1.1.0.1f</color>
 - Hotfix: Fixed a bug where the folders and separators data would occasionally be deleted when applying a preset to them.
 
-| Version 1.1.0
+<color=#FFF35A>Version 1.1.0</color>
 - Reworked the Saving System. Hierarchy Designer's data is now project-based and sharable.
 - Created a new feature 'Hierarchy Buttons', which can be edited in the Hierarchy General Settings.
 - Created a new feature 'Display Component Name On Mouse Hover.' Simply hover your mouse over a component icon of a gameObject in the hierarchy to display its name. (This only works if you have 'Show Component Icons' toggled on in the general settings).
@@ -304,7 +311,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 - Removed the 'Hierarchy Designer Survey Form.txt' from the Documentation Folder.
 - Implemented minor changes, improvements, and refactoring across various classes.
 
-| Version 1.0.9
+<color=#FFF35A>Version 1.0.9</color>
 - Created a new class HierarchyDesigner_Shared_EditorState.
 - Created a new feature 'Exclude Tags and Layers', located in the General Settings window.
 - Added a new section 'Filtering' to the General Settings.
@@ -317,7 +324,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 - Modified the behavior of the enable/disable and lock/unlock major shortcuts. If there are any gameObjects selected, the action will apply to those selected; if no gameObject is selected, it will apply to the gameObject currently being hovered over in the hierarchy.
 - Implemented minor changes, improvements, and refactoring across various classes.
 
-| Version 1.0.8
+<color=#FFF35A>Version 1.0.8</color>
 - Added a new preset, 'Blue Harmony', to Hierarchy Helpers' Presets.
 - Added '4' new shortcuts to the Minor Shortcuts' Feature, which are: Create All/Missing Folders/Separators.
 - Major refactoring in the HierarchyDesigner_Visual_Separator class.
@@ -325,7 +332,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 - Implemented minor changes, improvements, and refactoring across various classes.
 - Overall Performance Improvements.
 
-| Version 1.0.7
+<color=#FFF35A>Version 1.0.7</color>
 - Created a new feature: 'Hierarchy Minor Shortcuts'.
 - Created two new classes: HierarchyDesigner_Utility_MinorShortcuts and HierarchyDesigner_Window_MinorShortcuts.
 - Added '7' shortcuts to the Minor Shortcuts feature. These shortcuts can only be modified through UnityEditor.ShortcutManagement (Edit/Shortcuts.../Hierarchy Designer).
@@ -336,7 +343,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 - Fixed a bug where sub-folders (a folder inside another folder) that were set to FlattenFolder to false would be destroyed when not supposed to if the parent folder was set to flatten.
 - Implemented minor changes, improvements, and refactoring across some classes.
 
-| Version 1.0.6
+<color=#FFF35A>Version 1.0.6</color>
 - Added the following presets: 'Azure Dreamscape', 'Deep Ocean', and 'Sunflower' to Hierarchy Helpers' Presets.
 - Added 'Global Fields' in the Folders and Separators Manager, allowing quick value changes for each item in the list simultaneously.
 - Added 8 new items for sorting GameObjects by tag or layer, under the Sorting section in Hierarchy Tools and Hierarchy Helper's Tools Master.
@@ -345,7 +352,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 - Fixed a bug that prevented 'Unlock GameObject' from being displayed in the Tools Master.
 - Minor changes, improvements, and refactoring in some classes.
 
-| Version 1.0.5
+<color=#FFF35A>Version 1.0.5</color>
 - Added more items to 'Counting and Selecting' in Hierarchy Tools and Tools Master.
 - Fixed a bug where 'Creating Missing Folders' was not working.
 - Fixed a bug where if you just created a folder/separator from your manager's list without making any modifications, it would prompt the 'has modification' warning window.
@@ -356,7 +363,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 - Improved all Editor Windows (e.g., Folder-Separators Manager, General Settings, and so on).
 - Small changes and improvements in some classes.
 
-| Version 1.0.4
+<color=#FFF35A>Version 1.0.4</color>
 - Added a new background image to separators: "Modern III."
 - Added a new MenuItem 'Rename Selected GameObjects With Same Name' in 'Hierarchy Tools - Renaming.'
 - Created three new classes: HierarchyDesigner_Info_Tools, HierarchyDesigner_Window_Tools and HierarchyDesigner_Shared_EnumFilter.
@@ -371,7 +378,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 - Small changes in some classes.
 - Small performance improvements.
 
-| Version 1.0.3
+<color=#FFF35A>Version 1.0.3</color>
 - Added 'Tree Color' field in the 'General Setting Styling' for editing.
 - Added a new section 'Hierarchy Helpers' within Hierarchy Designer.
 - Added 'Sort Randomly', 'Sort By Components Amount Ascending', and 'Sort By Components Amount Descending' in Hierarchy Tool 'Sorting'.
@@ -388,7 +395,7 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 - Removed the 'up' and 'down' button from the Folder/Separator manager for the time being due to the refactoring of the classes.
 - Manually created separators are now obsolete. You must now use the default separator or the separators from your list if you weren't already doing so.
 
-| Version 1.0.2
+<color=#FFF35A>Version 1.0.2</color>
 - Added a 'Font Size' option to the Separators.
 - Added three new background image types for Separators: 'Classic Faded Left and Right', 'Modern I', and 'Modern II'.
 - Added a new 'Counting' tool type to Hierarchy Tools.
@@ -402,12 +409,12 @@ Additional notes: In Smart Mode, changes are only checked periodically or when r
 - Fixed a bug where the OnGUI background color would not work occasionally.
 - Made small tweaks in various classes.
 
-| Version 1.0.1
+<color=#FFF35A>Version 1.0.1</color>
 - Added 'Background Image Type' to Hierarchy Separators.
 - Added 'Folder Image Type' to Hierarchy Folders.
 - Added 'Patch Notes' to the package.
 - Fixed a bug where PerformReimport() would be called repetitiously if textures were corrupted or not found.
 - Updated Hierarchy Designer Media on the Asset Store.
 
-| Version 1.0.0
+<color=#FFF35A>Version 1.0.0</color>
 - First release of Hierarchy Designer.

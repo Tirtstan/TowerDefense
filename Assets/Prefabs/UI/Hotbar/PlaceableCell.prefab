@@ -783,6 +783,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd94a0ed8e7b9e64a8aa3a9fb7435449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlaceableCell
+  toggle: {fileID: 7307190395588274504}
   placeableIcon: {fileID: 5490312219195068368}
   costText: {fileID: 1725584467381274244}
   towerSO: {fileID: 11400000, guid: af58d0d2f8194dc4092e531616071f92, type: 2}
@@ -805,8 +806,8 @@ MonoBehaviour:
   costReachedColor: {r: 1, g: 0.7529412, b: 0.26666668, a: 1}
   fillDuration: 0.5
   fillEase: 9
-  shakeDuration: 0.2
-  shakeStrength: 0.1
+  shakeDuration: 0.3
+  shakeStrength: 0.05
 --- !u!1 &7218850475585591114
 GameObject:
   m_ObjectHideFlags: 0

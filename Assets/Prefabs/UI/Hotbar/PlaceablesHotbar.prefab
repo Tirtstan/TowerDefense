@@ -206,11 +206,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5987316502052632537, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
       propertyPath: TargetPosition.y
-      value: 105.5
+      value: 109
       objectReference: {fileID: 0}
     - target: {fileID: 5987316502052632537, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
       propertyPath: TransformPosition.y
-      value: 105.5
+      value: 109
       objectReference: {fileID: 0}
     - target: {fileID: 5987316502052632537, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
       propertyPath: LayoutBounds.m_Extent.x
@@ -236,14 +236,6 @@ PrefabInstance:
       propertyPath: m_Group
       value: 
       objectReference: {fileID: 2763723712534745789}
-    - target: {fileID: 7773449089205724019, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
-      propertyPath: shakeDuration
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7773449089205724019, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
-      propertyPath: shakeStrength
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 8277200928186313748, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

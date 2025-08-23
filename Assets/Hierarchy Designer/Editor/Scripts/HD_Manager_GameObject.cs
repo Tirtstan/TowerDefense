@@ -476,6 +476,7 @@ namespace HierarchyDesigner
         {
             if (evt.type != EventType.MouseDown) return;
             if ((gameObject.hideFlags & HideFlags.NotEditable) == HideFlags.NotEditable) return;
+            if (folderCache.TryGetValue(gameObject.GetInstanceID(), out _) || gameObject.GetComponent<HierarchyDesignerFolder>()) return;
 
             Rect iconRect = new(selectionRect.x, selectionRect.y + (selectionRect.height - defaultIconSelectionHeight) * 0.5f, defaultIconSelectionHeight, defaultIconSelectionHeight);
             if (!iconRect.Contains(evt.mousePosition)) return;
