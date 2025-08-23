@@ -14,6 +14,8 @@ public class PlaceableCell : MonoBehaviour
     [SerializeField]
     private TowerSO towerSO;
 
+    private void Awake() => UpdateDisplay();
+
     public void UpdateDisplay()
     {
         if (towerSO == null)
@@ -23,8 +25,5 @@ public class PlaceableCell : MonoBehaviour
         costText.SetText(towerSO.Cost.ToString());
     }
 
-    private void OnValidate()
-    {
-        UpdateDisplay();
-    }
+    private void OnValidate() => UpdateDisplay();
 }

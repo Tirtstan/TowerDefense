@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9146267987455670012}
   - component: {fileID: 2117626241541845240}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CenterTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,6 +96,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 13d4fc0b91338e84eb5e679eee9f10c5, type: 3}
       propertyPath: m_Name
       value: tower-square-build-e
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 13d4fc0b91338e84eb5e679eee9f10c5, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

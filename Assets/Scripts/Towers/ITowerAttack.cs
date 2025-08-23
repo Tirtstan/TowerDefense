@@ -1,4 +1,7 @@
+using System;
+
 public interface ITowerAttack
 {
-    public void Attack();
+    public event Action OnAttack;
+    public void Attack(IDamagable target);
 }

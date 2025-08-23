@@ -18,3 +18,5 @@ MonoBehaviour:
   Health: 100
   Cost: 100
   Damage: 10
+  Range: 5
+  AttackInterval: 3

@@ -85,9 +85,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "down",
-                    "id": "d440e0e8-841b-4140-9da9-e7ccb7a8ce14",
-                    "path": "<Keyboard>/s",
+                    "name": "left",
+                    "id": "29793fa1-eb1c-4dcb-8351-eff9afcd7854",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
@@ -96,9 +96,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "left",
-                    "id": "29793fa1-eb1c-4dcb-8351-eff9afcd7854",
-                    "path": "<Keyboard>/a",
+                    "name": "down",
+                    "id": "d440e0e8-841b-4140-9da9-e7ccb7a8ce14",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",

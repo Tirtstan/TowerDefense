@@ -12,4 +12,8 @@ public class TowerSO : ScriptableObject
     public float Health = 100;
     public float Cost = 100;
     public float Damage = 10;
+    public float Range = 5;
+
+    [Tooltip("The interval between each attack in seconds.")]
+    public float AttackInterval = 1;
 }
