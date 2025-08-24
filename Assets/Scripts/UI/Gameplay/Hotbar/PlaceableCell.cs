@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +19,7 @@ public class PlaceableCell : MonoBehaviour
 
     private void Awake()
     {
-        TowerPlacer.OnTowerDeselected += OnTowerDeselected;
+        TowerPlacerController.OnTowerDeselected += OnTowerDeselected;
         toggle.onValueChanged.AddListener(OnToggleValueChanged);
         UpdateDisplay();
     }
@@ -34,9 +33,9 @@ public class PlaceableCell : MonoBehaviour
     private void OnToggleValueChanged(bool isOn)
     {
         if (isOn)
-            TowerPlacer.Instance.SetCurrentTower(towerSO);
+            TowerPlacerController.Instance.SetCurrentTower(towerSO);
         else
-            TowerPlacer.Instance.TryDeselectTower(towerSO);
+            TowerPlacerController.Instance.TryDeselectTower(towerSO);
     }
 
     public void UpdateDisplay()
@@ -50,7 +49,7 @@ public class PlaceableCell : MonoBehaviour
 
     private void OnDestroy()
     {
-        TowerPlacer.OnTowerDeselected -= OnTowerDeselected;
+        TowerPlacerController.OnTowerDeselected -= OnTowerDeselected;
     }
 
     private void OnValidate() => UpdateDisplay();

@@ -32,6 +32,8 @@ public class Tower : MonoBehaviour, IDamagable, IHealable
 
     public void Heal(float amount) => TakeDamage(-amount);
 
+    public TowerSO GetTowerSO() => towerSO;
+
     private void Die()
     {
         OnDestroyed?.Invoke(towerSO);

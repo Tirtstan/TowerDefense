@@ -22,6 +22,6 @@ MonoBehaviour:
   denied: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
   move: {fileID: 11400000, guid: 7590caf465c13c54b98960d49da21666, type: 2}
   resizeHorizontal: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
-  resizeVertical: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
+  resizeVertical: {fileID: 11400000, guid: 0110af3f3185cc246b01cccd8decf996, type: 2}
   resizeDiagonal1: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
   resizeDiagonal2: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}

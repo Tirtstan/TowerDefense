@@ -1,21 +1,28 @@
 using System;
+using Riten.Native.Cursors;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
-public class TowerPlacer : Singleton<TowerPlacer>
+public class TowerPlacerController : Singleton<TowerPlacerController>
 {
+    public static event Action<TowerSO> OnTowerSelected;
+    public static event Action<TowerSO> OnTowerDeselected;
+    public static event Action<Tower> OnTowerPlaced;
+
     [Header("Configs")]
+    [SerializeField]
+    private NTCursors placingCursor = NTCursors.ResizeVertical;
+
     [SerializeField]
     private float maxPlacementDistance = 50f;
 
     [SerializeField]
     private LayerMask groundLayer;
-    public static event Action<TowerSO> OnTowerSelected;
-    public static event Action<TowerSO> OnTowerDeselected;
-    public static event Action<Tower> OnTowerPlaced;
     private PlayerInput playerInput;
-    private TowerSO currentTower;
+    private int cursorId;
+    private TowerSO currentTowerSO;
+    private Tower previewTower;
     private Camera mainCamera;
     private Vector2 mousePosition;
     private static bool isOverUI;
@@ -35,38 +42,51 @@ public class TowerPlacer : Singleton<TowerPlacer>
     private void Update()
     {
         isOverUI = EventSystem.current.IsPointerOverGameObject();
+
+        if (previewTower != null)
+        {
+            if (Raycast(out RaycastHit hit))
+                previewTower.transform.position = hit.point;
+        }
     }
 
     private void OnPlacePerformed(InputAction.CallbackContext context)
     {
-        if (currentTower == null)
+        if (currentTowerSO == null)
             return;
 
+        if (Raycast(out RaycastHit hit))
+            PlaceTower(hit.point);
+    }
+
+    private bool Raycast(out RaycastHit hit)
+    {
         Ray ray = mainCamera.ScreenPointToRay(mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit, maxPlacementDistance, groundLayer))
-        {
-            Vector3 worldPosition = hit.point;
-            PlaceTower(worldPosition);
-        }
+        return Physics.Raycast(ray, out hit, maxPlacementDistance, groundLayer);
     }
 
     private void OnMousePosition(InputAction.CallbackContext context) => mousePosition = context.ReadValue<Vector2>();
 
-    private void OnDragPerformed(InputAction.CallbackContext context)
-    {
-        if (currentTower != null)
-            DeselectCurrentTower();
-    }
+    private void OnDragPerformed(InputAction.CallbackContext context) => DeselectCurrentTower();
 
     public void DeselectCurrentTower()
     {
-        OnTowerDeselected?.Invoke(currentTower);
-        currentTower = null;
+        if (currentTowerSO == null)
+            return;
+
+        OnTowerDeselected?.Invoke(currentTowerSO);
+
+        if (previewTower != null)
+            Destroy(previewTower.gameObject);
+
+        currentTowerSO = null;
+        previewTower = null;
+        CursorStack.Pop(cursorId);
     }
 
     public bool TryDeselectTower(TowerSO tower)
     {
-        if (currentTower != tower)
+        if (currentTowerSO != tower)
             return false;
 
         DeselectCurrentTower();
@@ -75,22 +95,26 @@ public class TowerPlacer : Singleton<TowerPlacer>
 
     public void SetCurrentTower(TowerSO tower)
     {
-        currentTower = tower;
-        OnTowerSelected?.Invoke(tower);
+        currentTowerSO = tower;
+        previewTower = Instantiate(currentTowerSO.Prefab);
+        OnTowerSelected?.Invoke(currentTowerSO);
+
+        cursorId = CursorStack.Push(placingCursor);
     }
 
-    public TowerSO GetCurrentTower() => currentTower;
+    public TowerSO GetCurrentTower() => currentTowerSO;
 
     public void PlaceTower(Vector3 position)
     {
-        if (currentTower == null)
+        if (currentTowerSO == null)
             return;
 
         if (isOverUI)
             return;
 
-        Tower newTower = Instantiate(currentTower.Prefab, position, Quaternion.identity);
-        OnTowerPlaced?.Invoke(newTower);
+        Tower placedTower = Instantiate(currentTowerSO.Prefab);
+        placedTower.transform.position = position;
+        OnTowerPlaced?.Invoke(placedTower);
     }
 
     private void OnDestroy()

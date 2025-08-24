@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8045771983117612152}
   - component: {fileID: 1372815465104080361}
-  - component: {fileID: 1332263950598594508}
   - component: {fileID: 8474714792004710613}
   - component: {fileID: 1263122176105505709}
   - component: {fileID: 49560660006757904}
   - component: {fileID: 7164917740303991950}
+  - component: {fileID: 2170674514108218971}
   m_Layer: 6
   m_Name: ThumperTower
   m_TagString: Untagged
@@ -59,27 +59,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 1, y: 0.6, z: 1}
-  m_Center: {x: 0, y: 0.3, z: 0}
---- !u!135 &1332263950598594508
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3508340036517391532}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 2
   m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!114 &8474714792004710613
 MonoBehaviour:
@@ -136,6 +115,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackShake
   cinemachineImpulseSource: {fileID: 5554132638004766362}
+--- !u!114 &2170674514108218971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508340036517391532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f93f8e2fa8912147a449f49ed6bc67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScaleOnStart
+  duration: 0.1
+  strength: 0.2
+  ease: 18
 --- !u!1 &5193717591188507841
 GameObject:
   m_ObjectHideFlags: 0

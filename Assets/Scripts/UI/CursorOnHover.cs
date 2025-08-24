@@ -10,6 +10,7 @@ public class CursorOnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
     [SerializeField]
     private NTCursors hoverCursor = NTCursors.Link;
     private Selectable selectable;
+    private int cursorId;
 
     private void Awake()
     {
@@ -21,12 +22,12 @@ public class CursorOnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         if (!IsInteractable())
             return;
 
-        CursorStack.Push(hoverCursor);
+        cursorId = CursorStack.Push(hoverCursor);
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
-        CursorStack.Pop();
+        CursorStack.Pop(cursorId);
     }
 
     private bool IsInteractable() => selectable != null && selectable.IsInteractable();
