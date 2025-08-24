@@ -19,7 +19,7 @@ MonoBehaviour:
   cross: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
   grab: {fileID: 11400000, guid: 9c73aa2468847ac4ab6f1f1bef9aa10a, type: 2}
   grabbing: {fileID: 11400000, guid: 91dbcff95277a4f43b8c79671c73fae7, type: 2}
-  denied: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
+  denied: {fileID: 11400000, guid: 9060dfd55fe4e9040a18d0aaff80cd77, type: 2}
   move: {fileID: 11400000, guid: 7590caf465c13c54b98960d49da21666, type: 2}
   resizeHorizontal: {fileID: 11400000, guid: 38553810bb7bb5e49a5c8194301ecf15, type: 2}
   resizeVertical: {fileID: 11400000, guid: 0110af3f3185cc246b01cccd8decf996, type: 2}

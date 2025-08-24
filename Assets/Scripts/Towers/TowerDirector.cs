@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ITowerAttack))]
-public class TowerController : MonoBehaviour
+public class TowerDirector : MonoBehaviour
 {
     [Header("Components")]
+    [SerializeField]
+    private TowerAttacker towerAttack;
+
     [SerializeField]
     private TowerSO towerSO;
 
@@ -11,13 +14,8 @@ public class TowerController : MonoBehaviour
     private LayerMask enemyLayerMask = -1;
 
     private const int MaxHitColliders = 50;
-    private ITowerAttack towerAttack;
+    private readonly List<IDamagable> targets = new();
     private float currentTime;
-
-    private void Awake()
-    {
-        towerAttack = GetComponent<ITowerAttack>();
-    }
 
     private void Update()
     {
@@ -31,13 +29,23 @@ public class TowerController : MonoBehaviour
 
     private void AttackAllTargetsInRange()
     {
+        targets.Clear();
         Collider[] hitColliders = new Collider[MaxHitColliders];
         int hitCount = Physics.OverlapSphereNonAlloc(transform.position, towerSO.Range, hitColliders, enemyLayerMask);
 
         for (int i = 0; i < hitCount; i++)
         {
             if (hitColliders[i].TryGetComponent(out IDamagable damagable))
-                towerAttack.Attack(damagable);
+                targets.Add(damagable);
         }
+
+        if (targets.Count > 0)
+            towerAttack.Attack(targets.ToArray());
+    }
+
+    private void Reset()
+    {
+        if (towerAttack == null)
+            towerAttack = GetComponent<TowerAttacker>();
     }
 }

@@ -9,9 +9,11 @@ public class TowerAttacker : MonoBehaviour, ITowerAttack
     [SerializeField]
     private TowerSO towerSO;
 
-    public void Attack(IDamagable target)
+    public void Attack(IDamagable[] targets)
     {
-        target.TakeDamage(towerSO.Damage);
+        foreach (var target in targets)
+            target.TakeDamage(towerSO.Damage);
+
         OnAttack?.Invoke();
     }
 }

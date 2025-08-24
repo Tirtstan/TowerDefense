@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f40df5d4acf35d41bfa276643970439, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerController
+  towerAttack: {fileID: 1263122176105505709}
   towerSO: {fileID: 11400000, guid: af58d0d2f8194dc4092e531616071f92, type: 2}
   enemyLayerMask:
     serializedVersion: 2
@@ -183,8 +184,8 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    ImpulseDuration: 0.25
-    ImpulseType: 2
+    ImpulseDuration: 0.2
+    ImpulseType: 1
     DissipationRate: 0.9
     RawSignal: {fileID: 0}
     AmplitudeGain: 1
@@ -214,7 +215,7 @@ MonoBehaviour:
     DissipationMode: 2
     DissipationDistance: 50
     PropagationSpeed: 343
-  DefaultVelocity: {x: 0.1, y: -0.1, z: 0.2}
+  DefaultVelocity: {x: -0.1, y: -0.1, z: 0.2}
 --- !u!1001 &4870433110769741292
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -9,6 +9,11 @@ public class Tower : MonoBehaviour, IDamagable, IHealable
     [Header("Components")]
     [SerializeField]
     private TowerSO towerSO;
+
+    [Header("Debug")]
+    [SerializeField]
+    private bool preventDamage;
+
     private float currentHealth;
 
     private void Awake()
@@ -22,6 +27,9 @@ public class Tower : MonoBehaviour, IDamagable, IHealable
 
     public void TakeDamage(float amount)
     {
+        if (preventDamage)
+            return;
+
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, towerSO.Health);
         OnHealthChanged?.Invoke(this);
