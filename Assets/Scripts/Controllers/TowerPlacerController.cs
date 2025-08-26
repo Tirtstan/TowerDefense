@@ -40,15 +40,15 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
 
     [SerializeField]
     private LayerMask towerLayer;
+
     private PlayerInput playerInput;
-    private int cursorId;
     private TowerSO currentTowerSO;
     private Tower previewTower;
     private MeshRenderer previewTowerRenderer;
     private Camera mainCamera;
     private Vector2 mousePosition;
     private static bool isOverUI;
-    private bool isCurrentlyValid;
+    private Material currentMaterial;
 
     protected override void Awake()
     {
@@ -66,28 +66,23 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     {
         isOverUI = EventSystem.current.IsPointerOverGameObject();
 
-        if (previewTower != null)
+        if (previewTower != null && previewTowerRenderer != null)
         {
             if (Raycast(out RaycastHit hit))
             {
                 previewTower.transform.position = hit.point;
                 bool canPlace = CanPlace(ref hit);
 
-                if (canPlace != isCurrentlyValid) // prevents it from spamming duplicate changes
+                Material targetMaterial = canPlace ? validMaterial : invalidMaterial;
+                NTCursors targetCursor = canPlace ? placingCursor : invalidCursor;
+
+                if (currentMaterial != targetMaterial)
                 {
-                    isCurrentlyValid = canPlace;
-                    if (canPlace)
-                    {
-                        previewTowerRenderer.material = validMaterial;
-                        CursorStack.Pop();
-                        CursorStack.Push(placingCursor);
-                    }
-                    else
-                    {
-                        previewTowerRenderer.material = invalidMaterial;
-                        CursorStack.Pop();
-                        CursorStack.Push(invalidCursor);
-                    }
+                    currentMaterial = targetMaterial;
+                    previewTowerRenderer.material = currentMaterial;
+
+                    CursorStack.Pop();
+                    CursorStack.Push(targetCursor);
                 }
             }
         }
@@ -173,7 +168,9 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
 
         currentTowerSO = null;
         previewTower = null;
-        CursorStack.Pop(cursorId);
+        previewTowerRenderer = null;
+        currentMaterial = null;
+        CursorStack.Clear();
     }
 
     public bool TryDeselectTower(TowerSO tower)
@@ -189,10 +186,11 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     {
         currentTowerSO = tower;
         previewTower = Instantiate(currentTowerSO.Prefab);
-        previewTowerRenderer = previewTower.GetComponentInChildren<MeshRenderer>(); // move this to own class on obj
+        previewTowerRenderer = previewTower.GetComponentInChildren<MeshRenderer>();
         OnTowerSelected?.Invoke(currentTowerSO);
 
-        cursorId = CursorStack.Push(placingCursor);
+        currentMaterial = null; // Reset so first update triggers change
+        CursorStack.Push(placingCursor);
     }
 
     public TowerSO GetCurrentTower() => currentTowerSO;
@@ -202,8 +200,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         if (currentTowerSO == null)
             return;
 
-        Tower placedTower = Instantiate(currentTowerSO.Prefab);
-        placedTower.transform.position = position;
+        Tower placedTower = Instantiate(currentTowerSO.Prefab, position, Quaternion.identity);
 
         EconomyManager.Instance.RemoveCurrency(currentTowerSO.Cost);
         OnTowerPlaced?.Invoke(placedTower);
