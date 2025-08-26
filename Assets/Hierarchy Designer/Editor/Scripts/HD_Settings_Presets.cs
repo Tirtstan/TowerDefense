@@ -883,6 +883,46 @@ namespace HierarchyDesigner
             );
         }
 
+        private static HD_Preset NoirPreset()
+        {
+            return new(
+                "Noir",
+                HD_Common_Color.HexToColor("#E0E0E0"),
+                12,
+                FontStyle.Bold,
+                HD_Common_Color.HexToColor("#1A1A1A"),
+                HD_Settings_Folders.FolderImageType.NeoI,
+                HD_Common_Color.HexToColor("#C0C0C0"),
+                true,
+                HD_Common_Color.HexToColor("#0D0D0D"),
+                #if UNITY_2022_3_OR_NEWER
+                        HD_Common_Color.CreateGradient(GradientMode.PerceptualBlend, ("#0D0D0D", 255, 0f), ("#2A2A2A", 255, 50f), ("#0D0D0D", 255, 100f)),
+                #else
+                        HD_Common_Color.CreateGradient(GradientMode.Blend, ("#0D0D0D", 255, 0f), ("#2A2A2A", 255, 50f), ("#0D0D0D", 255, 100f)),
+                #endif
+                FontStyle.Bold,
+                13,
+                TextAnchor.MiddleCenter,
+                HD_Settings_Separators.SeparatorImageType.ModernIII,
+                HD_Common_Color.HexToColor("#E0E0E0"),
+                FontStyle.BoldAndItalic,
+                10,
+                TextAnchor.MiddleRight,
+                HD_Common_Color.HexToColor("#B0B0B0"),
+                FontStyle.BoldAndItalic,
+                10,
+                TextAnchor.MiddleLeft,
+                HD_Common_Color.HexToColor("#FFFFFF"),
+                HD_Common_Color.HexToColor("#00000080"),
+                HD_Common_Color.HexToColor("#2A2A2A"),
+                HD_Common_Color.HexToColor("#444444"),
+                HD_Common_Color.HexToColor("#E0E0E0"),
+                11,
+                FontStyle.Bold,
+                TextAnchor.MiddleCenter
+            );
+        }
+
         private static HD_Preset OldSchoolPreset()
         {
             return new(
@@ -1318,6 +1358,7 @@ namespace HierarchyDesigner
                 MinimalWhitePreset(),
                 NaturePreset(),
                 NavyBlueLightPreset(),
+                NoirPreset(),
                 OldSchoolPreset(),
                 PrettyPinkPreset(),
                 PrismaticPreset(),

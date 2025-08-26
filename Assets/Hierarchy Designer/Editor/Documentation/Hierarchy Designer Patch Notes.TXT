@@ -1,3 +1,8 @@
+<color=#FFF35A>Version 2.1.0</color>
+• Added a new preset: Noir.
+• Fixed a bug in the 'Create Missing Separators' operation.
+• Minor changes and performance improvements.
+
 <color=#FFF35A>Version 2.0.0</color>
 • Added a new advanced setting: Expand Hierarchy on Startup (disabled by default).
 • Added two new presets: Cyberpunk and Forest Dawn.

@@ -75,8 +75,9 @@ namespace HierarchyDesigner
         public static bool SeparatorExists(string separatorName)
         {
             string fullSeparatorName = HD_Common_Constants.SeparatorPrefix + separatorName;
+
             #if UNITY_6000_0_OR_NEWER
-            Transform[] allTransforms = GameObject.FindObjectsByType<Transform>(FindObjectsSortMode.None);
+            Transform[] allTransforms = GameObject.FindObjectsByType<Transform>(FindObjectsInactive.Include, FindObjectsSortMode.None);
             #else
             Transform[] allTransforms = UnityEngine.Object.FindObjectsOfType<Transform>(true);
             #endif
@@ -94,8 +95,9 @@ namespace HierarchyDesigner
         {
             if (name.StartsWith(HD_Common_Constants.SeparatorPrefix))
             {
-                return name[2..].Trim();
+                return name[HD_Common_Constants.SeparatorPrefix.Length..].Trim();
             }
+
             return name.Trim();
         }
         #endregion

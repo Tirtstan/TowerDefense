@@ -582,12 +582,10 @@ namespace HierarchyDesigner
                 bool isComponentDisabled = false;
                 if (enableActiveStateEffectForComponentIcons && component != null)
                 {
-                    try
-                    {
-                        dynamic dynamicComponent = component;
-                        isComponentDisabled = !dynamicComponent.enabled;
-                    }
-                    catch { }
+                    if (component is Behaviour b) isComponentDisabled = !b.enabled;
+                    else if (component is Renderer r) isComponentDisabled = !r.enabled;
+                    else if (component is Collider c) isComponentDisabled = !c.enabled;
+                    else if (component is Collider2D c2) isComponentDisabled = !c2.enabled;
                 }
 
                 GUI.color = (!gameObject.activeInHierarchy || isComponentDisabled) ? inactiveColor : activeColor;

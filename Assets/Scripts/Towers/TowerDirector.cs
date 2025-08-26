@@ -20,7 +20,7 @@ public class TowerDirector : MonoBehaviour
     private void Update()
     {
         currentTime += Time.deltaTime;
-        if (currentTime >= towerSO.AttackInterval)
+        if (currentTime >= towerSO.Stats.AttackInterval)
         {
             currentTime = 0;
             AttackAllTargetsInRange();
@@ -31,7 +31,12 @@ public class TowerDirector : MonoBehaviour
     {
         targets.Clear();
         Collider[] hitColliders = new Collider[MaxHitColliders];
-        int hitCount = Physics.OverlapSphereNonAlloc(transform.position, towerSO.Range, hitColliders, enemyLayerMask);
+        int hitCount = Physics.OverlapSphereNonAlloc(
+            transform.position,
+            towerSO.Stats.Range,
+            hitColliders,
+            enemyLayerMask
+        );
 
         for (int i = 0; i < hitCount; i++)
         {

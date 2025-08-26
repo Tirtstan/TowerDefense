@@ -265,6 +265,7 @@ Transform:
   - {fileID: 5672547266045072735}
   - {fileID: 4993362648899036858}
   - {fileID: 1932516564673451946}
+  - {fileID: 3399234193375932746}
   - {fileID: 8019557400569621465}
   - {fileID: 7784740234430363601}
   m_Father: {fileID: 0}
@@ -353,6 +354,54 @@ MonoBehaviour:
   zoomRate: 20
   dampingStrength: 15
   minimumVelocity: 0.01
+--- !u!1 &5267965056389240730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3399234193375932746}
+  - component: {fileID: 591496533502058397}
+  m_Layer: 0
+  m_Name: SelectionSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3399234193375932746
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5267965056389240730}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5755563181801346285}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &591496533502058397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5267965056389240730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0631e6e1696f74a9e352b16d0247c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectionSystem
+  selectionLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  selectionCursor: 4
 --- !u!1 &8909920482060745633
 GameObject:
   m_ObjectHideFlags: 0

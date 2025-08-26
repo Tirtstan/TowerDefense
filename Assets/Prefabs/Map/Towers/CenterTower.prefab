@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9146267987455670012}
   - component: {fileID: 2117626241541845240}
+  - component: {fileID: 7686350860836700349}
+  - component: {fileID: 6092493154621795730}
+  - component: {fileID: 7652957804852189951}
+  - component: {fileID: 6672996496672576308}
   m_Layer: 6
   m_Name: CenterTower
   m_TagString: Untagged
@@ -45,6 +49,62 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f856d526bdf5794ba94f5099dc7f6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CenterTower
+--- !u!114 &7686350860836700349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238805961231198067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db46cb136dd9df846a8f5ebeeb3a4528, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Tower
+  towerSO: {fileID: 11400000, guid: bf89639d097c88c4bb9108ad1ac0ae7f, type: 2}
+  preventDamage: 0
+--- !u!114 &6092493154621795730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238805961231198067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f40df5d4acf35d41bfa276643970439, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerController
+  towerAttack: {fileID: 7652957804852189951}
+  towerSO: {fileID: 11400000, guid: bf89639d097c88c4bb9108ad1ac0ae7f, type: 2}
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &7652957804852189951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238805961231198067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 950043f1eb13d9a419092a028eb4e091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerDefender
+  towerSO: {fileID: 11400000, guid: af58d0d2f8194dc4092e531616071f92, type: 2}
+--- !u!114 &6672996496672576308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238805961231198067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d36e5e835ec0d44bb5f636e962a1dcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSelectable
 --- !u!1001 &9061435650612965231
 PrefabInstance:
   m_ObjectHideFlags: 0

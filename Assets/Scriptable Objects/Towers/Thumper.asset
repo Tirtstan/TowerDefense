@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c84f0d297c19594faec1fa9e3f625d3, type: 3}
   m_Name: Thumper
   m_EditorClassIdentifier: Assembly-CSharp::TowerSO
-  Name: Tower
+  Name: Thumper
+  Description: Ground shock enemies!
   Sprite: {fileID: 21300000, guid: 537aff0fc3b1ce84f8a50660eaf05cfd, type: 3}
   Prefab: {fileID: 8474714792004710613, guid: cdd866da0de93b441b6ab4d702297723, type: 3}
-  Health: 100
-  Cost: 50
-  Damage: 10
-  Range: 5
-  AttackInterval: 3
+  Stats:
+    Health: 100
+    Cost: 100
+    Damage: 10
+    Range: 5
+    AttackInterval: 3

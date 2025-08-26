@@ -402,6 +402,22 @@ namespace HierarchyDesigner
         });
         public static GUIStyle PromotionalPicEaseMiniStyle => _promotionalPicEaseMiniStyle.Value;
 
+        private static readonly Lazy<GUIStyle> _promotionalSeamlessGrassTexturesMiniStyle = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Common_Resources.Promotional.SeamlessGrassTexturesPromotionalIcon }
+        });
+        public static GUIStyle PromotionalSeamlessGrassTexturesMiniStyle => _promotionalSeamlessGrassTexturesMiniStyle.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalSeamlessMudTexturesMiniStyle = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Common_Resources.Promotional.SeamlessMudTexturesPromotionalIcon }
+        });
+        public static GUIStyle PromotionalSeamlessMudTexturesMiniStyle => _promotionalSeamlessMudTexturesMiniStyle.Value;
+
         private static readonly Lazy<GUIStyle> _promotionalSeamlessSandTexturesMiniStyle = new(() => new()
         {
             fixedHeight = 70,

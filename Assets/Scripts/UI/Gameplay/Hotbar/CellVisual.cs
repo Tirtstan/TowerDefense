@@ -51,13 +51,13 @@ public class CellVisual : MonoBehaviour
     {
         tween?.Kill();
 
-        float target = Mathf.Clamp01(amount / towerSO.Cost);
+        float target = Mathf.Clamp01(amount / towerSO.Stats.Cost);
         tween = DOVirtual
             .Float(fillImage.fillAmount, target, fillDuration, value => fillImage.fillAmount = value)
             .SetEase(fillEase)
             .SetUpdate(UpdateType.Fixed);
 
-        if (amount >= towerSO.Cost)
+        if (amount >= towerSO.Stats.Cost)
         {
             fillImage.fillAmount = 1;
             if (canRepeatAnim)

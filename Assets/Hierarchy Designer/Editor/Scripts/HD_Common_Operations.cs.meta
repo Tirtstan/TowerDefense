@@ -13,6 +13,6 @@ AssetOrigin:
   serializedVersion: 1
   productId: 273928
   packageName: Hierarchy Designer
-  packageVersion: 2.0.0
+  packageVersion: 2.1.0
   assetPath: Assets/Hierarchy Designer/Editor/Scripts/HD_Common_Operations.cs
-  uploadId: 780876
+  uploadId: 781905

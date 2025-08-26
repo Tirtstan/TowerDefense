@@ -783,6 +783,40 @@ namespace HierarchyDesigner
 
             GUILayout.Space(10);
 
+            #region Seamless Grass Textures
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_Common_GUI.PromotionalSeamlessGrassTexturesMiniStyle))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/2d/textures-materials/seamless-grass-textures-328603");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("Seamless Grass Textures", HD_Common_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("Seamless grass textures, optimized for terrain use.", HD_Common_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(10);
+
+            #region Seamless Mud Textures
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_Common_GUI.PromotionalSeamlessMudTexturesMiniStyle))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/2d/textures-materials/seamless-mud-textures-327770");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("Seamless Mud Textures", HD_Common_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("Seamless mud textures, optimized for terrain use.", HD_Common_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(10);
+
             #region Seamless Sand Textures
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button(string.Empty, HD_Common_GUI.PromotionalSeamlessSandTexturesMiniStyle))

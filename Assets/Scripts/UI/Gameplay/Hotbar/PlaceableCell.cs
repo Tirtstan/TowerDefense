@@ -44,7 +44,7 @@ public class PlaceableCell : MonoBehaviour
             return;
 
         placeableIcon.sprite = towerSO.Sprite;
-        costText.SetText(towerSO.Cost.ToString());
+        costText.SetText(towerSO.Stats.Cost.ToString());
     }
 
     private void OnDestroy()

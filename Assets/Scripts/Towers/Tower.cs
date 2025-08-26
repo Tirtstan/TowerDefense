@@ -13,17 +13,16 @@ public class Tower : MonoBehaviour, IDamagable, IHealable
     [Header("Debug")]
     [SerializeField]
     private bool preventDamage;
-
     private float currentHealth;
 
     private void Awake()
     {
-        currentHealth = towerSO.Health;
+        currentHealth = towerSO.Stats.Health;
     }
 
     public float GetCurrentHealth() => currentHealth;
 
-    public float GetHealthPercentage() => currentHealth / towerSO.Health;
+    public float GetHealthPercentage() => currentHealth / towerSO.Stats.Health;
 
     public void TakeDamage(float amount)
     {
@@ -31,7 +30,7 @@ public class Tower : MonoBehaviour, IDamagable, IHealable
             return;
 
         currentHealth -= amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, towerSO.Health);
+        currentHealth = Mathf.Clamp(currentHealth, 0, towerSO.Stats.Health);
         OnHealthChanged?.Invoke(this);
 
         if (currentHealth <= 0)

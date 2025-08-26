@@ -33,6 +33,10 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     private float minTowerDistance = 1f;
 
     [SerializeField]
+    [Range(5f, 25f)]
+    private float positionLerpSpeed = 15f;
+
+    [SerializeField]
     private LayerMask checkLayer;
 
     [SerializeField]
@@ -49,6 +53,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     private Vector2 mousePosition;
     private static bool isOverUI;
     private Material currentMaterial;
+    private Vector3 targetPosition;
 
     protected override void Awake()
     {
@@ -65,12 +70,15 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     private void Update()
     {
         isOverUI = EventSystem.current.IsPointerOverGameObject();
+    }
 
+    private void FixedUpdate()
+    {
         if (previewTower != null && previewTowerRenderer != null)
         {
             if (Raycast(out RaycastHit hit))
             {
-                previewTower.transform.position = hit.point;
+                targetPosition = hit.point;
                 bool canPlace = CanPlace(ref hit);
 
                 Material targetMaterial = canPlace ? validMaterial : invalidMaterial;
@@ -85,6 +93,12 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
                     CursorStack.Push(targetCursor);
                 }
             }
+
+            previewTower.transform.position = Vector3.Lerp(
+                previewTower.transform.position,
+                targetPosition,
+                positionLerpSpeed * Time.fixedDeltaTime
+            );
         }
     }
 
@@ -123,7 +137,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         return true;
     }
 
-    private bool HasEnoughCurrency() => EconomyManager.Instance.GetCurrencyAmount() >= currentTowerSO.Cost;
+    private bool HasEnoughCurrency() => EconomyManager.Instance.GetCurrencyAmount() >= currentTowerSO.Stats.Cost;
 
     private bool IsValidGround(ref RaycastHit hit)
     {
@@ -137,11 +151,9 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     {
         Vector3 position = previewTower.transform.position;
 
-        // Check for overlapping towers within minimum distance
         Collider[] results = new Collider[10];
         int nearbyTowerCount = Physics.OverlapSphereNonAlloc(position, minTowerDistance, results, towerLayer);
 
-        // Filter out the preview tower itself (if it has a collider)
         for (int i = 0; i < nearbyTowerCount; i++)
         {
             Collider tower = results[i];
@@ -185,11 +197,15 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     public void SetCurrentTower(TowerSO tower)
     {
         currentTowerSO = tower;
-        previewTower = Instantiate(currentTowerSO.Prefab);
+        previewTower = Instantiate(
+            currentTowerSO.Prefab,
+            mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10f)),
+            Quaternion.identity
+        );
         previewTowerRenderer = previewTower.GetComponentInChildren<MeshRenderer>();
         OnTowerSelected?.Invoke(currentTowerSO);
 
-        currentMaterial = null; // Reset so first update triggers change
+        currentMaterial = null;
         CursorStack.Push(placingCursor);
     }
 
@@ -202,7 +218,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
 
         Tower placedTower = Instantiate(currentTowerSO.Prefab, position, Quaternion.identity);
 
-        EconomyManager.Instance.RemoveCurrency(currentTowerSO.Cost);
+        EconomyManager.Instance.RemoveCurrency(currentTowerSO.Stats.Cost);
         OnTowerPlaced?.Invoke(placedTower);
     }
 

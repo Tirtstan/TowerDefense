@@ -12,7 +12,7 @@ public class TowerAttacker : MonoBehaviour, ITowerAttack
     public void Attack(IDamagable[] targets)
     {
         foreach (var target in targets)
-            target.TakeDamage(towerSO.Damage);
+            target.TakeDamage(towerSO.Stats.Damage);
 
         OnAttack?.Invoke();
     }
