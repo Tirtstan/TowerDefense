@@ -172,6 +172,7 @@ namespace HierarchyDesigner
         private static KeyCode toggleLockStateKeyCode;
         private static KeyCode changeTagLayerKeyCode;
         private static KeyCode renameSelectedGameObjectsKeyCode;
+        private static KeyCode openIconPickerKeyCode;
         #endregion
 
         #region Data and Cache
@@ -236,7 +237,6 @@ namespace HierarchyDesigner
             {
                 if (enableHierarchyButtons) { ProcessHierarchyButtons(gameObject, selectionRect); }
                 if (enableGameObjectComponentIcons) { ProcessComponentIconsClick(gameObject, selectionRect, instanceID, currentEvent); }
-                if (enableGameObjectMainIcon) { ProcessMainIconClick(gameObject, selectionRect, currentEvent); }
 
                 if (enableMajorShortcuts)
                 {
@@ -266,6 +266,8 @@ namespace HierarchyDesigner
                     }
                     if (IsShortcutPressed(changeTagLayerKeyCode)) { ProcessTagLayerMajorShortcut(gameObject, selectionRect, instanceID); };
                     if (IsShortcutPressed(renameSelectedGameObjectsKeyCode)) { ProcessRenameMajorShortcut(); }
+                    if (IsShortcutPressed(openIconPickerKeyCode)) { ProcessOpenIconPickerMajorShortcut(gameObject, selectionRect, currentEvent); }
+
                 }
                 return;
             }
@@ -472,39 +474,29 @@ namespace HierarchyDesigner
             return null;
         }
 
-        private static void ProcessMainIconClick(GameObject gameObject, Rect selectionRect, Event evt)
+        private static void ProcessOpenIconPickerMajorShortcut(GameObject gameObject, Rect selectionRect, Event evt)
         {
-            if (evt.type != EventType.MouseDown) return;
+            if (!enableGameObjectMainIcon) return;
             if ((gameObject.hideFlags & HideFlags.NotEditable) == HideFlags.NotEditable) return;
             if (folderCache.TryGetValue(gameObject.GetInstanceID(), out _) || gameObject.GetComponent<HierarchyDesignerFolder>()) return;
 
-            Rect iconRect = new(selectionRect.x, selectionRect.y + (selectionRect.height - defaultIconSelectionHeight) * 0.5f, defaultIconSelectionHeight, defaultIconSelectionHeight);
-            if (!iconRect.Contains(evt.mousePosition)) return;
+            Rect iconRect = GetMainIconRect(selectionRect);
+            if (!iconRect.Contains(Event.current.mousePosition)) return;
 
-            if (evt.button == 0)
+            HD_Window_IconPicker.Open(gameObject);
+
+            if (evt != null)
             {
-                HD_Window_IconPicker.Open(gameObject);
                 evt.Use();
                 GUIUtility.ExitGUI();
             }
-            else if (evt.button == 1)
-            {
-                GenericMenu menu = new();
-                string globalId = GlobalObjectId.GetGlobalObjectIdSlow(gameObject).ToString();
-                if (HD_Settings_IconOverrides.Has(globalId))
-                {
-                    menu.AddItem(new GUIContent("Clear Icon Override"), false, () => HD_Settings_IconOverrides.Clear(globalId));
-                }
+        }
 
-                else
-                {
-                    menu.AddDisabledItem(new GUIContent("Clear Icon Override"));
-                }
-
-                menu.ShowAsContext();
-                evt.Use();
-                GUIUtility.ExitGUI();
-            }
+        private static Rect GetMainIconRect(Rect selectionRect)
+        {
+            float size = defaultIconSelectionHeight;
+            float y = selectionRect.y + (selectionRect.height - size) * 0.5f;
+            return new Rect(selectionRect.x, y, size, size);
         }
         #endregion
 
@@ -2004,6 +1996,14 @@ namespace HierarchyDesigner
             set
             {
                 renameSelectedGameObjectsKeyCode = value;
+            }
+        }
+
+        public static KeyCode OpenIconPickerKeyCodeCache
+        {
+            set
+            { 
+                openIconPickerKeyCode = value; 
             }
         }
 

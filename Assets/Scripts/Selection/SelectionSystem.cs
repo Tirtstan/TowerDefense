@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class SelectionSystem : Singleton<SelectionSystem>
@@ -19,6 +20,7 @@ public class SelectionSystem : Singleton<SelectionSystem>
     private PlayerInput playerInput;
     private Camera mainCamera;
     private Vector2 mousePosition;
+    private bool isOverUI;
 
     protected override void Awake()
     {
@@ -29,6 +31,11 @@ public class SelectionSystem : Singleton<SelectionSystem>
         playerInput.actions.FindAction("MousePosition").performed += OnMousePosition;
         playerInput.actions.FindAction("MousePosition").canceled += OnMousePosition;
         playerInput.actions.FindAction("Place").performed += OnSelectPerformed;
+    }
+
+    private void Update()
+    {
+        isOverUI = EventSystem.current.IsPointerOverGameObject();
     }
 
     private void OnMousePosition(InputAction.CallbackContext context) => mousePosition = context.ReadValue<Vector2>();
@@ -53,7 +60,7 @@ public class SelectionSystem : Singleton<SelectionSystem>
                 OnSelected?.Invoke(selectable);
             }
         }
-        else
+        else if (!isOverUI)
         {
             DeselectAll();
         }

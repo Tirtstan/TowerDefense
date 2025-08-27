@@ -1,3 +1,7 @@
+<color=#FFF35A>Version 2.2.0</color>
+• Added a new major shortcut: Open Icon Picker KeyCode (defaults to Mouse0).
+• Minor changes.
+
 <color=#FFF35A>Version 2.1.0</color>
 • Added a new preset: Noir.
 • Fixed a bug in the 'Create Missing Separators' operation.

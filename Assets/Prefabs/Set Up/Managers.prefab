@@ -187,7 +187,7 @@ MonoBehaviour:
   invalidCursor: 6
   maxPlacementDistance: 50
   minTowerDistance: 0.5
-  positionLerpSpeed: 20
+  positionLerpSpeed: 25
   checkLayer:
     serializedVersion: 2
     m_Bits: 9

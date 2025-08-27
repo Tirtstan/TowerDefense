@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class TowerInfoMenu : Singleton<TowerInfoMenu>
 {
     [Header("Components")]
+    [SerializeField]
+    private GameObject menu;
+
     [Header("Images")]
     [SerializeField]
     private Image towerThumbnail;
@@ -18,25 +21,25 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
     private TextMeshProUGUI nameText;
 
     [SerializeField]
-    private TextMeshProUGUI descriptionText;
-
-    [SerializeField]
     private TextMeshProUGUI healthText;
 
     [SerializeField]
     private TextMeshProUGUI levelText;
 
     [SerializeField]
-    private TextMeshProUGUI statsText;
+    private TextMeshProUGUI damageText;
 
-    [Header("Buttons")]
     [SerializeField]
-    private Button closeButton;
+    private TextMeshProUGUI rangeText;
+
+    [SerializeField]
+    private TextMeshProUGUI attackIntervalText;
     private Tower currentTower;
 
-    private void OnEnable()
+    protected override void Awake()
     {
-        Tower.OnHealthChanged += OnTowerHealthChanged;
+        base.Awake();
+        HideMenu();
     }
 
     private void OnTowerHealthChanged(Tower tower)
@@ -47,7 +50,8 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
 
     public void ShowMenu(Tower tower)
     {
-        gameObject.SetActive(true);
+        Tower.OnHealthChanged += OnTowerHealthChanged;
+        menu.SetActive(true);
         UpdateDisplay(tower);
     }
 
@@ -60,16 +64,11 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         TowerStats stats = tower.GetTowerSO().Stats;
 
         nameText.SetText(tower.GetTowerSO().Name);
-        descriptionText.SetText(tower.GetTowerSO().Description);
         levelText.SetText($"Lvl. {1}"); // TODO: Implement level system
 
-        string statsString =
-            $"Cost: {stats.Cost}\n"
-            + $"Damage: {stats.Damage}\n"
-            + $"Range: {stats.Range}\n"
-            + $"Attack Interval: {stats.AttackInterval}s";
-
-        statsText.SetText(statsString);
+        damageText.SetText($"{stats.Damage} damage");
+        rangeText.SetText($"{stats.Range} metres");
+        attackIntervalText.SetText($"{stats.AttackInterval:0.0} sec(s)");
 
         towerThumbnail.sprite = tower.GetTowerSO().Sprite;
         UpdateHealthDisplay(tower.GetCurrentHealth(), stats.Health);
@@ -81,10 +80,9 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         healthFillImage.fillAmount = currentHealth / maxHealth;
     }
 
-    public void HideMenu() => gameObject.SetActive(false);
-
-    private void OnDisable()
+    public void HideMenu()
     {
         Tower.OnHealthChanged -= OnTowerHealthChanged;
+        menu.SetActive(false);
     }
 }

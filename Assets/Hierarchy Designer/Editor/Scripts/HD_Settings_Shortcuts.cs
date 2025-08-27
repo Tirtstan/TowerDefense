@@ -16,6 +16,7 @@ namespace HierarchyDesigner
             public KeyCode ToggleLockStateKeyCode = KeyCode.F1;
             public KeyCode ChangeTagLayerKeyCode = KeyCode.Mouse0;
             public KeyCode RenameSelectedGameObjectsKeyCode = KeyCode.F3;
+            public KeyCode OpenIconPickerKeyCode = KeyCode.Mouse0;
         }
         private static HD_ShortcutsSettings shortcutsSettings = new();
         #endregion
@@ -33,6 +34,7 @@ namespace HierarchyDesigner
             HD_Manager_GameObject.ToggleLockStateKeyCodeCache = ToggleLockStateKeyCode;
             HD_Manager_GameObject.ChangeTagLayerKeyCodeCache = ChangeTagLayerKeyCode;
             HD_Manager_GameObject.RenameSelectedGameObjectsKeyCodeCache = RenameSelectedGameObjectsKeyCode;
+            HD_Manager_GameObject.OpenIconPickerKeyCodeCache = OpenIconPickerKeyCode;
         }
         #endregion
 
@@ -88,6 +90,19 @@ namespace HierarchyDesigner
                 }
             }
         }
+
+        public static KeyCode OpenIconPickerKeyCode
+        {
+            get => shortcutsSettings.OpenIconPickerKeyCode;
+            set
+            {
+                if (shortcutsSettings.OpenIconPickerKeyCode != value)
+                {
+                    shortcutsSettings.OpenIconPickerKeyCode = value;
+                    HD_Manager_GameObject.OpenIconPickerKeyCodeCache = value;
+                }
+            }
+        }
         #endregion
 
         #region Save and Load
@@ -122,12 +137,12 @@ namespace HierarchyDesigner
                 ToggleLockStateKeyCode = KeyCode.F1,
                 ChangeTagLayerKeyCode = KeyCode.Mouse0,
                 RenameSelectedGameObjectsKeyCode = KeyCode.F3,
+                OpenIconPickerKeyCode = KeyCode.Mouse0,
             };
         }
         #endregion
 
         #region Minor Shortcuts
-        #pragma warning disable IDE0051
         #region Windows
         [Shortcut("Hierarchy Designer/Open Hierarchy Designer Window", KeyCode.Alpha1, ShortcutModifiers.Alt)]
         private static void OpenHierarchyDesignerWindow()
