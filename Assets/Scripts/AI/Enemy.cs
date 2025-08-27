@@ -35,4 +35,6 @@ public class Enemy : MonoBehaviour, IDamagable
         OnDeath?.Invoke(enemySO);
         Destroy(gameObject);
     }
+
+    public EnemySO GetEnemySO() => enemySO;
 }

@@ -7,6 +7,7 @@ public class EnemySO : ScriptableObject
     public string Name = "Enemy";
     public float Health = 100f;
     public float Damage = 5f;
+    public float Speed = 3.5f;
 
     [Tooltip("The interval between each attack in seconds.")]
     public float AttackInterval = 1f;
