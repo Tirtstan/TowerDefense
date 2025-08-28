@@ -13,15 +13,17 @@ public class ToggleOnAction : MonoBehaviour
     [Range(1, 10)]
     private int actionScale = 1;
     private Toggle toggle;
+    private PlayerInput playerInput;
 
     private void Awake()
     {
         toggle = GetComponent<Toggle>();
+        playerInput = PlayerInput.GetPlayerByIndex(0);
     }
 
     private void OnEnable()
     {
-        inputAction.action.performed += OnActionTriggered;
+        playerInput.actions.FindAction(inputAction.action.id).performed += OnActionTriggered;
     }
 
     private void OnActionTriggered(InputAction.CallbackContext context)
@@ -33,6 +35,7 @@ public class ToggleOnAction : MonoBehaviour
 
     private void OnDisable()
     {
-        inputAction.action.performed -= OnActionTriggered;
+        if (playerInput != null)
+            playerInput.actions.FindAction(inputAction.action.id).performed -= OnActionTriggered;
     }
 }

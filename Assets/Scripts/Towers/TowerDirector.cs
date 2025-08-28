@@ -14,6 +14,7 @@ public class TowerDirector : MonoBehaviour
     private LayerMask enemyLayerMask = -1;
 
     private const int MaxHitColliders = 50;
+    private readonly Collider[] hitColliders = new Collider[MaxHitColliders];
     private readonly List<IDamagable> targets = new();
     private float currentTime;
 
@@ -30,7 +31,6 @@ public class TowerDirector : MonoBehaviour
     private void AttackAllTargetsInRange()
     {
         targets.Clear();
-        Collider[] hitColliders = new Collider[MaxHitColliders];
         int hitCount = Physics.OverlapSphereNonAlloc(
             transform.position,
             towerSO.Stats.Range,
@@ -45,12 +45,18 @@ public class TowerDirector : MonoBehaviour
         }
 
         if (targets.Count > 0)
-            towerAttack.Attack(targets.ToArray());
+            towerAttack.Attack(targets);
     }
 
     private void Reset()
     {
         if (towerAttack == null)
             towerAttack = GetComponent<TowerAttacker>();
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, towerSO.Stats.Range);
     }
 }

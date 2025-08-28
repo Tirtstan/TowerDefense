@@ -33,10 +33,6 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     private float minTowerDistance = 1f;
 
     [SerializeField]
-    [Range(5f, 25f)]
-    private float positionLerpSpeed = 15f;
-
-    [SerializeField]
     private LayerMask checkLayer;
 
     [SerializeField]
@@ -53,7 +49,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     private Vector2 mousePosition;
     private static bool isOverUI;
     private Material currentMaterial;
-    private Vector3 targetPosition;
+    private readonly Collider[] results = new Collider[10];
 
     protected override void Awake()
     {
@@ -70,35 +66,26 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     private void Update()
     {
         isOverUI = EventSystem.current.IsPointerOverGameObject();
-    }
 
-    private void FixedUpdate()
-    {
-        if (previewTower != null && previewTowerRenderer != null)
+        if (previewTower == null || previewTowerRenderer == null)
+            return;
+
+        if (Raycast(out RaycastHit hit))
         {
-            if (Raycast(out RaycastHit hit))
+            previewTower.transform.position = hit.point;
+            bool canPlace = CanPlace(ref hit);
+
+            Material targetMaterial = canPlace ? validMaterial : invalidMaterial;
+            NTCursors targetCursor = canPlace ? placingCursor : invalidCursor;
+
+            if (currentMaterial != targetMaterial)
             {
-                targetPosition = hit.point;
-                bool canPlace = CanPlace(ref hit);
+                currentMaterial = targetMaterial;
+                previewTowerRenderer.material = currentMaterial;
 
-                Material targetMaterial = canPlace ? validMaterial : invalidMaterial;
-                NTCursors targetCursor = canPlace ? placingCursor : invalidCursor;
-
-                if (currentMaterial != targetMaterial)
-                {
-                    currentMaterial = targetMaterial;
-                    previewTowerRenderer.material = currentMaterial;
-
-                    CursorStack.Pop();
-                    CursorStack.Push(targetCursor);
-                }
+                CursorStack.Pop();
+                CursorStack.Push(targetCursor);
             }
-
-            previewTower.transform.position = Vector3.Lerp(
-                previewTower.transform.position,
-                targetPosition,
-                positionLerpSpeed * Time.fixedDeltaTime
-            );
         }
     }
 
@@ -122,10 +109,10 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         if (currentTowerSO == null || previewTower == null)
             return false;
 
-        if (!HasEnoughCurrency())
+        if (isOverUI)
             return false;
 
-        if (isOverUI)
+        if (!HasEnoughCurrency())
             return false;
 
         if (!IsValidGround(ref hit))
@@ -150,8 +137,6 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     private bool IsValidDistance()
     {
         Vector3 position = previewTower.transform.position;
-
-        Collider[] results = new Collider[10];
         int nearbyTowerCount = Physics.OverlapSphereNonAlloc(position, minTowerDistance, results, towerLayer);
 
         for (int i = 0; i < nearbyTowerCount; i++)

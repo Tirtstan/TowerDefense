@@ -14,7 +14,7 @@ public class FollowTargetWorldSpace : MonoBehaviour
     [Tooltip("Should the position be updated every frame?")]
     private bool updatePosition = true;
 
-    private void Awake()
+    private void OnEnable()
     {
         transform.position = GetTargetPosition();
     }
