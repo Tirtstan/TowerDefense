@@ -50,7 +50,9 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
 
     public void ShowMenu(Tower tower)
     {
-        Tower.OnHealthChanged += OnTowerHealthChanged;
+        currentTower = tower;
+        tower.OnHealthChanged += OnTowerHealthChanged;
+
         menu.SetActive(true);
         UpdateDisplay(tower);
     }
@@ -60,7 +62,6 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         if (tower == null)
             return;
 
-        currentTower = tower;
         TowerStats stats = tower.GetTowerSO().Stats;
 
         nameText.SetText(tower.GetTowerSO().Name);
@@ -82,7 +83,10 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
 
     public void HideMenu()
     {
-        Tower.OnHealthChanged -= OnTowerHealthChanged;
+        if (currentTower != null)
+            currentTower.OnHealthChanged -= OnTowerHealthChanged;
+
+        currentTower = null;
         menu.SetActive(false);
     }
 }

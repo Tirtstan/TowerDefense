@@ -12,6 +12,7 @@ public class TowerSO : ScriptableObject
     [Space]
     public Sprite Sprite;
     public Tower Prefab;
+    public Tower PrefabPreview;
 
     [Header("Stats")]
     public TowerStats Stats;

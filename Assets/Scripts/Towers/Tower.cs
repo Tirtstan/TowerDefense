@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour, IDamagable, IHealable
 {
-    public static event Action<TowerSO> OnDestroyed;
-    public static event Action<Tower> OnHealthChanged;
+    public event Action<TowerSO> OnDestroyed;
+    public event Action<Tower> OnHealthChanged;
 
     [Header("Components")]
     [SerializeField]
@@ -39,11 +39,11 @@ public class Tower : MonoBehaviour, IDamagable, IHealable
 
     public void Heal(float amount) => TakeDamage(-amount);
 
-    public TowerSO GetTowerSO() => towerSO;
-
     private void Die()
     {
         OnDestroyed?.Invoke(towerSO);
         Destroy(gameObject);
     }
+
+    public TowerSO GetTowerSO() => towerSO;
 }

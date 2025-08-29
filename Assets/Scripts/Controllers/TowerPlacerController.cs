@@ -45,6 +45,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     private TowerSO currentTowerSO;
     private Tower previewTower;
     private MeshRenderer previewTowerRenderer;
+    private TowerSelectable previewTowerSelectable; // For range indicator
     private Camera mainCamera;
     private Vector2 mousePosition;
     private static bool isOverUI;
@@ -160,12 +161,16 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
 
         OnTowerDeselected?.Invoke(currentTowerSO);
 
+        if (previewTowerSelectable != null)
+            previewTowerSelectable.Deselect();
+
         if (previewTower != null)
             Destroy(previewTower.gameObject);
 
         currentTowerSO = null;
         previewTower = null;
         previewTowerRenderer = null;
+        previewTowerSelectable = null;
         currentMaterial = null;
         CursorStack.Clear();
     }
@@ -182,11 +187,16 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     public void SetCurrentTower(TowerSO tower)
     {
         currentTowerSO = tower;
+
+        Tower towerToInstantiate =
+            currentTowerSO.PrefabPreview != null ? currentTowerSO.PrefabPreview : currentTowerSO.Prefab;
+
         previewTower = Instantiate(
-            currentTowerSO.Prefab,
+            towerToInstantiate,
             mainCamera.ScreenToWorldPoint(new Vector3(mousePosition.x, mousePosition.y, 10f)),
             Quaternion.identity
         );
+
         previewTowerRenderer = previewTower.GetComponentInChildren<MeshRenderer>();
         OnTowerSelected?.Invoke(currentTowerSO);
 
@@ -201,10 +211,13 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         if (currentTowerSO == null)
             return;
 
+        // Use the actual Prefab for placement, not PrefabPreview
         Tower placedTower = Instantiate(currentTowerSO.Prefab, position, Quaternion.identity);
 
         EconomyManager.Instance.RemoveCurrency(currentTowerSO.Stats.Cost);
         OnTowerPlaced?.Invoke(placedTower);
+
+        DeselectCurrentTower();
     }
 
     private void OnDestroy()

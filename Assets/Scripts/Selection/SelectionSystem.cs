@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class SelectionSystem : Singleton<SelectionSystem>
 {
     public static event Action<IGameSelectable> OnSelected;
-    public static event Action OnDeselected;
+    public static event Action<IGameSelectable> OnDeselected;
 
     [Header("Selection")]
     [Range(10, 200)]
@@ -15,7 +15,6 @@ public class SelectionSystem : Singleton<SelectionSystem>
 
     [SerializeField]
     private LayerMask selectionLayer;
-
     private IGameSelectable currentSelected;
     private PlayerInput playerInput;
     private Camera mainCamera;
@@ -52,9 +51,12 @@ public class SelectionSystem : Singleton<SelectionSystem>
 
                 // Deselect current if different
                 if (currentSelected != null && currentSelected != selectable)
-                    currentSelected.Deselect();
+                {
+                    // interface causing weird null issues
+                    if (currentSelected is MonoBehaviour mb && mb != null)
+                        currentSelected.Deselect();
+                }
 
-                // Select new
                 currentSelected = selectable;
                 selectable.Select();
                 OnSelected?.Invoke(selectable);
@@ -70,9 +72,14 @@ public class SelectionSystem : Singleton<SelectionSystem>
     {
         if (currentSelected != null)
         {
-            currentSelected.Deselect();
+            // interface causing weird null issues
+            if (currentSelected is MonoBehaviour mb && mb != null)
+            {
+                currentSelected.Deselect();
+                OnDeselected?.Invoke(currentSelected);
+            }
+
             currentSelected = null;
-            OnDeselected?.Invoke();
         }
     }
 
