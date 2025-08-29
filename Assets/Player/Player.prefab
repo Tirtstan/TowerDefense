@@ -152,7 +152,54 @@ MonoBehaviour:
     AmplitudeGain: 1
     FrequencyGain: 1
     Duration: 1
-    m_NoiseOffsets: {x: 0, y: 0, z: 0}
+    m_NoiseOffsets: {x: -909.74805, y: -587.5127, z: 593.1003}
+--- !u!1 &1970085625137938925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1565620815816817758}
+  - component: {fileID: 2595879826538184977}
+  m_Layer: 0
+  m_Name: SelectionIndicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1565620815816817758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970085625137938925}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4735137600585022303}
+  m_Father: {fileID: 3399234193375932746}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2595879826538184977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970085625137938925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ec2ea2298a824f33836f8e22017f008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectionIndicator
+  selectionIndicator: {fileID: 5403552247538213349}
+  offset: {x: 0, y: 0.2, z: 0}
 --- !u!1 &3334572655038205096
 GameObject:
   m_ObjectHideFlags: 0
@@ -383,7 +430,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1565620815816817758}
   m_Father: {fileID: 5755563181801346285}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &591496533502058397
@@ -398,10 +446,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae0631e6e1696f74a9e352b16d0247c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectionSystem
+  selectionDistance: 100
   selectionLayer:
     serializedVersion: 2
     m_Bits: 64
-  selectionCursor: 4
 --- !u!1 &8909920482060745633
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,3 +503,90 @@ MonoBehaviour:
   zoomRate: 20
   dampingStrength: 15
   minimumVelocity: 0.01
+--- !u!1001 &5060972798420868276
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1565620815816817758}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      propertyPath: m_Name
+      value: selection-a
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2881969838863547475}
+  m_SourcePrefab: {fileID: 100100000, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+--- !u!4 &4735137600585022303 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+  m_PrefabInstance: {fileID: 5060972798420868276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5403552247538213349 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: aee80e42321714f4881c7bcc28c4b2d6, type: 3}
+  m_PrefabInstance: {fileID: 5060972798420868276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2881969838863547475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5403552247538213349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48be3781102214340868aa927e751f3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScaleBetween
+  from: {x: 1.15, y: 1.15, z: 1.15}
+  to: {x: 1.25, y: 1.25, z: 1.25}
+  duration: 0.5
+  ease: 4
+  loop: 1

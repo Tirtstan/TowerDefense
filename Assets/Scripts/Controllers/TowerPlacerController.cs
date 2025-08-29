@@ -41,6 +41,9 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     [SerializeField]
     private LayerMask towerLayer;
 
+    [SerializeField]
+    private bool selectOnPlace = true;
+
     private PlayerInput playerInput;
     private TowerSO currentTowerSO;
     private Tower previewTower;
@@ -211,13 +214,19 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         if (currentTowerSO == null)
             return;
 
-        // Use the actual Prefab for placement, not PrefabPreview
         Tower placedTower = Instantiate(currentTowerSO.Prefab, position, Quaternion.identity);
+        SelectPlacedTower(placedTower);
 
         EconomyManager.Instance.RemoveCurrency(currentTowerSO.Stats.Cost);
         OnTowerPlaced?.Invoke(placedTower);
 
         DeselectCurrentTower();
+    }
+
+    private void SelectPlacedTower(Tower tower)
+    {
+        if (SelectionSystem.Instance != null)
+            SelectionSystem.Instance.SelectObject(tower.GetComponent<IGameSelectable>());
     }
 
     private void OnDestroy()

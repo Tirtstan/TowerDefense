@@ -361,6 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d36e5e835ec0d44bb5f636e962a1dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSelectable
+  towerMeshRenderer: {fileID: 6077278659139973480}
   rangeElement: {fileID: 7092205810508893224}
   alwaysShowRangeIndicator: 1
 --- !u!114 &2170674514108218971
@@ -662,5 +663,10 @@ PrefabInstance:
 --- !u!4 &4908352266329016839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
+  m_PrefabInstance: {fileID: 4870433110769741292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &6077278659139973480 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
   m_PrefabInstance: {fileID: 4870433110769741292}
   m_PrefabAsset: {fileID: 0}

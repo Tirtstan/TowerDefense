@@ -5,6 +5,9 @@ public class TowerSelectable : MonoBehaviour, IGameSelectable
 {
     [Header("Components")]
     [SerializeField]
+    private MeshRenderer towerMeshRenderer;
+
+    [SerializeField]
     private RectTransform rangeElement;
 
     [Header("Configs")]
@@ -12,13 +15,17 @@ public class TowerSelectable : MonoBehaviour, IGameSelectable
     private bool alwaysShowRangeIndicator;
     private Tower tower;
     private TowerStats towerStats;
+    private MeshFilter towerMeshFilter;
+    public Transform Transform => transform;
 
     private void Awake()
     {
         tower = GetComponent<Tower>();
         towerStats = tower.GetTowerSO().Stats;
+        towerMeshFilter = towerMeshRenderer.GetComponent<MeshFilter>();
 
-        ToggleRangeIndicator(alwaysShowRangeIndicator);
+        if (alwaysShowRangeIndicator)
+            ToggleRangeIndicator(true);
     }
 
     public void Select()
@@ -42,4 +49,6 @@ public class TowerSelectable : MonoBehaviour, IGameSelectable
 
         rangeElement.gameObject.SetActive(isActive);
     }
+
+    public (MeshRenderer, MeshFilter) GetMeshComponents() => (towerMeshRenderer, towerMeshFilter);
 }

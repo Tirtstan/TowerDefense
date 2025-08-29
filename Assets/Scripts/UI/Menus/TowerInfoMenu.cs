@@ -11,9 +11,6 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
 
     [Header("Images")]
     [SerializeField]
-    private Image towerThumbnail;
-
-    [SerializeField]
     private Image healthFillImage;
 
     [Header("Text")]
@@ -71,7 +68,6 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         rangeText.SetText($"{stats.Range} metres");
         attackIntervalText.SetText($"{stats.AttackInterval:0.0} sec(s)");
 
-        towerThumbnail.sprite = tower.GetTowerSO().Sprite;
         UpdateHealthDisplay(tower.GetCurrentHealth(), stats.Health);
     }
 

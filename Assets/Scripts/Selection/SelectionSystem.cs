@@ -53,13 +53,13 @@ public class SelectionSystem : Singleton<SelectionSystem>
                 if (currentSelected != null && currentSelected != selectable)
                 {
                     // interface causing weird null issues
-                    if (currentSelected is MonoBehaviour mb && mb != null)
+                    // if (currentSelected is MonoBehaviour mb && mb != null)
+                    if (currentSelected.Transform != null)
                         currentSelected.Deselect();
                 }
 
-                currentSelected = selectable;
-                selectable.Select();
-                OnSelected?.Invoke(selectable);
+                SelectObject(selectable);
+                Debug.Log($"Selected: {selectable}");
             }
         }
         else if (!isOverUI)
@@ -73,7 +73,8 @@ public class SelectionSystem : Singleton<SelectionSystem>
         if (currentSelected != null)
         {
             // interface causing weird null issues
-            if (currentSelected is MonoBehaviour mb && mb != null)
+            // if (currentSelected is MonoBehaviour mb && mb != null)
+            if (currentSelected.Transform != null)
             {
                 currentSelected.Deselect();
                 OnDeselected?.Invoke(currentSelected);
@@ -81,6 +82,13 @@ public class SelectionSystem : Singleton<SelectionSystem>
 
             currentSelected = null;
         }
+    }
+
+    public void SelectObject(IGameSelectable selectable)
+    {
+        currentSelected = selectable;
+        selectable.Select();
+        OnSelected?.Invoke(selectable);
     }
 
     private void OnDestroy()

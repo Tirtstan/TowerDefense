@@ -106,7 +106,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d36e5e835ec0d44bb5f636e962a1dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSelectable
+  towerMeshRenderer: {fileID: 7638450314118050795}
   rangeElement: {fileID: 3270527954547145014}
+  alwaysShowRangeIndicator: 0
 --- !u!1 &3034231906991866274
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,7 +127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3270527954547145014
 RectTransform:
   m_ObjectHideFlags: 0
@@ -665,6 +667,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13d4fc0b91338e84eb5e679eee9f10c5, type: 3}
+--- !u!23 &7638450314118050795 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 13d4fc0b91338e84eb5e679eee9f10c5, type: 3}
+  m_PrefabInstance: {fileID: 9061435650612965231}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8811880684376672388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 13d4fc0b91338e84eb5e679eee9f10c5, type: 3}
