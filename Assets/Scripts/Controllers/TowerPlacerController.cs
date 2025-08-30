@@ -48,12 +48,13 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     private TowerSO currentTowerSO;
     private Tower previewTower;
     private MeshRenderer previewTowerRenderer;
-    private TowerSelectable previewTowerSelectable; // For range indicator
+    private TowerSelectable previewTowerSelectable;
     private Camera mainCamera;
     private Vector2 mousePosition;
     private static bool isOverUI;
     private Material currentMaterial;
     private readonly Collider[] results = new Collider[10];
+    private InputAction snapAction;
 
     protected override void Awake()
     {
@@ -65,6 +66,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         playerInput.actions.FindAction("MousePosition").canceled += OnMousePosition;
         playerInput.actions.FindAction("Place").performed += OnPlacePerformed;
         playerInput.actions.FindAction("Drag").performed += OnDragPerformed;
+        snapAction = playerInput.actions.FindAction("Snap");
     }
 
     private void Update()
@@ -76,6 +78,9 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
 
         if (Raycast(out RaycastHit hit))
         {
+            if (snapAction.IsPressed())
+                hit.point = new Vector3(Mathf.Round(hit.point.x), hit.point.y, Mathf.Round(hit.point.z));
+
             previewTower.transform.position = hit.point;
             bool canPlace = CanPlace(ref hit);
 
@@ -214,6 +219,9 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         if (currentTowerSO == null)
             return;
 
+        if (snapAction.IsPressed())
+            position = new Vector3(Mathf.Round(position.x), position.y, Mathf.Round(position.z));
+
         Tower placedTower = Instantiate(currentTowerSO.Prefab, position, Quaternion.identity);
         SelectPlacedTower(placedTower);
 
@@ -225,8 +233,11 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
 
     private void SelectPlacedTower(Tower tower)
     {
-        if (SelectionSystem.Instance != null)
-            SelectionSystem.Instance.SelectObject(tower.GetComponent<IGameSelectable>());
+        if (selectOnPlace && SelectionSystem.Instance != null)
+        {
+            if (tower.TryGetComponent(out IGameSelectable selectable))
+                SelectionSystem.Instance.SelectObject(selectable);
+        }
     }
 
     private void OnDestroy()

@@ -32,6 +32,7 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
     [SerializeField]
     private TextMeshProUGUI attackIntervalText;
     private Tower currentTower;
+    private TowerHealth currentHealth;
 
     protected override void Awake()
     {
@@ -39,16 +40,17 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         HideMenu();
     }
 
-    private void OnTowerHealthChanged(Tower tower)
+    private void OnTowerHealthChanged(TowerHealth towerHealth)
     {
-        if (tower == currentTower)
-            UpdateHealthDisplay(currentTower.GetCurrentHealth(), currentTower.GetTowerSO().Stats.Health);
+        if (currentHealth.GetTowerSO() == currentTower.GetTowerSO())
+            UpdateHealthDisplay(currentHealth.GetCurrentHealth(), currentHealth.GetTowerSO().Stats.Health);
     }
 
     public void ShowMenu(Tower tower)
     {
         currentTower = tower;
-        tower.OnHealthChanged += OnTowerHealthChanged;
+        if (currentTower.TryGetComponent(out currentHealth))
+            currentHealth.OnHealthChanged += OnTowerHealthChanged;
 
         menu.SetActive(true);
         UpdateDisplay(tower);
@@ -68,7 +70,7 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         rangeText.SetText($"{stats.Range} metres");
         attackIntervalText.SetText($"{stats.AttackInterval:0.0} sec(s)");
 
-        UpdateHealthDisplay(tower.GetCurrentHealth(), stats.Health);
+        UpdateHealthDisplay(currentHealth.GetCurrentHealth(), stats.Health);
     }
 
     private void UpdateHealthDisplay(float currentHealth, float maxHealth)
@@ -79,10 +81,11 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
 
     public void HideMenu()
     {
-        if (currentTower != null)
-            currentTower.OnHealthChanged -= OnTowerHealthChanged;
+        if (currentHealth != null)
+            currentHealth.OnHealthChanged -= OnTowerHealthChanged;
 
         currentTower = null;
+        currentHealth = null;
         menu.SetActive(false);
     }
 }

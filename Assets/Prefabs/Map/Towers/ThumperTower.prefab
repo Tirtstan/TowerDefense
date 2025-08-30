@@ -288,11 +288,12 @@ GameObject:
   - component: {fileID: 8045771983117612152}
   - component: {fileID: 1372815465104080361}
   - component: {fileID: 8474714792004710613}
+  - component: {fileID: 2406413187064011577}
   - component: {fileID: 49560660006757904}
   - component: {fileID: 1263122176105505709}
   - component: {fileID: 7164917740303991950}
-  - component: {fileID: 2170674514108218971}
   - component: {fileID: 2905175675324617345}
+  - component: {fileID: 2170674514108218971}
   m_Layer: 6
   m_Name: ThumperTower
   m_TagString: Untagged
@@ -352,6 +353,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerSO: {fileID: 11400000, guid: af58d0d2f8194dc4092e531616071f92, type: 2}
+--- !u!114 &2406413187064011577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508340036517391532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06e02bbdf3ac68448f05eec6a32fe2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerHealth
+  towerSO: {fileID: 11400000, guid: af58d0d2f8194dc4092e531616071f92, type: 2}
   preventDamage: 0
 --- !u!114 &49560660006757904
 MonoBehaviour:
@@ -396,21 +410,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackShake
   cinemachineImpulseSource: {fileID: 5554132638004766362}
---- !u!114 &2170674514108218971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3508340036517391532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f93f8e2fa8912147a449f49ed6bc67b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScaleOnStart
-  duration: 0.1
-  strength: 0.2
-  ease: 18
 --- !u!114 &2905175675324617345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +425,21 @@ MonoBehaviour:
   towerMeshRenderer: {fileID: 6077278659139973480}
   rangeElement: {fileID: 7092205810508893224}
   alwaysShowRangeIndicator: 0
+--- !u!114 &2170674514108218971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508340036517391532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f93f8e2fa8912147a449f49ed6bc67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScaleOnStart
+  duration: 0.1
+  strength: 0.2
+  ease: 18
 --- !u!1 &5193717591188507841
 GameObject:
   m_ObjectHideFlags: 0

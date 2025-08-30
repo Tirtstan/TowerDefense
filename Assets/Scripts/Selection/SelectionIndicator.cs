@@ -18,14 +18,16 @@ public class SelectionIndicator : MonoBehaviour
 
     private void HandleSelected(IGameSelectable selectable)
     {
+        if (selectable == null || selectable.Transform == null)
+            return;
+
         selectionIndicator.SetActive(true);
         selectionIndicator.transform.position = selectable.Transform.position + offset;
     }
 
-    private void HandleDeselected(IGameSelectable selectable)
-    {
-        selectionIndicator.SetActive(false);
-    }
+    private void HandleDeselected(IGameSelectable selectable) => HideSelector();
+
+    public void HideSelector() => selectionIndicator.SetActive(false);
 
     private void OnDestroy()
     {

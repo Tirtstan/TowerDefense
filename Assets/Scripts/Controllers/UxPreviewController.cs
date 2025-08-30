@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class UxPreviewController : MonoBehaviour
 {
-    [Header("References")]
+    [Header("Components")]
     [SerializeField]
     private MeshRenderer previewRenderer;
     private MeshFilter previewFilter;
