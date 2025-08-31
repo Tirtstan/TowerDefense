@@ -79,7 +79,7 @@ Material:
     - _ScaleRatioC: 0.35173163
     - _ScaleX: 1
     - _ScaleY: 1
-    - _ShaderFlags: 0
+    - _ShaderFlags: 1
     - _Sharpness: 0
     - _SpecularPower: 2
     - _Stencil: 0
@@ -106,7 +106,7 @@ Material:
     - _OutlineColor: {r: 0.23921569, g: 0.2901961, b: 0.5019608, a: 1}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
-    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularColor: {r: 1, g: 0.8732544, b: 0.10849059, a: 1}
     - _UnderlayColor: {r: 0.23732719, g: 0.2903225, b: 0.5, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

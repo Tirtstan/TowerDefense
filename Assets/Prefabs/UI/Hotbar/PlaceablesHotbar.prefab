@@ -68,7 +68,7 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 1920, y: 1080, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: 0, y: 0, z: 0}
+  TargetPosition: {x: 0, y: -240, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 130, y: 218, z: 0}
@@ -182,15 +182,51 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 190972389074039523, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 67.229996
+      value: 71.99
       objectReference: {fileID: 0}
     - target: {fileID: 190972389074039523, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 19.385002
+      value: 17.005001
       objectReference: {fileID: 0}
     - target: {fileID: 1725584467381274244, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
       propertyPath: m_hasFontAssetChanged
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132637537773892074, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: FillSize.y
+      value: 71.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132637537773892074, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: LayoutPosition.y
+      value: 19.005001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132637537773892074, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: TargetPosition.y
+      value: 17.005001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132637537773892074, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: TargetRectSize.y
+      value: 71.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132637537773892074, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: TransformPosition.y
+      value: 17.005001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132637537773892074, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: TransformRectSize.y
+      value: 71.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132637537773892074, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: LayoutBounds.m_Extent.y
+      value: 35.995
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132637537773892074, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: AdapterBounds.m_Extent.y
+      value: 35.995
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132637537773892074, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: RotatedAndScaledBounds.m_Extent.y
+      value: 35.995
       objectReference: {fileID: 0}
     - target: {fileID: 5987316502052632537, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
       propertyPath: Parent
@@ -316,13 +352,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8418557149268233895, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: LayoutPosition.y
+      value: -37.995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418557149268233895, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: TargetPosition.y
+      value: -41.995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418557149268233895, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: TargetRectSize.y
+      value: 30.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418557149268233895, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: TransformPosition.y
+      value: -41.995
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418557149268233895, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: TransformRectSize.y
+      value: 30.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418557149268233895, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: LayoutBounds.m_Extent.y
+      value: 15.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418557149268233895, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: AdapterBounds.m_Extent.y
+      value: 15.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8418557149268233895, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: RotatedAndScaledBounds.m_Extent.y
+      value: 15.005
+      objectReference: {fileID: 0}
     - target: {fileID: 9141937393222668589, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 38.77
+      value: 30.01
       objectReference: {fileID: 0}
     - target: {fileID: 9141937393222668589, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -37.614998
+      value: -41.995
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
