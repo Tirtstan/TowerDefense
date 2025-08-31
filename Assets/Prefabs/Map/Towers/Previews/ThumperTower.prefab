@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 6958975199094402405}
   - component: {fileID: 4661452583108391711}
   - component: {fileID: 4575143477833028627}
+  - component: {fileID: 7308098867663922005}
   m_Layer: 6
   m_Name: RangeImage
   m_TagString: Untagged
@@ -277,6 +278,20 @@ MonoBehaviour:
   target: {fileID: 4908352266329016839}
   offset: {x: 0, y: 0.01, z: 0}
   updatePosition: 0
+--- !u!114 &7308098867663922005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3269754450446511560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d745e42c225c0494ea0d2a853552a6fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RangeIndicator
+  towerSO: {fileID: 11400000, guid: af58d0d2f8194dc4092e531616071f92, type: 2}
+  rectTransform: {fileID: 7092205810508893224}
 --- !u!1 &3508340036517391532
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,7 +362,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerSO: {fileID: 11400000, guid: af58d0d2f8194dc4092e531616071f92, type: 2}
-  preventDamage: 1
 --- !u!114 &2170674514108218971
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -40,7 +40,7 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         HideMenu();
     }
 
-    private void OnTowerHealthChanged(TowerHealth towerHealth)
+    private void OnTowerHealthChanged(IDamagable damagable)
     {
         if (currentHealth.GetTowerSO() == currentTower.GetTowerSO())
             UpdateHealthDisplay(currentHealth.GetCurrentHealth(), currentHealth.GetTowerSO().Stats.Health);
@@ -67,7 +67,7 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         levelText.SetText($"Lvl. {1}"); // TODO: Implement level system
 
         damageText.SetText($"{stats.Damage} damage");
-        rangeText.SetText($"{stats.Range} metres");
+        rangeText.SetText($"{stats.Range} metre(s)");
         attackIntervalText.SetText($"{stats.AttackInterval:0.0} sec(s)");
 
         UpdateHealthDisplay(currentHealth.GetCurrentHealth(), stats.Health);

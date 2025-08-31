@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2909787520619707065}
   - component: {fileID: 8644693996688252603}
   - component: {fileID: -1794477339424492446}
+  - component: {fileID: 5025574353215676749}
   m_Layer: 7
   m_Name: UfoAEnemy
   m_TagString: Untagged
@@ -104,6 +105,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34889117c0337584e9dd157e62636d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
+  enemySO: {fileID: 11400000, guid: 1b00a0bc80142a744abfa558e9868a3d, type: 2}
+  enemyAttacker: {fileID: 5025574353215676749}
+  towerLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  attackRange: 2
+--- !u!114 &5025574353215676749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747583962200913497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcfc4e74d62309144904a81f5f4065eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttacker
   enemySO: {fileID: 11400000, guid: 1b00a0bc80142a744abfa558e9868a3d, type: 2}
 --- !u!1001 &1321608363279932668
 PrefabInstance:

@@ -214,6 +214,7 @@ GameObject:
   - component: {fileID: 2024998916744403371}
   - component: {fileID: 5949130241410697755}
   - component: {fileID: 6378222599341190357}
+  - component: {fileID: 5399214069798809884}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -455,3 +456,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TextEffectOnSelectHover
   textEffect: {fileID: 1487603059722618685}
+--- !u!114 &5399214069798809884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4812275548332207109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e0e2a102831b2d4193eaddbc58f5aa8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorOnHover
+  hoverCursor: 4

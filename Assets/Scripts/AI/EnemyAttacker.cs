@@ -2,18 +2,18 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerAttacker : MonoBehaviour, IAttack
+public class EnemyAttacker : MonoBehaviour, IAttack
 {
     public event Action OnAttack;
 
     [Header("Components")]
     [SerializeField]
-    private TowerSO towerSO;
+    private EnemySO enemySO;
 
     public void Attack(IEnumerable<IDamagable> targets)
     {
-        foreach (var target in targets)
-            target.TakeDamage(towerSO.Stats.Damage);
+        foreach (var item in targets)
+            item.TakeDamage(enemySO.Damage);
 
         OnAttack?.Invoke();
     }

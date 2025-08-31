@@ -51,11 +51,10 @@ public class CellVisual : MonoBehaviour
     {
         tween?.Kill();
 
-        float target = Mathf.Clamp01(amount / towerSO.Stats.Cost);
+        float target = Mathf.Clamp01((float)amount / towerSO.Stats.Cost);
         tween = DOVirtual
             .Float(fillImage.fillAmount, target, fillDuration, value => fillImage.fillAmount = value)
-            .SetEase(fillEase)
-            .SetUpdate(UpdateType.Fixed);
+            .SetEase(fillEase);
 
         if (amount >= towerSO.Stats.Cost)
         {
@@ -65,8 +64,11 @@ public class CellVisual : MonoBehaviour
         }
         else
         {
-            costText.color = defaultTextColor;
-            canRepeatAnim = true;
+            if (fillImage.fillAmount == 1f)
+            {
+                costText.color = defaultTextColor;
+                canRepeatAnim = true;
+            }
         }
     }
 
@@ -76,7 +78,6 @@ public class CellVisual : MonoBehaviour
         shakeTransform.DOKill();
         shakeTransform
             .DOPunchScale(Vector3.one * shakeStrength, shakeDuration)
-            .SetUpdate(UpdateType.Fixed)
             .OnComplete(() => shakeTransform.localScale = Vector3.one);
 
         costText.color = costReachedColor;

@@ -48,8 +48,6 @@ public class EnemySpawnController : Singleton<EnemySpawnController>
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
         GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-
-        Debug.Log($"Spawned {enemyPrefab.name} at {spawnPoint.position}");
     }
 
     private float GetInterval() // TODO: add more in depth balancing logic

@@ -47,7 +47,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8480588835785270192}
   - component: {fileID: 5616135758778189619}
-  - component: {fileID: 7912616010149080636}
   m_Layer: 0
   m_Name: EconomyManager
   m_TagString: Untagged
@@ -84,18 +83,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
   startingCurrency: 100
   maxCurrency: 9999
---- !u!114 &7912616010149080636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1467427551389575435}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da953243186ee3d48a58c77e1eaa1c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySoulController
 --- !u!1 &2137295393695983378
 GameObject:
   m_ObjectHideFlags: 0

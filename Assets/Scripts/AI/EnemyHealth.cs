@@ -1,10 +1,10 @@
 using System;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IDamagable
+public class EnemyHealth : MonoBehaviour, IDamagable
 {
-    public static event Action<EnemySO> OnDeath;
-    public static event Action<Enemy> OnHealthChanged;
+    public event Action OnDeath;
+    public event Action<IDamagable> OnHealthChanged;
 
     [Header("Components")]
     [SerializeField]
@@ -32,7 +32,10 @@ public class Enemy : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        OnDeath?.Invoke(enemySO);
+        if (EconomyManager.Instance != null)
+            EconomyManager.Instance.AddCurrency(enemySO.SoulAmount);
+
+        OnDeath?.Invoke();
         Destroy(gameObject);
     }
 

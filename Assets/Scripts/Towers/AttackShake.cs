@@ -1,17 +1,17 @@
 using Unity.Cinemachine;
 using UnityEngine;
 
-[RequireComponent(typeof(ITowerAttack))]
+[RequireComponent(typeof(IAttack))]
 public class AttackShake : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField]
     private CinemachineImpulseSource cinemachineImpulseSource;
-    private ITowerAttack towerAttack;
+    private IAttack towerAttack;
 
     private void Awake()
     {
-        towerAttack = GetComponent<ITowerAttack>();
+        towerAttack = GetComponent<IAttack>();
     }
 
     private void OnEnable()

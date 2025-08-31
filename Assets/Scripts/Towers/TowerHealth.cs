@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class TowerHealth : MonoBehaviour, IDamagable, IHealable
 {
-    public event Action<TowerSO> OnDestroyed;
-    public event Action<TowerHealth> OnHealthChanged;
+    public event Action OnDeath;
+    public event Action<IDamagable> OnHealthChanged;
 
     [Header("Components")]
     [SerializeField]
@@ -41,7 +41,7 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
 
     private void Die()
     {
-        OnDestroyed?.Invoke(towerSO);
+        OnDeath?.Invoke();
         Destroy(gameObject);
     }
 

@@ -22,6 +22,8 @@ public class TextEffectOnSelectHover
         textEffect.StopAllEffects();
     }
 
+    private void OnEnable() => UpdateTextEffect();
+
     public void OnSelect(BaseEventData eventData)
     {
         isSelected = true;

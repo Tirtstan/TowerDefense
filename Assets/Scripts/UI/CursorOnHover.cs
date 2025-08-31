@@ -30,5 +30,10 @@ public class CursorOnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitHa
         CursorStack.Pop(cursorId);
     }
 
+    private void OnDisable()
+    {
+        CursorStack.Pop(cursorId);
+    }
+
     private bool IsInteractable() => selectable != null && selectable.IsInteractable();
 }
