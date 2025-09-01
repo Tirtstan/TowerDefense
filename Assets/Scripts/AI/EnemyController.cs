@@ -18,81 +18,65 @@ public class EnemyController : MonoBehaviour
 
     [SerializeField]
     private float attackRange = 2f;
+
     private NavMeshAgent agent;
     private SphereCollider visionCollider;
     private Transform currentTarget;
     private IDamagable currentTargetDamagable;
     private readonly List<Transform> detectedTowers = new();
     private float attackTimer;
+    private bool hasValidTarget;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = enemySO.Speed;
-
         visionCollider = GetComponent<SphereCollider>();
-        visionCollider.isTrigger = true;
-        visionCollider.radius = enemySO.VisionRange;
 
         if (enemyAttacker == null)
             enemyAttacker = GetComponent<EnemyAttacker>();
+
+        SetupComponents();
+    }
+
+    private void SetupComponents()
+    {
+        if (enemySO != null)
+        {
+            agent.speed = enemySO.Speed;
+            visionCollider.radius = enemySO.VisionRange;
+        }
+
+        visionCollider.isTrigger = true;
     }
 
     private void Start()
     {
-        currentTarget = CenterTower.Instance.transform;
-        agent.SetDestination(currentTarget.position);
-
-        if (currentTarget.TryGetComponent(out IDamagable damagable))
-        {
-            currentTargetDamagable = damagable;
-            SubscribeToTargetDeath(damagable);
-        }
+        FindAndSetTarget();
     }
 
     private void Update()
     {
-        if (currentTarget != null && currentTargetDamagable != null)
-        {
-            attackTimer += Time.deltaTime;
-            if (attackTimer >= enemySO.AttackInterval)
-            {
-                attackTimer = 0f;
-                TryAttackCurrentTarget();
-            }
-        }
-
-        HandleTargetSwitching();
+        HandleAttacking();
     }
 
-    private void HandleTargetSwitching()
+    private void HandleAttacking()
     {
-        // if current target is still valid
-        if (currentTarget != null && currentTarget != CenterTower.Instance.transform)
+        if (!hasValidTarget || currentTargetDamagable == null || enemyAttacker == null)
+            return;
+
+        attackTimer += Time.deltaTime;
+        if (attackTimer >= enemySO.AttackInterval)
         {
-            if (!detectedTowers.Contains(currentTarget))
-            {
-                // current target is no longer detected, switch back to center or find new target
-                SwitchToClosestTower();
-            }
-        }
-        else if (detectedTowers.Count > 0 && currentTarget == CenterTower.Instance.transform)
-        {
-            // targeting center but have detected towers, switch to closest
-            SwitchToClosestTower();
+            attackTimer = 0f;
+            TryAttackCurrentTarget();
         }
     }
 
     private void TryAttackCurrentTarget()
     {
-        // Double check target existence
-        if (currentTarget == null || currentTargetDamagable == null)
-        {
-            SwitchToClosestTower();
+        if (!hasValidTarget || currentTargetDamagable == null)
             return;
-        }
 
-        // Check if we're close enough to attack
         float distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
         if (distanceToTarget <= attackRange)
             enemyAttacker.Attack(new[] { currentTargetDamagable });
@@ -106,10 +90,10 @@ public class EnemyController : MonoBehaviour
             if (!detectedTowers.Contains(tower))
             {
                 detectedTowers.Add(tower);
+                Debug.Log($"Enemy {gameObject.name} detected tower: {tower.name}");
 
-                // If we're currently targeting the center tower, switch to this closer one
-                if (currentTarget == CenterTower.Instance.transform)
-                    SwitchTarget(tower);
+                // only update when a new tower is detected
+                UpdateTargetingOnTowerDetected(tower);
             }
         }
     }
@@ -119,29 +103,74 @@ public class EnemyController : MonoBehaviour
         if (IsTower(other))
         {
             Transform tower = other.transform;
-            detectedTowers.Remove(tower);
+            bool wasRemoved = detectedTowers.Remove(tower);
 
-            // If this was our current target, find a new one
-            if (currentTarget == tower)
-                SwitchToClosestTower();
+            if (wasRemoved)
+            {
+                // only update when losing sight of current target
+                UpdateTargetingOnTowerLost(tower);
+                Debug.Log($"Enemy {gameObject.name} lost sight of tower: {tower.name}");
+            }
         }
+    }
+
+    private void UpdateTargetingOnTowerDetected(Transform newTower)
+    {
+        // if we're targeting center tower, immediately switch to any detected tower
+        if (currentTarget == CenterTower.Instance.transform)
+        {
+            SetTarget(newTower);
+            return;
+        }
+
+        // if this new tower is closer than current target, switch to it
+        if (hasValidTarget && ShouldSwitchToTower(newTower))
+            SetTarget(newTower);
+    }
+
+    private void UpdateTargetingOnTowerLost(Transform lostTower)
+    {
+        if (currentTarget == lostTower)
+            FindAndSetTarget();
     }
 
     private bool IsTower(Collider collider) => ((1 << collider.gameObject.layer) & towerLayer) != 0;
 
-    private void SwitchToClosestTower()
+    private bool ShouldSwitchToTower(Transform tower)
     {
-        if (detectedTowers.Count == 0)
+        // always switch if targeting center tower
+        if (currentTarget == CenterTower.Instance.transform)
+            return true;
+
+        // switch if this tower is closer than current target
+        if (hasValidTarget && currentTarget != null)
         {
-            SwitchTarget(CenterTower.Instance.transform);
-            return;
+            float currentDistance = Vector3.Distance(transform.position, currentTarget.position);
+            float newDistance = Vector3.Distance(transform.position, tower.position);
+            return newDistance < currentDistance;
         }
 
-        if (detectedTowers.Count == 1)
-        {
-            SwitchTarget(detectedTowers[0]);
-            return;
-        }
+        return true;
+    }
+
+    private void FindAndSetTarget()
+    {
+        // Clean up any null references first
+        detectedTowers.RemoveAll(tower => tower == null);
+
+        Transform bestTarget = GetClosestDetectedTower();
+
+        // If no detected towers, default to center tower
+        if (bestTarget == null)
+            bestTarget = CenterTower.Instance.transform;
+
+        SetTarget(bestTarget);
+    }
+
+    private Transform GetClosestDetectedTower()
+    {
+        if (detectedTowers.Count == 0)
+            return null;
 
         Transform closestTower = null;
         float closestDistance = float.MaxValue;
@@ -159,16 +188,22 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        if (closestTower != null)
-            SwitchTarget(closestTower);
+        return closestTower;
     }
 
-    private void SwitchTarget(Transform newTarget)
+    private void SetTarget(Transform newTarget)
     {
-        if (currentTargetDamagable != null)
-            UnsubscribeFromTargetDeath(currentTargetDamagable);
+        if (newTarget == null)
+        {
+            Debug.LogWarning($"Enemy {gameObject.name}: Trying to set null target!");
+            hasValidTarget = false;
+            return;
+        }
+
+        UnsubscribeFromTargetDeath(currentTargetDamagable);
 
         currentTarget = newTarget;
+        hasValidTarget = true;
         agent.SetDestination(currentTarget.position);
 
         if (currentTarget.TryGetComponent(out IDamagable damagable))
@@ -182,38 +217,57 @@ public class EnemyController : MonoBehaviour
         }
 
         attackTimer = 0f;
+        Debug.Log($"Enemy {gameObject.name} switched target to: {currentTarget.name}");
     }
 
     private void SubscribeToTargetDeath(IDamagable damagable)
     {
-        damagable.OnDeath += OnTargetDeath;
+        if (damagable != null)
+            damagable.OnDeath += OnTargetDeath;
     }
 
     private void UnsubscribeFromTargetDeath(IDamagable damagable)
     {
-        damagable.OnDeath -= OnTargetDeath;
+        if (damagable != null)
+            damagable.OnDeath -= OnTargetDeath;
     }
 
     private void OnTargetDeath()
     {
+        Debug.Log($"Enemy {gameObject.name}: Current target died, finding new target");
+        UnsubscribeFromTargetDeath(currentTargetDamagable);
+
         currentTargetDamagable = null;
-        SwitchToClosestTower();
+        currentTarget = null;
+        hasValidTarget = false;
+
+        // find new target when current one dies
+        FindAndSetTarget();
     }
 
     private void OnDestroy()
     {
-        if (currentTargetDamagable != null)
-            UnsubscribeFromTargetDeath(currentTargetDamagable);
+        UnsubscribeFromTargetDeath(currentTargetDamagable);
     }
 
     private void OnDrawGizmosSelected()
     {
-        // vision range
-        Gizmos.color = Color.blue;
+        if (enemySO == null)
+            return;
+
+        // Vision range
+        Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, enemySO.VisionRange);
 
-        // attack range
-        Gizmos.color = Color.red;
+        // Attack range
+        Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, attackRange);
+
+        // Line to current target
+        if (hasValidTarget && currentTarget != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(transform.position, currentTarget.position);
+        }
     }
 }

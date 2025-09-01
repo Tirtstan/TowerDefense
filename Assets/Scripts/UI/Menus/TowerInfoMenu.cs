@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,6 +32,14 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
 
     [SerializeField]
     private TextMeshProUGUI attackIntervalText;
+
+    [Header("Animation")]
+    [SerializeField]
+    [Range(0, 1)]
+    private float healthFillDuration = 0.25f;
+
+    [SerializeField]
+    private Ease healthEase = Ease.OutCubic;
     private Tower currentTower;
     private TowerHealth currentHealth;
 
@@ -76,7 +85,9 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
     private void UpdateHealthDisplay(float currentHealth, float maxHealth)
     {
         healthText.SetText($"{currentHealth} / {maxHealth}");
-        healthFillImage.fillAmount = currentHealth / maxHealth;
+
+        healthFillImage.DOKill();
+        healthFillImage.DOFillAmount(currentHealth / maxHealth, healthFillDuration).SetEase(healthEase);
     }
 
     public void HideMenu()

@@ -22,11 +22,6 @@ public class MapGenerator : MonoBehaviour
     [SerializeField, Tooltip("Size of each tile in Unity units")]
     private float tileSize = 1f;
 
-    [SerializeField]
-    [Range(2, 10)]
-    [Tooltip("Minimum number of paths that must connect directly to the center (prevents single bottleneck)")]
-    private int minDirectPaths = 2;
-
     [Header("Tower Spacing")]
     [SerializeField, Range(3, 15), Tooltip("Minimum distance between towers to ensure good spacing")]
     private int minTowerDistance = 5;
@@ -41,17 +36,11 @@ public class MapGenerator : MonoBehaviour
     [SerializeField, Range(1f, 20f), Tooltip("Penalty for paths going near existing paths (higher = more spread out)")]
     private float pathAvoidancePenalty = 5f;
 
-    [SerializeField, Range(10f, 200f), Tooltip("High penalty to prevent merging paths at direct connection points")]
-    private float directPathMergePenalty = 100f;
-
-    [SerializeField]
-    [Range(1f, 15f)]
-    [Tooltip("Penalty for direct paths avoiding existing paths (higher = more isolated direct paths)")]
-    private float directPathAvoidancePenalty = 10f;
-
-    [SerializeField]
-    [Range(0f, 0.5f)]
-    [Tooltip("Small penalty for staying near edges (higher = slight center preference)")]
+    [
+        SerializeField,
+        Range(0f, 0.5f),
+        Tooltip("Small penalty for staying near edges (higher = slight center preference)")
+    ]
     private float edgePenalty = 0.2f;
 
     [SerializeField, Range(0f, 0.3f), Tooltip("Small penalty for very long straight lines (minimal turning)")]
@@ -79,6 +68,9 @@ public class MapGenerator : MonoBehaviour
     [SerializeField, Tooltip("Special tile for the center where player base will be placed")]
     private GameObject centerTowerTilePrefab;
 
+    [SerializeField, Tooltip("Special tile placed under enemy towers (like the center tile)")]
+    private GameObject enemyTowerTilePrefab;
+
     [Header("Tower Prefabs")]
     [SerializeField, Tooltip("Player base prefab (spawned at center)")]
     private GameObject playerBasePrefab;
@@ -102,9 +94,7 @@ public class MapGenerator : MonoBehaviour
     private readonly List<List<Vector2Int>> paths = new();
     private readonly HashSet<Vector2Int> occupiedTiles = new();
     private readonly HashSet<Vector2Int> towerTiles = new();
-    private readonly Dictionary<Vector2Int, int> pathConnectionCount = new();
-    private readonly Dictionary<Vector2Int, List<Vector2Int>> junctionConnections = new();
-    private readonly HashSet<Vector2Int> directPathEndpoints = new();
+    private readonly HashSet<Vector2Int> pathTiles = new(); // Tracks all carved path tiles for lane width
 
     private void Awake()
     {
@@ -124,8 +114,8 @@ public class MapGenerator : MonoBehaviour
         InitializeGrid();
         PlaceStartPoint();
         PlaceTowerPositions();
-        CreatePaths();
-        IdentifyJunctions();
+        CreatePaths(); // exactly 3 lanes: widths 1, 2, 3
+        AddCenterHub(); // surround center and integrate lanes
         InstantiateTiles();
         SpawnTowers();
 
@@ -142,9 +132,7 @@ public class MapGenerator : MonoBehaviour
         towerTiles.Clear();
         towerPositions.Clear();
         paths.Clear();
-        pathConnectionCount.Clear();
-        junctionConnections.Clear();
-        directPathEndpoints.Clear();
+        pathTiles.Clear();
 
         for (int x = 0; x < gridSize; x++)
         {
@@ -258,57 +246,129 @@ public class MapGenerator : MonoBehaviour
 
     private void CreatePaths()
     {
-        int actualMinDirectPaths = Mathf.Min(minDirectPaths, towerPositions.Count);
-        List<Vector2Int> directTowers = towerPositions.Take(actualMinDirectPaths).ToList();
-        List<Vector2Int> remainingTowers = towerPositions.Skip(actualMinDirectPaths).ToList();
+        // Build exactly three lanes with widths 1, 2, and 3 (in that order), if enough towers exist.
+        int[] widths = { 1, 2, 3 };
+        int lanesToBuild = Mathf.Min(3, towerPositions.Count);
 
-        // Create direct paths first
-        foreach (var towerPos in directTowers)
+        for (int i = 0; i < lanesToBuild; i++)
         {
-            List<Vector2Int> path = FindPathWithRetries(towerPos, startPoint, true);
+            Vector2Int towerPos = towerPositions[i];
+            List<Vector2Int> path = FindPathWithRetries(towerPos, startPoint);
             if (path != null && path.Count > 0)
             {
                 paths.Add(path);
-                ApplyPathToGrid(path);
-                TrackPathConnections(path);
+                CarvePathWithWidth(path, widths[i]);
 
-                if (path.Count >= 2)
-                    directPathEndpoints.Add(path[^2]);
-
-                for (int i = 1; i < path.Count - 1; i++)
-                    occupiedTiles.Add(path[i]);
-            }
-            else
-            {
-                Debug.LogWarning($"Could not find direct path from tower at {towerPos} to center at {startPoint}");
-            }
-        }
-
-        // Create remaining paths
-        foreach (var towerPos in remainingTowers)
-        {
-            List<Vector2Int> path = FindPathWithRetries(towerPos, startPoint, false);
-            if (path != null && path.Count > 0)
-            {
-                paths.Add(path);
-                ApplyPathToGrid(path);
-                TrackPathConnections(path);
-
-                for (int i = 1; i < path.Count - 1; i++)
-                    occupiedTiles.Add(path[i]);
+                // NEW: surround the enemy tower with a hub matching this lane's width
+                AddEnemyHub(towerPos, widths[i]);
             }
             else
             {
                 Debug.LogWarning($"Could not find path from tower at {towerPos} to center at {startPoint}");
             }
         }
+
+        if (towerPositions.Count < 3)
+            Debug.LogWarning("Fewer than 3 towers placed; could not create all three lane widths (1,2,3).");
+        if (towerPositions.Count > 3)
+            Debug.LogWarning("More than 3 towers placed; only the first three were connected (widths 1,2,3).");
     }
 
-    private List<Vector2Int> FindPathWithRetries(Vector2Int start, Vector2Int end, bool forceDirect)
+    // Carve a widened lane along the path, excluding endpoints (tower and center)
+    private void CarvePathWithWidth(List<Vector2Int> path, int width)
+    {
+        if (path == null || path.Count < 2)
+            return;
+
+        width = Mathf.Clamp(width, 1, 3);
+
+        for (int i = 1; i < path.Count - 1; i++)
+        {
+            Vector2Int current = path[i];
+            Vector2Int prevDir = (path[i] - path[i - 1]);
+            Vector2Int nextDir = (path[i + 1] - path[i]);
+
+            // Normalize to cardinal unit vectors
+            prevDir = new Vector2Int(Mathf.Clamp(prevDir.x, -1, 1), Mathf.Clamp(prevDir.y, -1, 1));
+            nextDir = new Vector2Int(Mathf.Clamp(nextDir.x, -1, 1), Mathf.Clamp(nextDir.y, -1, 1));
+
+            // Union of offsets for both segment directions (fills corners cleanly)
+            foreach (var o in GetPerpOffsets(prevDir, width))
+                MarkPathTile(current + o);
+
+            foreach (var o in GetPerpOffsets(nextDir, width))
+                MarkPathTile(current + o);
+        }
+    }
+
+    // Add a small center hub so all lanes meet cleanly and center is surrounded
+    private void AddCenterHub()
+    {
+        // Use max width (3) so any incoming widened lane integrates cleanly
+        int centerWidth = 3;
+
+        Vector2Int[] dirs = { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left };
+        foreach (var d in dirs)
+        {
+            foreach (var o in GetPerpOffsets(d, centerWidth))
+                MarkPathTile(startPoint + d + o);
+        }
+
+        // Diagonals to fully surround the center tile
+        Vector2Int[] diags = { new(+1, +1), new(-1, +1), new(+1, -1), new(-1, -1) };
+        foreach (var dd in diags)
+            MarkPathTile(startPoint + dd);
+    }
+
+    // NEW: surround a given enemy tower with a hub of the given width
+    private void AddEnemyHub(Vector2Int towerPos, int width)
+    {
+        width = Mathf.Clamp(width, 1, 3);
+
+        Vector2Int[] dirs = { Vector2Int.up, Vector2Int.right, Vector2Int.down, Vector2Int.left };
+        foreach (var d in dirs)
+        {
+            foreach (var o in GetPerpOffsets(d, width))
+                MarkPathTile(towerPos + d + o);
+        }
+
+        // Diagonals to fully surround the tower tile
+        Vector2Int[] diags = { new(+1, +1), new(-1, +1), new(+1, -1), new(-1, -1) };
+        foreach (var dd in diags)
+            MarkPathTile(towerPos + dd);
+    }
+
+    private IEnumerable<Vector2Int> GetPerpOffsets(Vector2Int dir, int width)
+    {
+        // Determine perpendicular axis: vertical dirs -> x offsets; horizontal dirs -> y offsets
+        Vector2Int perp = (dir == Vector2Int.up || dir == Vector2Int.down) ? Vector2Int.right : Vector2Int.up;
+
+        width = Mathf.Clamp(width, 1, 3);
+
+        if (width == 1)
+        {
+            yield return Vector2Int.zero;
+            yield break;
+        }
+
+        if (width == 2)
+        {
+            yield return Vector2Int.zero;
+            yield return perp; // +perp side
+            yield break;
+        }
+
+        // width == 3
+        yield return -perp;
+        yield return Vector2Int.zero;
+        yield return perp;
+    }
+
+    private List<Vector2Int> FindPathWithRetries(Vector2Int start, Vector2Int end)
     {
         for (int attempt = 0; attempt < maxPathfindingAttempts; attempt++)
         {
-            List<Vector2Int> path = FindPath(start, end, forceDirect, attempt);
+            List<Vector2Int> path = FindPath(start, end, attempt);
             if (path != null)
                 return path;
         }
@@ -316,69 +376,7 @@ public class MapGenerator : MonoBehaviour
         return null;
     }
 
-    private void TrackPathConnections(List<Vector2Int> path)
-    {
-        foreach (var position in path)
-        {
-            if (pathConnectionCount.ContainsKey(position))
-            {
-                pathConnectionCount[position]++;
-            }
-            else
-            {
-                pathConnectionCount[position] = 1;
-            }
-        }
-
-        for (int i = 0; i < path.Count; i++)
-        {
-            Vector2Int current = path[i];
-
-            if (!junctionConnections.ContainsKey(current))
-                junctionConnections[current] = new List<Vector2Int>();
-
-            if (i > 0)
-            {
-                Vector2Int direction = path[i - 1] - current;
-                if (!junctionConnections[current].Contains(direction))
-                    junctionConnections[current].Add(direction);
-            }
-
-            if (i < path.Count - 1)
-            {
-                Vector2Int direction = path[i + 1] - current;
-                if (!junctionConnections[current].Contains(direction))
-                    junctionConnections[current].Add(direction);
-            }
-        }
-    }
-
-    private void IdentifyJunctions()
-    {
-        foreach (var kvp in pathConnectionCount)
-        {
-            Vector2Int position = kvp.Key;
-            int connectionCount = kvp.Value;
-
-            if (connectionCount > 1 && position != startPoint)
-            {
-                int uniqueDirections = junctionConnections.ContainsKey(position)
-                    ? junctionConnections[position].Count
-                    : 0;
-
-                if (uniqueDirections >= 4)
-                {
-                    grid[position.x, position.y] = TileType.CrossJunction;
-                }
-                else if (uniqueDirections == 3)
-                {
-                    grid[position.x, position.y] = TileType.TJunction;
-                }
-            }
-        }
-    }
-
-    private List<Vector2Int> FindPath(Vector2Int start, Vector2Int end, bool forceDirect = false, int attempt = 0)
+    private List<Vector2Int> FindPath(Vector2Int start, Vector2Int end, int attempt = 0)
     {
         var openSet = new List<Vector2Int>();
         var closedSet = new HashSet<Vector2Int>();
@@ -402,7 +400,7 @@ public class MapGenerator : MonoBehaviour
 
             foreach (var neighbor in GetNeighbors(current))
             {
-                if (closedSet.Contains(neighbor) || !IsValidTileForPath(neighbor, end, forceDirect))
+                if (closedSet.Contains(neighbor) || !IsValidTileForPath(neighbor, end))
                     continue;
 
                 float moveCost = 1f + (attempt * 0.1f);
@@ -432,27 +430,15 @@ public class MapGenerator : MonoBehaviour
                     }
                 }
 
-                // Only penalize after 6+ straight moves
                 if (straightCount >= 6)
                 {
                     moveCost += straightLinePenalty;
                 }
 
-                if (forceDirect)
+                // Spread out from already carved lanes, but still allow approaching center
+                if (IsNearExistingPath(neighbor) && !IsAdjacentToCenter(neighbor))
                 {
-                    if (IsNearExistingPath(neighbor) && !IsAdjacentToCenter(neighbor))
-                        moveCost += directPathAvoidancePenalty;
-                }
-                else
-                {
-                    if (directPathEndpoints.Contains(neighbor))
-                    {
-                        moveCost += directPathMergePenalty;
-                    }
-                    else if (IsNearExistingPath(neighbor) && !IsAdjacentToCenter(neighbor))
-                    {
-                        moveCost += pathAvoidancePenalty;
-                    }
+                    moveCost += pathAvoidancePenalty;
                 }
 
                 float tentativeGScore = gScore[current] + moveCost;
@@ -469,27 +455,19 @@ public class MapGenerator : MonoBehaviour
         }
 
         // If normal pathfinding failed, try fallback connection to existing path
-        if (!forceDirect)
-        {
-            return FindFallbackPath(start, end);
-        }
-
-        return null;
+        return FindFallbackPath(start, end);
     }
 
     private List<Vector2Int> FindFallbackPath(Vector2Int start, Vector2Int end)
     {
-        // Find the closest existing path tile within fallback radius of center
-        Vector2Int bestConnectionPoint = Vector2Int.zero;
+        Vector2Int bestConnectionPoint;
         float bestDistance = float.MaxValue;
         List<Vector2Int> bestPathToConnection = null;
 
         foreach (var pathTile in occupiedTiles)
         {
-            // Only consider path tiles close to center
             if (Vector2Int.Distance(pathTile, end) <= fallbackConnectionRadius)
             {
-                // Try to find a path from start to this existing path tile
                 var pathToExisting = FindSimplePath(start, pathTile);
                 if (pathToExisting != null)
                 {
@@ -538,7 +516,6 @@ public class MapGenerator : MonoBehaviour
                 if (!IsInBounds(neighbor) || towerTiles.Contains(neighbor))
                     continue;
 
-                // Allow connecting to existing paths
                 if (neighbor == end || grid[neighbor.x, neighbor.y] == TileType.Ground)
                 {
                     float tentativeGScore = gScore[current] + 1f;
@@ -558,7 +535,7 @@ public class MapGenerator : MonoBehaviour
         return null;
     }
 
-    private bool IsValidTileForPath(Vector2Int position, Vector2Int destination, bool forceDirect = false)
+    private bool IsValidTileForPath(Vector2Int position, Vector2Int destination)
     {
         if (!IsInBounds(position))
             return false;
@@ -569,29 +546,8 @@ public class MapGenerator : MonoBehaviour
         if (towerTiles.Contains(position))
             return false;
 
-        TileType type = grid[position.x, position.y];
-
-        if (type == TileType.Ground)
-            return true;
-
-        if (forceDirect)
-        {
-            return false;
-        }
-        else
-        {
-            if (
-                (
-                    type == TileType.Path
-                    || type == TileType.Turn
-                    || type == TileType.TJunction
-                    || type == TileType.CrossJunction
-                ) && IsAdjacentToCenter(position)
-            )
-                return true;
-        }
-
-        return false;
+        // Only traverse ground during path search
+        return grid[position.x, position.y] == TileType.Ground;
     }
 
     private bool IsAdjacentToCenter(Vector2Int position) => Vector2Int.Distance(position, startPoint) <= 1.5f;
@@ -656,138 +612,107 @@ public class MapGenerator : MonoBehaviour
         return path;
     }
 
-    private void ApplyPathToGrid(List<Vector2Int> path)
-    {
-        for (int i = 1; i < path.Count - 1; i++)
-        {
-            Vector2Int prev = path[i - 1];
-            Vector2Int current = path[i];
-            Vector2Int next = path[i + 1];
-
-            if (grid[current.x, current.y] == TileType.Ground)
-            {
-                Vector2Int dirFromPrev = current - prev;
-                Vector2Int dirToNext = next - current;
-
-                if (dirFromPrev != dirToNext)
-                    grid[current.x, current.y] = TileType.Turn;
-                else
-                    grid[current.x, current.y] = TileType.Path;
-            }
-        }
-    }
-
     private void InstantiateTiles()
     {
         for (int x = 0; x < gridSize; x++)
         {
             for (int z = 0; z < gridSize; z++)
             {
+                Vector2Int pos = new(x, z);
                 Vector3 position = new(x * tileSize, 0, z * tileSize);
 
-                switch (grid[x, z])
+                if (pos == startPoint)
                 {
-                    case TileType.Ground:
+                    grid[x, z] = TileType.CenterTile;
+                    Instantiate(centerTowerTilePrefab, position, Quaternion.identity, mapParent);
+                    continue;
+                }
+
+                if (towerTiles.Contains(pos))
+                {
+                    // Keep grid classification simple; visuals come from prefab
+                    if (enemyTowerTilePrefab != null)
+                        Instantiate(enemyTowerTilePrefab, position, Quaternion.identity, mapParent);
+                    else
                         Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
-                        break;
 
-                    case TileType.Path:
-                        Quaternion pathRotation = GetPathRotation(new Vector2Int(x, z));
-                        Instantiate(pathStraightPrefab, position, pathRotation, mapParent);
-                        break;
-
-                    case TileType.Turn:
-                        Quaternion turnRotation = GetTurnRotation(new Vector2Int(x, z));
-                        Instantiate(pathTurnPrefab, position, turnRotation, mapParent);
-                        break;
-
-                    case TileType.TJunction:
-                        Quaternion tJunctionRotation = GetTJunctionRotation(new Vector2Int(x, z));
-                        Instantiate(pathTJunctionPrefab, position, tJunctionRotation, mapParent);
-                        break;
-
-                    case TileType.CrossJunction:
-                        Instantiate(pathCrossJunctionPrefab, position, Quaternion.identity, mapParent);
-                        break;
-
-                    case TileType.CenterTile:
-                        Instantiate(centerTowerTilePrefab, position, Quaternion.identity, mapParent);
-                        break;
+                    continue;
                 }
-            }
-        }
-    }
 
-    private Quaternion GetTJunctionRotation(Vector2Int position)
-    {
-        if (!junctionConnections.ContainsKey(position))
-            return Quaternion.Euler(0, 180, 0);
-
-        var connections = junctionConnections[position];
-
-        bool hasUp = connections.Contains(Vector2Int.up);
-        bool hasDown = connections.Contains(Vector2Int.down);
-        bool hasLeft = connections.Contains(Vector2Int.left);
-        bool hasRight = connections.Contains(Vector2Int.right);
-
-        if (hasUp && hasLeft && hasRight && !hasDown)
-        {
-            return Quaternion.Euler(0, 0, 0);
-        }
-        else if (hasDown && hasLeft && hasRight && !hasUp)
-        {
-            return Quaternion.Euler(0, 180, 0);
-        }
-        else if (hasLeft && hasUp && hasDown && !hasRight)
-        {
-            return Quaternion.Euler(0, 270, 0);
-        }
-        else if (hasRight && hasUp && hasDown && !hasLeft)
-        {
-            return Quaternion.Euler(0, 90, 0);
-        }
-
-        // Fallback analysis
-        Dictionary<Vector2Int, int> directionUsage = new();
-
-        foreach (var path in paths)
-        {
-            int index = path.IndexOf(position);
-            if (index >= 0)
-            {
-                if (index > 0)
+                if (!pathTiles.Contains(pos))
                 {
-                    Vector2Int dir = path[index - 1] - position;
-                    directionUsage[dir] = directionUsage.GetValueOrDefault(dir, 0) + 1;
+                    grid[x, z] = TileType.Ground;
+                    Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
+                    continue;
                 }
-                if (index < path.Count - 1)
+
+                // Determine connections (treat center & enemy tower tiles as connectable)
+                bool up = IsPathOrCenter(pos + Vector2Int.up);
+                bool right = IsPathOrCenter(pos + Vector2Int.right);
+                bool down = IsPathOrCenter(pos + Vector2Int.down);
+                bool left = IsPathOrCenter(pos + Vector2Int.left);
+
+                int connCount = (up ? 1 : 0) + (right ? 1 : 0) + (down ? 1 : 0) + (left ? 1 : 0);
+
+                if (connCount == 4)
                 {
-                    Vector2Int dir = path[index + 1] - position;
-                    directionUsage[dir] = directionUsage.GetValueOrDefault(dir, 0) + 1;
+                    grid[x, z] = TileType.CrossJunction;
+                    int rotSteps = Random.Range(0, 4); // 0,1,2,3
+                    Quaternion rot = Quaternion.Euler(0f, rotSteps * 90f, 0f);
+                    Instantiate(pathCrossJunctionPrefab, position, rot, mapParent);
+                }
+                else if (connCount == 3)
+                {
+                    grid[x, z] = TileType.TJunction;
+
+                    // Missing side determines rotation (matches prior GetTJunctionRotation semantics)
+                    if (!down)
+                        Instantiate(pathTJunctionPrefab, position, Quaternion.Euler(0, 0, 0), mapParent);
+                    else if (!up)
+                        Instantiate(pathTJunctionPrefab, position, Quaternion.Euler(0, 180, 0), mapParent);
+                    else if (!left)
+                        Instantiate(pathTJunctionPrefab, position, Quaternion.Euler(0, 90, 0), mapParent);
+                    else // !right
+                        Instantiate(pathTJunctionPrefab, position, Quaternion.Euler(0, 270, 0), mapParent);
+                }
+                else if (connCount == 2)
+                {
+                    // Straight vs Turn
+                    if ((up && down) || (left && right))
+                    {
+                        grid[x, z] = TileType.Path;
+                        Quaternion rot = (left && right) ? Quaternion.Euler(0, 90, 0) : Quaternion.identity;
+                        Instantiate(pathStraightPrefab, position, rot, mapParent);
+                    }
+                    else
+                    {
+                        grid[x, z] = TileType.Turn;
+                        // Map adjacent pairs to rotation
+                        if (up && right)
+                            Instantiate(pathTurnPrefab, position, Quaternion.Euler(0, 90, 0), mapParent);
+                        else if (right && down)
+                            Instantiate(pathTurnPrefab, position, Quaternion.Euler(0, 180, 0), mapParent);
+                        else if (down && left)
+                            Instantiate(pathTurnPrefab, position, Quaternion.Euler(0, 270, 0), mapParent);
+                        else // left && up
+                            Instantiate(pathTurnPrefab, position, Quaternion.Euler(0, 0, 0), mapParent);
+                    }
+                }
+                else if (connCount == 1)
+                {
+                    // End-cap: use straight with appropriate orientation
+                    grid[x, z] = TileType.Path;
+                    Quaternion rot = (left || right) ? Quaternion.Euler(0, 90, 0) : Quaternion.identity;
+                    Instantiate(pathStraightPrefab, position, rot, mapParent);
+                }
+                else
+                {
+                    // Isolated (shouldn't happen often) - place ground fallback
+                    grid[x, z] = TileType.Ground;
+                    Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
                 }
             }
         }
-
-        Vector2Int stemDirection = Vector2Int.zero;
-        foreach (var kvp in directionUsage)
-        {
-            if (kvp.Value == 1)
-            {
-                stemDirection = kvp.Key;
-                break;
-            }
-        }
-
-        if (stemDirection == Vector2Int.up)
-            return Quaternion.Euler(0, 180, 0);
-        if (stemDirection == Vector2Int.right)
-            return Quaternion.Euler(0, 270, 0);
-        if (stemDirection == Vector2Int.down)
-            return Quaternion.Euler(0, 0, 0);
-        if (stemDirection == Vector2Int.left)
-            return Quaternion.Euler(0, 90, 0);
-
-        return Quaternion.Euler(0, 180, 0);
     }
 
     private void SpawnTowers()
@@ -801,61 +726,6 @@ public class MapGenerator : MonoBehaviour
             Quaternion towerRotation = GetEnemyTowerRotation(towerPos);
             Instantiate(enemyTowerPrefab, position, towerRotation, mapParent);
         }
-    }
-
-    private Quaternion GetPathRotation(Vector2Int position)
-    {
-        foreach (var path in paths)
-        {
-            int index = path.IndexOf(position);
-            if (index > 0 && index < path.Count - 1)
-            {
-                Vector2Int dir = path[index + 1] - path[index - 1];
-
-                if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
-                    return Quaternion.Euler(0, 90, 0);
-                else
-                    return Quaternion.identity;
-            }
-        }
-
-        return Quaternion.identity;
-    }
-
-    private Quaternion GetTurnRotation(Vector2Int position)
-    {
-        foreach (var path in paths)
-        {
-            int index = path.IndexOf(position);
-            if (index > 0 && index < path.Count - 1)
-            {
-                Vector2Int prevPos = path[index - 1];
-                Vector2Int nextPos = path[index + 1];
-
-                if (
-                    prevPos.x < position.x && nextPos.y > position.y
-                    || prevPos.y > position.y && nextPos.x < position.x
-                )
-                    return Quaternion.Euler(0, 0, 0);
-                if (
-                    prevPos.x > position.x && nextPos.y > position.y
-                    || prevPos.y > position.y && nextPos.x > position.x
-                )
-                    return Quaternion.Euler(0, 90, 0);
-                if (
-                    prevPos.x > position.x && nextPos.y < position.y
-                    || prevPos.y < position.y && nextPos.x > position.x
-                )
-                    return Quaternion.Euler(0, 180, 0);
-                if (
-                    prevPos.x < position.x && nextPos.y < position.y
-                    || prevPos.y < position.y && nextPos.x < position.x
-                )
-                    return Quaternion.Euler(0, 270, 0);
-            }
-        }
-
-        return Quaternion.identity;
     }
 
     private Quaternion GetEnemyTowerRotation(Vector2Int position)
@@ -895,9 +765,28 @@ public class MapGenerator : MonoBehaviour
         towerPositions.Clear();
         occupiedTiles.Clear();
         towerTiles.Clear();
-        pathConnectionCount.Clear();
-        junctionConnections.Clear();
-        directPathEndpoints.Clear();
+        pathTiles.Clear();
+    }
+
+    private void MarkPathTile(Vector2Int p)
+    {
+        if (!IsInBounds(p))
+            return;
+        if (towerTiles.Contains(p))
+            return;
+        if (p == startPoint)
+            return;
+
+        pathTiles.Add(p);
+        occupiedTiles.Add(p);
+    }
+
+    // Helper: treat center and enemy tower base tiles as connectable for visuals
+    private bool IsPathOrCenter(Vector2Int p)
+    {
+        if (!IsInBounds(p))
+            return false;
+        return pathTiles.Contains(p) || p == startPoint || towerTiles.Contains(p);
     }
 }
 

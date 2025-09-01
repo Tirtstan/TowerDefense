@@ -36,7 +36,7 @@ public class TowerSelectable : MonoBehaviour, IGameSelectable
     public void Deselect()
     {
         TowerInfoMenu.Instance.HideMenu();
-
+        Debug.Log($"Tower {tower.name} deselected");
         if (!alwaysShowRangeIndicator)
             ToggleRangeIndicator(false);
     }

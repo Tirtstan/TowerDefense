@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e700a46c50c0f3e418472c6050dddc89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
-  startingCurrency: 100
+  startingCurrency: 300
   maxCurrency: 9999
 --- !u!1 &2137295393695983378
 GameObject:

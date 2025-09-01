@@ -49,14 +49,6 @@ public class SelectionSystem : Singleton<SelectionSystem>
                 if (currentSelected == selectable)
                     return;
 
-                // Deselect current if different
-                if (currentSelected != null && currentSelected != selectable)
-                {
-                    // interface causing weird null issues
-                    if (currentSelected is MonoBehaviour mb && mb != null)
-                        currentSelected.Deselect();
-                }
-
                 SelectObject(selectable);
             }
         }
@@ -83,6 +75,14 @@ public class SelectionSystem : Singleton<SelectionSystem>
 
     public void SelectObject(IGameSelectable selectable)
     {
+        // deselect current if different
+        if (currentSelected != null && currentSelected != selectable)
+        {
+            // interface causing weird null issues
+            if (currentSelected is MonoBehaviour mb && mb != null)
+                currentSelected.Deselect();
+        }
+
         currentSelected = selectable;
         selectable.Select();
         OnSelected?.Invoke(selectable);
