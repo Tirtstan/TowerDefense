@@ -5,28 +5,34 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 {
     public event Action OnDeath;
     public event Action<IDamagable> OnHealthChanged;
+    public static event Action<EnemyHealth> OnHealthChangedStatic;
 
     [Header("Components")]
     [SerializeField]
     private EnemySO enemySO;
-    private float currentHealth;
+
+    [Header("Debug")]
+    [SerializeField]
+    private bool preventDamage;
+    public float CurrentHealth { get; private set; }
+    public float MaxHealth => enemySO.Health;
 
     private void Awake()
     {
-        currentHealth = enemySO.Health;
+        CurrentHealth = enemySO.Health;
     }
-
-    public float GetCurrentHealth() => currentHealth;
-
-    public float GetHealthPercentage() => currentHealth / enemySO.Health;
 
     public void TakeDamage(float amount)
     {
-        currentHealth -= amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, enemySO.Health);
-        OnHealthChanged?.Invoke(this);
+        if (preventDamage)
+            return;
 
-        if (currentHealth <= 0)
+        CurrentHealth -= amount;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
+        OnHealthChanged?.Invoke(this);
+        OnHealthChangedStatic?.Invoke(this);
+
+        if (CurrentHealth <= 0)
             Die();
     }
 

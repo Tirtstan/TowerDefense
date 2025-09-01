@@ -36,7 +36,6 @@ public class TowerSelectable : MonoBehaviour, IGameSelectable
     public void Deselect()
     {
         TowerInfoMenu.Instance.HideMenu();
-        Debug.Log($"Tower {tower.name} deselected");
         if (!alwaysShowRangeIndicator)
             ToggleRangeIndicator(false);
     }
@@ -44,4 +43,9 @@ public class TowerSelectable : MonoBehaviour, IGameSelectable
     private void ToggleRangeIndicator(bool isActive) => rangeElement.gameObject.SetActive(isActive);
 
     public (MeshRenderer, MeshFilter) GetMeshComponents() => (towerMeshRenderer, towerMeshFilter);
+
+    private void OnDestroy()
+    {
+        Deselect();
+    }
 }

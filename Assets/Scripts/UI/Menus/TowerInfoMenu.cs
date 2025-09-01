@@ -52,7 +52,7 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
     private void OnTowerHealthChanged(IDamagable damagable)
     {
         if (currentHealth.GetTowerSO() == currentTower.GetTowerSO())
-            UpdateHealthDisplay(currentHealth.GetCurrentHealth(), currentHealth.GetTowerSO().Stats.Health);
+            UpdateHealthDisplay(currentHealth.CurrentHealth, currentHealth.MaxHealth);
     }
 
     public void ShowMenu(Tower tower)
@@ -79,7 +79,7 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         rangeText.SetText($"{stats.Range} metre(s)");
         attackIntervalText.SetText($"{stats.AttackInterval:0.0} sec(s)");
 
-        UpdateHealthDisplay(currentHealth.GetCurrentHealth(), stats.Health);
+        UpdateHealthDisplay(currentHealth.CurrentHealth, stats.Health);
     }
 
     private void UpdateHealthDisplay(float currentHealth, float maxHealth)

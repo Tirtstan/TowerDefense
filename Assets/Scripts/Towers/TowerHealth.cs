@@ -13,27 +13,24 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
     [Header("Debug")]
     [SerializeField]
     private bool preventDamage;
-    private float currentHealth;
+    public float CurrentHealth { get; private set; }
+    public float MaxHealth => towerSO.Stats.Health;
 
     private void Awake()
     {
-        currentHealth = towerSO.Stats.Health;
+        CurrentHealth = towerSO.Stats.Health;
     }
-
-    public float GetCurrentHealth() => currentHealth;
-
-    public float GetHealthPercentage() => currentHealth / towerSO.Stats.Health;
 
     public void TakeDamage(float amount)
     {
-        if (preventDamage)
+        if (preventDamage && amount > 0)
             return;
 
-        currentHealth -= amount;
-        currentHealth = Mathf.Clamp(currentHealth, 0, towerSO.Stats.Health);
+        CurrentHealth -= amount;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, towerSO.Stats.Health);
         OnHealthChanged?.Invoke(this);
 
-        if (currentHealth <= 0)
+        if (CurrentHealth <= 0)
             Die();
     }
 

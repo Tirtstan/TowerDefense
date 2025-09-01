@@ -72,10 +72,27 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private bool IsTargetValid()
+    {
+        if (currentTarget == null || currentTargetDamagable == null)
+            return false;
+
+        if (currentTargetDamagable.CurrentHealth <= 0f)
+            return false;
+
+        if (!currentTarget.gameObject.activeInHierarchy)
+            return false;
+
+        return true;
+    }
+
     private void TryAttackCurrentTarget()
     {
-        if (!hasValidTarget || currentTargetDamagable == null)
+        if (!IsTargetValid())
+        {
+            FindAndSetTarget();
             return;
+        }
 
         float distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
         if (distanceToTarget <= attackRange)
@@ -90,9 +107,6 @@ public class EnemyController : MonoBehaviour
             if (!detectedTowers.Contains(tower))
             {
                 detectedTowers.Add(tower);
-                Debug.Log($"Enemy {gameObject.name} detected tower: {tower.name}");
-
-                // only update when a new tower is detected
                 UpdateTargetingOnTowerDetected(tower);
             }
         }
@@ -106,11 +120,7 @@ public class EnemyController : MonoBehaviour
             bool wasRemoved = detectedTowers.Remove(tower);
 
             if (wasRemoved)
-            {
-                // only update when losing sight of current target
                 UpdateTargetingOnTowerLost(tower);
-                Debug.Log($"Enemy {gameObject.name} lost sight of tower: {tower.name}");
-            }
         }
     }
 
@@ -156,7 +166,7 @@ public class EnemyController : MonoBehaviour
     private void FindAndSetTarget()
     {
         // Clean up any null references first
-        detectedTowers.RemoveAll(tower => tower == null);
+        detectedTowers.RemoveAll(tower => tower == null || !tower.gameObject.activeInHierarchy);
 
         Transform bestTarget = GetClosestDetectedTower();
 
@@ -177,7 +187,11 @@ public class EnemyController : MonoBehaviour
 
         foreach (var tower in detectedTowers)
         {
-            if (tower == null)
+            if (tower == null || !tower.gameObject.activeInHierarchy)
+                continue;
+
+            // Check if tower is still damagable
+            if (!tower.TryGetComponent(out IDamagable damagable) || damagable.CurrentHealth <= 0f)
                 continue;
 
             float distance = Vector3.Distance(transform.position, tower.position);
@@ -195,7 +209,6 @@ public class EnemyController : MonoBehaviour
     {
         if (newTarget == null)
         {
-            Debug.LogWarning($"Enemy {gameObject.name}: Trying to set null target!");
             hasValidTarget = false;
             return;
         }
@@ -217,7 +230,6 @@ public class EnemyController : MonoBehaviour
         }
 
         attackTimer = 0f;
-        Debug.Log($"Enemy {gameObject.name} switched target to: {currentTarget.name}");
     }
 
     private void SubscribeToTargetDeath(IDamagable damagable)
@@ -234,7 +246,6 @@ public class EnemyController : MonoBehaviour
 
     private void OnTargetDeath()
     {
-        Debug.Log($"Enemy {gameObject.name}: Current target died, finding new target");
         UnsubscribeFromTargetDeath(currentTargetDamagable);
 
         currentTargetDamagable = null;

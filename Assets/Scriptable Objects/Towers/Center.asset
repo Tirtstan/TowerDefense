@@ -16,9 +16,10 @@ MonoBehaviour:
   Description: Protect at all costs!
   Sprite: {fileID: 1494012466, guid: 221eddc3b33e66e45aece42e3036b6c8, type: 3}
   Prefab: {fileID: 8474714792004710613, guid: cdd866da0de93b441b6ab4d702297723, type: 3}
+  PrefabPreview: {fileID: 0}
   Stats:
     Health: 1000
     Cost: 9999
     Damage: 40
-    Range: 5
+    Range: 3
     AttackInterval: 5
