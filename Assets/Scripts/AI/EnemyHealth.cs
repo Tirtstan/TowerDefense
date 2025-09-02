@@ -13,6 +13,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     [Header("Debug")]
     [SerializeField]
     private bool preventDamage;
+    public Transform Target => transform;
     public float CurrentHealth { get; private set; }
     public float MaxHealth => enemySO.Health;
 

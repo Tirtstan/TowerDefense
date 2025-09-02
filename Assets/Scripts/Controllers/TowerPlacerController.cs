@@ -36,9 +36,6 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     private LayerMask checkLayer;
 
     [SerializeField]
-    private LayerMask validLayer;
-
-    [SerializeField]
     private LayerMask towerLayer;
 
     [SerializeField]
@@ -140,7 +137,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         if (hit.collider == null)
             return false;
 
-        return (validLayer & (1 << hit.collider.gameObject.layer)) != 0;
+        return (currentTowerSO.PlaceableLayer & (1 << hit.collider.gameObject.layer)) != 0;
     }
 
     private bool IsValidDistance()

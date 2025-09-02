@@ -8,17 +8,20 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
 
     [Header("Components")]
     [SerializeField]
-    private TowerSO towerSO;
+    private Tower tower;
 
     [Header("Debug")]
     [SerializeField]
     private bool preventDamage;
+    public Transform Target => transform;
     public float CurrentHealth { get; private set; }
-    public float MaxHealth => towerSO.Stats.Health;
+    public float MaxHealth => tower.GetTowerSO().Stats.Health;
+    private TowerSO towerSO;
 
     private void Awake()
     {
-        CurrentHealth = towerSO.Stats.Health;
+        towerSO = tower.GetTowerSO();
+        CurrentHealth = MaxHealth;
     }
 
     public void TakeDamage(float amount)
@@ -27,7 +30,7 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
             return;
 
         CurrentHealth -= amount;
-        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, towerSO.Stats.Health);
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
         OnHealthChanged?.Invoke(this);
         EventBus.Instance.Publish(new OnTowerHealthChanged(this));
 
@@ -44,6 +47,12 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
     }
 
     public TowerSO GetTowerSO() => towerSO;
+
+    private void Reset()
+    {
+        if (tower == null)
+            tower = GetComponent<Tower>();
+    }
 }
 
 public struct OnTowerHealthChanged : IGameEvent

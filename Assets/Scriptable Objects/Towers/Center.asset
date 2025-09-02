@@ -14,8 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerSO
   Name: Center
   Description: Protect at all costs!
+  PlaceableLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
   Sprite: {fileID: 1494012466, guid: 221eddc3b33e66e45aece42e3036b6c8, type: 3}
-  Prefab: {fileID: 8474714792004710613, guid: cdd866da0de93b441b6ab4d702297723, type: 3}
+  Prefab: {fileID: 7686350860836700349, guid: 751a6af356bc43a478c64a992c6b3a84, type: 3}
   PrefabPreview: {fileID: 0}
   Stats:
     Health: 1000

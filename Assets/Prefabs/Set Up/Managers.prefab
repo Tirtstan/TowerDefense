@@ -564,10 +564,7 @@ MonoBehaviour:
   minTowerDistance: 0.5
   checkLayer:
     serializedVersion: 2
-    m_Bits: 9
-  validLayer:
-    serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1032
   towerLayer:
     serializedVersion: 2
     m_Bits: 64

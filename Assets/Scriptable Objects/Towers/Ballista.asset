@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c84f0d297c19594faec1fa9e3f625d3, type: 3}
-  m_Name: Thumper
+  m_Name: Ballista
   m_EditorClassIdentifier: Assembly-CSharp::TowerSO
-  Name: Thumper
-  Description: Ground shock enemies!
+  Name: Ballista
+  Description: Shoots an enemy at a time!
   PlaceableLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1032
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 128
   Sprite: {fileID: 21300000, guid: 537aff0fc3b1ce84f8a50660eaf05cfd, type: 3}
-  Prefab: {fileID: 8474714792004710613, guid: cdd866da0de93b441b6ab4d702297723, type: 3}
-  PrefabPreview: {fileID: 8474714792004710613, guid: 673a178e54f48f64aae06725228f6c40, type: 3}
+  Prefab: {fileID: 8474714792004710613, guid: 31600c3eb8d3fa644aafc0e2d910dc83, type: 3}
+  PrefabPreview: {fileID: 8474714792004710613, guid: 053a3a0646416384ba4e2f587f4717c4, type: 3}
   Stats:
-    Health: 100
-    Cost: 100
-    Damage: 10
-    Range: 4
+    Health: 50
+    Cost: 75
+    Damage: 12
+    Range: 10
     AttackInterval: 3

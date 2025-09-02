@@ -19,4 +19,9 @@ public class ScaleOnStart : MonoBehaviour
     {
         transform.DOPunchScale(Vector3.one * strength, duration).SetEase(ease);
     }
+
+    private void OnDestroy()
+    {
+        transform.DOKill();
+    }
 }

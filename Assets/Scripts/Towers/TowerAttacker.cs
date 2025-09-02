@@ -2,19 +2,25 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerAttacker : MonoBehaviour, IAttack
+public class TowerAttacker : TowerAttack
 {
-    public event Action OnAttack;
+    public override event Action OnAttack;
 
     [Header("Components")]
     [SerializeField]
-    private TowerSO towerSO;
+    private Tower tower;
 
-    public void Attack(IEnumerable<IDamagable> targets)
+    public override void Attack(IEnumerable<IDamagable> targets)
     {
         foreach (var target in targets)
-            target.TakeDamage(towerSO.Stats.Damage);
+            target.TakeDamage(tower.GetTowerSO().Stats.Damage);
 
         OnAttack?.Invoke();
+    }
+
+    private void Reset()
+    {
+        if (tower == null)
+            tower = GetComponent<Tower>();
     }
 }

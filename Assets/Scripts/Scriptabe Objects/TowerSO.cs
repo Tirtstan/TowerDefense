@@ -8,6 +8,8 @@ public class TowerSO : ScriptableObject
 
     [TextArea]
     public string Description;
+    public LayerMask PlaceableLayer;
+    public LayerMask EnemyLayer;
 
     [Space]
     public Sprite Sprite;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
-    [Header("Components")]
+    [Header("Tower")]
     [SerializeField]
     private TowerSO towerSO;
 

@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(NavMeshAgent), typeof(SphereCollider))]
+[RequireComponent(typeof(SphereCollider))]
 public class EnemyController : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField]
     private EnemySO enemySO;
+
+    [SerializeField]
+    private NavMeshAgent agent;
 
     [SerializeField]
     private EnemyAttacker enemyAttacker;
@@ -19,7 +22,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float attackRange = 2f;
 
-    private NavMeshAgent agent;
     private SphereCollider visionCollider;
     private Transform currentTarget;
     private IDamagable currentTargetDamagable;
@@ -29,12 +31,7 @@ public class EnemyController : MonoBehaviour
 
     private void Awake()
     {
-        agent = GetComponent<NavMeshAgent>();
         visionCollider = GetComponent<SphereCollider>();
-
-        if (enemyAttacker == null)
-            enemyAttacker = GetComponent<EnemyAttacker>();
-
         SetupComponents();
     }
 
@@ -94,8 +91,8 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        float distanceToTarget = Vector3.Distance(transform.position, currentTarget.position);
-        if (distanceToTarget <= attackRange)
+        float sqrDistanceToTarget = (transform.position - currentTarget.position).sqrMagnitude;
+        if (sqrDistanceToTarget <= attackRange * attackRange)
             enemyAttacker.Attack(new[] { currentTargetDamagable });
     }
 
@@ -155,9 +152,9 @@ public class EnemyController : MonoBehaviour
         // switch if this tower is closer than current target
         if (hasValidTarget && currentTarget != null)
         {
-            float currentDistance = Vector3.Distance(transform.position, currentTarget.position);
-            float newDistance = Vector3.Distance(transform.position, tower.position);
-            return newDistance < currentDistance;
+            float currentSqrDistance = (transform.position - currentTarget.position).sqrMagnitude;
+            float newSqrDistance = (transform.position - tower.position).sqrMagnitude;
+            return newSqrDistance < currentSqrDistance;
         }
 
         return true;
@@ -183,21 +180,20 @@ public class EnemyController : MonoBehaviour
             return null;
 
         Transform closestTower = null;
-        float closestDistance = float.MaxValue;
+        float closestSqrDistance = float.MaxValue;
 
         foreach (var tower in detectedTowers)
         {
             if (tower == null || !tower.gameObject.activeInHierarchy)
                 continue;
 
-            // Check if tower is still damagable
             if (!tower.TryGetComponent(out IDamagable damagable) || damagable.CurrentHealth <= 0f)
                 continue;
 
-            float distance = Vector3.Distance(transform.position, tower.position);
-            if (distance < closestDistance)
+            float sqrDistance = (transform.position - tower.position).sqrMagnitude;
+            if (sqrDistance < closestSqrDistance)
             {
-                closestDistance = distance;
+                closestSqrDistance = sqrDistance;
                 closestTower = tower;
             }
         }

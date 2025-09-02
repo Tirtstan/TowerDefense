@@ -5,18 +5,21 @@ public class TowerDirector : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField]
-    private TowerAttacker towerAttack;
+    private TowerAttack towerAttack;
 
     [SerializeField]
+    private Tower tower;
+
     private TowerSO towerSO;
-
-    [SerializeField]
-    private LayerMask enemyLayerMask = -1;
-
     private const int MaxHitColliders = 50;
     private readonly Collider[] hitColliders = new Collider[MaxHitColliders];
     private readonly List<IDamagable> targets = new();
     private float currentTime;
+
+    private void Awake()
+    {
+        towerSO = tower.GetTowerSO();
+    }
 
     private void Update()
     {
@@ -35,7 +38,7 @@ public class TowerDirector : MonoBehaviour
             transform.position,
             towerSO.Stats.Range,
             hitColliders,
-            enemyLayerMask
+            towerSO.EnemyLayer
         );
 
         for (int i = 0; i < hitCount; i++)
@@ -50,13 +53,16 @@ public class TowerDirector : MonoBehaviour
 
     private void Reset()
     {
+        if (tower == null)
+            tower = GetComponent<Tower>();
+
         if (towerAttack == null)
-            towerAttack = GetComponent<TowerAttacker>();
+            towerAttack = GetComponent<TowerAttack>();
     }
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, towerSO.Stats.Range);
+        Gizmos.DrawWireSphere(transform.position, tower.GetTowerSO().Stats.Range);
     }
 }

@@ -86,7 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &1226068994811196672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19ae5464bf1db974aa9ed98cb32a25a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerInfo
-  towerSO: {fileID: 11400000, guid: af58d0d2f8194dc4092e531616071f92, type: 2}
+  tower: {fileID: 0}
   nameText: {fileID: 4197591844850252942}
 --- !u!1 &6343774924690217164
 GameObject:
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowTargetWorldSpace
   target: {fileID: 0}
-  offset: {x: 0, y: 0.01, z: 0}
+  offset: {x: 0, y: 0.21, z: 0}
   updatePosition: 0
 --- !u!114 &2099562678280954157
 MonoBehaviour:
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d745e42c225c0494ea0d2a853552a6fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RangeIndicator
-  towerSO: {fileID: 11400000, guid: bf89639d097c88c4bb9108ad1ac0ae7f, type: 2}
+  tower: {fileID: 0}
   rectTransform: {fileID: 1658888634041186604}
 --- !u!1 &6698561006399550988
 GameObject:
