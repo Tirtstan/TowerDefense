@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1120957454949761547}
   - component: {fileID: 4078980151074146130}
   - component: {fileID: 8849669763320760712}
-  - component: {fileID: 3751922375567528023}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -38,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 51.3, y: 116.6}
-  m_SizeDelta: {x: 8, y: 1.5}
+  m_SizeDelta: {x: 64, y: 12}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1120957454949761547
 CanvasRenderer:
@@ -91,19 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Healthbar
   fillImage: {fileID: 8784913365893794208}
-  offset: {x: 0, y: 1}
---- !u!114 &3751922375567528023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 26660637859452848}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ec000bcefd4bfc4cbeba5491371e543, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FaceCamera
+  offset: {x: 0, y: 80}
 --- !u!1 &9066033416988775396
 GameObject:
   m_ObjectHideFlags: 0

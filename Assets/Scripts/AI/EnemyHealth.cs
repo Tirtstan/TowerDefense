@@ -5,7 +5,6 @@ public class EnemyHealth : MonoBehaviour, IDamagable
 {
     public event Action OnDeath;
     public event Action<IDamagable> OnHealthChanged;
-    public static event Action<EnemyHealth> OnHealthChangedStatic;
 
     [Header("Components")]
     [SerializeField]
@@ -30,7 +29,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
         CurrentHealth -= amount;
         CurrentHealth = Mathf.Clamp(CurrentHealth, 0, MaxHealth);
         OnHealthChanged?.Invoke(this);
-        OnHealthChangedStatic?.Invoke(this);
+        EventBus.Instance.Publish(new OnEnemyHealthChanged(this));
 
         if (CurrentHealth <= 0)
             Die();
@@ -46,4 +45,11 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     }
 
     public EnemySO GetEnemySO() => enemySO;
+}
+
+public struct OnEnemyHealthChanged : IGameEvent
+{
+    public EnemyHealth EnemyHealth;
+
+    public OnEnemyHealthChanged(EnemyHealth enemyHealth) => EnemyHealth = enemyHealth;
 }

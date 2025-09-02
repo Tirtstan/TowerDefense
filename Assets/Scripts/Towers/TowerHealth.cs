@@ -29,6 +29,7 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
         CurrentHealth -= amount;
         CurrentHealth = Mathf.Clamp(CurrentHealth, 0, towerSO.Stats.Health);
         OnHealthChanged?.Invoke(this);
+        EventBus.Instance.Publish(new OnTowerHealthChanged(this));
 
         if (CurrentHealth <= 0)
             Die();
@@ -43,4 +44,11 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
     }
 
     public TowerSO GetTowerSO() => towerSO;
+}
+
+public struct OnTowerHealthChanged : IGameEvent
+{
+    public TowerHealth TowerHealth;
+
+    public OnTowerHealthChanged(TowerHealth towerHealth) => TowerHealth = towerHealth;
 }
