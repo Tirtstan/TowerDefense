@@ -1,5 +1,4 @@
 using System;
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
