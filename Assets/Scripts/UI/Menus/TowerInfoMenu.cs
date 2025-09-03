@@ -1,4 +1,5 @@
 using DG.Tweening;
+using EasyTextEffects;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,6 +33,13 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
 
     [SerializeField]
     private TextMeshProUGUI attackIntervalText;
+
+    [Header("Text Effects")]
+    [SerializeField]
+    private TextEffect nameTextEffect;
+
+    [SerializeField]
+    private TextEffect healthTextEffect;
 
     [Header("Animation")]
     [SerializeField]
@@ -73,6 +81,7 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         TowerStats stats = tower.GetTowerSO().Stats;
 
         nameText.SetText(tower.GetTowerSO().Name);
+        nameTextEffect.Refresh();
         levelText.SetText($"Lvl. {1}"); // TODO: Implement level system
 
         damageText.SetText($"{stats.Damage} damage");
@@ -85,6 +94,7 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
     private void UpdateHealthDisplay(float currentHealth, float maxHealth)
     {
         healthText.SetText($"{currentHealth} / {maxHealth}");
+        healthTextEffect.Refresh();
 
         healthFillImage.DOKill();
         healthFillImage.DOFillAmount(currentHealth / maxHealth, healthFillDuration).SetEase(healthEase);

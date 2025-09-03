@@ -74,7 +74,7 @@ MonoBehaviour:
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 272, y: 218, z: 0}
   TransformPosition: {x: 0, y: -540, z: 0}
-  TransformRotation: {x: 0, y: 0, z: 0, w: 1}
+  TransformRotation: {x: -0, y: -0, z: -0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 272, y: 218}
 --- !u!114 &6040192025095190298
@@ -241,6 +241,10 @@ PrefabInstance:
       propertyPath: RotatedAndScaledBounds.m_Extent.y
       value: 35.995
       objectReference: {fileID: 0}
+    - target: {fileID: 5490312219195068368, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 186b0c1cf15b6a041a93f97765375868, type: 3}
     - target: {fileID: 5683012515665573732, guid: e8839cf98305a3e47ba07e3b037f6a3e, type: 3}
       propertyPath: m_Color.b
       value: 0.65

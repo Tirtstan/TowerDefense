@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -6,8 +5,6 @@ using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static event Action<bool> OnPauseToggle;
-
     [Header("Components")]
     [SerializeField]
     private GameObject menu;
@@ -33,22 +30,22 @@ public class PauseMenu : MonoBehaviour
         playerInput = PlayerInput.GetPlayerByIndex(0);
         playerInput.actions.FindAction("Player/Pause").performed += OnPausePerformed;
 
-        resumeButton.onClick.AddListener(Resume);
+        resumeButton.onClick.AddListener(OnResumeClicked);
         restartButton.onClick.AddListener(Restart);
         optionsButton.onClick.AddListener(OpenOptions);
         mainMenuButton.onClick.AddListener(OpenMainMenu);
         exitButton.onClick.AddListener(Exit);
 
-        Resume();
+        OnResumeClicked();
     }
 
-    private void Exit() => Application.Quit();
+    private void Restart() => SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 
     private void OpenMainMenu() => Debug.Log("Open Main Menu");
 
     private void OpenOptions() => Debug.Log("Open Options");
 
-    private void Restart() => SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    private void Exit() => Application.Quit();
 
     private void OnPausePerformed(InputAction.CallbackContext context) => ToggleMenu();
 
@@ -56,26 +53,24 @@ public class PauseMenu : MonoBehaviour
     {
         if (menu.activeSelf)
         {
-            Resume();
+            OnResumeClicked();
         }
         else
         {
-            Pause();
+            OnPauseClicked();
         }
-
-        OnPauseToggle?.Invoke(menu.activeSelf);
     }
 
-    private void Resume()
+    private void OnResumeClicked()
     {
         menu.SetActive(false);
-        Time.timeScale = 1f;
+        PauseManager.Instance.Resume();
     }
 
-    private void Pause()
+    private void OnPauseClicked()
     {
         menu.SetActive(true);
-        Time.timeScale = 0f;
+        PauseManager.Instance.Pause();
     }
 
     private void OnDestroy()

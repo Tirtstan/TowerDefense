@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -9,6 +10,7 @@ public class GameManager : Singleton<GameManager>
     public static event Action OnGameStart;
     public static event Action OnGameEnd;
     public bool HasGameStarted { get; private set; }
+    public float TimeSinceStart { get; private set; }
 
     protected override void Awake()
     {
@@ -18,6 +20,9 @@ public class GameManager : Singleton<GameManager>
 
     private void Update()
     {
+        if (HasGameStarted)
+            TimeSinceStart += Time.deltaTime;
+
         if (Keyboard.current.f5Key.wasPressedThisFrame)
         {
             StartGame();

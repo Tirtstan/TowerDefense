@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Collider), typeof(Rigidbody))]
-public class ArrowProjectile : Projectile
+public sealed class ArrowProjectile : Projectile
 {
     private Rigidbody rb;
     private float damage;
@@ -39,9 +39,9 @@ public class ArrowProjectile : Projectile
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out IDamagable damagable))
+        if (projectileSO.HitLayers == (projectileSO.HitLayers | (1 << other.gameObject.layer)))
         {
-            if (projectileSO.HitLayers == (projectileSO.HitLayers | (1 << other.gameObject.layer)))
+            if (other.TryGetComponent(out IDamagable damagable))
             {
                 damagable.TakeDamage(damage);
                 ReleaseToPool();

@@ -343,9 +343,17 @@ PrefabInstance:
       propertyPath: towerSO
       value: 
       objectReference: {fileID: 11400000, guid: 507143bfc56383d4bb0cdee30c58a7e3, type: 2}
+    - target: {fileID: 3072550980502488509, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3144628900379055325, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_Name
       value: WorldCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144628900379055325, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5338789997174841623, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: target

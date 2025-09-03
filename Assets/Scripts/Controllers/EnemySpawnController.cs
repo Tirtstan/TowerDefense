@@ -28,7 +28,8 @@ public class EnemySpawnController : Singleton<EnemySpawnController>
 
     private void OnGameEnd()
     {
-        StopCoroutine(spawnCoroutine);
+        if (spawnCoroutine != null)
+            StopCoroutine(spawnCoroutine);
     }
 
     private IEnumerator SpawnRoutine()

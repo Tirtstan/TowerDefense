@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5a6ee6794f9e45b6a1cd5d58057d581, type: 3}
+  m_Name: Fade In
+  m_EditorClassIdentifier: tirt.tweeningcomponents::TweeningComponents.Profiles.FadeProfile
+  TimeIn: 0.5
+  EaseIn: 1
+  DelayIn: 0
+  TimeOut: 0.5
+  EaseOut: 1
+  DelayOut: 0
+  LoopAnimationIn: 0
+  LoopCount: -1
+  LoopType: 0
+  FromAlpha: 0
+  ToAlpha: 1
