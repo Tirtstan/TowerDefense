@@ -36,7 +36,7 @@ public class PauseMenu : MonoBehaviour
         mainMenuButton.onClick.AddListener(OpenMainMenu);
         exitButton.onClick.AddListener(Exit);
 
-        OnResumeClicked();
+        menu.SetActive(false);
     }
 
     private void Restart() => SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);

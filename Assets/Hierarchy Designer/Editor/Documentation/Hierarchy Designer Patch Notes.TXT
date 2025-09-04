@@ -1,3 +1,12 @@
+<color=#FFF35A>Version 2.3.0</color>
+• Added a pin feature to the Component Minimap windows.
+• Added three new presets: Arctic Aurora, Slate and Lime, and Lavender Nights.
+• Major and minor refactors across all classes.
+• Renamed all classes.
+• Minor changes and cleanup.
+
+Additional Notes: This update requires a fresh download. If you have Hierarchy Designer in your project, please delete it (except the Saved Data) before updating to the new version.
+
 <color=#FFF35A>Version 2.2.0</color>
 • Added a new major shortcut: Open Icon Picker KeyCode (defaults to Mouse0).
 • Minor changes.
