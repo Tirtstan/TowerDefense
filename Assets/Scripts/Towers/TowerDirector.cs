@@ -21,6 +21,11 @@ public class TowerDirector : MonoBehaviour
         towerSO = tower.GetTowerSO();
     }
 
+    private void Start()
+    {
+        AttackAllTargetsInRange();
+    }
+
     private void Update()
     {
         currentTime += Time.deltaTime;

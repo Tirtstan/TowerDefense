@@ -4,6 +4,7 @@ using UnityEngine;
 public class TowerSO : ScriptableObject
 {
     [Header("Properties")]
+    public int Id;
     public string Name = "Tower";
 
     [TextArea]
@@ -15,6 +16,7 @@ public class TowerSO : ScriptableObject
     public Sprite Sprite;
     public Tower Prefab;
     public Tower PrefabPreview;
+    public GameObject OriginalMesh;
 
     [Header("Stats")]
     public TowerStats Stats;

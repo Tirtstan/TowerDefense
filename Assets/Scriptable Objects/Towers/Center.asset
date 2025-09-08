@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c84f0d297c19594faec1fa9e3f625d3, type: 3}
   m_Name: Center
   m_EditorClassIdentifier: Assembly-CSharp::TowerSO
+  Id: 0
   Name: Center
   Description: Protect at all costs!
   PlaceableLayer:
@@ -23,6 +24,7 @@ MonoBehaviour:
   Sprite: {fileID: 1494012466, guid: 221eddc3b33e66e45aece42e3036b6c8, type: 3}
   Prefab: {fileID: 7686350860836700349, guid: 751a6af356bc43a478c64a992c6b3a84, type: 3}
   PrefabPreview: {fileID: 0}
+  OriginalMesh: {fileID: 919132149155446097, guid: 13d4fc0b91338e84eb5e679eee9f10c5, type: 3}
   Stats:
     Health: 1000
     Cost: 9999

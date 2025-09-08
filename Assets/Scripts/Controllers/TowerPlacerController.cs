@@ -10,13 +10,6 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     public static event Action<TowerSO> OnTowerDeselected;
     public static event Action<Tower> OnTowerPlaced;
 
-    [Header("Materials")]
-    [SerializeField]
-    private Material validMaterial;
-
-    [SerializeField]
-    private Material invalidMaterial;
-
     [Header("Cursors")]
     [SerializeField]
     private NTCursors placingCursor = NTCursors.ResizeVertical;
@@ -44,12 +37,10 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     private PlayerInput playerInput;
     private TowerSO currentTowerSO;
     private Tower previewTower;
-    private MeshRenderer previewTowerRenderer;
     private TowerSelectable previewTowerSelectable;
     private Camera mainCamera;
     private Vector2 mousePosition;
     private static bool isOverUI;
-    private Material currentMaterial;
     private readonly Collider[] results = new Collider[10];
     private InputAction snapAction;
 
@@ -70,7 +61,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
     {
         isOverUI = EventSystem.current.IsPointerOverGameObject();
 
-        if (previewTower == null || previewTowerRenderer == null)
+        if (previewTower == null)
             return;
 
         if (Raycast(out RaycastHit hit))
@@ -81,14 +72,10 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
             previewTower.transform.position = hit.point;
             bool canPlace = CanPlace(ref hit);
 
-            Material targetMaterial = canPlace ? validMaterial : invalidMaterial;
             NTCursors targetCursor = canPlace ? placingCursor : invalidCursor;
 
-            if (currentMaterial != targetMaterial)
+            if (CursorStack.Peek().cursor != targetCursor)
             {
-                currentMaterial = targetMaterial;
-                previewTowerRenderer.material = currentMaterial;
-
                 CursorStack.Pop();
                 CursorStack.Push(targetCursor);
             }
@@ -174,9 +161,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
 
         currentTowerSO = null;
         previewTower = null;
-        previewTowerRenderer = null;
         previewTowerSelectable = null;
-        currentMaterial = null;
         CursorStack.Clear();
     }
 
@@ -202,10 +187,8 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
             Quaternion.identity
         );
 
-        previewTowerRenderer = previewTower.GetComponentInChildren<MeshRenderer>();
         OnTowerSelected?.Invoke(currentTowerSO);
 
-        currentMaterial = null;
         CursorStack.Push(placingCursor);
     }
 

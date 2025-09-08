@@ -5,7 +5,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 // Anthropic, 2025
-public class MapGenerator : MonoBehaviour
+public class MapGenerator : Generator
 {
     public static event Action OnMapGenerated;
 
@@ -14,7 +14,7 @@ public class MapGenerator : MonoBehaviour
     private Transform mapParent;
 
     [SerializeField, Tooltip("Size of the grid (width and height in tiles)")]
-    private int gridSize = 27;
+    private int gridSize = 45;
 
     [SerializeField, Tooltip("Number of enemy towers to place around the map edges")]
     private int numEndPoints = 3;
@@ -36,11 +36,9 @@ public class MapGenerator : MonoBehaviour
     [SerializeField, Range(1f, 20f), Tooltip("Penalty for paths going near existing paths (higher = more spread out)")]
     private float pathAvoidancePenalty = 5f;
 
-    [
-        SerializeField,
-        Range(0f, 0.5f),
-        Tooltip("Small penalty for staying near edges (higher = slight center preference)")
-    ]
+    [SerializeField]
+    [Range(0f, 0.5f)]
+    [Tooltip("Small penalty for staying near edges (higher = slight center preference)")]
     private float edgePenalty = 0.2f;
 
     [SerializeField, Range(0f, 0.3f), Tooltip("Small penalty for very long straight lines (minimal turning)")]
@@ -88,13 +86,16 @@ public class MapGenerator : MonoBehaviour
     [SerializeField, Tooltip("Number of attempts to retry pathfinding if initial attempt fails")]
     private int maxPathfindingAttempts = 10;
 
+    [SerializeField]
+    private LayerMask groundLayer;
+
     private TileType[,] grid;
     private Vector2Int startPoint;
     private readonly List<Vector2Int> towerPositions = new();
     private readonly List<List<Vector2Int>> paths = new();
     private readonly HashSet<Vector2Int> occupiedTiles = new();
     private readonly HashSet<Vector2Int> towerTiles = new();
-    private readonly HashSet<Vector2Int> pathTiles = new(); // Tracks all carved path tiles for lane width
+    private readonly HashSet<Vector2Int> pathTiles = new();
 
     private void Awake()
     {
@@ -108,14 +109,14 @@ public class MapGenerator : MonoBehaviour
 
     public TileType GetTileType(int x, int z) => grid[x, z];
 
-    public void GenerateMap()
+    public override void Generate()
     {
         ClearExistingMap();
         InitializeGrid();
         PlaceStartPoint();
         PlaceTowerPositions();
-        CreatePaths(); // exactly 3 lanes: widths 1, 2, 3
-        AddCenterHub(); // surround center and integrate lanes
+        CreatePaths();
+        AddCenterHub();
         InstantiateTiles();
         SpawnTowers();
 
@@ -398,7 +399,7 @@ public class MapGenerator : MonoBehaviour
             openSet.Remove(current);
             closedSet.Add(current);
 
-            foreach (var neighbor in GetNeighbors(current))
+            foreach (var neighbor in GetNeighbours(current))
             {
                 if (closedSet.Contains(neighbor) || !IsValidTileForPath(neighbor, end))
                     continue;
@@ -507,7 +508,7 @@ public class MapGenerator : MonoBehaviour
             openSet.Remove(current);
             closedSet.Add(current);
 
-            foreach (var neighbor in GetNeighbors(current))
+            foreach (var neighbor in GetNeighbours(current))
             {
                 if (closedSet.Contains(neighbor))
                     continue;
@@ -554,7 +555,7 @@ public class MapGenerator : MonoBehaviour
 
     private bool IsNearExistingPath(Vector2Int position)
     {
-        var neighbors = GetNeighbors(position);
+        var neighbors = GetNeighbours(position);
         foreach (var neighbor in neighbors)
         {
             if (occupiedTiles.Contains(neighbor))
@@ -581,7 +582,7 @@ public class MapGenerator : MonoBehaviour
         return lowest;
     }
 
-    private List<Vector2Int> GetNeighbors(Vector2Int position)
+    private List<Vector2Int> GetNeighbours(Vector2Int position)
     {
         var neighbors = new List<Vector2Int>
         {
@@ -614,17 +615,20 @@ public class MapGenerator : MonoBehaviour
 
     private void InstantiateTiles()
     {
+        int layer = ToLayer(groundLayer.value);
+
         for (int x = 0; x < gridSize; x++)
         {
             for (int z = 0; z < gridSize; z++)
             {
                 Vector2Int pos = new(x, z);
                 Vector3 position = new(x * tileSize, 0, z * tileSize);
+                GameObject newTile;
 
                 if (pos == startPoint)
                 {
                     grid[x, z] = TileType.CenterTile;
-                    Instantiate(centerTowerTilePrefab, position, Quaternion.identity, mapParent);
+                    newTile = Instantiate(centerTowerTilePrefab, position, Quaternion.identity, mapParent);
                     continue;
                 }
 
@@ -632,9 +636,9 @@ public class MapGenerator : MonoBehaviour
                 {
                     // Keep grid classification simple; visuals come from prefab
                     if (enemyTowerTilePrefab != null)
-                        Instantiate(enemyTowerTilePrefab, position, Quaternion.identity, mapParent);
+                        newTile = Instantiate(enemyTowerTilePrefab, position, Quaternion.identity, mapParent);
                     else
-                        Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
+                        newTile = Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
 
                     continue;
                 }
@@ -642,7 +646,11 @@ public class MapGenerator : MonoBehaviour
                 if (!pathTiles.Contains(pos))
                 {
                     grid[x, z] = TileType.Ground;
-                    Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
+                    newTile = Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
+                    if (IsAdjacentToPath(pos))
+                    {
+                        newTile.layer = layer;
+                    }
                     continue;
                 }
 
@@ -709,7 +717,9 @@ public class MapGenerator : MonoBehaviour
                 {
                     // Isolated (shouldn't happen often) - place ground fallback
                     grid[x, z] = TileType.Ground;
-                    Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
+                    newTile = Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
+                    if (IsAdjacentToPath(pos))
+                        newTile.layer = layer;
                 }
             }
         }
@@ -768,6 +778,17 @@ public class MapGenerator : MonoBehaviour
         pathTiles.Clear();
     }
 
+    private int ToLayer(int bitmask)
+    {
+        int result = bitmask > 0 ? 0 : -1;
+        while ((bitmask & 1) == 0 && bitmask != 0)
+        {
+            bitmask >>= 1;
+            result++;
+        }
+        return result;
+    }
+
     private void MarkPathTile(Vector2Int p)
     {
         if (!IsInBounds(p))
@@ -781,12 +802,34 @@ public class MapGenerator : MonoBehaviour
         occupiedTiles.Add(p);
     }
 
-    // Helper: treat center and enemy tower base tiles as connectable for visuals
     private bool IsPathOrCenter(Vector2Int p)
     {
         if (!IsInBounds(p))
             return false;
         return pathTiles.Contains(p) || p == startPoint || towerTiles.Contains(p);
+    }
+
+    private bool IsAdjacentToPath(Vector2Int position)
+    {
+        var neighbors = new List<Vector2Int>
+        {
+            position + Vector2Int.up,
+            position + Vector2Int.right,
+            position + Vector2Int.down,
+            position + Vector2Int.left,
+            position + new Vector2Int(1, 1),
+            position + new Vector2Int(1, -1),
+            position + new Vector2Int(-1, 1),
+            position + new Vector2Int(-1, -1)
+        };
+
+        foreach (var neighbor in neighbors)
+        {
+            if (IsPathOrCenter(neighbor))
+                return true;
+        }
+
+        return false;
     }
 }
 

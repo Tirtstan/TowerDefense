@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2909787520619707065}
   - component: {fileID: 8644693996688252603}
   - component: {fileID: 5025574353215676749}
+  - component: {fileID: 8732168730148908782}
   m_Layer: 7
   m_Name: UfoAEnemy
   m_TagString: Untagged
@@ -135,6 +136,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttacker
   enemySO: {fileID: 11400000, guid: 1b00a0bc80142a744abfa558e9868a3d, type: 2}
+--- !u!114 &8732168730148908782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747583962200913497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679e934ca12a07c42915f4fcd2c20b5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ShakeOnHit
+  duration: 0.2
+  strength: 0.1
+  vibrato: 10
+  randomness: 90
 --- !u!1 &6841032577677202082
 GameObject:
   m_ObjectHideFlags: 0

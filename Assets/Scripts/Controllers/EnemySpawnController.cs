@@ -10,7 +10,10 @@ public class EnemySpawnController : Singleton<EnemySpawnController>
 
     [Header("Spawn Settings")]
     [SerializeField]
-    private float spawnInterval = 20f;
+    private float spawnInterval = 10f;
+
+    [SerializeField]
+    private Vector2Int spawnCountRange = new(1, 3);
     private readonly List<Transform> spawnPoints = new();
     private Coroutine spawnCoroutine;
 
@@ -36,19 +39,24 @@ public class EnemySpawnController : Singleton<EnemySpawnController>
     {
         while (true)
         {
-            SpawnEnemy();
+            StartCoroutine(SpawnEnemies());
             yield return new WaitForSeconds(GetInterval());
         }
     }
 
-    public void SpawnEnemy()
+    public IEnumerator SpawnEnemies()
     {
         if (spawnPoints.Count == 0)
-            return;
+            yield break;
 
-        Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
-        GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        int count = Random.Range(spawnCountRange.x, spawnCountRange.y + 1);
+        for (int i = 0; i < count; i++)
+        {
+            Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+            GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+            Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+            yield return null;
+        }
     }
 
     private float GetInterval() // TODO: add more in depth balancing logic

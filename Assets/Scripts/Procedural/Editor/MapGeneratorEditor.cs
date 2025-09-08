@@ -42,13 +42,13 @@ public class MapGeneratorEditor : Editor
         {
             if (Application.isPlaying)
             {
-                mapGenerator.GenerateMap();
+                mapGenerator.Generate();
             }
             else
             {
                 // Record undo for editor changes
                 Undo.RecordObject(mapGenerator.transform, "Generate Map");
-                mapGenerator.GenerateMap();
+                mapGenerator.Generate();
                 EditorUtility.SetDirty(mapGenerator);
             }
         }
@@ -71,26 +71,6 @@ public class MapGeneratorEditor : Editor
         }
 
         GUI.backgroundColor = Color.white;
-        EditorGUILayout.EndHorizontal();
-
-        EditorGUILayout.Space(10);
-
-        // Quick Settings
-        EditorGUILayout.LabelField("Quick Settings", EditorStyles.boldLabel);
-
-        EditorGUILayout.BeginHorizontal();
-        if (GUILayout.Button("Small Map (15x15)"))
-        {
-            SetMapSize(15, 2);
-        }
-        if (GUILayout.Button("Medium Map (27x27)"))
-        {
-            SetMapSize(27, 3);
-        }
-        if (GUILayout.Button("Large Map (39x39)"))
-        {
-            SetMapSize(39, 4);
-        }
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.Space(10);

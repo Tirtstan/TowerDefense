@@ -684,7 +684,7 @@ MonoBehaviour:
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 130, y: 194, z: 0}
-  TransformPosition: {x: 71, y: 109, z: 0}
+  TransformPosition: {x: -71, y: 109, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 130, y: 194}
