@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Shoots an enemy at a time!
   PlaceableLayer:
     serializedVersion: 2
-    m_Bits: 1032
+    m_Bits: 8
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 128

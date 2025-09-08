@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
 [DefaultExecutionOrder(-10)]
@@ -39,16 +38,6 @@ public class GameManager : Singleton<GameManager>
     {
         if (HasGameStarted)
             TimeSinceStart += Time.deltaTime;
-
-        if (Keyboard.current.f5Key.wasPressedThisFrame)
-        {
-            StartGame();
-        }
-
-        if (Keyboard.current.f6Key.wasPressedThisFrame)
-        {
-            EndGame();
-        }
     }
 
     public void StartGame()
