@@ -240,12 +240,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4204179400125261642}
+  - component: {fileID: 78165447743351228}
   - component: {fileID: 4959824314597887777}
   - component: {fileID: 5495847216949588713}
   - component: {fileID: 8333825997203129649}
   - component: {fileID: 1037045329541029678}
   - component: {fileID: 6857660584074291998}
-  - component: {fileID: 78165447743351228}
+  - component: {fileID: 4425455273530799018}
   m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
@@ -265,6 +266,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3819270739259116876}
   - {fileID: 1492730805274644446}
   - {fileID: 6269927092621851261}
   - {fileID: 1321523712729768327}
@@ -277,8 +279,38 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -12, y: 0}
-  m_SizeDelta: {x: 375.47, y: 647.62085}
+  m_SizeDelta: {x: 359.47, y: 639.61084}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &78165447743351228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 414540004164194998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8509804}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 611bca164827d0c408d3c7db9d0e554d, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &4959824314597887777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,25 +328,25 @@ MonoBehaviour:
   LayoutPosition: {x: 0, y: 0, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
-    m_Center: {x: -187.735, y: 0, z: 0}
-    m_Extent: {x: 187.735, y: 323.81042, z: 0}
+    m_Center: {x: -179.735, y: 0, z: 0}
+    m_Extent: {x: 179.735, y: 319.80542, z: 0}
   LayoutBounds:
-    m_Center: {x: -187.735, y: 0, z: 0}
-    m_Extent: {x: 187.735, y: 323.81042, z: 0}
+    m_Center: {x: -179.735, y: 0, z: 0}
+    m_Extent: {x: 179.735, y: 319.80542, z: 0}
   RotatedAndScaledBounds:
-    m_Center: {x: -187.735, y: 0, z: 0}
-    m_Extent: {x: 187.735, y: 323.81042, z: 0}
+    m_Center: {x: -179.735, y: 0, z: 0}
+    m_Extent: {x: 179.735, y: 319.80542, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
   TargetPosition: {x: -12, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 375.47, y: 647.62085, z: 0}
+  TargetRectSize: {x: 359.47, y: 639.61084, z: 0}
   TransformPosition: {x: -12, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 375.47, y: 647.62085}
+  TransformRectSize: {x: 359.47, y: 639.61084}
 --- !u!114 &5495847216949588713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,10 +396,10 @@ MonoBehaviour:
   _marginBottom: 0
   _marginFront: 0
   _marginBack: 0
-  _paddingLeft: 32
-  _paddingRight: 32
-  _paddingTop: 20
-  _paddingBottom: 20
+  _paddingLeft: 24
+  _paddingRight: 24
+  _paddingTop: 16
+  _paddingBottom: 16
   _paddingFront: 0
   _paddingBack: 0
   _skipLayout: 0
@@ -430,7 +462,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 414540004164194998}
   m_CullTransparentMesh: 1
---- !u!114 &78165447743351228
+--- !u!114 &4425455273530799018
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -439,27 +471,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 414540004164194998}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.8509804}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 611bca164827d0c408d3c7db9d0e554d, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
-  m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Mask
+  m_ShowMaskGraphic: 1
 --- !u!1 &1763055314245230080
 GameObject:
   m_ObjectHideFlags: 0
@@ -497,7 +512,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 274.7354}
+  m_AnchoredPosition: {x: 0, y: 274.7304}
   m_SizeDelta: {x: 311.47, y: 58.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1510091831402525573
@@ -514,7 +529,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 4204179400125261642}
   SiblingIndex: 0
-  LayoutPosition: {x: 0, y: 274.7354, z: 0}
+  LayoutPosition: {x: 0, y: 274.7304, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -528,11 +543,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -187.735, y: 274.7354, z: 0}
+  TargetPosition: {x: -179.735, y: 274.7304, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 311.47, y: 58.15, z: 0}
-  TransformPosition: {x: -187.735, y: 274.7354, z: 0}
+  TransformPosition: {x: -179.735, y: 274.7304, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 311.47, y: 58.15}
@@ -1745,7 +1760,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -288.30542}
+  m_AnchoredPosition: {x: 0, y: -288.3004}
   m_SizeDelta: {x: 311.47, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4689805439846064028
@@ -1762,7 +1777,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 4204179400125261642}
   SiblingIndex: 6
-  LayoutPosition: {x: 0, y: -288.30542, z: 0}
+  LayoutPosition: {x: 0, y: -288.3004, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -1776,11 +1791,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 311.47, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -187.735, y: -288.30542, z: 0}
+  TargetPosition: {x: -179.735, y: -288.3004, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 311.47, y: 31.01, z: 0}
-  TransformPosition: {x: -187.735, y: -288.30542, z: 0}
+  TransformPosition: {x: -179.735, y: -288.3004, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 311.47, y: 31.01}
@@ -1904,7 +1919,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 67.600006}
+  m_AnchoredPosition: {x: 0, y: 67.595}
   m_SizeDelta: {x: 311.47, y: 308.12085}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7761995160638575325
@@ -1956,7 +1971,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 4204179400125261642}
   SiblingIndex: 1
-  LayoutPosition: {x: 0, y: 67.600006, z: 0}
+  LayoutPosition: {x: 0, y: 67.595, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -1970,11 +1985,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 311.47, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -187.735, y: 67.600006, z: 0}
+  TargetPosition: {x: -179.735, y: 67.595, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 311.47, y: 308.12085, z: 0}
-  TransformPosition: {x: -187.735, y: 67.600006, z: 0}
+  TransformPosition: {x: -179.735, y: 67.595, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 311.47, y: 308.12085}
@@ -2097,7 +2112,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -126.61542}
+  m_AnchoredPosition: {x: 0, y: -126.62042}
   m_SizeDelta: {x: 311.47, y: 32.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4440239448408288969
@@ -2114,7 +2129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 4204179400125261642}
   SiblingIndex: 2
-  LayoutPosition: {x: 0, y: -126.61542, z: 0}
+  LayoutPosition: {x: 0, y: -126.62042, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -2128,11 +2143,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 311.47, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -187.735, y: -126.61542, z: 0}
+  TargetPosition: {x: -179.735, y: -126.62042, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 311.47, y: 32.31, z: 0}
-  TransformPosition: {x: -187.735, y: -126.61542, z: 0}
+  TransformPosition: {x: -179.735, y: -126.62042, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 311.47, y: 32.31}
@@ -2723,7 +2738,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -164.77542}
-  m_SizeDelta: {x: 307.63, y: 20.01}
+  m_SizeDelta: {x: 309.49, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6979819616523052698
 CanvasRenderer:
@@ -2842,24 +2857,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 153.815, y: 10.005, z: 0}
+    m_Extent: {x: 154.745, y: 10, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 153.815, y: 10.005, z: 0}
+    m_Extent: {x: 154.745, y: 10, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 153.815, y: 10.005, z: 0}
+    m_Extent: {x: 154.745, y: 10, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -187.735, y: -164.77542, z: 0}
+  TargetPosition: {x: -179.735, y: -164.77542, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 307.63, y: 20.01, z: 0}
-  TransformPosition: {x: -187.735, y: -164.77542, z: 0}
+  TargetRectSize: {x: 309.49, y: 20, z: 0}
+  TransformPosition: {x: -179.735, y: -164.77542, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 307.63, y: 20.01}
+  TransformRectSize: {x: 309.49, y: 20}
 --- !u!114 &7413840416387677495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3318,7 +3333,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -245.29541}
+  m_AnchoredPosition: {x: 0, y: -245.29042}
   m_SizeDelta: {x: 311.47, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8065756183208168130
@@ -3335,7 +3350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 4204179400125261642}
   SiblingIndex: 5
-  LayoutPosition: {x: 0, y: -245.29541, z: 0}
+  LayoutPosition: {x: 0, y: -245.29042, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -3349,11 +3364,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 311.47, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -187.735, y: -245.29541, z: 0}
+  TargetPosition: {x: -179.735, y: -245.29042, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 311.47, y: 31.01, z: 0}
-  TransformPosition: {x: -187.735, y: -245.29541, z: 0}
+  TransformPosition: {x: -179.735, y: -245.29042, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 311.47, y: 31.01}
@@ -3477,7 +3492,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -202.28542}
+  m_AnchoredPosition: {x: 0, y: -202.28043}
   m_SizeDelta: {x: 311.47, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4325259102345069086
@@ -3494,7 +3509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 4204179400125261642}
   SiblingIndex: 4
-  LayoutPosition: {x: 0, y: -202.28542, z: 0}
+  LayoutPosition: {x: 0, y: -202.28043, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -3508,11 +3523,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 311.47, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -187.735, y: -202.28542, z: 0}
+  TargetPosition: {x: -179.735, y: -202.28043, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 311.47, y: 31.01, z: 0}
-  TransformPosition: {x: -187.735, y: -202.28542, z: 0}
+  TransformPosition: {x: -179.735, y: -202.28043, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 311.47, y: 31.01}
@@ -3855,6 +3870,176 @@ MonoBehaviour:
         m_Calls: []
     overrideTagEffects: 0
   updatesPerSecond: 3
+--- !u!1 &8716325811748720012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3819270739259116876}
+  - component: {fileID: 5678756070491619191}
+  - component: {fileID: 4087311631878379824}
+  - component: {fileID: 3929551097244470093}
+  - component: {fileID: 7185307585195869109}
+  m_Layer: 5
+  m_Name: Noise
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3819270739259116876
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716325811748720012}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4204179400125261642}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000091552734, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &5678756070491619191
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716325811748720012}
+  m_CullTransparentMesh: 1
+--- !u!114 &4087311631878379824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716325811748720012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 0.7529412, b: 0.26666668, a: 0.29803923}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 28f32526870ec0e4e9df301200046cdb, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3929551097244470093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716325811748720012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 994c66b6148109b489689ed705d244cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
+  Parent: {fileID: 0}
+  SiblingIndex: 0
+  LayoutPosition: {x: 0, y: 0, z: 0}
+  LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
+  AdapterBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 179.735, y: 319.80542, z: 0}
+  LayoutBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 179.735, y: 319.80542, z: 0}
+  RotatedAndScaledBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 179.735, y: 319.80542, z: 0}
+  ComponentScale: {x: 1, y: 1, z: 1}
+  FillSize: {x: 359.47, y: 639.61084, z: 0}
+  ShrinkSize: {x: 999999, y: 999999, z: 999999}
+  TargetPosition: {x: -187.73491, y: 0, z: 0}
+  TargetRotation: {x: -0, y: -0, z: -0, w: 1}
+  TargetScale: {x: 1, y: 1, z: 1}
+  TargetRectSize: {x: 359.47, y: 639.61084, z: 0}
+  TransformPosition: {x: -179.73491, y: 0, z: 0}
+  TransformRotation: {x: -0, y: -0, z: -0, w: 1}
+  TransformScale: {x: 1, y: 1, z: 1}
+  TransformRectSize: {x: 359.47, y: 639.61084}
+--- !u!114 &7185307585195869109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8716325811748720012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b0da67f6b3c9a4e84ed47af9da4884, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonObject
+  _version: 4
+  _widthType: 2
+  _width: 100
+  _widthOfParent: 1
+  _heightType: 2
+  _height: 100
+  _heightOfParent: 1
+  _depthType: 2
+  _depth: 1
+  _depthOfParent: 1
+  _minWidthType: 0
+  _minWidth: 0
+  _minWidthOfParent: 0
+  _minHeightType: 0
+  _minHeight: 0
+  _minHeightOfParent: 0
+  _minDepthType: 0
+  _minDepth: 0
+  _minDepthOfParent: 0
+  _maxWidthType: 0
+  _maxWidth: 100
+  _maxWidthOfParent: 1
+  _maxHeightType: 0
+  _maxHeight: 100
+  _maxHeightOfParent: 1
+  _maxDepthType: 0
+  _maxDepth: 1
+  _maxDepthOfParent: 1
+  _offset: {x: 0, y: 0, z: 0}
+  _scale: {x: 1, y: 1, z: 1}
+  _rotation: {x: 0, y: 0, z: 0, w: 1}
+  _marginLeft: 0
+  _marginRight: 0
+  _marginTop: 0
+  _marginBottom: 0
+  _marginFront: 0
+  _marginBack: 0
+  _paddingLeft: 0
+  _paddingRight: 0
+  _paddingTop: 0
+  _paddingBottom: 0
+  _paddingFront: 0
+  _paddingBack: 0
+  _skipLayout: 1
+  _useDefaultAdapter: 1
 --- !u!1 &9144090334738531007
 GameObject:
   m_ObjectHideFlags: 0

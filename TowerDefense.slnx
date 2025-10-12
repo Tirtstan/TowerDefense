@@ -63,8 +63,8 @@
   <Project Path="Flexalon.Samples.Editor.csproj" />
   <Project Path="Unity.2D.Sprite.Editor.csproj" />
   <Project Path="Unity.AI.Navigation.Editor.csproj" />
-  <Project Path="InputGlyphs.Editor.csproj" />
   <Project Path="EasyTextEffects.csproj" />
+  <Project Path="InputGlyphs.Editor.csproj" />
   <Project Path="Unity.AppUI.MVVM.csproj" />
   <Project Path="InputGlyphs.csproj" />
   <Project Path="Unity.Multiplayer.Center.Common.csproj" />

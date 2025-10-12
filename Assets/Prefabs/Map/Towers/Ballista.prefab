@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 4480195346434146858}
   - component: {fileID: 2905175675324617345}
   - component: {fileID: 2170674514108218971}
+  - component: {fileID: 250214768080306954}
   m_Layer: 6
   m_Name: Ballista
   m_TagString: Untagged
@@ -149,7 +150,7 @@ MonoBehaviour:
   tower: {fileID: 8474714792004710613}
   projectilePrefab: {fileID: 2895266515378292229, guid: 83399a1b87d2f594687f2eab4d83ebd6, type: 3}
   shootPoint: {fileID: 3793107648405611418}
-  visual: {fileID: 473348877324488637}
+  aimer: {fileID: 250214768080306954}
 --- !u!114 &2905175675324617345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,6 +181,21 @@ MonoBehaviour:
   duration: 0.1
   strength: 0.2
   ease: 18
+--- !u!114 &250214768080306954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508340036517391532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0441953eb2676340985e307e735a06d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BallistaAimer
+  yAxisBody: {fileID: 473348877324488637}
+  xAxisLauncher: {fileID: 1398927874987168500}
+  turnRate: 10
 --- !u!1001 &79680743193503830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -240,6 +256,11 @@ PrefabInstance:
 --- !u!4 &473348877324488637 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d1ebe6153b25d9641bc5770d4d708f94, type: 3}
+  m_PrefabInstance: {fileID: 79680743193503830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1398927874987168500 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1329380249762036386, guid: d1ebe6153b25d9641bc5770d4d708f94, type: 3}
   m_PrefabInstance: {fileID: 79680743193503830}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &1646770001595495634 stripped

@@ -17,13 +17,11 @@ public class TowerShooter : TowerAttack
     [SerializeField]
     private Transform shootPoint;
 
-    [Header("Visuals")]
     [SerializeField]
-    private Transform visual;
+    private TowerAimer aimer;
 
     private const int DefaultCapacity = 2;
     private const int MaxSize = 5;
-    private const float TurnRate = 10f;
 
     private ObjectPool<Projectile> projectilePool;
     private Transform closestTarget;
@@ -56,11 +54,10 @@ public class TowerShooter : TowerAttack
 
     private void Update()
     {
-        if (visual == null || closestTarget == null)
+        if (aimer == null)
             return;
 
-        Quaternion targetRotation = Quaternion.LookRotation(closestTarget.position - visual.position);
-        visual.rotation = Quaternion.Slerp(visual.rotation, targetRotation, Time.deltaTime * TurnRate);
+        aimer.AimAt(closestTarget);
     }
 
     private void ShootProjectile(Transform closestTarget)

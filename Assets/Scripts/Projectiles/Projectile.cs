@@ -6,18 +6,18 @@ public abstract class Projectile : MonoBehaviour, IProjectile
     [Header("Projectile")]
     [SerializeField]
     protected ProjectileSO projectileSO;
-
     protected ObjectPool<Projectile> pool;
+    protected float Damage { get; set; }
+    protected Transform Target { get; set; }
     protected float lifetime;
 
     public virtual void Initialize(float damage, Transform target, ObjectPool<Projectile> pool)
     {
+        Damage = damage;
+        Target = target;
         this.pool = pool;
         lifetime = 0f;
-        InitializeProjectile(damage, target);
     }
-
-    protected abstract void InitializeProjectile(float damage, Transform target);
 
     protected virtual void FixedUpdate()
     {

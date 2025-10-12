@@ -4,31 +4,23 @@ using UnityEngine;
 public sealed class ArrowProjectile : Projectile
 {
     private Rigidbody rb;
-    private float damage;
-    private Transform target;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
-    }
-
-    protected override void InitializeProjectile(float damage, Transform target)
-    {
-        this.damage = damage;
-        this.target = target;
+        rb.useGravity = false;
+        rb.isKinematic = true;
     }
 
     protected override void UpdateProjectile()
     {
-        if (target != null)
+        if (Target != null)
             MoveTowardsTarget();
-        else
-            ReleaseToPool();
     }
 
     private void MoveTowardsTarget()
     {
-        Vector3 direction = (target.position - transform.position).normalized;
+        Vector3 direction = (Target.position - transform.position).normalized;
         Vector3 newPosition = rb.position + projectileSO.Speed * Time.fixedDeltaTime * direction;
 
         newPosition.y = Mathf.Max(newPosition.y, projectileSO.MinYPosition);
@@ -43,7 +35,7 @@ public sealed class ArrowProjectile : Projectile
         {
             if (other.TryGetComponent(out IDamagable damagable))
             {
-                damagable.TakeDamage(damage);
+                damagable.TakeDamage(Damage);
                 ReleaseToPool();
             }
         }
@@ -51,7 +43,7 @@ public sealed class ArrowProjectile : Projectile
 
     protected override void ReleaseToPool()
     {
-        target = null;
+        Target = null;
         base.ReleaseToPool();
     }
 }
