@@ -386,6 +386,7 @@ namespace HierarchyDesigner
         });
         public static GUIStyle TooltipButtonStyle => _tooltipButtonStyle.Value;
 
+        #region Promotionals
         private static readonly Lazy<GUIStyle> _promotionalPicEaseStyle = new(() => new()
         {
             fixedHeight = 70,
@@ -393,6 +394,14 @@ namespace HierarchyDesigner
             normal = { background = HD_Resources.Promotional.PicEasePromotionalIcon }
         });
         public static GUIStyle PromotionalPicEaseStyle => _promotionalPicEaseStyle.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalPicEaseLiteStyle = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Resources.Promotional.PicEaseLitePromotionalIcon }
+        });
+        public static GUIStyle PromotionalPicEaseLiteStyle => _promotionalPicEaseLiteStyle.Value;
 
         private static readonly Lazy<GUIStyle> _promotionalPicEaseMiniStyle = new(() => new()
         {
@@ -402,6 +411,38 @@ namespace HierarchyDesigner
         });
         public static GUIStyle PromotionalPicEaseMiniStyle => _promotionalPicEaseMiniStyle.Value;
 
+        private static readonly Lazy<GUIStyle> _promotionalPicEasePostProcessingBuiltIn = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Resources.Promotional.PicEasePostProcessingBuiltInPromotionalIcon }
+        });
+        public static GUIStyle PromotionalPicEasePostProcessingBuiltIn => _promotionalPicEasePostProcessingBuiltIn.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalPicEasePostProcessingURP = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Resources.Promotional.PicEasePostProcessingURPPromotionalIcon }
+        });
+        public static GUIStyle PromotionalPicEasePostProcessingURP => _promotionalPicEasePostProcessingURP.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalEditorFavorites = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Resources.Promotional.EditorFavoritesPromotionalIcon }
+        });
+        public static GUIStyle PromotionalEditorFavorites => _promotionalEditorFavorites.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalMusicPlayerManager = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Resources.Promotional.MusicPlayerManagerPromotionalIcon }
+        });
+        public static GUIStyle PromotionalMusicPlayerManager => _promotionalMusicPlayerManager.Value;
+
         private static readonly Lazy<GUIStyle> _promotionalProceduralSkyboxStyle = new(() => new()
         {
             fixedHeight = 70,
@@ -409,6 +450,30 @@ namespace HierarchyDesigner
             normal = { background = HD_Resources.Promotional.ProceduralSkyboxIcon }
         });
         public static GUIStyle PromotionalProceduralSkyboxStyle => _promotionalProceduralSkyboxStyle.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalProceduralSkyboxLiteStyle = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Resources.Promotional.ProceduralSkyboxLiteIcon }
+        });
+        public static GUIStyle PromotionalProceduralSkyboxLiteStyle => _promotionalProceduralSkyboxLiteStyle.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalProjectDesignerStyle = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Resources.Promotional.ProjectDesignerIcon }
+        });
+        public static GUIStyle PromotionalProjectDesignerStyle => _promotionalProjectDesignerStyle.Value;
+
+        private static readonly Lazy<GUIStyle> _promotionalSeamlessGrassPatternTexturesMiniStyle = new(() => new()
+        {
+            fixedHeight = 70,
+            fixedWidth = 70,
+            normal = { background = HD_Resources.Promotional.SeamlessGrassPatternTexturesPromotionalIcon }
+        });
+        public static GUIStyle PromotionalSeamlessGrassPatternTexturesMiniStyle => _promotionalSeamlessGrassPatternTexturesMiniStyle.Value;
 
         private static readonly Lazy<GUIStyle> _promotionalSeamlessGrassTexturesMiniStyle = new(() => new()
         {
@@ -441,6 +506,7 @@ namespace HierarchyDesigner
             normal = { background = HD_Resources.Promotional.SeamlessSnowTexturesPromotionalIcon }
         });
         public static GUIStyle PromotionalSeamlessSnowTexturesMiniStyle => _promotionalSeamlessSnowTexturesMiniStyle.Value;
+        #endregion
         #endregion
 
         #region Modifiables

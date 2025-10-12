@@ -1,6 +1,8 @@
 #if UNITY_EDITOR
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEditorInternal;
@@ -1429,6 +1431,61 @@ namespace HierarchyDesigner
             if (expandMethod != null)
             {
                 expandMethod.Invoke(hierarchyWindow, new object[] { instanceID, expand });
+            }
+        }
+
+        public static bool IsHierarchyMostlyExpanded()
+        {
+            try
+            {
+                Type shwType = Type.GetType("UnityEditor.SceneHierarchyWindow, UnityEditor");
+                if (shwType == null) return false;
+
+                EditorWindow shw = Resources.FindObjectsOfTypeAll(shwType).FirstOrDefault() as EditorWindow;
+                if (shw == null) return false;
+
+                BindingFlags flags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
+                object sceneHierarchy = shwType.GetField("m_SceneHierarchy", flags)?.GetValue(shw) ?? shwType.GetProperty("sceneHierarchy", flags)?.GetValue(shw);
+                if (sceneHierarchy == null) return false;
+
+                MethodInfo getExpanded = sceneHierarchy.GetType().GetMethod("GetExpandedIDs", flags);
+                if (getExpanded == null) return false;
+
+                if (getExpanded.Invoke(sceneHierarchy, null) is not IEnumerable expandedEnum) return false;
+
+                HashSet<int> expanded = new();
+                foreach (object o in expandedEnum)
+                    if (o is int id) expanded.Add(id);
+
+                int totalWithChildren = 0;
+                int expandedWithChildren = 0;
+
+                for (int s = 0; s < SceneManager.sceneCount; s++)
+                {
+                    Scene scene = SceneManager.GetSceneAt(s);
+                    if (!scene.IsValid() || !scene.isLoaded) continue;
+                    foreach (GameObject root in scene.GetRootGameObjects())
+                        Tally(root.transform, expanded, ref totalWithChildren, ref expandedWithChildren);
+                }
+
+                if (totalWithChildren == 0) return false;
+                float ratio = (float)expandedWithChildren / totalWithChildren;
+                return ratio >= 0.6f;
+            }
+            catch
+            {
+                return false;
+            }
+
+            static void Tally(Transform t, HashSet<int> expanded, ref int total, ref int expandedCount)
+            {
+                if (t.childCount > 0)
+                {
+                    total++;
+                    if (expanded.Contains(t.gameObject.GetInstanceID())) expandedCount++;
+                }
+                for (int i = 0; i < t.childCount; i++)
+                    Tally(t.GetChild(i), expanded, ref total, ref expandedCount);
             }
         }
 

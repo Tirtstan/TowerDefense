@@ -195,6 +195,7 @@ namespace HierarchyDesigner
         private bool tempEnableHierarchyRows;
         private bool tempEnableHierarchyLines;
         private bool tempEnableHierarchyButtons;
+        private bool tempEnableHeaderUtilities;
         private bool tempEnableMajorShortcuts;
         private bool tempDisableHierarchyDesignerDuringPlayMode;
         private bool tempExcludeFolderProperties;
@@ -624,7 +625,7 @@ namespace HierarchyDesigner
             EditorGUILayout.EndHorizontal();
             GUILayout.FlexibleSpace();
             GUILayout.Space(40);
-            DrawAssetVersion();
+            DrawFooter();
 
             EditorGUILayout.EndScrollView();
         }
@@ -687,9 +688,35 @@ namespace HierarchyDesigner
             GUILayout.FlexibleSpace();
         }
 
-        private void DrawAssetVersion()
+        private void DrawFooter()
         {
+            EditorGUILayout.BeginHorizontal();
+            GUILayout.Space(5);
+
+            #region Review Link
+            const string linkText = "REVIEW HD";
+            const string linkHex = "3EA6FF";
+
+            GUIStyle linkStyle = new(HD_GUI.FooterLabelStyle);
+            linkStyle.normal.textColor = HD_Color.HexToColor(linkHex);
+            linkStyle.hover.textColor = HD_Color.HexToColor(linkHex);
+            linkStyle.active.textColor = linkStyle.hover.textColor;
+
+            Rect r = GUILayoutUtility.GetRect(new GUIContent(linkText), linkStyle, GUILayout.Height(20));
+            EditorGUIUtility.AddCursorRect(r, MouseCursor.Link);
+
+            if (GUI.Button(r, linkText, linkStyle))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/tools/utilities/hierarchy-designer-273928");
+            }
+            #endregion
+
+            GUILayout.FlexibleSpace();
+
             GUILayout.Label($"{HD_Constants.AssetVersion}", HD_GUI.FooterLabelStyle, GUILayout.Height(20));
+
+            GUILayout.Space(5);
+            EditorGUILayout.EndHorizontal();
         }
         #endregion
 
@@ -752,6 +779,23 @@ namespace HierarchyDesigner
             GUILayout.Label("My Other Assets", HD_GUI.FieldsCategoryLeftLabelStyle);
             GUILayout.Space(5);
 
+            #region Project Designer
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_GUI.PromotionalProjectDesignerStyle))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/tools/utilities/project-designer-330601");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("Project Designer", HD_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("An editor tool designed to enhance your project window and improve your workflow.", HD_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(10);
+
             #region PicEase
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button(string.Empty, HD_GUI.PromotionalPicEaseStyle))
@@ -786,6 +830,91 @@ namespace HierarchyDesigner
 
             GUILayout.Space(10);
 
+            #region PicEase Lite
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_GUI.PromotionalPicEaseLiteStyle))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/tools/utilities/picease-lite-302896");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("PicEase Lite", HD_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("The Lite, free version of PicEase.", HD_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(10);
+
+            #region PicEase Post Processing (Built-In)
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_GUI.PromotionalPicEasePostProcessingBuiltIn))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/picease-post-processing-built-in-328900");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("PicEase Post Processing (Built-In)", HD_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("Quick and easy post-processing effects to use in your games.", HD_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(10);
+
+            #region PicEase Post Processing (URP)
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_GUI.PromotionalPicEasePostProcessingURP))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/picease-post-processing-urp-329189");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("PicEase Post Processing (URP)", HD_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("Quick and easy post-processing effects to use in your games.", HD_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(10);
+
+            #region Editor Favorites
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_GUI.PromotionalEditorFavorites))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/vfx/shaders/fullscreen-camera-effects/picease-post-processing-urp-329189");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("Editor Favorites", HD_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("An editor extension that lets you create customizable favorites tabs to quickly store, organize, and access your most-used assets.", HD_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(10);
+
+            #region Music Player Manager
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_GUI.PromotionalMusicPlayerManager))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/tools/audio/music-player-manager-330161");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("Music Player Manager", HD_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("A lightweight, persistent music manager for Unity with playlist support, random/loop modes, and crossfade playback — all controllable via inspector or script.", HD_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(10);
+
             #region Procedural Skybox 2.0
             EditorGUILayout.BeginHorizontal();
             if (GUILayout.Button(string.Empty, HD_GUI.PromotionalProceduralSkyboxStyle))
@@ -797,6 +926,23 @@ namespace HierarchyDesigner
             GUILayout.Label("Procedural Skybox 2.0", HD_GUI.MiniBoldLabelLeftStyle);
             GUILayout.Space(4);
             GUILayout.Label("An extension of Unity’s default procedural skybox.", HD_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
+            GUILayout.Space(10);
+
+            #region Procedural Skybox 2.0 Lite
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_GUI.PromotionalProceduralSkyboxLiteStyle))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/2d/textures-materials/sky/procedural-skybox-2-0-lite-332554");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("Procedural Skybox 2.0 Lite", HD_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("The Lite, free version of Procedural Skybox 2.0.", HD_GUI.RegularLabelLeftStyle);
             EditorGUILayout.EndVertical();
             EditorGUILayout.EndHorizontal();
             #endregion
@@ -869,11 +1015,27 @@ namespace HierarchyDesigner
             EditorGUILayout.EndHorizontal();
             #endregion
 
+            GUILayout.Space(10);
+
+            #region Seamless Grass Pattern Textures
+            EditorGUILayout.BeginHorizontal();
+            if (GUILayout.Button(string.Empty, HD_GUI.PromotionalSeamlessGrassPatternTexturesMiniStyle))
+            {
+                Application.OpenURL("https://assetstore.unity.com/packages/2d/textures-materials/seamless-grass-pattern-textures-332098");
+            }
+            GUILayout.Space(5);
+            EditorGUILayout.BeginVertical();
+            GUILayout.Label("Seamless Grass Pattern Textures", HD_GUI.MiniBoldLabelLeftStyle);
+            GUILayout.Space(4);
+            GUILayout.Label("Seamless grass pattern textures, optimized for terrain use.", HD_GUI.RegularLabelLeftStyle);
+            EditorGUILayout.EndVertical();
+            EditorGUILayout.EndHorizontal();
+            #endregion
+
             GUILayout.Space(5);
             EditorGUILayout.EndScrollView();
             EditorGUILayout.EndVertical();
         }
-
         #endregion
 
         #region Folders
@@ -2311,6 +2473,7 @@ namespace HierarchyDesigner
             tempEnableHierarchyRows = HD_GUI.DrawToggle("Enable Hierarchy Rows", generalSettingsMainToggleLabelWidth, tempEnableHierarchyRows, true, true, "Draws background rows for alternating GameObjects in the Hierarchy window.");
             tempEnableHierarchyLines = HD_GUI.DrawToggle("Enable Hierarchy Lines", generalSettingsMainToggleLabelWidth, tempEnableHierarchyLines, true, true, "Draws horizontal lines under each GameObject in the Hierarchy window.");
             tempEnableHierarchyButtons = HD_GUI.DrawToggle("Enable Hierarchy Buttons", generalSettingsMainToggleLabelWidth, tempEnableHierarchyButtons, true, true, "Displays utility buttons (i.e., Active State and Lock State) for each GameObject in the Hierarchy window.");
+            tempEnableHeaderUtilities = HD_GUI.DrawToggle("Enable Header Utilities", generalSettingsMainToggleLabelWidth, tempEnableHeaderUtilities, true, true, "Displays a “▾” dropdown button in the Hierarchy header for quick scene switching, and a “↕” button for smart, one-click collapse/expand.");
             tempEnableMajorShortcuts = HD_GUI.DrawToggle("Enable Major Shortcuts", generalSettingsMainToggleLabelWidth, tempEnableMajorShortcuts, true, true, "Allows major shortcuts (i.e., Toggle GameObject Active State and Lock State, Chage Selected Tag and Layer; and Rename Selected GameObjects) to be executed.\n\nNote: Disabling this feature improves performance as it will not check for input while interacting with the Hierarchy window.");
             tempDisableHierarchyDesignerDuringPlayMode = HD_GUI.DrawToggle("Disable Hierarchy Designer During PlayMode", generalSettingsMainToggleLabelWidth, tempDisableHierarchyDesignerDuringPlayMode, true, true, "Disables the majority of Hierarchy Designer's features while in Play mode.\n\nNote: It is recommended to disable this feature only when debugging specific aspects of your game where performance is not a concern.");
             if (EditorGUI.EndChangeCheck()) { generalSettingsHasModifiedChanges = true; }
@@ -2364,6 +2527,7 @@ namespace HierarchyDesigner
             HD_Settings.EnableHierarchyLines = tempEnableHierarchyLines;
             HD_Settings.EnableHierarchyButtons = tempEnableHierarchyButtons;
             HD_Settings.EnableMajorShortcuts = tempEnableMajorShortcuts;
+            HD_Settings.EnableHeaderUtilities = tempEnableHeaderUtilities;
             HD_Settings.DisableHierarchyDesignerDuringPlayMode = tempDisableHierarchyDesignerDuringPlayMode;
             HD_Settings.ExcludeFolderProperties = tempExcludeFolderProperties;
             HD_Settings.ExcludedComponents = tempExcludedComponents;
@@ -2386,6 +2550,7 @@ namespace HierarchyDesigner
             tempEnableHierarchyRows = HD_Settings.EnableHierarchyRows;
             tempEnableHierarchyLines = HD_Settings.EnableHierarchyLines;
             tempEnableHierarchyButtons = HD_Settings.EnableHierarchyButtons;
+            tempEnableHeaderUtilities = HD_Settings.EnableHeaderUtilities;
             tempEnableMajorShortcuts = HD_Settings.EnableMajorShortcuts;
             tempDisableHierarchyDesignerDuringPlayMode = HD_Settings.DisableHierarchyDesignerDuringPlayMode;
             tempExcludeFolderProperties = HD_Settings.ExcludeFolderProperties;
@@ -2405,6 +2570,7 @@ namespace HierarchyDesigner
             tempEnableHierarchyRows = enable;
             tempEnableHierarchyLines = enable;
             tempEnableHierarchyButtons = enable;
+            tempEnableHeaderUtilities = enable;
             tempEnableMajorShortcuts = enable;
             tempDisableHierarchyDesignerDuringPlayMode = enable;
             tempExcludeFolderProperties = enable;

@@ -86,8 +86,16 @@ namespace HierarchyDesigner
 
             #region Promotional
             internal const string PromotionalPicEase = "Hierarchy Designer Promotional PicEase";
+            internal const string PromotionalPicEaseLite = "Hierarchy Designer Promotional PicEase Lite";
             internal const string PromotionalPicEaseMini = "Hierarchy Designer Promotional PicEase Mini";
+            internal const string PromotionalPicEasePostProcessingBuiltIn = "Hierarchy Designer Promotional PicEase Post Processing Built-In";
+            internal const string PromotionalPicEasePostProcessingURP = "Hierarchy Designer Promotional PicEase Post Processing URP";
+            internal const string PromotionalEditorFavorites = "Hierarchy Designer Promotional Editor Favorites";
+            internal const string PromotionalMusicPlayerManager = "Hierarchy Designer Promotional Music Player Manager";
             internal const string PromotionalProceduralSkybox = "Hierarchy Designer Promotional Procedural Skybox 2.0";
+            internal const string PromotionalProceduralSkyboxLite = "Hierarchy Designer Promotional Procedural Skybox 2.0 Lite";
+            internal const string PromotionalProjectDesigner = "Hierarchy Designer Promotional Project Designer";
+            internal const string PromotionalSeamlessGrassPatternTextures = "Hierarchy Designer Promotional Seamless Grass Pattern Textures";
             internal const string PromotionalSeamlessGrassTextures = "Hierarchy Designer Promotional Seamless Grass Textures";
             internal const string PromotionalSeamlessMudTextures = "Hierarchy Designer Promotional Seamless Mud Textures";
             internal const string PromotionalSeamlessSandTextures = "Hierarchy Designer Promotional Seamless Sand Textures";
@@ -293,11 +301,35 @@ namespace HierarchyDesigner
             private static readonly Lazy<Texture2D> _picEasePromotionalIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalPicEase));
             public static Texture2D PicEasePromotionalIcon => _picEasePromotionalIcon.Value;
 
+            private static readonly Lazy<Texture2D> _picEaseLitePromotionalIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalPicEaseLite));
+            public static Texture2D PicEaseLitePromotionalIcon => _picEaseLitePromotionalIcon.Value;
+
             private static readonly Lazy<Texture2D> _picEaseMiniPromotionalIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalPicEaseMini));
             public static Texture2D PicEaseMiniPromotionalIcon => _picEaseMiniPromotionalIcon.Value;
 
+            private static readonly Lazy<Texture2D> _picEasePostProcessingBuiltInPromotionalIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalPicEasePostProcessingBuiltIn));
+            public static Texture2D PicEasePostProcessingBuiltInPromotionalIcon => _picEasePostProcessingBuiltInPromotionalIcon.Value;
+
+            private static readonly Lazy<Texture2D> _picEasePostProcessingURPPromotionalIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalPicEasePostProcessingURP));
+            public static Texture2D PicEasePostProcessingURPPromotionalIcon => _picEasePostProcessingURPPromotionalIcon.Value;
+
+            private static readonly Lazy<Texture2D> _editorFavoritesPromotionalIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalEditorFavorites));
+            public static Texture2D EditorFavoritesPromotionalIcon => _editorFavoritesPromotionalIcon.Value;
+
+            private static readonly Lazy<Texture2D> _musicPlayerManagerPromotionalIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalMusicPlayerManager));
+            public static Texture2D MusicPlayerManagerPromotionalIcon => _musicPlayerManagerPromotionalIcon.Value;
+
             private static readonly Lazy<Texture2D> _proceduralSkyboxIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalProceduralSkybox));
             public static Texture2D ProceduralSkyboxIcon => _proceduralSkyboxIcon.Value;
+
+            private static readonly Lazy<Texture2D> _proceduralSkyboxLiteIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalProceduralSkyboxLite));
+            public static Texture2D ProceduralSkyboxLiteIcon => _proceduralSkyboxLiteIcon.Value;
+
+            private static readonly Lazy<Texture2D> _projectDesignerIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalProjectDesigner));
+            public static Texture2D ProjectDesignerIcon => _projectDesignerIcon.Value;
+
+            private static readonly Lazy<Texture2D> _seamlessGrassPatternTexturesPromotionalIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalSeamlessGrassPatternTextures));
+            public static Texture2D SeamlessGrassPatternTexturesPromotionalIcon => _seamlessGrassPatternTexturesPromotionalIcon.Value;
 
             private static readonly Lazy<Texture2D> _seamlessGrassTexturesPromotionalIcon = new(() => HD_Texture.LoadTexture(ResourceNames.PromotionalSeamlessGrassTextures));
             public static Texture2D SeamlessGrassTexturesPromotionalIcon => _seamlessGrassTexturesPromotionalIcon.Value;

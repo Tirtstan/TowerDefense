@@ -403,6 +403,46 @@ namespace HierarchyDesigner
             );
         }
 
+        private static HD_Preset CoralReefPreset()
+        {
+            return new(
+                "Coral Reef",
+                HD_Color.HexToColor("#FFF5F2"),
+                11,
+                FontStyle.Bold,
+                HD_Color.HexToColor("#FF8A65"),
+                HD_Folders.FolderImageType.ModernII,
+                HD_Color.HexToColor("#BFF6FF"),
+                true,
+                HD_Color.HexToColor("#0C2A34"),
+                #if UNITY_2022_3_OR_NEWER
+                HD_Color.CreateGradient(GradientMode.PerceptualBlend, ("#2ED1E3", 255, 0f), ("#53EBD8", 230, 40f), ("#FF8A65", 230, 75f), ("#0C2A34", 255, 100f)),
+                #else
+                HD_Color.CreateGradient(GradientMode.Blend, ("#2ED1E3", 255, 0f), ("#53EBD8", 230, 40f), ("#FF8A65", 230, 75f), ("#0C2A34", 255, 100f)),
+                #endif
+                FontStyle.Bold,
+                12,
+                TextAnchor.MiddleCenter,
+                HD_Separators.SeparatorImageType.ModernII,
+                HD_Color.HexToColor("#FFB8A4"),
+                FontStyle.BoldAndItalic,
+                9,
+                TextAnchor.MiddleRight,
+                HD_Color.HexToColor("#9EE8F2"),
+                FontStyle.Italic,
+                9,
+                TextAnchor.MiddleLeft,
+                HD_Color.HexToColor("#7ADCE3"),
+                HD_Color.HexToColor("#7ADCE380"),
+                HD_Color.HexToColor("#2F5962"),
+                HD_Color.HexToColor("#FF8A65"),
+                HD_Color.HexToColor("#FFF5F2"),
+                11,
+                FontStyle.Bold,
+                TextAnchor.MiddleCenter
+            );
+        }
+
         private static HD_Preset CyberpunkPreset()
         {
             return new(
@@ -627,6 +667,42 @@ namespace HierarchyDesigner
                 HD_Color.HexToColor("#C4E5F1"),
                 11,
                 FontStyle.BoldAndItalic,
+                TextAnchor.MiddleCenter
+            );
+        }
+
+        private static HD_Preset GraphiteMintPreset()
+        {
+            return new(
+                "Graphite Mint",
+                HD_Color.HexToColor("#E6FFF5"),
+                11,
+                FontStyle.Normal,
+                HD_Color.HexToColor("#1F1F1F"),
+                HD_Folders.FolderImageType.ModernI,
+                HD_Color.HexToColor("#B3FFD6"),
+                false,
+                HD_Color.HexToColor("#0F0F0F"),
+                new Gradient(),
+                FontStyle.Bold,
+                11,
+                TextAnchor.MiddleLeft,
+                HD_Separators.SeparatorImageType.DefaultFadedRight,
+                HD_Color.HexToColor("#B3FFD6"),
+                FontStyle.Italic,
+                9,
+                TextAnchor.MiddleRight,
+                HD_Color.HexToColor("#9FE7C5"),
+                FontStyle.Italic,
+                9,
+                TextAnchor.MiddleLeft,
+                HD_Color.HexToColor("#7FEBC0"),
+                HD_Color.HexToColor("#7FEBC080"),
+                HD_Color.HexToColor("#3A3A3A"),
+                HD_Color.HexToColor("#56C596"),
+                HD_Color.HexToColor("#E6FFF5"),
+                10,
+                FontStyle.Normal,
                 TextAnchor.MiddleCenter
             );
         }
@@ -1151,6 +1227,46 @@ namespace HierarchyDesigner
             );
         }
 
+        private static HD_Preset RoseQuartzPreset()
+        {
+            return new(
+                "Rose Quartz",
+                HD_Color.HexToColor("#FFF0F5"),
+                12,
+                FontStyle.Bold,
+                HD_Color.HexToColor("#E889B8"),
+                HD_Folders.FolderImageType.ModernIII,
+                HD_Color.HexToColor("#FFE3F1"),
+                true,
+                HD_Color.HexToColor("#4D1F3A"),
+                #if UNITY_2022_3_OR_NEWER
+                HD_Color.CreateGradient(GradientMode.PerceptualBlend, ("#FFD3E8", 255, 0f), ("#E889B8", 240, 50f), ("#4D1F3A", 255, 100f)),
+                #else
+                HD_Color.CreateGradient(GradientMode.Blend, ("#FFD3E8", 255, 0f), ("#E889B8", 240, 50f), ("#4D1F3A", 255, 100f)),
+                #endif
+                FontStyle.Bold,
+                12,
+                TextAnchor.MiddleCenter,
+                HD_Separators.SeparatorImageType.NeoII,
+                HD_Color.HexToColor("#FFD3E8"),
+                FontStyle.BoldAndItalic,
+                10,
+                TextAnchor.MiddleRight,
+                HD_Color.HexToColor("#FFB6D5"),
+                FontStyle.Italic,
+                10,
+                TextAnchor.MiddleLeft,
+                HD_Color.HexToColor("#EFA6CC"),
+                HD_Color.HexToColor("#EFA6CC80"),
+                HD_Color.HexToColor("#5C3A4B"),
+                HD_Color.HexToColor("#E889B8"),
+                HD_Color.HexToColor("#FFF0F5"),
+                11,
+                FontStyle.Bold,
+                TextAnchor.MiddleCenter
+            );
+        }
+
         private static HD_Preset SlateAndLimePreset()
         {
             return new(
@@ -1461,12 +1577,14 @@ namespace HierarchyDesigner
                 BlackAndWhitePreset(),
                 BloodyMaryPreset(),
                 BlueHarmonyPreset(),
+                CoralReefPreset(),
                 CyberpunkPreset(),
                 DeepOceanPreset(),
                 DunesPreset(),
                 ForestDawnPreset(),
                 FreshSwampPreset(),
                 FrostyFogPreset(),
+                GraphiteMintPreset(),
                 HoHoHoPreset(),
                 IronCinderPreset(),
                 JadeLakePreset(),
@@ -1481,6 +1599,7 @@ namespace HierarchyDesigner
                 PrettyPinkPreset(),
                 PrismaticPreset(),
                 RedDawnPreset(),
+                RoseQuartzPreset(),
                 SlateAndLimePreset(),
                 SnowPreset(),
                 StrawberrySalmonPreset(),

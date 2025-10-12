@@ -69,7 +69,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 128
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -116,7 +116,7 @@ AssetOrigin:
   serializedVersion: 1
   productId: 273928
   packageName: Hierarchy Designer
-  packageVersion: 2.3.0
+  packageVersion: 2.7.0
   assetPath: Assets/Hierarchy Designer/Editor/Resources/Hierarchy Designer Promotional
     Procedural Skybox 2.0.png
-  uploadId: 783918
+  uploadId: 789658

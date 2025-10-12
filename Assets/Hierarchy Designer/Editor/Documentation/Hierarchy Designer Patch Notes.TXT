@@ -1,3 +1,20 @@
+<color=#FFF35A>Version 2.7.0</color>
+• Added a new feature: Expand/Collapse button on the Hierarchy header.
+• Renamed the class HD_Scene to HD_Header.
+• Renamed the General setting Enable Scene Switcher to Enable Header Utilities.
+
+<color=#FFF35A>Version 2.6.0</color>
+• Added three new presets: Coral Reef, Graphite Mint, and Rose Quartz.
+• Minor changes and performance improvements.
+
+<color=#FFF35A>Version 2.5.0</color>
+• Added an option to favorite scenes in the Scene Switcher.
+• Minor changes.
+
+<color=#FFF35A>Version 2.4.0</color>
+• Added a new feature: Scene Switcher
+• Added a new general setting: Enable Scene Switcher
+
 <color=#FFF35A>Version 2.3.0</color>
 • Added a pin feature to the Component Minimap windows.
 • Added three new presets: Arctic Aurora, Slate and Lime, and Lavender Nights.

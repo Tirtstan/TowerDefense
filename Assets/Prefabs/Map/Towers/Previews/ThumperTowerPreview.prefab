@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 8045771983117612152}
   - component: {fileID: 1372815465104080361}
   - component: {fileID: 8474714792004710613}
-  - component: {fileID: 2170674514108218971}
   m_Layer: 6
   m_Name: ThumperTowerPreview
   m_TagString: Untagged
@@ -70,21 +69,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerSO: {fileID: 11400000, guid: af58d0d2f8194dc4092e531616071f92, type: 2}
---- !u!114 &2170674514108218971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3508340036517391532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f93f8e2fa8912147a449f49ed6bc67b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ScaleOnStart
-  duration: 0.1
-  strength: 0.2
-  ease: 18
 --- !u!1001 &4870433110769741292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -144,13 +128,36 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3517577136742166987}
   m_SourcePrefab: {fileID: 100100000, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
 --- !u!4 &4908352266329016839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
   m_PrefabInstance: {fileID: 4870433110769741292}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5716801641847853245 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
+  m_PrefabInstance: {fileID: 4870433110769741292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3517577136742166987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5716801641847853245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f93f8e2fa8912147a449f49ed6bc67b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScaleOnStart
+  duration: 0.1
+  strength: 0.2
+  ease: 18
 --- !u!1001 &8534336573605577611
 PrefabInstance:
   m_ObjectHideFlags: 0

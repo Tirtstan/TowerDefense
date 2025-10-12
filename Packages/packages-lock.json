@@ -1,13 +1,13 @@
 {
   "dependencies": {
     "com.coffee.ui-effect": {
-      "version": "https://github.com/mob-sakai/UIEffect.git?path=Packages/src#5.9.6",
+      "version": "https://github.com/mob-sakai/UIEffect.git?path=Packages/src",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.ugui": "1.0.0"
       },
-      "hash": "6f90044ec83adbd66475a6d2b5baa38e85678809"
+      "hash": "451cbe43021356a6bf07683964e8889956743558"
     },
     "com.qiaozhilei.easy-text-effects": {
       "version": "https://github.com/LeiQiaoZhi/Easy-Text-Effects-for-Unity.git",
@@ -23,7 +23,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "05a64416ea034335c5e55aaadf4ab9405611af20"
+      "hash": "700bb1b9ea814b521d89ab5c63540d4ff7dee297"
     },
     "com.tirt.tweeningcomponents": {
       "version": "https://github.com/Tirtstan/Tweening-Components.git",
@@ -32,47 +32,11 @@
       "dependencies": {},
       "hash": "23af123cbce0abc94fdfee76df00dab164e32f49"
     },
-    "com.unity.2d.common": {
-      "version": "11.0.1",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.burst": "1.8.4",
-        "com.unity.2d.sprite": "1.0.0",
-        "com.unity.mathematics": "1.1.0",
-        "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.uielements": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.2d.enhancers": {
-      "version": "1.0.0",
-      "depth": 0,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.2d.common": "11.0.1",
-        "com.unity.ai.generators": "1.0.0-pre.12",
-        "com.unity.settings-manager": "2.0.1",
-        "com.unity.modules.uielements": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
       "source": "builtin",
       "dependencies": {}
-    },
-    "com.unity.ai.generators": {
-      "version": "1.0.0-pre.12",
-      "depth": 1,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.ai.toolkit": "1.0.0-pre.12",
-        "com.unity.mathematics": "1.3.2",
-        "com.unity.nuget.newtonsoft-json": "3.2.1"
-      },
-      "url": "https://packages.unity.com"
     },
     "com.unity.ai.inference": {
       "version": "2.3.0",
@@ -92,15 +56,6 @@
       "source": "registry",
       "dependencies": {
         "com.unity.modules.ai": "1.0.0"
-      },
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.ai.toolkit": {
-      "version": "1.0.0-pre.12",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {
-        "com.unity.nuget.newtonsoft-json": "3.2.1"
       },
       "url": "https://packages.unity.com"
     },
@@ -125,7 +80,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "2.8.2",
+      "version": "2.9.3",
       "depth": 0,
       "source": "registry",
       "dependencies": {},
@@ -163,7 +118,7 @@
       "dependencies": {}
     },
     "com.unity.ide.rider": {
-      "version": "3.0.36",
+      "version": "3.0.38",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -172,11 +127,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.visualstudio": {
-      "version": "2.0.23",
+      "version": "2.0.25",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.test-framework": "1.1.9"
+        "com.unity.test-framework": "1.1.31"
       },
       "url": "https://packages.unity.com"
     },
@@ -206,13 +161,6 @@
     },
     "com.unity.nuget.mono-cecil": {
       "version": "1.11.5",
-      "depth": 2,
-      "source": "registry",
-      "dependencies": {},
-      "url": "https://packages.unity.com"
-    },
-    "com.unity.nuget.newtonsoft-json": {
-      "version": "3.2.1",
       "depth": 2,
       "source": "registry",
       "dependencies": {},
@@ -270,7 +218,7 @@
     },
     "com.unity.settings-manager": {
       "version": "2.1.0",
-      "depth": 1,
+      "depth": 2,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -285,7 +233,7 @@
       }
     },
     "com.unity.splines": {
-      "version": "2.8.1",
+      "version": "2.8.2",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -296,7 +244,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.test-framework": {
-      "version": "1.5.1",
+      "version": "1.6.0",
       "depth": 0,
       "source": "builtin",
       "dependencies": {

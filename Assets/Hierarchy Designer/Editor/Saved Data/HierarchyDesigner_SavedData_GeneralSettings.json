@@ -9,6 +9,7 @@
     "EnableHierarchyRows": true,
     "EnableHierarchyLines": false,
     "EnableHierarchyButtons": false,
+    "EnableSceneSwitcher": true,
     "EnableMajorShortcuts": true,
     "DisableHierarchyDesignerDuringPlayMode": false,
     "ExcludeFolderProperties": true,

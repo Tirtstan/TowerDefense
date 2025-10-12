@@ -34,6 +34,7 @@ namespace HierarchyDesigner
             public bool EnableHierarchyRows = true;
             public bool EnableHierarchyLines = true;
             public bool EnableHierarchyButtons = true;
+            public bool EnableHeaderUtilities = true;
             public bool EnableMajorShortcuts = true;
             public bool DisableHierarchyDesignerDuringPlayMode = true;
 
@@ -166,6 +167,7 @@ namespace HierarchyDesigner
             HD_Manager.EnableHierarchyRowsCache = EnableHierarchyRows;
             HD_Manager.EnableHierarchyLinesCache = EnableHierarchyLines;
             HD_Manager.EnableHierarchyButtonsCache = EnableHierarchyButtons;
+            HD_Manager.EnableHeaderUtilitiesrCache = EnableHeaderUtilities;
             HD_Manager.EnableMajorShortcutsCache = EnableMajorShortcuts;
             HD_Manager.DisableHierarchyDesignerDuringPlayModeCache = DisableHierarchyDesignerDuringPlayMode;
             HD_Manager.ExcludeFolderProperties = ExcludeFolderProperties;
@@ -422,6 +424,19 @@ namespace HierarchyDesigner
                 {
                     generalSettings.EnableHierarchyButtons = value;
                     HD_Manager.EnableHierarchyButtonsCache = value;
+                }
+            }
+        }
+
+        public static bool EnableHeaderUtilities
+        {
+            get => generalSettings.EnableHeaderUtilities;
+            set
+            {
+                if (generalSettings.EnableHeaderUtilities != value)
+                {
+                    generalSettings.EnableHeaderUtilities = value;
+                    HD_Manager.EnableHeaderUtilitiesrCache = value;
                 }
             }
         }
@@ -1554,6 +1569,7 @@ namespace HierarchyDesigner
                 EnableHierarchyRows = true,
                 EnableHierarchyLines = true,
                 EnableHierarchyButtons = true,
+                EnableHeaderUtilities = true,
                 EnableMajorShortcuts = true,
                 DisableHierarchyDesignerDuringPlayMode = true,
                 ExcludeFolderProperties = true,

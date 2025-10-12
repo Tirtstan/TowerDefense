@@ -6,7 +6,7 @@ namespace HierarchyDesigner
         #region Properties
         #region Asset Info
         public const string AssetName = "Hierarchy Designer";
-        public const string AssetVersion = "VERSION 2.3.0";
+        public const string AssetVersion = "VERSION 2.7.0";
         public const string AssetLocation = "Tools/Hierarchy Designer";
         #endregion
 
@@ -184,6 +184,7 @@ namespace HierarchyDesigner
         public const string DesignSettingsTextFileName = "HierarchyDesigner_SavedData_DesignSettings.json";
         public const string ShortcutSettingsTextFileName = "HierarchyDesigner_SavedData_ShortcutsSettings.json";
         public const string AdvancedSettingsTextFileName = "HierarchyDesigner_SavedData_AdvancedSettings.json";
+        public const string FavoriteScenesTextFileName = "HierarchyDesigner_SavedData_FavoriteScenes.json";
         #endregion
         #endregion
     }

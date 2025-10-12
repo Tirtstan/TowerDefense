@@ -16,6 +16,7 @@ namespace HierarchyDesigner
             HD_Manager.Initialize();
             HD_Icon.Initialize();
             HD_Presets.Initialize();
+            HD_Header.Initialize();
         }
     }
 }
