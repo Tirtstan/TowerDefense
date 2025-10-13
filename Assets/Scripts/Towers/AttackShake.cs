@@ -30,7 +30,7 @@ public class AttackShake : MonoBehaviour
 
     private void HandleAttack()
     {
-        visual.DOPunchScale(Vector3.one * 0.1f, 0.1f, 1, 0);
+        visual.DOPunchScale(Vector3.one * shakeForce, 0.1f, 1, 0);
         cinemachineImpulseSource.GenerateImpulse(GetRandomVelocity() * shakeForce);
     }
 

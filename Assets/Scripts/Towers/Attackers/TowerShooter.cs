@@ -31,8 +31,9 @@ public sealed class TowerShooter : TowerAttack
         if (shootPoint == null)
             shootPoint = transform;
 
+        // shoot point for pos, this transform for parent to avoid issues with rb interpolation
         projectilePool = new ObjectPool<Projectile>(
-            createFunc: () => Instantiate(projectilePrefab, shootPoint),
+            createFunc: () => Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation, transform),
             actionOnGet: (projectile) => projectile.gameObject.SetActive(true),
             actionOnRelease: (projectile) => projectile.gameObject.SetActive(false),
             actionOnDestroy: (projectile) => Destroy(projectile.gameObject),

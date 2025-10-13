@@ -29,7 +29,7 @@ public sealed class EnemyShooter : EnemyAttack
             shootPoint = transform;
 
         projectilePool = new ObjectPool<Projectile>(
-            createFunc: () => Instantiate(projectilePrefab, Vector3.zero, Quaternion.identity, shootPoint),
+            createFunc: () => Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation, transform),
             actionOnGet: (projectile) => projectile.gameObject.SetActive(true),
             actionOnRelease: (projectile) => projectile.gameObject.SetActive(false),
             actionOnDestroy: (projectile) => Destroy(projectile.gameObject),
