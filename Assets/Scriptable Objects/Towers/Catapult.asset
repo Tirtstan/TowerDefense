@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c84f0d297c19594faec1fa9e3f625d3, type: 3}
-  m_Name: Thumper
+  m_Name: Catapult
   m_EditorClassIdentifier: Assembly-CSharp::TowerSO
-  Id: 1
-  Name: Thumper
+  Id: 4
+  Name: Catapult
   Description: Ground shock enemies!
   PlaceableLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1032
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -26,8 +26,8 @@ MonoBehaviour:
   PrefabPreview: {fileID: 8474714792004710613, guid: 673a178e54f48f64aae06725228f6c40, type: 3}
   OriginalMesh: {fileID: 919132149155446097, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
   Stats:
-    Health: 100
-    Cost: 150
-    Damage: 14
-    Range: 4
-    AttackInterval: 3
+    Health: 60
+    Cost: 175
+    Damage: 20
+    Range: 10.5
+    AttackInterval: 2.5

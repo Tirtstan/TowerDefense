@@ -10,11 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d23704a08781eb14bba2dcb2393956ce, type: 3}
-  m_Name: UFO A
+  m_Name: UFO Melee A
   m_EditorClassIdentifier: Assembly-CSharp::EnemySO
-  Name: UFO A
+  Name: UFO Goon
   Health: 100
   Damage: 5
   Speed: 1
-  AttackInterval: 3
-  SoulAmount: 30
+  VisionRange: 3.5
+  AttackRange: 2
+  AttackInterval: 2
+  CurrencyDropAmount: 20
+  DifficultyRating: 1

@@ -3,22 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class TowerShooter : TowerAttack
+public sealed class EnemyShooter : EnemyAttack
 {
     public override event Action OnAttack;
 
     [Header("Components")]
     [SerializeField]
-    private Tower tower;
+    private EnemySO enemySO;
 
     [SerializeField]
     private Projectile projectilePrefab;
 
     [SerializeField]
     private Transform shootPoint;
-
-    [SerializeField]
-    private TowerAimer aimer;
 
     private const int DefaultCapacity = 2;
     private const int MaxSize = 5;
@@ -32,7 +29,7 @@ public class TowerShooter : TowerAttack
             shootPoint = transform;
 
         projectilePool = new ObjectPool<Projectile>(
-            createFunc: () => Instantiate(projectilePrefab, shootPoint),
+            createFunc: () => Instantiate(projectilePrefab, Vector3.zero, Quaternion.identity, shootPoint),
             actionOnGet: (projectile) => projectile.gameObject.SetActive(true),
             actionOnRelease: (projectile) => projectile.gameObject.SetActive(false),
             actionOnDestroy: (projectile) => Destroy(projectile.gameObject),
@@ -52,19 +49,11 @@ public class TowerShooter : TowerAttack
         }
     }
 
-    private void Update()
-    {
-        if (aimer == null)
-            return;
-
-        aimer.AimAt(closestTarget);
-    }
-
-    private void ShootProjectile(Transform closestTarget)
+    private void ShootProjectile(Transform target)
     {
         Projectile projectile = projectilePool.Get();
         projectile.transform.SetPositionAndRotation(shootPoint.position, Quaternion.identity);
-        projectile.Initialize(tower.GetTowerSO().Stats.Damage, closestTarget, projectilePool);
+        projectile.Initialize(enemySO.Damage, target, projectilePool);
     }
 
     private Transform GetClosestTarget(IEnumerable<IDamagable> targets)
@@ -74,6 +63,9 @@ public class TowerShooter : TowerAttack
 
         foreach (var target in targets)
         {
+            if (target.Target == null)
+                continue;
+
             float sqrDistance = (transform.position - target.Target.position).sqrMagnitude;
             if (sqrDistance < minSqrDistance)
             {
@@ -83,11 +75,5 @@ public class TowerShooter : TowerAttack
         }
 
         return closest;
-    }
-
-    private void Reset()
-    {
-        if (tower == null)
-            tower = GetComponent<Tower>();
     }
 }

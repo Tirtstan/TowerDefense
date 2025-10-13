@@ -38,6 +38,7 @@ public abstract class Projectile : MonoBehaviour, IProjectile
     {
         if (pool != null)
         {
+            Target = null;
             transform.SetPositionAndRotation(transform.parent.position, Quaternion.identity);
             pool.Release(this);
         }

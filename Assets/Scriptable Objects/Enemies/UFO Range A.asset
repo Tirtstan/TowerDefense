@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23704a08781eb14bba2dcb2393956ce, type: 3}
+  m_Name: UFO Range A
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySO
+  Name: UFO Seeker
+  Health: 75
+  Damage: 8
+  Speed: 1.5
+  VisionRange: 8
+  AttackRange: 8
+  AttackInterval: 2.5
+  CurrencyDropAmount: 30
+  DifficultyRating: 1.5

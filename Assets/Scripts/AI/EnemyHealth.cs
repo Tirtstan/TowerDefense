@@ -39,7 +39,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     private void Die()
     {
         if (EconomyManager.Instance != null)
-            EconomyManager.Instance.AddCurrency(enemySO.SoulAmount);
+            EconomyManager.Instance.AddCurrency(enemySO.CurrencyDropAmount);
 
         OnDeath?.Invoke();
         Destroy(gameObject);

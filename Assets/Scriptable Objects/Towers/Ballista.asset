@@ -17,7 +17,7 @@ MonoBehaviour:
   Description: Shoots an enemy at a time!
   PlaceableLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 1032
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -26,8 +26,8 @@ MonoBehaviour:
   PrefabPreview: {fileID: 8474714792004710613, guid: 053a3a0646416384ba4e2f587f4717c4, type: 3}
   OriginalMesh: {fileID: 919132149155446097, guid: d1ebe6153b25d9641bc5770d4d708f94, type: 3}
   Stats:
-    Health: 50
+    Health: 30
     Cost: 75
-    Damage: 12
-    Range: 9
-    AttackInterval: 1.8
+    Damage: 10
+    Range: 7.5
+    AttackInterval: 1.5

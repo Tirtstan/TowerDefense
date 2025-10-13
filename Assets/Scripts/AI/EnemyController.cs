@@ -19,9 +19,6 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private LayerMask towerLayer;
 
-    [SerializeField]
-    private float attackRange = 2f;
-
     private SphereCollider visionCollider;
     private Transform currentTarget;
     private IDamagable currentTargetDamagable;
@@ -92,7 +89,7 @@ public class EnemyController : MonoBehaviour
         }
 
         float sqrDistanceToTarget = (transform.position - currentTarget.position).sqrMagnitude;
-        if (sqrDistanceToTarget <= attackRange * attackRange)
+        if (sqrDistanceToTarget <= enemySO.AttackRange * enemySO.AttackRange)
             enemyAttacker.Attack(new[] { currentTargetDamagable });
     }
 
@@ -262,15 +259,12 @@ public class EnemyController : MonoBehaviour
         if (enemySO == null)
             return;
 
-        // Vision range
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, enemySO.VisionRange);
 
-        // Attack range
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, enemySO.AttackRange);
 
-        // Line to current target
         if (hasValidTarget && currentTarget != null)
         {
             Gizmos.color = Color.green;

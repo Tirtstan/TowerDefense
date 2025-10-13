@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TowerAttacker : TowerAttack
+public sealed class TowerAttacker : TowerAttack
 {
     public override event Action OnAttack;
 

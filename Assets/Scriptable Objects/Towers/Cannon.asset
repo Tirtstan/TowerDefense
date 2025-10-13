@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c84f0d297c19594faec1fa9e3f625d3, type: 3}
-  m_Name: Center
+  m_Name: Cannon
   m_EditorClassIdentifier: Assembly-CSharp::TowerSO
-  Id: 0
-  Name: Center
-  Description: Protect at all costs!
+  Id: 3
+  Name: Cannon
+  Description: Ground shock enemies!
   PlaceableLayer:
     serializedVersion: 2
     m_Bits: 8
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  Sprite: {fileID: 1494012466, guid: 221eddc3b33e66e45aece42e3036b6c8, type: 3}
-  Prefab: {fileID: 7686350860836700349, guid: 751a6af356bc43a478c64a992c6b3a84, type: 3}
-  PrefabPreview: {fileID: 0}
-  OriginalMesh: {fileID: 919132149155446097, guid: 13d4fc0b91338e84eb5e679eee9f10c5, type: 3}
+  Sprite: {fileID: 21300000, guid: 693e7d96b478e744bbcd575f16f2930e, type: 3}
+  Prefab: {fileID: 8474714792004710613, guid: 68a9d3cf5dc5d4d4cbc05f22b2b383ca, type: 3}
+  PrefabPreview: {fileID: 8474714792004710613, guid: e0ad0dc5c0759ad408f935ce133efa09, type: 3}
+  OriginalMesh: {fileID: 919132149155446097, guid: 9bcb10c31bb6e484d9164e897c8171a8, type: 3}
   Stats:
-    Health: 200
-    Cost: 9999
-    Damage: 25
-    Range: 3
-    AttackInterval: 5
+    Health: 125
+    Cost: 250
+    Damage: 40
+    Range: 6.5
+    AttackInterval: 4
