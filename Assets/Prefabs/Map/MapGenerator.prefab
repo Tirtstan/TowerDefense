@@ -1,0 +1,209 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &463768855559265458
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 395340160184152976}
+  m_Layer: 0
+  m_Name: Terrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &395340160184152976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463768855559265458}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8339270614924946581}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2972845758288361806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8339270614924946581}
+  - component: {fileID: 4956908477235658657}
+  - component: {fileID: 7098680593303493730}
+  - component: {fileID: 3945940691283153064}
+  m_Layer: 0
+  m_Name: MapGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8339270614924946581
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972845758288361806}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 395340160184152976}
+  - {fileID: 2335927496162975252}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4956908477235658657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972845758288361806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72db891e9d2a23d47927901ee88e718f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GenerateOnGameStart
+  generator: {fileID: 7098680593303493730}
+--- !u!114 &7098680593303493730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972845758288361806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b53f8473a889eb45942c3dfa60db6e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MapGenerator
+  mapParent: {fileID: 395340160184152976}
+  gridSize: 36
+  numEndPoints: 3
+  tileSize: 1
+  minTowerDistance: 5
+  useGridBasedDistance: 1
+  towerHeightOffset: 0.2
+  pathAvoidancePenalty: 5
+  edgePenalty: 1.5
+  straightLinePenalty: 0.3
+  fallbackConnectionRadius: 4
+  groundTilePrefab: {fileID: 4634117823997746362, guid: e20fe18efe4102d468ae5b37c8b610f7, type: 3}
+  pathStraightPrefab: {fileID: 1852398960520218819, guid: 0f1cfa4ff80733746b4dc266562ed258, type: 3}
+  pathTurnPrefab: {fileID: 6778624026435323368, guid: 2833876a4b5236347bcd033398a3ace1, type: 3}
+  pathTJunctionPrefab: {fileID: 4903931372056868799, guid: f55208b3b3809a943afb6b0a48961d40, type: 3}
+  pathCrossJunctionPrefab: {fileID: 6420473897053404244, guid: 4899ebb3bfc502045abedc8099f222f7, type: 3}
+  centerTowerTilePrefab: {fileID: 1596917171735200923, guid: 3259b95dea43be04392113cd9c4667b2, type: 3}
+  enemyTowerTilePrefab: {fileID: 1596917171735200923, guid: 3259b95dea43be04392113cd9c4667b2, type: 3}
+  playerBasePrefab: {fileID: 2238805961231198067, guid: 751a6af356bc43a478c64a992c6b3a84, type: 3}
+  enemyTowerPrefab: {fileID: 7875591106293109387, guid: 4daa84450ee31ec47ba6db2c11c0e4aa, type: 3}
+  allowCornerTowers: 1
+  preferEdgeCenters: 0
+  maxPathfindingAttempts: 10
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+--- !u!114 &3945940691283153064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2972845758288361806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 967cdf617190aff4ebc5866fe4db4016, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DecorationSpawner
+  mapGenerator: {fileID: 7098680593303493730}
+  globalDensity: 0.474
+  heightOffset: 0.2
+  overlapAllowance: 0.25
+  noiseScale: 1.0601127
+  noiseOffset: {x: -148.62332, y: 539.20935}
+  randomizeNoiseOffset: 1
+  scaleNoiseScale: 3
+  scaleNoiseOffset: {x: 630.954, y: 930.5842}
+  randomizeScaleNoiseOffset: 1
+  scaleRandomness: 0.2
+  defaultParent: {fileID: 2335927496162975252}
+  createTypeGroups: 1
+  decorationConfigs:
+  - prefabs:
+    - {fileID: 919132149155446097, guid: f11aa93327c787b46bccf70490726ecb, type: 3}
+    - {fileID: 919132149155446097, guid: 7f41fbdc499d8c84098d172b4e5b68b0, type: 3}
+    weight: 1
+    minNoiseValue: 0
+    maxNoiseValue: 0.4
+    scaleRange: {x: 0.8, y: 5}
+    minSize: 0.5
+    positionVariance: 0.337
+    randomizeRotation: 1
+    pathAvoidanceRadius: 0.5
+    avoidPaths: 1
+    customParent: {fileID: 0}
+    createChildParent: 0
+    childParentName: Decoration Group
+  - prefabs:
+    - {fileID: 919132149155446097, guid: a4f279d0783cbe64c95f7c5f0da15354, type: 3}
+    - {fileID: 919132149155446097, guid: 6cf67c87a0e443c4c924f5fcacfea890, type: 3}
+    - {fileID: 919132149155446097, guid: 58cb05f166d79f34faffc812104f8636, type: 3}
+    - {fileID: 919132149155446097, guid: 78431e8eaa3770745a75457b6f925b0f, type: 3}
+    weight: 0.2
+    minNoiseValue: 0.6
+    maxNoiseValue: 1
+    scaleRange: {x: 5, y: 9}
+    minSize: 1
+    positionVariance: 0.5
+    randomizeRotation: 1
+    pathAvoidanceRadius: 1
+    avoidPaths: 1
+    customParent: {fileID: 0}
+    createChildParent: 0
+    childParentName: Decoration Group
+--- !u!1 &6794685725551602796
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2335927496162975252}
+  m_Layer: 0
+  m_Name: Deco
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2335927496162975252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6794685725551602796}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8339270614924946581}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

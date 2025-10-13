@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 2406413187064011577}
   - component: {fileID: 49560660006757904}
   - component: {fileID: 1263122176105505709}
-  - component: {fileID: 7164917740303991950}
   - component: {fileID: 2905175675324617345}
+  - component: {fileID: 7164917740303991950}
   - component: {fileID: 2170674514108218971}
   m_Layer: 6
   m_Name: ThumperTower
@@ -104,9 +104,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TowerController
   towerAttack: {fileID: 1263122176105505709}
   tower: {fileID: 8474714792004710613}
-  enemyLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
 --- !u!114 &1263122176105505709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,19 +117,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerDefender
   tower: {fileID: 8474714792004710613}
---- !u!114 &7164917740303991950
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3508340036517391532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58f853a07f7935d4fac5259f1c0b7f38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackShake
-  cinemachineImpulseSource: {fileID: 5554132638004766362}
 --- !u!114 &2905175675324617345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -148,6 +132,21 @@ MonoBehaviour:
   towerMeshRenderer: {fileID: 6077278659139973480}
   rangeElement: {fileID: 7092205810508893224}
   alwaysShowRangeIndicator: 0
+--- !u!114 &7164917740303991950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508340036517391532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58f853a07f7935d4fac5259f1c0b7f38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackShake
+  visual: {fileID: 4908352266329016839}
+  cinemachineImpulseSource: {fileID: 5554132638004766362}
+  shakeForce: 0.1
 --- !u!114 &2170674514108218971
 MonoBehaviour:
   m_ObjectHideFlags: 0

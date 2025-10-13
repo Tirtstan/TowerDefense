@@ -12,7 +12,7 @@ public class TowerSO : ScriptableObject
     public LayerMask PlaceableLayer;
     public LayerMask EnemyLayer;
 
-    [Space]
+    [Header("Visuals")]
     public Sprite Sprite;
     public Tower Prefab;
     public Tower PrefabPreview;
