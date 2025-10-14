@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2337366815163195317}
   - component: {fileID: 1237532209574780800}
   m_Layer: 6
-  m_Name: CenterTower
+  m_Name: Center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

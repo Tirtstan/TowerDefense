@@ -18,6 +18,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   MinYPosition: 50
-  SplashRadius: 2
-  SplashDamageMultiplier: 0.6
-  SplashForce: 3
+  SplashRadius: 2.5
+  SplashDamageMultiplier: 0.55
+  SplashForce: 5

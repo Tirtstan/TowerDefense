@@ -13,21 +13,21 @@ MonoBehaviour:
   m_Name: Barricade
   m_EditorClassIdentifier: Assembly-CSharp::TowerSO
   Id: 4
-  Name: Catapult
-  Description: Ground shock enemies!
+  Name: Barricade
+  Description: Block enemies!
   PlaceableLayer:
     serializedVersion: 2
-    m_Bits: 1032
+    m_Bits: 1024
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  Sprite: {fileID: 21300000, guid: 537aff0fc3b1ce84f8a50660eaf05cfd, type: 3}
-  Prefab: {fileID: 8474714792004710613, guid: cdd866da0de93b441b6ab4d702297723, type: 3}
-  PrefabPreview: {fileID: 8474714792004710613, guid: 673a178e54f48f64aae06725228f6c40, type: 3}
-  OriginalMesh: {fileID: 919132149155446097, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
+  Sprite: {fileID: 21300000, guid: cbbbc437d4d59df4aa0c975d10f8cf73, type: 3}
+  Prefab: {fileID: 8474714792004710613, guid: fef7b1854dd9e4e488aff20a32ba8882, type: 3}
+  PrefabPreview: {fileID: 8474714792004710613, guid: e249a802f5e980e4b8498796cccd9fdb, type: 3}
+  OriginalMesh: {fileID: 919132149155446097, guid: d00c45a67ac33fd49bf1939a90b187ec, type: 3}
   Stats:
-    Health: 50
+    Health: 75
     Cost: 40
     Damage: 0
-    Range: 0
+    Range: 1
     AttackInterval: 10

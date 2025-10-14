@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: UFO Range A
   m_EditorClassIdentifier: Assembly-CSharp::EnemySO
   Name: UFO Seeker
-  Health: 75
+  Health: 35
   Damage: 8
   Speed: 1.5
   VisionRange: 8

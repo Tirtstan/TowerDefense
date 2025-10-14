@@ -9,12 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5599f4ba4f83e954bb9da2e91ecef0f3, type: 3}
+  m_Script: {fileID: 11500000, guid: 52234c69a45a1344db472462b4feac1e, type: 3}
   m_Name: Boulder
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileSO
+  m_EditorClassIdentifier: Assembly-CSharp::CannonBallSO
   Lifetime: 15
-  Speed: 7
+  Speed: 1.3
   HitLayers:
     serializedVersion: 2
     m_Bits: 128
-  MinYPosition: 100
+  MinYPosition: 50
+  SplashRadius: 5
+  SplashDamageMultiplier: 0.35
+  SplashForce: 3

@@ -27,7 +27,7 @@ MonoBehaviour:
   OriginalMesh: {fileID: 919132149155446097, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
   Stats:
     Health: 100
-    Cost: 150
-    Damage: 14
+    Cost: 80
+    Damage: 18
     Range: 4
     AttackInterval: 3

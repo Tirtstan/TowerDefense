@@ -7,10 +7,11 @@ public sealed class TowerShooter : TowerAttack
 {
     public override event Action OnAttack;
 
-    [Header("Components")]
+    [Header("Tower")]
     [SerializeField]
     private Tower tower;
 
+    [Header("Projectile")]
     [SerializeField]
     private Projectile projectilePrefab;
 

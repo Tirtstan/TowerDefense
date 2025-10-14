@@ -28,6 +28,6 @@ MonoBehaviour:
   Stats:
     Health: 200
     Cost: 9999
-    Damage: 25
+    Damage: 35
     Range: 3
-    AttackInterval: 5
+    AttackInterval: 4
