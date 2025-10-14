@@ -13,7 +13,7 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent agent;
 
     [SerializeField]
-    private EnemyAttacker enemyAttacker;
+    private EnemyAttack enemyAttack;
 
     [Header("Configs")]
     [SerializeField]
@@ -55,7 +55,7 @@ public class EnemyController : MonoBehaviour
 
     private void HandleAttacking()
     {
-        if (!hasValidTarget || currentTargetDamagable == null || enemyAttacker == null)
+        if (!hasValidTarget || currentTargetDamagable == null || enemyAttack == null)
             return;
 
         attackTimer += Time.deltaTime;
@@ -90,7 +90,7 @@ public class EnemyController : MonoBehaviour
 
         float sqrDistanceToTarget = (transform.position - currentTarget.position).sqrMagnitude;
         if (sqrDistanceToTarget <= enemySO.AttackRange * enemySO.AttackRange)
-            enemyAttacker.Attack(new[] { currentTargetDamagable });
+            enemyAttack.Attack(new[] { currentTargetDamagable });
     }
 
     private void OnTriggerEnter(Collider other)
@@ -252,6 +252,12 @@ public class EnemyController : MonoBehaviour
     private void OnDestroy()
     {
         UnsubscribeFromTargetDeath(currentTargetDamagable);
+    }
+
+    private void OnValidate()
+    {
+        visionCollider = GetComponent<SphereCollider>();
+        SetupComponents();
     }
 
     private void OnDrawGizmosSelected()

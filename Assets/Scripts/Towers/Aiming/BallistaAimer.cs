@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BallistaAimer : TowerAimer
+public class BallistaAimer : Aimer
 {
     [Header("Visuals")]
     [SerializeField]

@@ -7,15 +7,19 @@ public sealed class EnemyShooter : EnemyAttack
 {
     public override event Action OnAttack;
 
-    [Header("Components")]
+    [Header("Enemy")]
     [SerializeField]
     private EnemySO enemySO;
 
+    [Header("Projectile")]
     [SerializeField]
     private Projectile projectilePrefab;
 
     [SerializeField]
     private Transform shootPoint;
+
+    [SerializeField]
+    private Aimer aimer;
 
     private const int DefaultCapacity = 2;
     private const int MaxSize = 5;
@@ -49,10 +53,18 @@ public sealed class EnemyShooter : EnemyAttack
         }
     }
 
+    private void Update()
+    {
+        if (aimer == null)
+            return;
+
+        aimer.AimAt(closestTarget);
+    }
+
     private void ShootProjectile(Transform target)
     {
         Projectile projectile = projectilePool.Get();
-        projectile.transform.SetPositionAndRotation(shootPoint.position, Quaternion.identity);
+        projectile.transform.SetPositionAndRotation(shootPoint.position, shootPoint.rotation);
         projectile.Initialize(enemySO.Damage, target, projectilePool);
     }
 

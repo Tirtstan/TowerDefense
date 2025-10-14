@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SimpleAimer : TowerAimer
+public class SimpleAimer : Aimer
 {
     [Header("Configs")]
     [SerializeField]

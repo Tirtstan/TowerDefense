@@ -19,7 +19,7 @@ public sealed class TowerShooter : TowerAttack
     private Transform shootPoint;
 
     [SerializeField]
-    private TowerAimer aimer;
+    private Aimer aimer;
 
     private const int DefaultCapacity = 2;
     private const int MaxSize = 5;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ArcAimer : TowerAimer
+public class ArcAimer : Aimer
 {
     [Header("Visuals")]
     [SerializeField]

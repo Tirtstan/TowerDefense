@@ -28,7 +28,8 @@ public sealed class MovingProjectile : Projectile
     private Vector3 startPosition;
     private Vector3 targetPosition;
     private float journeyTime;
-    private readonly Collider[] maxColliders = new Collider[15];
+    private Collider[] maxColliders;
+    private const int MaxColliderAmount = 10;
 
     private void Awake()
     {
@@ -117,6 +118,9 @@ public sealed class MovingProjectile : Projectile
 
     private void SplashAttack(SplashProjectileSO splashSO)
     {
+        if (maxColliders == null || maxColliders.Length != MaxColliderAmount)
+            maxColliders = new Collider[MaxColliderAmount];
+
         int count = Physics.OverlapSphereNonAlloc(
             transform.position,
             splashSO.SplashRadius,

@@ -16,6 +16,14 @@ public class AttackShake : MonoBehaviour
     [SerializeField]
     [Range(0.1f, 1f)]
     private float shakeForce = 0.1f;
+
+    [SerializeField]
+    [Range(0.1f, 1f)]
+    private float punchForce = 0.2f;
+
+    [SerializeField]
+    [Range(0.1f, 1f)]
+    private float shakeDuration = 0.2f;
     private IAttack towerAttack;
 
     private void Awake()
@@ -30,7 +38,7 @@ public class AttackShake : MonoBehaviour
 
     private void HandleAttack()
     {
-        visual.DOPunchScale(Vector3.one * shakeForce, 0.1f, 1, 0);
+        visual.DOPunchScale(new Vector3(0.25f, -0.75f, 0.25f) * punchForce, shakeDuration, 1, 0.5f);
         cinemachineImpulseSource.GenerateImpulse(GetRandomVelocity() * shakeForce);
     }
 

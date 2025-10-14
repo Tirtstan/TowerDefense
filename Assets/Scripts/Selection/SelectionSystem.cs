@@ -88,6 +88,16 @@ public class SelectionSystem : Singleton<SelectionSystem>
         OnSelected?.Invoke(selectable);
     }
 
+    public void DeselectObject(IGameSelectable selectable)
+    {
+        if (currentSelected == selectable)
+        {
+            currentSelected.Deselect();
+            OnDeselected?.Invoke(currentSelected);
+            currentSelected = null;
+        }
+    }
+
     private void OnDestroy()
     {
         if (playerInput == null)

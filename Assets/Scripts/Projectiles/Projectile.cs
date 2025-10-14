@@ -10,6 +10,7 @@ public abstract class Projectile : MonoBehaviour, IProjectile
     protected float Damage { get; set; }
     protected Transform Target { get; set; }
     protected float lifetime;
+    private bool isReleased;
 
     public virtual void Initialize(float damage, Transform target, ObjectPool<Projectile> pool)
     {
@@ -17,6 +18,7 @@ public abstract class Projectile : MonoBehaviour, IProjectile
         Target = target;
         this.pool = pool;
         lifetime = 0f;
+        isReleased = false;
     }
 
     protected virtual void FixedUpdate()
@@ -36,6 +38,11 @@ public abstract class Projectile : MonoBehaviour, IProjectile
 
     protected virtual void ReleaseToPool()
     {
+        if (isReleased)
+            return;
+
+        isReleased = true;
+
         if (pool != null)
         {
             Target = null;

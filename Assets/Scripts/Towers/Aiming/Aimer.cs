@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class TowerAimer : MonoBehaviour, ITowerAimer
+public abstract class Aimer : MonoBehaviour, ITowerAimer
 {
     public abstract void AimAt(Transform target);
 }

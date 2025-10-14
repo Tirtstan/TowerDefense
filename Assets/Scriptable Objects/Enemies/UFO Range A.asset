@@ -16,8 +16,8 @@ MonoBehaviour:
   Health: 35
   Damage: 8
   Speed: 1.5
-  VisionRange: 8
-  AttackRange: 8
+  VisionRange: 7
+  AttackRange: 7
   AttackInterval: 2.5
   CurrencyDropAmount: 30
   DifficultyRating: 1.5
