@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Pool;
 
 public abstract class Spawner : MonoBehaviour
 {
     public abstract event Action<EnemyHealth> OnSpawned;
+    public virtual event Action<EnemyHealth> OnReleased;
 
     [Header("Enemy")]
     [SerializeField]
@@ -37,11 +39,18 @@ public abstract class Spawner : MonoBehaviour
     {
         EnemyHealth enemy = Instantiate(enemyPrefab);
         enemy.gameObject.SetActive(false);
+
+        // Disable NavMeshAgent on creation to avoid errors
+        if (enemy.TryGetComponent(out NavMeshAgent agent))
+            agent.enabled = false;
+
         return enemy;
     }
 
     protected virtual void OnGetFromPool(EnemyHealth enemy)
     {
+        // Don't activate yet - let the spawner position it first
+        // The spawner will handle NavMeshAgent enabling
         enemy.gameObject.SetActive(true);
         enemy.Spawner = this;
         activeEnemies.Add(enemy);
@@ -49,6 +58,10 @@ public abstract class Spawner : MonoBehaviour
 
     protected virtual void OnReturnToPool(EnemyHealth enemy)
     {
+        // Disable NavMeshAgent before deactivating
+        if (enemy.TryGetComponent(out NavMeshAgent agent))
+            agent.enabled = false;
+
         enemy.gameObject.SetActive(false);
         activeEnemies.Remove(enemy);
 
@@ -64,9 +77,13 @@ public abstract class Spawner : MonoBehaviour
         Destroy(enemy.gameObject);
     }
 
-    public abstract void SpawnEnemy(Vector3 position);
+    public abstract void SpawnEnemy(Vector3 position, Quaternion rotation);
 
-    public virtual void ReturnToPool(EnemyHealth enemyHealth) => Pool.Release(enemyHealth);
+    public virtual void ReturnToPool(EnemyHealth enemyHealth)
+    {
+        OnReleased?.Invoke(enemyHealth);
+        Pool.Release(enemyHealth);
+    }
 
     public abstract void ClearAll();
 

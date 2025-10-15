@@ -109,7 +109,7 @@ MonoBehaviour:
   pathTJunctionPrefab: {fileID: 4903931372056868799, guid: f55208b3b3809a943afb6b0a48961d40, type: 3}
   pathCrossJunctionPrefab: {fileID: 6420473897053404244, guid: 4899ebb3bfc502045abedc8099f222f7, type: 3}
   centerTowerTilePrefab: {fileID: 1596917171735200923, guid: 3259b95dea43be04392113cd9c4667b2, type: 3}
-  enemyTowerTilePrefab: {fileID: 1596917171735200923, guid: 3259b95dea43be04392113cd9c4667b2, type: 3}
+  enemyTowerTilePrefab: {fileID: 1596917171735200923, guid: 9bfff065c4272554d97c691203d40151, type: 3}
   playerBasePrefab: {fileID: 2238805961231198067, guid: 751a6af356bc43a478c64a992c6b3a84, type: 3}
   enemyTowerPrefab: {fileID: 7875591106293109387, guid: 4daa84450ee31ec47ba6db2c11c0e4aa, type: 3}
   allowCornerTowers: 1

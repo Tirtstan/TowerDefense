@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c84f0d297c19594faec1fa9e3f625d3, type: 3}
   m_Name: Barricade
   m_EditorClassIdentifier: Assembly-CSharp::TowerSO
-  Id: 4
+  Id: 5
   Name: Barricade
   Description: Block enemies!
   PlaceableLayer:
@@ -31,3 +31,4 @@ MonoBehaviour:
     Damage: 0
     Range: 1
     AttackInterval: 10
+    TargetingType: 3

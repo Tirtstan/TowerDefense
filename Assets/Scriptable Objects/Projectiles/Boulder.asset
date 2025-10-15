@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CannonBallSO
   Lifetime: 15
   Speed: 1.3
+  MinYPosition: 50
   HitLayers:
     serializedVersion: 2
     m_Bits: 128
-  MinYPosition: 50
-  SplashRadius: 5
+  SplashRadius: 1.5
   SplashDamageMultiplier: 0.35
   SplashForce: 3

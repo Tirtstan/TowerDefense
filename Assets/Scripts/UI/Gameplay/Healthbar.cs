@@ -60,7 +60,7 @@ public class Healthbar : MonoBehaviour
         if (isReleasing)
             return;
 
-        if (target == null || damagable == null)
+        if (target == null || damagable == null || !target.gameObject.activeInHierarchy)
         {
             ReleaseSelf();
             return;

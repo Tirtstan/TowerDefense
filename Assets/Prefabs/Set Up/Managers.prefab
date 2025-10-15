@@ -32,9 +32,9 @@ Transform:
   - {fileID: 1008763107390621570}
   - {fileID: 8480588835785270192}
   - {fileID: 5881632492540622167}
-  - {fileID: 7395880780213797168}
   - {fileID: 8924831926779496953}
   - {fileID: 112193156047181407}
+  - {fileID: 3032520397848268432}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1467427551389575435
@@ -83,6 +83,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
   startingCurrency: 300
   maxCurrency: 9999
+--- !u!1 &2842795499491239695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3032520397848268432}
+  - component: {fileID: 3516287420823148863}
+  m_Layer: 0
+  m_Name: TowerManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3032520397848268432
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2842795499491239695}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8451208044262476717}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3516287420823148863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2842795499491239695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca43f0762e4ef4142ab77cdcd4e706aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerManager
 --- !u!1 &3862768466225625781
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,56 +281,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   timeBeforeStart: 5
---- !u!1 &5571842266696598282
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7395880780213797168}
-  - component: {fileID: 7225155899562101402}
-  m_Layer: 0
-  m_Name: EnemySpawnController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7395880780213797168
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5571842266696598282}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8451208044262476717}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7225155899562101402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5571842266696598282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0dfba4352a377f14fb20df2fdc1d4e9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnController
-  enemyPrefabs:
-  - {fileID: 747583962200913497, guid: ba39495b7c26a364886ace3a1c426cde, type: 3}
-  - {fileID: 747583962200913497, guid: 4c5dcfe871748cd44b4b0391fffab024, type: 3}
-  - {fileID: 747583962200913497, guid: 711cdbea74acd5b40bfe98c7bd6820f8, type: 3}
-  spawnInterval: 20
-  spawnCountRange: {x: 3, y: 6}
 --- !u!1 &7152796208025946235
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +477,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60cc6088d127731498dcf94fcbc957ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  ufoMeleeASpawner: {fileID: 5919290719966598369}
-  ufoMeleeBSpawner: {fileID: 3704368903273620619}
-  ufoRangeASpawner: {fileID: 7392390327293371747}
+  enemySpawners:
+  - {fileID: 5919290719966598369}
+  - {fileID: 3704368903273620619}
+  - {fileID: 7392390327293371747}
   timeBetweenWaves: 5
+  baseSpawnInterval: 1
+  baseEnemiesToSpawn: 1
+  minBudget: 10
+  budgetIncreasePerWave: 5
+  bossWaveInterval: 5
+  bossWaveBudgetMultiplier: 1.5
+  waveCompletionReward: 40
+  bossWaveReward: 100
+  earlyGameThreshold: 2

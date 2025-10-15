@@ -54,4 +54,16 @@ public abstract class Projectile : MonoBehaviour, IProjectile
             Destroy(gameObject);
         }
     }
+
+    protected virtual void OnDrawGizmosSelected()
+    {
+        if (projectileSO != null)
+        {
+            if (projectileSO is not SplashProjectileSO splashSO)
+                return;
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, splashSO.SplashRadius);
+        }
+    }
 }

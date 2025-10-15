@@ -56,7 +56,7 @@ public sealed class MovingProjectile : Projectile
 
     protected override void UpdateProjectile()
     {
-        if (Target == null && movementType == ProjectileMovementType.Straight)
+        if ((Target == null || !Target.gameObject.activeInHierarchy) && movementType == ProjectileMovementType.Straight)
         {
             ReleaseToPool();
             return;

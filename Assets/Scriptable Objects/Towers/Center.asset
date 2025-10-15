@@ -31,3 +31,4 @@ MonoBehaviour:
     Damage: 35
     Range: 3
     AttackInterval: 4
+    TargetingType: 1

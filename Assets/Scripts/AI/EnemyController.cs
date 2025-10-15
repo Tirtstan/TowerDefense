@@ -60,6 +60,9 @@ public class EnemyController : MonoBehaviour
         if (!hasValidTarget || currentTarget == null)
             return;
 
+        if (!agent.isOnNavMesh)
+            return;
+
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
         {
             Vector3 direction = (currentTarget.position - transform.position).normalized;
@@ -106,6 +109,9 @@ public class EnemyController : MonoBehaviour
             FindAndSetTarget();
             return;
         }
+
+        if (!agent.isOnNavMesh)
+            return;
 
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
             enemyAttack.Attack(new[] { currentTargetDamagable });
@@ -229,8 +235,12 @@ public class EnemyController : MonoBehaviour
 
         currentTarget = newTarget;
         hasValidTarget = true;
-        agent.isStopped = false;
-        agent.SetDestination(currentTarget.position);
+
+        if (agent.isOnNavMesh)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(currentTarget.position);
+        }
 
         if (currentTarget.TryGetComponent(out IDamagable damagable))
         {
