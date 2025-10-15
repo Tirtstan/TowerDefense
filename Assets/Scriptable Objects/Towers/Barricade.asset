@@ -21,7 +21,7 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 128
-  Sprite: {fileID: 21300000, guid: cbbbc437d4d59df4aa0c975d10f8cf73, type: 3}
+  Sprite: {fileID: 21300000, guid: aac95966f0d9c1445be83d2e3b722270, type: 3}
   Prefab: {fileID: 8474714792004710613, guid: fef7b1854dd9e4e488aff20a32ba8882, type: 3}
   PrefabPreview: {fileID: 8474714792004710613, guid: e249a802f5e980e4b8498796cccd9fdb, type: 3}
   OriginalMesh: {fileID: 919132149155446097, guid: d00c45a67ac33fd49bf1939a90b187ec, type: 3}

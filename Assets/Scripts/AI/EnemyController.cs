@@ -37,6 +37,7 @@ public class EnemyController : MonoBehaviour
         if (enemySO != null)
         {
             agent.speed = enemySO.Speed;
+            agent.stoppingDistance = enemySO.AttackRange;
             visionCollider.radius = enemySO.VisionRange;
         }
 
@@ -51,6 +52,24 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         HandleAttacking();
+        HandleRotation();
+    }
+
+    private void HandleRotation()
+    {
+        if (!hasValidTarget || currentTarget == null)
+            return;
+
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            Vector3 direction = (currentTarget.position - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                lookRotation,
+                Time.deltaTime * agent.angularSpeed
+            );
+        }
     }
 
     private void HandleAttacking()
@@ -88,8 +107,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        float sqrDistanceToTarget = (transform.position - currentTarget.position).sqrMagnitude;
-        if (sqrDistanceToTarget <= enemySO.AttackRange * enemySO.AttackRange)
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
             enemyAttack.Attack(new[] { currentTargetDamagable });
     }
 
@@ -203,6 +221,7 @@ public class EnemyController : MonoBehaviour
         if (newTarget == null)
         {
             hasValidTarget = false;
+            agent.isStopped = true;
             return;
         }
 
@@ -210,6 +229,7 @@ public class EnemyController : MonoBehaviour
 
         currentTarget = newTarget;
         hasValidTarget = true;
+        agent.isStopped = false;
         agent.SetDestination(currentTarget.position);
 
         if (currentTarget.TryGetComponent(out IDamagable damagable))

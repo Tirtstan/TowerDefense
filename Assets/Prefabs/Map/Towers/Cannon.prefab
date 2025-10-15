@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 2905175675324617345}
   - component: {fileID: 1497906374321712444}
   - component: {fileID: 2170674514108218971}
+  - component: {fileID: 5723175829402487131}
   m_Layer: 6
   m_Name: Cannon
   m_TagString: Untagged
@@ -194,6 +195,24 @@ MonoBehaviour:
   duration: 0.1
   strength: 0.2
   ease: 18
+--- !u!114 &5723175829402487131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508340036517391532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7693ad5fcdf8114c9a371fc668f1b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KnockbackVisualOnAttack
+  visual: {fileID: 873669629279812713}
+  knockbackDistance: 0.2
+  knockbackDuration: 0.1
+  returnDuration: 0.2
+  startEaseType: 3
+  returnEaseType: 30
 --- !u!1001 &1613181215704113606
 PrefabInstance:
   m_ObjectHideFlags: 0

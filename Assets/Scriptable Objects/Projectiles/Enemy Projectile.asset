@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemy Projectile
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileSO
   Lifetime: 5
-  Speed: 12
+  Speed: 15
   MinYPosition: 0.25
   HitLayers:
     serializedVersion: 2

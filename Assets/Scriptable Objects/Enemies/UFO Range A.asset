@@ -15,9 +15,9 @@ MonoBehaviour:
   Name: UFO Seeker
   Health: 35
   Damage: 8
-  Speed: 1.5
-  VisionRange: 7
-  AttackRange: 7
+  Speed: 1.25
+  VisionRange: 6.5
+  AttackRange: 5.5
   AttackInterval: 2.5
   CurrencyDropAmount: 30
   DifficultyRating: 1.5

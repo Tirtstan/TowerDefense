@@ -17,7 +17,7 @@ MonoBehaviour:
   Damage: 5
   Speed: 1
   VisionRange: 3.5
-  AttackRange: 2.25
+  AttackRange: 0.5
   AttackInterval: 2
   CurrencyDropAmount: 20
   DifficultyRating: 1

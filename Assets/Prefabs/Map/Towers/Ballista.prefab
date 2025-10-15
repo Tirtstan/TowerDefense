@@ -48,6 +48,7 @@ GameObject:
   - component: {fileID: 2905175675324617345}
   - component: {fileID: 2170674514108218971}
   - component: {fileID: 250214768080306954}
+  - component: {fileID: 2067986903699949567}
   m_Layer: 6
   m_Name: Ballista
   m_TagString: Untagged
@@ -195,6 +196,24 @@ MonoBehaviour:
   yAxisBody: {fileID: 473348877324488637}
   xAxisLauncher: {fileID: 1398927874987168500}
   turnRate: 10
+--- !u!114 &2067986903699949567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3508340036517391532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7693ad5fcdf8114c9a371fc668f1b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::KnockbackVisualOnAttack
+  visual: {fileID: 1398927874987168500}
+  knockbackDistance: 0.125
+  knockbackDuration: 0.1
+  returnDuration: 0.25
+  startEaseType: 3
+  returnEaseType: 24
 --- !u!1001 &79680743193503830
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -242,6 +261,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d1ebe6153b25d9641bc5770d4d708f94, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3868710468543803471, guid: d1ebe6153b25d9641bc5770d4d708f94, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: d1ebe6153b25d9641bc5770d4d708f94, type: 3}
       propertyPath: m_Name
