@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c84f0d297c19594faec1fa9e3f625d3, type: 3}
+  m_Name: Barricade
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSO
+  Id: 5
+  Name: Barricade
+  Description: Block enemies!
+  PlaceableLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  Sprite: {fileID: 21300000, guid: aac95966f0d9c1445be83d2e3b722270, type: 3}
+  Prefab: {fileID: 8474714792004710613, guid: fef7b1854dd9e4e488aff20a32ba8882, type: 3}
+  PrefabPreview: {fileID: 8474714792004710613, guid: e249a802f5e980e4b8498796cccd9fdb, type: 3}
+  OriginalMesh: {fileID: 919132149155446097, guid: d00c45a67ac33fd49bf1939a90b187ec, type: 3}
+  Stats:
+    Health: 75
+    Cost: 40
+    Damage: 0
+    Range: 1
+    AttackInterval: 10
+    TargetingType: 3

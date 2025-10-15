@@ -9,8 +9,8 @@ public class SpinObject : MonoBehaviour
     [SerializeField]
     private float spinSpeed = 10f;
 
-    private void Update()
+    private void FixedUpdate()
     {
-        transform.Rotate(direction, spinSpeed * Time.deltaTime);
+        transform.Rotate(direction, spinSpeed * Time.fixedDeltaTime);
     }
 }

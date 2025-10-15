@@ -26,8 +26,9 @@ MonoBehaviour:
   PrefabPreview: {fileID: 0}
   OriginalMesh: {fileID: 919132149155446097, guid: 13d4fc0b91338e84eb5e679eee9f10c5, type: 3}
   Stats:
-    Health: 1000
+    Health: 200
     Cost: 9999
-    Damage: 40
+    Damage: 35
     Range: 3
-    AttackInterval: 5
+    AttackInterval: 4
+    TargetingType: 1

@@ -40,7 +40,7 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
 
     public void Heal(float amount) => TakeDamage(-amount);
 
-    private void Die()
+    public void Die()
     {
         OnDeath?.Invoke();
         Destroy(gameObject);

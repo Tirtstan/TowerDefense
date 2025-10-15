@@ -9,5 +9,7 @@ public interface IDamagable
     public float CurrentHealth { get; }
     public float MaxHealth { get; }
     public void TakeDamage(float amount);
+    public void Heal(float amount);
+    public void Die();
     public float GetHealthPercentage() => CurrentHealth / MaxHealth;
 }

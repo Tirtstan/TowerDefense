@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Arrow
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileSO
   Lifetime: 5
-  Speed: 8
+  Speed: 10
   HitLayers:
     serializedVersion: 2
     m_Bits: 128

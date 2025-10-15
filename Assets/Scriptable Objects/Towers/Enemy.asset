@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Enemy
   m_EditorClassIdentifier: Assembly-CSharp::TowerSO
   Id: 100
-  Name: Thumper
+  Name: Enemy
   Description: 
   PlaceableLayer:
     serializedVersion: 2
@@ -31,3 +31,4 @@ MonoBehaviour:
     Damage: 5
     Range: 2
     AttackInterval: 1
+    TargetingType: 3

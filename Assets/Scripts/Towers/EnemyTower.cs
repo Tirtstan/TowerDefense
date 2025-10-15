@@ -14,12 +14,12 @@ public class EnemyTower : MonoBehaviour
 
     private void Start()
     {
-        EnemySpawnController.Instance.RegisterSpawnPoint(spawnPoint);
+        WaveManager.Instance.RegisterSpawnPoint(spawnPoint);
     }
 
     private void OnDestroy()
     {
-        if (EnemySpawnController.Instance != null)
-            EnemySpawnController.Instance.UnregisterSpawnPoint(spawnPoint);
+        if (WaveManager.Instance != null)
+            WaveManager.Instance.UnregisterSpawnPoint(spawnPoint);
     }
 }

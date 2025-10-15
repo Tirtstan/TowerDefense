@@ -67,7 +67,10 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
     {
         currentTower = tower;
         if (currentTower.TryGetComponent(out currentHealth))
+        {
             currentHealth.OnHealthChanged += OnTowerHealthChanged;
+            currentHealth.OnDeath += HideMenu;
+        }
 
         menu.SetActive(true);
         UpdateDisplay(tower);
@@ -85,7 +88,7 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         levelText.SetText($"Lvl. {1}"); // TODO: Implement level system
 
         damageText.SetText($"{stats.Damage} damage");
-        rangeText.SetText($"{stats.Range} metre(s)");
+        rangeText.SetText($"{stats.Range:0.0} metre(s)");
         attackIntervalText.SetText($"{stats.AttackInterval:0.0} sec(s)");
 
         UpdateHealthDisplay(currentHealth.CurrentHealth, stats.Health);
@@ -103,10 +106,24 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
     public void HideMenu()
     {
         if (currentHealth != null)
+        {
             currentHealth.OnHealthChanged -= OnTowerHealthChanged;
+            currentHealth.OnDeath -= HideMenu;
+        }
 
         currentTower = null;
         currentHealth = null;
         menu.SetActive(false);
+    }
+
+    public bool TryHideMenu(Tower tower)
+    {
+        if (currentTower == tower)
+        {
+            HideMenu();
+            return true;
+        }
+
+        return false;
     }
 }

@@ -13,14 +13,11 @@ public class EnemyController : MonoBehaviour
     private NavMeshAgent agent;
 
     [SerializeField]
-    private EnemyAttacker enemyAttacker;
+    private EnemyAttack enemyAttack;
 
     [Header("Configs")]
     [SerializeField]
     private LayerMask towerLayer;
-
-    [SerializeField]
-    private float attackRange = 2f;
 
     private SphereCollider visionCollider;
     private Transform currentTarget;
@@ -40,6 +37,7 @@ public class EnemyController : MonoBehaviour
         if (enemySO != null)
         {
             agent.speed = enemySO.Speed;
+            agent.stoppingDistance = enemySO.AttackRange;
             visionCollider.radius = enemySO.VisionRange;
         }
 
@@ -54,11 +52,32 @@ public class EnemyController : MonoBehaviour
     private void Update()
     {
         HandleAttacking();
+        HandleRotation();
+    }
+
+    private void HandleRotation()
+    {
+        if (!hasValidTarget || currentTarget == null)
+            return;
+
+        if (!agent.isOnNavMesh)
+            return;
+
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+        {
+            Vector3 direction = (currentTarget.position - transform.position).normalized;
+            Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                lookRotation,
+                Time.deltaTime * agent.angularSpeed
+            );
+        }
     }
 
     private void HandleAttacking()
     {
-        if (!hasValidTarget || currentTargetDamagable == null || enemyAttacker == null)
+        if (!hasValidTarget || currentTargetDamagable == null || enemyAttack == null)
             return;
 
         attackTimer += Time.deltaTime;
@@ -91,9 +110,11 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        float sqrDistanceToTarget = (transform.position - currentTarget.position).sqrMagnitude;
-        if (sqrDistanceToTarget <= attackRange * attackRange)
-            enemyAttacker.Attack(new[] { currentTargetDamagable });
+        if (!agent.isOnNavMesh)
+            return;
+
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
+            enemyAttack.Attack(new[] { currentTargetDamagable });
     }
 
     private void OnTriggerEnter(Collider other)
@@ -206,6 +227,7 @@ public class EnemyController : MonoBehaviour
         if (newTarget == null)
         {
             hasValidTarget = false;
+            agent.isStopped = true;
             return;
         }
 
@@ -213,7 +235,12 @@ public class EnemyController : MonoBehaviour
 
         currentTarget = newTarget;
         hasValidTarget = true;
-        agent.SetDestination(currentTarget.position);
+
+        if (agent.isOnNavMesh)
+        {
+            agent.isStopped = false;
+            agent.SetDestination(currentTarget.position);
+        }
 
         if (currentTarget.TryGetComponent(out IDamagable damagable))
         {
@@ -257,20 +284,23 @@ public class EnemyController : MonoBehaviour
         UnsubscribeFromTargetDeath(currentTargetDamagable);
     }
 
+    private void OnValidate()
+    {
+        visionCollider = GetComponent<SphereCollider>();
+        SetupComponents();
+    }
+
     private void OnDrawGizmosSelected()
     {
         if (enemySO == null)
             return;
 
-        // Vision range
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, enemySO.VisionRange);
 
-        // Attack range
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
+        Gizmos.DrawWireSphere(transform.position, enemySO.AttackRange);
 
-        // Line to current target
         if (hasValidTarget && currentTarget != null)
         {
             Gizmos.color = Color.green;

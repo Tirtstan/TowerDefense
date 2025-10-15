@@ -35,7 +35,7 @@ public class TowerSelectable : MonoBehaviour, IGameSelectable
         if (TowerInfoMenu.Instance == null)
             return;
 
-        TowerInfoMenu.Instance.HideMenu();
+        TowerInfoMenu.Instance.TryHideMenu(tower);
         if (!alwaysShowRangeIndicator)
             ToggleRangeIndicator(false);
     }
@@ -44,6 +44,9 @@ public class TowerSelectable : MonoBehaviour, IGameSelectable
 
     private void OnDestroy()
     {
+        if (SelectionSystem.Instance != null)
+            SelectionSystem.Instance.DeselectObject(this);
+
         Deselect();
     }
 }

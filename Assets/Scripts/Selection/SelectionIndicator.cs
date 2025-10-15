@@ -16,7 +16,11 @@ public class SelectionIndicator : MonoBehaviour
         SelectionSystem.OnDeselected += HandleDeselected;
     }
 
-    private void HandleSelected(IGameSelectable selectable)
+    private void HandleSelected(IGameSelectable selectable) => ShowSelector(selectable);
+
+    private void HandleDeselected(IGameSelectable selectable) => HideSelector();
+
+    public void ShowSelector(IGameSelectable selectable)
     {
         if (selectable == null || selectable.Transform == null)
             return;
@@ -24,8 +28,6 @@ public class SelectionIndicator : MonoBehaviour
         selectionIndicator.SetActive(true);
         selectionIndicator.transform.position = selectable.Transform.position + offset;
     }
-
-    private void HandleDeselected(IGameSelectable selectable) => HideSelector();
 
     public void HideSelector() => selectionIndicator.SetActive(false);
 
