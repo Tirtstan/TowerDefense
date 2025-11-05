@@ -281,7 +281,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f12bfaa5c5db9ed43b701ffc926ced01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  timeBeforeStart: 5
 --- !u!1 &7152796208025946235
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +483,8 @@ MonoBehaviour:
   - {fileID: 5919290719966598369}
   - {fileID: 3704368903273620619}
   - {fileID: 7392390327293371747}
-  timeBetweenWaves: 5
+  initialDelay: 5
+  timeBetweenWaves: 3
   baseSpawnInterval: 1
   baseEnemiesToSpawn: 1
   minBudget: 10

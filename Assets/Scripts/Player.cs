@@ -9,13 +9,17 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        GameManager.OnGameEnd += OnGameEnd;
+        GameManager.OnGameStateChanged += OnGameStateChanged;
     }
 
-    private void OnGameEnd() => playerInput.DeactivateInput();
+    private void OnGameStateChanged(GameState gameState)
+    {
+        if (gameState == GameState.GameOver)
+            playerInput.DeactivateInput();
+    }
 
     private void OnDestroy()
     {
-        GameManager.OnGameEnd -= OnGameEnd;
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
     }
 }

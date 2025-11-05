@@ -22,7 +22,11 @@ public class BallistaAimer : Aimer
         if (yAxisBody != null)
         {
             LMotion
-                .Create(Vector3.zero, Vector3.up * 360f, 0.9f)
+                .Create(
+                    yAxisBody.eulerAngles,
+                    new Vector3(yAxisBody.eulerAngles.x, 360f, yAxisBody.eulerAngles.z),
+                    0.9f
+                )
                 .WithEase(Ease.OutCubic)
                 .WithOnComplete(() => canAim = true)
                 .BindToEulerAngles(yAxisBody)

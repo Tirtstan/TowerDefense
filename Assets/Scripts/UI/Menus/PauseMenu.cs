@@ -41,7 +41,11 @@ public class PauseMenu : MonoBehaviour
 
     private void Restart() => SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
 
-    private void OpenMainMenu() => Debug.Log("Open Main Menu");
+    private void OpenMainMenu()
+    {
+        GameManager.Instance.MainMenu();
+        OnResumeClicked();
+    }
 
     private void OpenOptions() => Debug.Log("Open Options");
 

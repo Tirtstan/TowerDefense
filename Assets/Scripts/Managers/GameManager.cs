@@ -1,61 +1,81 @@
 using System;
-using System.Collections;
+using LitMotion;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 [DefaultExecutionOrder(-10)]
 public class GameManager : Singleton<GameManager>
 {
-    public static event Action OnGameStart;
-    public static event Action OnGameEnd;
-
-    [Header("Configs")]
-    [SerializeField]
-    private float timeBeforeStart = 5f;
-    public bool HasGameStarted { get; private set; }
+    public static event Action<GameState> OnGameStateChanged;
+    public GameState CurrentGameState { get; private set; } = GameState.MainMenu;
     public float TimeSinceStart { get; private set; }
-    private WaitForSeconds waitForStart;
+    private MotionHandle motionHandle;
+    private float originalFogDensity;
 
     protected override void Awake()
     {
         base.Awake();
         Random.InitState((int)DateTime.Now.Ticks);
-        waitForStart = new WaitForSeconds(timeBeforeStart);
+        originalFogDensity = RenderSettings.fogDensity;
     }
 
     private void Start()
     {
-        StartCoroutine(StartGameAfterDelay());
-    }
-
-    private IEnumerator StartGameAfterDelay()
-    {
-        yield return waitForStart;
-        StartGame();
+        MainMenu();
     }
 
     private void Update()
     {
-        if (HasGameStarted)
+        if (CurrentGameState == GameState.Playing)
             TimeSinceStart += Time.deltaTime;
     }
 
     public void StartGame()
     {
-        if (HasGameStarted)
+        if (CurrentGameState == GameState.Playing)
             return;
 
-        OnGameStart?.Invoke();
-        HasGameStarted = true;
+        ChangeGameState(GameState.Playing);
+
+        motionHandle.TryCancel();
+        motionHandle = LMotion
+            .Create(RenderSettings.fogDensity, originalFogDensity, 2f)
+            .WithEase(Ease.Linear)
+            .Bind(value => RenderSettings.fogDensity = value)
+            .AddTo(gameObject);
 
         Debug.Log("Game Started");
     }
 
     public void EndGame()
     {
-        OnGameEnd?.Invoke();
-        HasGameStarted = false;
-
+        ChangeGameState(GameState.GameOver);
         Debug.Log("Game Ended");
     }
+
+    public void MainMenu()
+    {
+        TimeSinceStart = 0f;
+        ChangeGameState(GameState.MainMenu);
+
+        motionHandle.TryCancel();
+        motionHandle = LMotion
+            .Create(RenderSettings.fogDensity, originalFogDensity / 4f, 2f)
+            .WithEase(Ease.Linear)
+            .Bind(value => RenderSettings.fogDensity = value)
+            .AddTo(gameObject);
+    }
+
+    private void ChangeGameState(GameState newState)
+    {
+        CurrentGameState = newState;
+        OnGameStateChanged?.Invoke(newState);
+    }
+}
+
+public enum GameState
+{
+    MainMenu = 0,
+    Playing = 1,
+    GameOver = 2
 }

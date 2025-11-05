@@ -16,6 +16,9 @@ public class WaveManager : Singleton<WaveManager>
 
     [Header("Wave Settings")]
     [SerializeField]
+    private float initialDelay = 5f;
+
+    [SerializeField]
     private float timeBetweenWaves = 5f;
 
     [SerializeField, Tooltip("The interval between each spawn check within a wave.")]
@@ -59,8 +62,7 @@ public class WaveManager : Singleton<WaveManager>
     protected override void Awake()
     {
         base.Awake();
-        GameManager.OnGameStart += OnGameStart;
-        GameManager.OnGameEnd += OnGameEnd;
+        GameManager.OnGameStateChanged += OnGameStateChanged;
 
         foreach (var spawner in enemySpawners)
         {
@@ -71,13 +73,27 @@ public class WaveManager : Singleton<WaveManager>
 
     public int GetCurrentWaveIndex() => currentWaveIndex;
 
-    private void OnGameStart()
+    private void OnGameStateChanged(GameState gameState)
     {
-        spawnCoroutine = StartCoroutine(SpawnRoutine());
+        switch (gameState)
+        {
+            case GameState.Playing:
+                spawnCoroutine = StartCoroutine(SpawnRoutine());
+                break;
+            case GameState.GameOver:
+                if (spawnCoroutine != null)
+                    StopCoroutine(spawnCoroutine);
+                break;
+            case GameState.MainMenu:
+                CleanUp();
+                break;
+        }
     }
 
     private IEnumerator SpawnRoutine()
     {
+        yield return new WaitForSeconds(initialDelay);
+
         var wavesInterval = new WaitForSeconds(timeBetweenWaves);
         while (true)
         {
@@ -156,12 +172,6 @@ public class WaveManager : Singleton<WaveManager>
 
     private Dictionary<TowerSO, int> GetPlayerTowerCounts() => TowerManager.Instance.GetTowersPlaced();
 
-    private void OnGameEnd()
-    {
-        if (spawnCoroutine != null)
-            StopCoroutine(spawnCoroutine);
-    }
-
     public void RegisterSpawnPoint(Transform transform) => spawnPoints.Add(transform);
 
     public void UnregisterSpawnPoint(Transform transform) => spawnPoints.Remove(transform);
@@ -170,16 +180,29 @@ public class WaveManager : Singleton<WaveManager>
 
     private void RemoveActiveEnemy(EnemyHealth enemy) => activeEnemies.Remove(enemy);
 
-    private void OnDestroy()
+    private void CleanUp()
     {
-        GameManager.OnGameStart -= OnGameStart;
-        GameManager.OnGameEnd -= OnGameEnd;
+        if (spawnCoroutine != null)
+            StopCoroutine(spawnCoroutine);
+
+        currentWaveIndex = -1;
 
         foreach (var spawner in enemySpawners)
         {
             spawner.OnSpawned -= AddActiveEnemy;
             spawner.OnReleased -= RemoveActiveEnemy;
+
+            spawner.ClearAll();
         }
+
+        activeEnemies.Clear();
+        spawnPoints.Clear();
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
+        CleanUp();
     }
 }
 

@@ -27,7 +27,7 @@ public class GameOverMenu : MonoBehaviour
     private void Awake()
     {
         HideMenu();
-        GameManager.OnGameEnd += OnGameEnd;
+        GameManager.OnGameStateChanged += OnGameStateChanged;
 
         restartButton.onClick.AddListener(OnRestartClicked);
         optionsButton.onClick.AddListener(OnOptionsClicked);
@@ -35,9 +35,12 @@ public class GameOverMenu : MonoBehaviour
         exitButton.onClick.AddListener(OnExitClicked);
     }
 
-    private void OnGameEnd()
+    private void OnGameStateChanged(GameState gameState)
     {
-        PauseManager.Instance.Pause(); // probably do a different solution? (do this to prevent enemies trying to get center tower pos, null ref)
+        if (gameState != GameState.GameOver)
+            return;
+
+        // PauseManager.Instance.Pause(); // probably do a different solution? (do this to prevent enemies trying to get center tower pos, null ref)
         infoText.SetText(FormatUtils.FormatTime(GameManager.Instance.TimeSinceStart));
         ShowMenu();
     }
@@ -56,6 +59,6 @@ public class GameOverMenu : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.OnGameEnd -= OnGameEnd;
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
     }
 }

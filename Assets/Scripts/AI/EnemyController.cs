@@ -189,7 +189,7 @@ public class EnemyController : MonoBehaviour
         Transform bestTarget = GetClosestDetectedTower();
 
         // If no detected towers, default to center tower
-        if (bestTarget == null)
+        if (bestTarget == null && CenterTower.Instance != null)
             bestTarget = CenterTower.Instance.transform;
 
         SetTarget(bestTarget);
