@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
+using QFSW.QC;
 using UnityEngine;
 
+[CommandPrefix("tower.")]
 public class TowerManager : Singleton<TowerManager>
 {
     private readonly Dictionary<TowerSO, int> towersPlaced = new();
@@ -44,6 +46,7 @@ public class TowerManager : Singleton<TowerManager>
         }
     }
 
+    [Command("destroy_all_towers", "Destroys all towers in the game.")]
     public void DestroyAllTowers()
     {
         var towersToDestroy = allTowers.ToList();
@@ -58,4 +61,14 @@ public class TowerManager : Singleton<TowerManager>
     }
 
     public Dictionary<TowerSO, int> GetTowersPlaced() => towersPlaced;
+
+    [Command("try_upgrade_tower", "Attempts to upgrade the specified tower.")]
+    public bool TryUpgradeTower(Tower tower) => tower.TryUpgrade();
+
+    [Command("get_tower_stats", "Gets the effective stats of the specified tower.")]
+    public string GetTowerStatsString(Tower tower)
+    {
+        TowerStats stats = tower.GetEffectiveStats();
+        return stats.ToString();
+    }
 }

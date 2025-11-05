@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        RenderSettings.fogDensity = originalFogDensity / 4f;
         MainMenu();
     }
 

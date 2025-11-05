@@ -15,13 +15,19 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
     private bool preventDamage;
     public Transform Target => transform;
     public float CurrentHealth { get; private set; }
-    public float MaxHealth => tower.GetTowerSO().Stats.Health;
-    private TowerSO towerSO;
+    public float MaxHealth => tower.GetEffectiveStats().Health;
 
     private void Awake()
     {
-        towerSO = tower.GetTowerSO();
         CurrentHealth = MaxHealth;
+        tower.OnUpgraded += OnTowerUpgraded;
+    }
+
+    private void OnTowerUpgraded(Tower tower)
+    {
+        float healthPercent = CurrentHealth / MaxHealth;
+        float newMaxHealth = tower.GetEffectiveStats().Health;
+        Heal(newMaxHealth * healthPercent - CurrentHealth);
     }
 
     public void TakeDamage(float amount)
@@ -46,7 +52,12 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
         Destroy(gameObject);
     }
 
-    public TowerSO GetTowerSO() => towerSO;
+    public TowerSO GetTowerSO() => tower.GetTowerSO();
+
+    private void OnDestroy()
+    {
+        tower.OnUpgraded -= OnTowerUpgraded;
+    }
 
     private void Reset()
     {

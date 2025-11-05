@@ -38,7 +38,7 @@ public class EconomyManagerEditor : Editor
         tempAddAmount = EditorGUILayout.IntField("Add Amount:", tempAddAmount);
         if (GUILayout.Button("Add Currency", GUILayout.Width(100)))
         {
-            economyManager.AddCurrency(tempAddAmount);
+            economyManager.Deposit(tempAddAmount);
         }
         EditorGUILayout.EndHorizontal();
 
@@ -46,7 +46,7 @@ public class EconomyManagerEditor : Editor
         tempRemoveAmount = EditorGUILayout.IntField("Remove Amount:", tempRemoveAmount);
         if (GUILayout.Button("Remove Currency", GUILayout.Width(100)))
         {
-            economyManager.RemoveCurrency(tempRemoveAmount);
+            economyManager.Spend(tempRemoveAmount);
         }
         EditorGUILayout.EndHorizontal();
 

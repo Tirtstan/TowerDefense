@@ -205,7 +205,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         Tower placedTower = Instantiate(currentTowerSO.Prefab, position, Quaternion.identity);
         SelectPlacedTower(placedTower);
 
-        EconomyManager.Instance.RemoveCurrency(currentTowerSO.Stats.Cost);
+        EconomyManager.Instance.Spend(currentTowerSO.Stats.Cost);
         OnTowerPlaced?.Invoke(placedTower);
 
         DeselectCurrentTower();

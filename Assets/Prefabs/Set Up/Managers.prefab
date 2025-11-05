@@ -81,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e700a46c50c0f3e418472c6050dddc89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
-  startingCurrency: 300
+  startingCurrency: 250
   maxCurrency: 9999
 --- !u!1 &2842795499491239695
 GameObject:
@@ -479,10 +479,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60cc6088d127731498dcf94fcbc957ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  enemySpawners:
-  - {fileID: 5919290719966598369}
-  - {fileID: 3704368903273620619}
-  - {fileID: 7392390327293371747}
+  enemySpawnerEntries:
+  - spawnType: 0
+    spawner: {fileID: 5919290719966598369}
+  - spawnType: 1
+    spawner: {fileID: 3704368903273620619}
+  - spawnType: 2
+    spawner: {fileID: 7392390327293371747}
   initialDelay: 5
   timeBetweenWaves: 3
   baseSpawnInterval: 1

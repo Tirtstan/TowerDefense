@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -53.35, y: 0}
+  m_AnchoredPosition: {x: -52.359993, y: 0}
   m_SizeDelta: {x: 118.75, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4486758936787199557
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 8378026702829449548}
   SiblingIndex: 1
-  LayoutPosition: {x: -53.35, y: 0, z: 0}
+  LayoutPosition: {x: -52.359993, y: 0, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -166,11 +166,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -53.35, y: 0, z: 0}
+  TargetPosition: {x: -52.359993, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 118.75, y: 31.01, z: 0}
-  TransformPosition: {x: -53.35, y: 0, z: 0}
+  TransformPosition: {x: -52.359993, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 118.75, y: 31.01}
@@ -279,7 +279,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -12, y: 0}
-  m_SizeDelta: {x: 359.47, y: 639.61084}
+  m_SizeDelta: {x: 357.49, y: 639.61084}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &78165447743351228
 MonoBehaviour:
@@ -328,25 +328,25 @@ MonoBehaviour:
   LayoutPosition: {x: 0, y: 0, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
-    m_Center: {x: -179.735, y: 0, z: 0}
-    m_Extent: {x: 179.735, y: 319.80542, z: 0}
+    m_Center: {x: -178.745, y: 0, z: 0}
+    m_Extent: {x: 178.745, y: 319.80542, z: 0}
   LayoutBounds:
-    m_Center: {x: -179.735, y: 0, z: 0}
-    m_Extent: {x: 179.735, y: 319.80542, z: 0}
+    m_Center: {x: -178.745, y: 0, z: 0}
+    m_Extent: {x: 178.745, y: 319.80542, z: 0}
   RotatedAndScaledBounds:
-    m_Center: {x: -179.735, y: 0, z: 0}
-    m_Extent: {x: 179.735, y: 319.80542, z: 0}
+    m_Center: {x: -178.745, y: 0, z: 0}
+    m_Extent: {x: 178.745, y: 319.80542, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
   TargetPosition: {x: -12, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 359.47, y: 639.61084, z: 0}
+  TargetRectSize: {x: 357.49, y: 639.61084, z: 0}
   TransformPosition: {x: -12, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 359.47, y: 639.61084}
+  TransformRectSize: {x: 357.49, y: 639.61084}
 --- !u!114 &5495847216949588713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,7 +513,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 274.7304}
-  m_SizeDelta: {x: 311.47, y: 58.15}
+  m_SizeDelta: {x: 309.49, y: 58.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1510091831402525573
 MonoBehaviour:
@@ -533,24 +533,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 29.075, z: 0}
+    m_Extent: {x: 154.745, y: 29.075, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 29.075, z: 0}
+    m_Extent: {x: 154.745, y: 29.075, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 29.075, z: 0}
+    m_Extent: {x: 154.745, y: 29.075, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 0, y: 0, z: 0}
+  FillSize: {x: 309.49, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -179.735, y: 274.7304, z: 0}
+  TargetPosition: {x: -178.745, y: 274.7304, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 311.47, y: 58.15, z: 0}
-  TransformPosition: {x: -179.735, y: 274.7304, z: 0}
+  TargetRectSize: {x: 309.49, y: 58.15, z: 0}
+  TransformPosition: {x: -178.745, y: 274.7304, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 311.47, y: 58.15}
+  TransformRectSize: {x: 309.49, y: 58.15}
 --- !u!114 &4150945529436943717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonObject
   _version: 4
-  _widthType: 3
+  _widthType: 1
   _width: 100
   _widthOfParent: 1
   _heightType: 3
@@ -630,7 +630,7 @@ MonoBehaviour:
   _horizontalInnerAlign: 1
   _verticalInnerAlign: 1
   _depthInnerAlign: 1
-  _gapType: 0
+  _gapType: 1
   _gap: 12
   _wrapGapType: 0
   _wrapGap: 0
@@ -902,7 +902,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -55.730003, y: 0}
+  m_AnchoredPosition: {x: -54.739998, y: 0}
   m_SizeDelta: {x: 200.01, y: 58.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4547431979168183469
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 1492730805274644446}
   SiblingIndex: 0
-  LayoutPosition: {x: -55.730003, y: 0, z: 0}
+  LayoutPosition: {x: -54.739998, y: 0, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -1034,11 +1034,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -55.730003, y: 0, z: 0}
+  TargetPosition: {x: -54.739998, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 200.01, y: 58.15, z: 0}
-  TransformPosition: {x: -55.730003, y: 0, z: 0}
+  TransformPosition: {x: -54.739998, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 200.01, y: 58.15}
@@ -1163,7 +1163,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 311.47, y: 32.31}
+  m_SizeDelta: {x: 309.49, y: 32.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2217707647379742992
 CanvasRenderer:
@@ -1221,24 +1221,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 16.155, z: 0}
+    m_Extent: {x: 154.745, y: 16.155, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 16.155, z: 0}
+    m_Extent: {x: 154.745, y: 16.155, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 16.155, z: 0}
+    m_Extent: {x: 154.745, y: 16.155, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 311.47, y: 0, z: 0}
+  FillSize: {x: 309.49, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
   TargetPosition: {x: 0, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 311.47, y: 32.31, z: 0}
+  TargetRectSize: {x: 309.49, y: 32.31, z: 0}
   TransformPosition: {x: 0, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 311.47, y: 32.31}
+  TransformRectSize: {x: 309.49, y: 32.31}
 --- !u!114 &8036651082049634012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1358,7 +1358,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -140.23001, y: 0}
+  m_AnchoredPosition: {x: -139.23999, y: 0}
   m_SizeDelta: {x: 31.01, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8156390295233191116
@@ -1413,7 +1413,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 2692909176947208761}
   SiblingIndex: 0
-  LayoutPosition: {x: -140.23001, y: 0, z: 0}
+  LayoutPosition: {x: -139.23999, y: 0, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -1427,11 +1427,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 31.01, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -140.23001, y: 0, z: 0}
+  TargetPosition: {x: -139.23999, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 31.01, y: 31.01, z: 0}
-  TransformPosition: {x: -140.23001, y: 0, z: 0}
+  TransformPosition: {x: -139.23999, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 31.01, y: 31.01}
@@ -1528,7 +1528,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -41.195, y: 0}
+  m_AnchoredPosition: {x: -40.204994, y: 0}
   m_SizeDelta: {x: 143.06, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3440970763920543705
@@ -1644,7 +1644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 2692909176947208761}
   SiblingIndex: 1
-  LayoutPosition: {x: -41.195, y: 0, z: 0}
+  LayoutPosition: {x: -40.204994, y: 0, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -1658,11 +1658,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -41.195, y: 0, z: 0}
+  TargetPosition: {x: -40.204994, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 143.06, y: 31.01, z: 0}
-  TransformPosition: {x: -41.195, y: 0, z: 0}
+  TransformPosition: {x: -40.204994, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 143.06, y: 31.01}
@@ -1761,7 +1761,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -288.3004}
-  m_SizeDelta: {x: 311.47, y: 31.01}
+  m_SizeDelta: {x: 309.49, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4689805439846064028
 MonoBehaviour:
@@ -1781,24 +1781,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 15.505, z: 0}
+    m_Extent: {x: 154.745, y: 15.505, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 15.505, z: 0}
+    m_Extent: {x: 154.745, y: 15.505, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 15.505, z: 0}
+    m_Extent: {x: 154.745, y: 15.505, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 311.47, y: 0, z: 0}
+  FillSize: {x: 309.49, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -179.735, y: -288.3004, z: 0}
+  TargetPosition: {x: -178.745, y: -288.3004, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 311.47, y: 31.01, z: 0}
-  TransformPosition: {x: -179.735, y: -288.3004, z: 0}
+  TargetRectSize: {x: 309.49, y: 31.01, z: 0}
+  TransformPosition: {x: -178.745, y: -288.3004, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 311.47, y: 31.01}
+  TransformRectSize: {x: 309.49, y: 31.01}
 --- !u!114 &6807908028632501712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1920,7 +1920,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 67.595}
-  m_SizeDelta: {x: 311.47, y: 308.12085}
+  m_SizeDelta: {x: 309.49, y: 308.12085}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7761995160638575325
 CanvasRenderer:
@@ -1975,24 +1975,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 154.06042, z: 0}
+    m_Extent: {x: 154.745, y: 154.06042, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 154.06042, z: 0}
+    m_Extent: {x: 154.745, y: 154.06042, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 154.06042, z: 0}
+    m_Extent: {x: 154.745, y: 154.06042, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 311.47, y: 0, z: 0}
+  FillSize: {x: 309.49, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -179.735, y: 67.595, z: 0}
+  TargetPosition: {x: -178.745, y: 67.595, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 311.47, y: 308.12085, z: 0}
-  TransformPosition: {x: -179.735, y: 67.595, z: 0}
+  TargetRectSize: {x: 309.49, y: 308.12085, z: 0}
+  TransformPosition: {x: -178.745, y: 67.595, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 311.47, y: 308.12085}
+  TransformRectSize: {x: 309.49, y: 308.12085}
 --- !u!114 &8809983460094024117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2113,7 +2113,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -126.62042}
-  m_SizeDelta: {x: 311.47, y: 32.31}
+  m_SizeDelta: {x: 309.49, y: 32.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4440239448408288969
 MonoBehaviour:
@@ -2133,24 +2133,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 16.155, z: 0}
+    m_Extent: {x: 154.745, y: 16.155, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 16.155, z: 0}
+    m_Extent: {x: 154.745, y: 16.155, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 16.155, z: 0}
+    m_Extent: {x: 154.745, y: 16.155, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 311.47, y: 0, z: 0}
+  FillSize: {x: 309.49, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -179.735, y: -126.62042, z: 0}
+  TargetPosition: {x: -178.745, y: -126.62042, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 311.47, y: 32.31, z: 0}
-  TransformPosition: {x: -179.735, y: -126.62042, z: 0}
+  TargetRectSize: {x: 309.49, y: 32.31, z: 0}
+  TransformPosition: {x: -178.745, y: -126.62042, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 311.47, y: 32.31}
+  TransformRectSize: {x: 309.49, y: 32.31}
 --- !u!114 &7316282752276324873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2270,7 +2270,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -140.23001, y: 0}
+  m_AnchoredPosition: {x: -139.23999, y: 0}
   m_SizeDelta: {x: 31.01, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5274967333964261846
@@ -2325,7 +2325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 3187195596564487020}
   SiblingIndex: 0
-  LayoutPosition: {x: -140.23001, y: 0, z: 0}
+  LayoutPosition: {x: -139.23999, y: 0, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -2339,11 +2339,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 31.01, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -140.23001, y: 0, z: 0}
+  TargetPosition: {x: -139.23999, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 31.01, y: 31.01, z: 0}
-  TransformPosition: {x: -140.23001, y: 0, z: 0}
+  TransformPosition: {x: -139.23999, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 31.01, y: 31.01}
@@ -2462,6 +2462,8 @@ MonoBehaviour:
   damageText: {fileID: 1708891728318963443}
   rangeText: {fileID: 8921152469380877776}
   attackIntervalText: {fileID: 6031623937102227477}
+  upgradeCostText: {fileID: 0}
+  upgradeButton: {fileID: 0}
   nameTextEffect: {fileID: 7270627727519854058}
   healthTextEffect: {fileID: 7613416382050697430}
   healthFillDuration: 0.25
@@ -2540,7 +2542,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 106.00499, y: 0}
+  m_AnchoredPosition: {x: 105.014984, y: 0}
   m_SizeDelta: {x: 99.46, y: 46.77}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4374885545290226009
@@ -2557,7 +2559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 1492730805274644446}
   SiblingIndex: 1
-  LayoutPosition: {x: 106.00499, y: 0, z: 0}
+  LayoutPosition: {x: 105.014984, y: 0, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -2571,11 +2573,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: 106.00499, y: 0, z: 0}
+  TargetPosition: {x: 105.014984, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 99.46, y: 46.77, z: 0}
-  TransformPosition: {x: 106.00499, y: 0, z: 0}
+  TransformPosition: {x: 105.014984, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 99.46, y: 46.77}
@@ -2867,11 +2869,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -179.735, y: -164.77542, z: 0}
+  TargetPosition: {x: -178.745, y: -164.77542, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 309.49, y: 20, z: 0}
-  TransformPosition: {x: -179.735, y: -164.77542, z: 0}
+  TransformPosition: {x: -178.745, y: -164.77542, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 309.49, y: 20}
@@ -2992,7 +2994,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -140.23001, y: 0}
+  m_AnchoredPosition: {x: -139.23999, y: 0}
   m_SizeDelta: {x: 31.01, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2821978347766704624
@@ -3047,7 +3049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 8378026702829449548}
   SiblingIndex: 0
-  LayoutPosition: {x: -140.23001, y: 0, z: 0}
+  LayoutPosition: {x: -139.23999, y: 0, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -3061,11 +3063,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 31.01, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -140.23001, y: 0, z: 0}
+  TargetPosition: {x: -139.23999, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 31.01, y: 31.01, z: 0}
-  TransformPosition: {x: -140.23001, y: 0, z: 0}
+  TransformPosition: {x: -139.23999, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 31.01, y: 31.01}
@@ -3163,7 +3165,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 311.47, y: 32.31}
+  m_SizeDelta: {x: 309.49, y: 32.31}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7663865816804492462
 CanvasRenderer:
@@ -3221,24 +3223,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 16.155, z: 0}
+    m_Extent: {x: 154.745, y: 16.155, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 16.155, z: 0}
+    m_Extent: {x: 154.745, y: 16.155, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 16.155, z: 0}
+    m_Extent: {x: 154.745, y: 16.155, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 311.47, y: 32.31, z: 0}
+  FillSize: {x: 309.49, y: 32.31, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
   TargetPosition: {x: 0, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 311.47, y: 32.31, z: 0}
+  TargetRectSize: {x: 309.49, y: 32.31, z: 0}
   TransformPosition: {x: 0, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 311.47, y: 32.31}
+  TransformRectSize: {x: 309.49, y: 32.31}
 --- !u!114 &8861825672169584134
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3334,7 +3336,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -245.29042}
-  m_SizeDelta: {x: 311.47, y: 31.01}
+  m_SizeDelta: {x: 309.49, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8065756183208168130
 MonoBehaviour:
@@ -3354,24 +3356,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 15.505, z: 0}
+    m_Extent: {x: 154.745, y: 15.505, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 15.505, z: 0}
+    m_Extent: {x: 154.745, y: 15.505, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 15.505, z: 0}
+    m_Extent: {x: 154.745, y: 15.505, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 311.47, y: 0, z: 0}
+  FillSize: {x: 309.49, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -179.735, y: -245.29042, z: 0}
+  TargetPosition: {x: -178.745, y: -245.29042, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 311.47, y: 31.01, z: 0}
-  TransformPosition: {x: -179.735, y: -245.29042, z: 0}
+  TargetRectSize: {x: 309.49, y: 31.01, z: 0}
+  TransformPosition: {x: -178.745, y: -245.29042, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 311.47, y: 31.01}
+  TransformRectSize: {x: 309.49, y: 31.01}
 --- !u!114 &6974560232780429392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3493,7 +3495,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -202.28043}
-  m_SizeDelta: {x: 311.47, y: 31.01}
+  m_SizeDelta: {x: 309.49, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4325259102345069086
 MonoBehaviour:
@@ -3513,24 +3515,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 15.505, z: 0}
+    m_Extent: {x: 154.745, y: 15.505, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 15.505, z: 0}
+    m_Extent: {x: 154.745, y: 15.505, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 155.735, y: 15.505, z: 0}
+    m_Extent: {x: 154.745, y: 15.505, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 311.47, y: 0, z: 0}
+  FillSize: {x: 309.49, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -179.735, y: -202.28043, z: 0}
+  TargetPosition: {x: -178.745, y: -202.28043, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 311.47, y: 31.01, z: 0}
-  TransformPosition: {x: -179.735, y: -202.28043, z: 0}
+  TargetRectSize: {x: 309.49, y: 31.01, z: 0}
+  TransformPosition: {x: -178.745, y: -202.28043, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 311.47, y: 31.01}
+  TransformRectSize: {x: 309.49, y: 31.01}
 --- !u!114 &1755262585227053325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3965,24 +3967,24 @@ MonoBehaviour:
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 179.735, y: 319.80542, z: 0}
+    m_Extent: {x: 178.745, y: 319.80542, z: 0}
   LayoutBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 179.735, y: 319.80542, z: 0}
+    m_Extent: {x: 178.745, y: 319.80542, z: 0}
   RotatedAndScaledBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 179.735, y: 319.80542, z: 0}
+    m_Extent: {x: 178.745, y: 319.80542, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 359.47, y: 639.61084, z: 0}
+  FillSize: {x: 357.49, y: 639.61084, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
   TargetPosition: {x: -179.73491, y: 0, z: 0}
   TargetRotation: {x: -0, y: -0, z: -0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 359.47, y: 639.61084, z: 0}
-  TransformPosition: {x: -179.73491, y: 0, z: 0}
+  TargetRectSize: {x: 357.49, y: 639.61084, z: 0}
+  TransformPosition: {x: -178.7449, y: 0, z: 0}
   TransformRotation: {x: -0, y: -0, z: -0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 359.47, y: 639.61084}
+  TransformRectSize: {x: 357.49, y: 639.61084}
 --- !u!114 &7185307585195869109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4076,7 +4078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -71.78001, y: 0}
+  m_AnchoredPosition: {x: -70.79, y: 0}
   m_SizeDelta: {x: 81.89, y: 31.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &595870335209531108
@@ -4192,7 +4194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Flexalon::Flexalon.FlexalonResult
   Parent: {fileID: 3187195596564487020}
   SiblingIndex: 1
-  LayoutPosition: {x: -71.78001, y: 0, z: 0}
+  LayoutPosition: {x: -70.79, y: 0, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -4206,11 +4208,11 @@ MonoBehaviour:
   ComponentScale: {x: 1, y: 1, z: 1}
   FillSize: {x: 0, y: 0, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
-  TargetPosition: {x: -71.78001, y: 0, z: 0}
+  TargetPosition: {x: -70.79, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 81.89, y: 31.01, z: 0}
-  TransformPosition: {x: -71.78001, y: 0, z: 0}
+  TransformPosition: {x: -70.79, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 81.89, y: 31.01}

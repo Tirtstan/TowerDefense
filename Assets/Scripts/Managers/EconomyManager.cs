@@ -21,9 +21,9 @@ public class EconomyManager : Singleton<EconomyManager>
     private int maxCurrency = 9999;
     private int currencyAmount;
 
-    private void Start() => AddCurrency(startingCurrency);
+    private void Start() => Deposit(startingCurrency);
 
-    public void AddCurrency(int amount)
+    public void Deposit(int amount)
     {
         currencyAmount += amount;
         currencyAmount = Mathf.Clamp(currencyAmount, 0, maxCurrency);
@@ -32,7 +32,7 @@ public class EconomyManager : Singleton<EconomyManager>
         OnCurrencyChanged?.Invoke(amount);
     }
 
-    public void RemoveCurrency(int amount) => AddCurrency(-amount);
+    public void Spend(int amount) => Deposit(-amount);
 
     public int GetCurrencyAmount() => currencyAmount;
 
@@ -44,6 +44,8 @@ public class EconomyManager : Singleton<EconomyManager>
         OnCurrencyUpdated?.Invoke(currencyAmount);
         OnCurrencyChanged?.Invoke(currencyAmount - oldValue);
     }
+
+    public bool CanAfford(int amount) => currencyAmount >= amount;
 
     public void ResetCurrencyToDefault()
     {

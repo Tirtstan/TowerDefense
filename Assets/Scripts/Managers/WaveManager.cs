@@ -7,12 +7,19 @@ using Random = UnityEngine.Random;
 // Anthropic, 2025
 public class WaveManager : Singleton<WaveManager>
 {
+    [Serializable]
+    private struct EnemySpawnerEntry
+    {
+        public EnemySpawnType spawnType;
+        public Spawner spawner;
+    }
+
     public static event Action<Wave> OnWaveStarted;
     public static event Action<Wave> OnWaveCompleted;
 
     [Header("Components")]
     [SerializeField]
-    private Spawner[] enemySpawners;
+    private EnemySpawnerEntry[] enemySpawnerEntries;
 
     [Header("Wave Settings")]
     [SerializeField]
@@ -55,6 +62,7 @@ public class WaveManager : Singleton<WaveManager>
 
     private readonly List<Transform> spawnPoints = new();
     private readonly List<EnemyHealth> activeEnemies = new();
+    private readonly Dictionary<EnemySpawnType, Spawner> spawnerLookup = new();
     private Coroutine spawnCoroutine;
     private int currentWaveIndex = -1;
     private Wave currentWave;
@@ -64,8 +72,17 @@ public class WaveManager : Singleton<WaveManager>
         base.Awake();
         GameManager.OnGameStateChanged += OnGameStateChanged;
 
-        foreach (var spawner in enemySpawners)
+        RebuildSpawnerLookup();
+
+        foreach (var entry in enemySpawnerEntries)
         {
+            var spawner = entry.spawner;
+            if (spawner == null)
+            {
+                Debug.LogWarning("WaveManager: Encountered null spawner entry during Awake.");
+                continue;
+            }
+
             spawner.OnSpawned += AddActiveEnemy;
             spawner.OnReleased += RemoveActiveEnemy;
         }
@@ -94,6 +111,8 @@ public class WaveManager : Singleton<WaveManager>
     {
         yield return new WaitForSeconds(initialDelay);
 
+        RebuildSpawnerLookup();
+
         var wavesInterval = new WaitForSeconds(timeBetweenWaves);
         while (true)
         {
@@ -109,7 +128,7 @@ public class WaveManager : Singleton<WaveManager>
             );
 
             OnWaveStarted?.Invoke(currentWave);
-            currentWave.SelectSpawners(enemySpawners);
+            currentWave.SelectSpawners(spawnerLookup);
             Debug.Log($"Starting Wave {currentWaveIndex + 1}");
 
             // adjust difficulty based on player performance
@@ -118,13 +137,13 @@ public class WaveManager : Singleton<WaveManager>
             currentWave.AdjustDifficultyForPlayerPerformance(playerHealthPercent, isEarlyGame);
 
             // counter player's tower strategy
-            currentWave.CounterPlayerTowers(GetPlayerTowerCounts(), enemySpawners);
+            currentWave.CounterPlayerTowers(GetPlayerTowerCounts(), spawnerLookup);
 
             yield return StartCoroutine(WaveExecutionRoutine());
             OnWaveCompleted?.Invoke(currentWave);
 
             int rewardAmount = currentWave.IsBossWave ? bossWaveReward : waveCompletionReward;
-            EconomyManager.Instance.AddCurrency(rewardAmount);
+            EconomyManager.Instance.Deposit(rewardAmount);
 
             yield return wavesInterval;
         }
@@ -187,8 +206,12 @@ public class WaveManager : Singleton<WaveManager>
 
         currentWaveIndex = -1;
 
-        foreach (var spawner in enemySpawners)
+        foreach (var entry in enemySpawnerEntries)
         {
+            var spawner = entry.spawner;
+            if (spawner == null)
+                continue;
+
             spawner.OnSpawned -= AddActiveEnemy;
             spawner.OnReleased -= RemoveActiveEnemy;
 
@@ -197,6 +220,25 @@ public class WaveManager : Singleton<WaveManager>
 
         activeEnemies.Clear();
         spawnPoints.Clear();
+    }
+
+    private void RebuildSpawnerLookup()
+    {
+        spawnerLookup.Clear();
+
+        foreach (var entry in enemySpawnerEntries)
+        {
+            var spawner = entry.spawner;
+            if (spawner == null)
+                continue;
+
+            if (!spawnerLookup.TryAdd(entry.spawnType, spawner))
+            {
+                Debug.LogWarning(
+                    $"WaveManager: Duplicate spawner assignment for {entry.spawnType}. Using the first configured spawner."
+                );
+            }
+        }
     }
 
     private void OnDestroy()

@@ -10,7 +10,7 @@ public class TowerDirector : MonoBehaviour
     [SerializeField]
     private Tower tower;
 
-    private TowerSO towerSO;
+    private TowerStats effectiveStats;
     private const int MaxHitColliders = 50;
     private readonly Collider[] hitColliders = new Collider[MaxHitColliders];
     private readonly List<IDamagable> targets = new();
@@ -18,7 +18,8 @@ public class TowerDirector : MonoBehaviour
 
     private void Awake()
     {
-        towerSO = tower.GetTowerSO();
+        UpdateEffectiveStats();
+        tower.OnUpgraded += OnTowerUpgraded;
     }
 
     private void Start()
@@ -26,10 +27,17 @@ public class TowerDirector : MonoBehaviour
         AttackAllTargetsInRange();
     }
 
+    private void OnTowerUpgraded(Tower upgradedTower) => UpdateEffectiveStats();
+
+    private void UpdateEffectiveStats()
+    {
+        effectiveStats = tower.GetEffectiveStats();
+    }
+
     private void Update()
     {
         currentTime += Time.deltaTime;
-        if (currentTime >= towerSO.Stats.AttackInterval)
+        if (currentTime >= effectiveStats.AttackInterval)
         {
             currentTime = 0;
             AttackAllTargetsInRange();
@@ -41,9 +49,9 @@ public class TowerDirector : MonoBehaviour
         targets.Clear();
         int hitCount = Physics.OverlapSphereNonAlloc(
             transform.position,
-            towerSO.Stats.Range,
+            effectiveStats.Range,
             hitColliders,
-            towerSO.EnemyLayer
+            tower.GetTowerSO().EnemyLayer
         );
 
         for (int i = 0; i < hitCount; i++)
@@ -54,6 +62,11 @@ public class TowerDirector : MonoBehaviour
 
         if (targets.Count > 0)
             towerAttack.Attack(targets);
+    }
+
+    private void OnDestroy()
+    {
+        tower.OnUpgraded -= OnTowerUpgraded;
     }
 
     private void Reset()
@@ -68,6 +81,6 @@ public class TowerDirector : MonoBehaviour
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, tower.GetTowerSO().Stats.Range);
+        Gizmos.DrawWireSphere(transform.position, tower.GetEffectiveStats().Range);
     }
 }
