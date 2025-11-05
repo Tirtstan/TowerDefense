@@ -227,31 +227,25 @@ public class Wave
             int maxUsage = spawnerMaxUsage.ContainsKey(spawner) ? spawnerMaxUsage[spawner] : int.MaxValue;
 
             if (cost <= budgetRemaining && currentUsage < maxUsage)
-            {
                 availableSpawners.Add(spawner);
-            }
         }
 
-        // If no spawners fit the budget, find the cheapest spawner that hasn't reached usage limit
+        // If no spawners fit the budget, find the cheapest spawner (ignore usage limits for final spawns)
         if (availableSpawners.Count == 0)
         {
             Spawner cheapestSpawner = null;
             float cheapestCost = float.MaxValue;
-
             foreach (var spawner in selectedSpawners)
             {
-                int currentUsage = spawnerUsageCount.ContainsKey(spawner) ? spawnerUsageCount[spawner] : 0;
-                int maxUsage = spawnerMaxUsage.ContainsKey(spawner) ? spawnerMaxUsage[spawner] : int.MaxValue;
                 float cost = spawner.GetDifficultyCost();
-
-                if (currentUsage < maxUsage && cost < cheapestCost)
+                if (cost < cheapestCost)
                 {
                     cheapestCost = cost;
                     cheapestSpawner = spawner;
                 }
             }
 
-            if (cheapestSpawner != null)
+            if (cheapestSpawner != null && cheapestCost <= budgetRemaining)
             {
                 Debug.Log($"Budget too low ({budgetRemaining}). Spawning cheapest enemy (cost: {cheapestCost})");
                 spawnerUsageCount[cheapestSpawner]++;
