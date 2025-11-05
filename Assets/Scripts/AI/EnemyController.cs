@@ -270,18 +270,25 @@ public class EnemyController : MonoBehaviour
     private void OnTargetDeath()
     {
         UnsubscribeFromTargetDeath(currentTargetDamagable);
-
-        currentTargetDamagable = null;
-        currentTarget = null;
-        hasValidTarget = false;
+        ResetController();
 
         // find new target when current one dies
         FindAndSetTarget();
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         UnsubscribeFromTargetDeath(currentTargetDamagable);
+        ResetController();
+    }
+
+    private void ResetController()
+    {
+        currentTarget = null;
+        currentTargetDamagable = null;
+        detectedTowers.Clear();
+        hasValidTarget = false;
+        attackTimer = 0f;
     }
 
     private void OnValidate()

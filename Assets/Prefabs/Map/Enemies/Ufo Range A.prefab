@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShakeOnHit
   duration: 0.2
-  strength: 0.1
+  strength: 0.15
   vibrato: 10
   randomness: 90
 --- !u!1 &4065159704348387221

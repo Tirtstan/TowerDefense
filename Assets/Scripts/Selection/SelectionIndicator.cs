@@ -14,6 +14,8 @@ public class SelectionIndicator : MonoBehaviour
     {
         SelectionSystem.OnSelected += HandleSelected;
         SelectionSystem.OnDeselected += HandleDeselected;
+
+        HideSelector();
     }
 
     private void HandleSelected(IGameSelectable selectable) => ShowSelector(selectable);

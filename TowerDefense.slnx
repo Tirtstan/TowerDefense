@@ -26,6 +26,7 @@
   <Project Path="Unity.InferenceEngine.Editor.Visualizer.csproj" />
   <Project Path="Unity.VisualScripting.Flow.Editor.csproj" />
   <Project Path="Flexalon.csproj" />
+  <Project Path="LitMotion.csproj" />
   <Project Path="Boxophobic.Utils.Editor.csproj" />
   <Project Path="Unity.VisualStudio.Editor.csproj" />
   <Project Path="Unity.InputSystem.csproj" />
@@ -47,6 +48,7 @@
   <Project Path="Unity.Splines.Editor.csproj" />
   <Project Path="Unity.PerformanceTesting.csproj" />
   <Project Path="tirt.sentinal.csproj" />
+  <Project Path="LitMotion.Extensions.csproj" />
   <Project Path="InputGlyphs.Loaders.csproj" />
   <Project Path="tirt.tweeningcomponents.csproj" />
   <Project Path="NativeCursor.Runtime.csproj" />
@@ -62,6 +64,7 @@
   <Project Path="Boxophobic.SkyboxCubemapExtended.Editor.csproj" />
   <Project Path="Flexalon.Samples.Editor.csproj" />
   <Project Path="Unity.2D.Sprite.Editor.csproj" />
+  <Project Path="LitMotion.Animation.csproj" />
   <Project Path="Unity.AI.Navigation.Editor.csproj" />
   <Project Path="EasyTextEffects.csproj" />
   <Project Path="InputGlyphs.Editor.csproj" />
@@ -84,10 +87,13 @@
   <Project Path="Unity.ShaderGraph.Utilities.csproj" />
   <Project Path="Unity.VisualScripting.Shared.Editor.csproj" />
   <Project Path="Unity.AppUI.Undo.csproj" />
+  <Project Path="LitMotion.Editor.csproj" />
   <Project Path="tirt.tweeningcomponents.Editor.csproj" />
+  <Project Path="LitMotion.Animation.Editor.csproj" />
   <Project Path="Unity.RenderPipeline.Universal.ShaderLibrary.csproj" />
   <Project Path="tirt.sentinal.Editor.csproj" />
   <Project Path="Unity.InferenceEngine.Editor.csproj" />
+  <Project Path="tirt.LitMotion.Animation.Flexalon.csproj" />
   <Project Path="InputGlyphs.Display.csproj" />
   <Project Path="Unity.Rendering.LightTransport.Editor.csproj" />
   <Project Path="Unity.InputSystem.DocCodeSamples.csproj" />
@@ -96,6 +102,7 @@
   <Project Path="InputGlyphs.Loaders.Steam.csproj" />
   <Project Path="Unity.2D.Sprite.AIIntegration.Editor.csproj" />
   <Project Path="Unity.InferenceEngine.MacBLAS.csproj" />
+  <Project Path="tirt.LitMotion.Flexalon.csproj" />
   <Project Path="Unity.AppUI.InternalAPIBridge.csproj" />
   <Project Path="Unity.AppUI.Navigation.Editor.csproj" />
   <Project Path="Unity.VisualScripting.DocCodeExamples.csproj" />
