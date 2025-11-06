@@ -26,13 +26,13 @@ public class WaveInfoPanel : MonoBehaviour
 
     [SerializeField]
     private Ease ease;
-    private Vector3 target;
+    private float target;
 
     private void Awake()
     {
         RectTransform rect = panel.GetComponent<RectTransform>();
-        target = new Vector3(panel.Offset.x, panel.Offset.y + rect.sizeDelta.y, panel.Offset.z);
-        panel.Offset = new Vector2(panel.Offset.x, target.y);
+        target = panel.Offset.y + rect.sizeDelta.y * 2;
+        panel.Offset = new Vector2(panel.Offset.x, target);
 
         WaveManager.OnWaveStarted += OnWaveStarted;
     }
@@ -51,23 +51,23 @@ public class WaveInfoPanel : MonoBehaviour
             .Create()
             .Append(
                 LMotion
-                    .Create(panel.Offset, Vector3.zero, slideInDuration)
+                    .Create(panel.Offset.y, 0f, slideInDuration)
                     .WithEase(ease)
-                    .BindToFlexalonOffset(panel)
+                    .BindToFlexalonOffsetY(panel)
                     .AddTo(gameObject)
             )
             .Append(
                 LMotion
-                    .Create(0, 1f, 1f)
+                    .Create(0, 1f, 2f)
                     .WithOnComplete(() => waveText.SetText($"Wave {waveNumber + 1}"))
                     .RunWithoutBinding()
             )
             .AppendInterval(showDuration)
             .Append(
                 LMotion
-                    .Create(panel.Offset, target, slideInDuration)
+                    .Create(panel.Offset.y, target, slideInDuration)
                     .WithEase(ease)
-                    .BindToFlexalonOffset(panel)
+                    .BindToFlexalonOffsetY(panel)
                     .AddTo(gameObject)
             )
             .Run();

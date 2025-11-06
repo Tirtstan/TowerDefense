@@ -1,6 +1,8 @@
 using System;
+using QFSW.QC;
 using UnityEngine;
 
+[CommandPrefix("economy.")]
 public class EconomyManager : Singleton<EconomyManager>
 {
     /// <summary>
@@ -19,10 +21,15 @@ public class EconomyManager : Singleton<EconomyManager>
 
     [SerializeField]
     private int maxCurrency = 9999;
+
+    [Header("Debug")]
+    [SerializeField]
+    private bool infiniteMoney = false;
     private int currencyAmount;
 
     private void Start() => Deposit(startingCurrency);
 
+    [Command("deposit", "Deposits the specified amount of currency.")]
     public void Deposit(int amount)
     {
         currencyAmount += amount;
@@ -32,10 +39,19 @@ public class EconomyManager : Singleton<EconomyManager>
         OnCurrencyChanged?.Invoke(amount);
     }
 
-    public void Spend(int amount) => Deposit(-amount);
+    [Command("spend", "Spends the specified amount of currency.")]
+    public void Spend(int amount)
+    {
+        if (infiniteMoney)
+            return;
 
+        Deposit(-amount);
+    }
+
+    [Command("get_currency", "Gets the current currency amount.")]
     public int GetCurrencyAmount() => currencyAmount;
 
+    [Command("set_currency", "Sets the currency amount to the specified value.")]
     public void SetCurrencyAmount(int amount)
     {
         int oldValue = currencyAmount;
@@ -45,8 +61,9 @@ public class EconomyManager : Singleton<EconomyManager>
         OnCurrencyChanged?.Invoke(currencyAmount - oldValue);
     }
 
-    public bool CanAfford(int amount) => currencyAmount >= amount;
+    public bool CanAfford(int amount) => infiniteMoney || currencyAmount >= amount;
 
+    [Command("reset_currency", "Resets the currency amount to the starting value.")]
     public void ResetCurrencyToDefault()
     {
         int oldValue = currencyAmount;
@@ -57,4 +74,11 @@ public class EconomyManager : Singleton<EconomyManager>
     }
 
     public int GetMaxCurrency() => maxCurrency;
+
+    [Command("set_infinite_money", "Sets infinite money mode.")]
+    public void SetInfiniteMoney(bool enabled)
+    {
+        infiniteMoney = enabled;
+        Debug.Log($"Infinite money: {(infiniteMoney ? "Enabled" : "Disabled")}");
+    }
 }
