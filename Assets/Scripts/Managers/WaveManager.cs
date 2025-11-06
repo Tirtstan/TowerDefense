@@ -1,10 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using QFSW.QC;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 // Anthropic, 2025
+[CommandPrefix("wave.")]
 public class WaveManager : Singleton<WaveManager>
 {
     [Serializable]
@@ -98,8 +100,8 @@ public class WaveManager : Singleton<WaveManager>
                 spawnCoroutine = StartCoroutine(SpawnRoutine());
                 break;
             case GameState.GameOver:
-                if (spawnCoroutine != null)
-                    StopCoroutine(spawnCoroutine);
+                // Fully halt spawns and clear any remaining enemies on game over
+                CleanUp();
                 break;
             case GameState.MainMenu:
                 CleanUp();
@@ -139,7 +141,8 @@ public class WaveManager : Singleton<WaveManager>
             // counter player's tower strategy
             currentWave.CounterPlayerTowers(GetPlayerTowerCounts(), spawnerLookup);
 
-            yield return StartCoroutine(WaveExecutionRoutine());
+            // Yield the enumerator directly so stopping the parent coroutine halts wave execution too.
+            yield return WaveExecutionRoutine();
             OnWaveCompleted?.Invoke(currentWave);
 
             int rewardAmount = currentWave.IsBossWave ? bossWaveReward : waveCompletionReward;
@@ -199,21 +202,26 @@ public class WaveManager : Singleton<WaveManager>
 
     private void RemoveActiveEnemy(EnemyHealth enemy) => activeEnemies.Remove(enemy);
 
+    [Command("clear_waves", "Stops all wave spawning and clears active enemies.")]
     private void CleanUp()
     {
         if (spawnCoroutine != null)
+        {
             StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
+        }
+
+        // Ensure any other coroutines on this Mono are halted as well
+        StopAllCoroutines();
 
         currentWaveIndex = -1;
+        currentWave = default;
 
         foreach (var entry in enemySpawnerEntries)
         {
             var spawner = entry.spawner;
             if (spawner == null)
                 continue;
-
-            spawner.OnSpawned -= AddActiveEnemy;
-            spawner.OnReleased -= RemoveActiveEnemy;
 
             spawner.ClearAll();
         }
@@ -225,7 +233,6 @@ public class WaveManager : Singleton<WaveManager>
     private void RebuildSpawnerLookup()
     {
         spawnerLookup.Clear();
-
         foreach (var entry in enemySpawnerEntries)
         {
             var spawner = entry.spawner;
@@ -245,6 +252,16 @@ public class WaveManager : Singleton<WaveManager>
     {
         GameManager.OnGameStateChanged -= OnGameStateChanged;
         CleanUp();
+
+        foreach (var entry in enemySpawnerEntries)
+        {
+            var spawner = entry.spawner;
+            if (spawner == null)
+                continue;
+
+            spawner.OnSpawned -= AddActiveEnemy;
+            spawner.OnReleased -= RemoveActiveEnemy;
+        }
     }
 }
 

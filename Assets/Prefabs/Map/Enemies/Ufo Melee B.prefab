@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8644693996688252603}
   - component: {fileID: 5025574353215676749}
   - component: {fileID: 8732168730148908782}
+  - component: {fileID: 4130190842215428221}
   m_Layer: 7
   m_Name: Ufo Melee B
   m_TagString: Untagged
@@ -152,6 +153,19 @@ MonoBehaviour:
   strength: 0.05
   vibrato: 8
   randomness: 90
+--- !u!114 &4130190842215428221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747583962200913497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ada0d7a4b668d40bd70488e839e034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CurrencyOnDeath
+  enemyHealth: {fileID: 8644693996688252603}
 --- !u!1 &6841032577677202082
 GameObject:
   m_ObjectHideFlags: 0

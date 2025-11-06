@@ -41,9 +41,6 @@ public class EnemyHealth : MonoBehaviour, IDamagable, ISpawnable
 
     public void Die()
     {
-        if (EconomyManager.Instance != null) // TODO: separate this into different class
-            EconomyManager.Instance.Deposit(enemySO.CurrencyDropAmount);
-
         OnDeath?.Invoke();
 
         if (Spawner != null)

@@ -25,6 +25,7 @@ public class EnemyController : MonoBehaviour
     private readonly List<Transform> detectedTowers = new();
     private float attackTimer;
     private bool hasValidTarget;
+    private bool pendingDestinationSet;
 
     private void Awake()
     {
@@ -44,15 +45,18 @@ public class EnemyController : MonoBehaviour
         visionCollider.isTrigger = true;
     }
 
-    private void Start()
+    private void OnEnable()
     {
+        attackTimer = 0f;
         FindAndSetTarget();
+        pendingDestinationSet = true;
     }
 
     private void Update()
     {
         HandleAttacking();
         HandleRotation();
+        TryApplyPendingDestination();
     }
 
     private void HandleRotation()
@@ -60,7 +64,7 @@ public class EnemyController : MonoBehaviour
         if (!hasValidTarget || currentTarget == null)
             return;
 
-        if (!agent.isOnNavMesh)
+        if (!agent.enabled || !agent.isOnNavMesh)
             return;
 
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
@@ -110,7 +114,7 @@ public class EnemyController : MonoBehaviour
             return;
         }
 
-        if (!agent.isOnNavMesh)
+        if (!agent.enabled || !agent.isOnNavMesh)
             return;
 
         if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance)
@@ -144,6 +148,13 @@ public class EnemyController : MonoBehaviour
 
     private void UpdateTargetingOnTowerDetected(Transform newTower)
     {
+        // If we have no current target yet, immediately pick the newly detected tower
+        if (!hasValidTarget || currentTarget == null)
+        {
+            SetTarget(newTower);
+            return;
+        }
+
         // if we're targeting center tower, immediately switch to any detected tower
         if (currentTarget == CenterTower.Instance.transform)
         {
@@ -227,7 +238,8 @@ public class EnemyController : MonoBehaviour
         if (newTarget == null)
         {
             hasValidTarget = false;
-            agent.isStopped = true;
+            if (agent != null && agent.enabled)
+                agent.isStopped = true;
             return;
         }
 
@@ -236,11 +248,10 @@ public class EnemyController : MonoBehaviour
         currentTarget = newTarget;
         hasValidTarget = true;
 
-        if (agent.isOnNavMesh)
-        {
+        // Defer destination until agent is enabled and placed on NavMesh to avoid warnings
+        pendingDestinationSet = true;
+        if (agent != null && agent.enabled)
             agent.isStopped = false;
-            agent.SetDestination(currentTarget.position);
-        }
 
         if (currentTarget.TryGetComponent(out IDamagable damagable))
         {
@@ -253,6 +264,19 @@ public class EnemyController : MonoBehaviour
         }
 
         attackTimer = 0f;
+    }
+
+    private void TryApplyPendingDestination()
+    {
+        if (!pendingDestinationSet || !hasValidTarget || currentTarget == null || agent == null)
+            return;
+
+        if (!agent.enabled || !agent.isOnNavMesh)
+            return; // Wait until spawner/engine enables agent and places it on the NavMesh
+
+        agent.isStopped = false;
+        agent.SetDestination(currentTarget.position);
+        pendingDestinationSet = false;
     }
 
     private void SubscribeToTargetDeath(IDamagable damagable)

@@ -71,7 +71,7 @@ public class Tower : MonoBehaviour
         CurrentLevel++;
 
         OnUpgraded?.Invoke(this);
-        Debug.Log($"{gameObject.name} upgraded to level {CurrentLevel}.");
+        Debug.Log($"{gameObject.name} upgraded to level {CurrentLevel + 1}.");
         return true;
     }
 

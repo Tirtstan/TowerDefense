@@ -6,18 +6,19 @@ public class GenerateMap : MonoBehaviour
     [Header("Generator")]
     [SerializeField]
     private Generator generator;
-    private bool hasGeneratedThisSession;
+    private bool isMapDirty;
 
     private void Awake()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        GameManager.OnGameStateChanged += OnGameStateChanged;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) => generator.Generate();
+
+    private void Start()
     {
-        generator.Generate();
-        hasGeneratedThisSession = true;
+        GameManager.OnGameStateChanged += OnGameStateChanged; // prevent first load marking map as dirty
+        isMapDirty = false;
     }
 
     private void OnGameStateChanged(GameState newState)
@@ -25,17 +26,18 @@ public class GenerateMap : MonoBehaviour
         switch (newState)
         {
             case GameState.Playing:
-                // Generate map if player hasn't generated one yet this session
-                if (!hasGeneratedThisSession)
+            {
+                if (isMapDirty) // Generate map if player hasn't generated one yet this session
                 {
                     generator.Generate();
-                    hasGeneratedThisSession = true;
+                    isMapDirty = false;
                 }
                 break;
+            }
 
-            case GameState.MainMenu:
-            case GameState.GameOver:
-                hasGeneratedThisSession = false;
+            case GameState.MainMenu
+            or GameState.GameOver:
+                isMapDirty = true;
                 break;
         }
     }

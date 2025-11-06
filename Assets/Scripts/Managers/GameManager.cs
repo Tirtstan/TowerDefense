@@ -1,8 +1,10 @@
 using System;
 using LitMotion;
+using QFSW.QC;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[CommandPrefix("game.")]
 [DefaultExecutionOrder(-10)]
 public class GameManager : Singleton<GameManager>
 {
@@ -31,6 +33,7 @@ public class GameManager : Singleton<GameManager>
             TimeSinceStart += Time.deltaTime;
     }
 
+    [Command("start_game", "Starts the game.")]
     public void StartGame()
     {
         if (CurrentGameState == GameState.Playing)
@@ -48,12 +51,14 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("Game Started");
     }
 
+    [Command("end_game", "Ends the game.")]
     public void EndGame()
     {
         ChangeGameState(GameState.GameOver);
         Debug.Log("Game Ended");
     }
 
+    [Command("main_menu", "Returns to the main menu.")]
     public void MainMenu()
     {
         TimeSinceStart = 0f;

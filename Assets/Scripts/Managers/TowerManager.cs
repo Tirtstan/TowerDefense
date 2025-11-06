@@ -18,7 +18,7 @@ public class TowerManager : Singleton<TowerManager>
     private void OnGameStateChanged(GameState state)
     {
         if (state == GameState.MainMenu)
-            DestroyAllTowers();
+            ClearAllTowers();
     }
 
     public void RegisterTower(Tower tower)
@@ -46,14 +46,23 @@ public class TowerManager : Singleton<TowerManager>
         }
     }
 
-    [Command("destroy_all_towers", "Destroys all towers in the game.")]
-    public void DestroyAllTowers()
+    [Command("clear_all_towers", "Clears all towers in the game.")]
+    public void ClearAllTowers()
     {
         var towersToDestroy = allTowers.ToList();
         foreach (var tower in towersToDestroy)
         {
-            if (tower != null)
+            if (tower.TryGetComponent(out CenterTower _))
+                continue;
+
+            if (tower.TryGetComponent(out IDamagable damagable))
+            {
+                damagable.TakeDamage(damagable.MaxHealth);
+            }
+            else
+            {
                 Destroy(tower.gameObject);
+            }
         }
 
         allTowers.Clear();
