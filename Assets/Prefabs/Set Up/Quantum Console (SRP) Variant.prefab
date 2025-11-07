@@ -346,7 +346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4845276930943762971, guid: 2da3dcc22749e7f4280737786d898334, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 4845637959249703711, guid: 2da3dcc22749e7f4280737786d898334, type: 3}
       propertyPath: m_AnchorMax.y
@@ -523,6 +523,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4622066769039182589, guid: 2da3dcc22749e7f4280737786d898334, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1308874302325747242}
+    - targetCorrespondingSourceObject: {fileID: 4622066769039182589, guid: 2da3dcc22749e7f4280737786d898334, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5017342526590879007}
   m_SourcePrefab: {fileID: 100100000, guid: 2da3dcc22749e7f4280737786d898334, type: 3}
 --- !u!1 &4791503687092344884 stripped
 GameObject:
@@ -549,3 +552,19 @@ MonoBehaviour:
   preventSelection: 0
   autoSelectOnEnable: 1
   rememberLastSelected: 1
+--- !u!114 &5017342526590879007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4791503687092344884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1323a46c38262994d93ce1b0e5524ac5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: tirt.sentinal::Sentinal.InputActionSwitcher
+  onEnableActionMapName: UI
+  onAllDisableActionMapName: Player
+  rememberPreviousActionMap: 1
+  exclusiveActionMapSwitching: 1

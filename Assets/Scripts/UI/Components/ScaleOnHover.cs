@@ -46,20 +46,28 @@ public class ScaleOnHover
 
     private void ScaleUpTween()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         currentMotionHandle.TryCancel();
         currentMotionHandle = LMotion
             .Create(flexObj.Scale, originalScale * scaleFactor, duration)
             .WithEase(ease)
+            .WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
             .BindToFlexalonScale(flexObj)
             .AddTo(gameObject);
     }
 
     private void ResetToOriginalTween()
     {
+        if (!gameObject.activeInHierarchy)
+            return;
+
         currentMotionHandle.TryCancel();
         currentMotionHandle = LMotion
             .Create(flexObj.Scale, originalScale, duration)
             .WithEase(ease)
+            .WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
             .BindToFlexalonScale(flexObj)
             .AddTo(gameObject);
     }

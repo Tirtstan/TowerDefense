@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
@@ -23,12 +22,12 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField]
     private Button exitButton;
+
     private PlayerInput playerInput;
 
     private void Awake()
     {
         playerInput = PlayerInput.GetPlayerByIndex(0);
-        playerInput.actions.FindAction("Player/Pause").performed += OnPausePerformed;
 
         resumeButton.onClick.AddListener(OnResumeClicked);
         restartButton.onClick.AddListener(Restart);
@@ -37,9 +36,19 @@ public class PauseMenu : MonoBehaviour
         exitButton.onClick.AddListener(Exit);
 
         menu.SetActive(false);
+
+        GameManager.OnGameStateChanged += OnGameStateChanged;
     }
 
-    private void Restart() => SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    private void OnGameStateChanged(GameState state)
+    {
+        if (state == GameState.Playing)
+            playerInput.actions.FindAction("Player/Pause").performed += OnPausePerformed;
+        else
+            playerInput.actions.FindAction("Player/Pause").performed -= OnPausePerformed;
+    }
+
+    private void Restart() { }
 
     private void OpenMainMenu()
     {
@@ -79,7 +88,6 @@ public class PauseMenu : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (playerInput != null)
-            playerInput.actions.FindAction("Player/Pause").performed -= OnPausePerformed;
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
     }
 }
