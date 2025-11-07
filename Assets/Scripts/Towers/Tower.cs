@@ -1,5 +1,4 @@
 using System;
-using QFSW.QC;
 using UnityEngine;
 
 public class Tower : MonoBehaviour
@@ -71,7 +70,7 @@ public class Tower : MonoBehaviour
         CurrentLevel++;
 
         OnUpgraded?.Invoke(this);
-        Debug.Log($"{gameObject.name} upgraded to level {CurrentLevel + 1}.");
+        Debug.Log($"{gameObject.name} upgraded to level {CurrentLevel}.");
         return true;
     }
 

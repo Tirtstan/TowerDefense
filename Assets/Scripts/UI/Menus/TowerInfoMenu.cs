@@ -34,13 +34,6 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
     [SerializeField]
     private TextMeshProUGUI attackIntervalText;
 
-    [SerializeField]
-    private TextMeshProUGUI upgradeCostText;
-
-    [Header("Buttons")]
-    [SerializeField]
-    private Button upgradeButton;
-
     [Header("Text Effects")]
     [SerializeField]
     private TextEffect nameTextEffect;
@@ -62,23 +55,6 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
     {
         base.Awake();
         HideMenu();
-
-        if (upgradeButton != null)
-            upgradeButton.onClick.AddListener(OnUpgradeButtonClicked);
-    }
-
-    private void OnDestroy()
-    {
-        if (upgradeButton != null)
-            upgradeButton.onClick.RemoveListener(OnUpgradeButtonClicked);
-    }
-
-    private void OnUpgradeButtonClicked()
-    {
-        if (currentTower != null && currentTower.TryUpgrade())
-        {
-            UpdateDisplay(currentTower);
-        }
     }
 
     private void OnTowerUpgraded(Tower tower)
@@ -117,33 +93,18 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
 
         nameText.SetText(tower.GetTowerSO().Name);
         nameTextEffect.Refresh();
-        levelText.SetText($"Lvl. {tower.CurrentLevel + 1}");
 
-        damageText.SetText($"{stats.Damage:0.0} damage");
+        string levelString = "+";
+        for (int i = 0; i < tower.CurrentLevel; i++)
+            levelString += "+";
+
+        levelText.SetText(levelString);
+
+        damageText.SetText($"{stats.Damage:0.##} damage");
         rangeText.SetText($"{stats.Range:0.0} metre(s)");
         attackIntervalText.SetText($"{stats.AttackInterval:0.0} sec(s)");
 
         UpdateHealthDisplay(currentHealth.CurrentHealth, stats.Health);
-        UpdateUpgradeButton(tower);
-    }
-
-    private void UpdateUpgradeButton(Tower tower)
-    {
-        if (upgradeButton == null || upgradeCostText == null)
-            return;
-
-        bool canUpgrade = tower.CanUpgrade();
-        upgradeButton.interactable = canUpgrade;
-
-        if (canUpgrade)
-        {
-            int cost = tower.GetUpgradeCost();
-            upgradeCostText.SetText($"Upgrade: ${cost}");
-        }
-        else
-        {
-            upgradeCostText.SetText("Max Level");
-        }
     }
 
     private void UpdateHealthDisplay(float currentHealth, float maxHealth)

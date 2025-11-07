@@ -29,10 +29,7 @@ public class TowerDirector : MonoBehaviour
 
     private void OnTowerUpgraded(Tower upgradedTower) => UpdateEffectiveStats();
 
-    private void UpdateEffectiveStats()
-    {
-        effectiveStats = tower.GetEffectiveStats();
-    }
+    private void UpdateEffectiveStats() => effectiveStats = tower.GetEffectiveStats();
 
     private void Update()
     {
@@ -44,7 +41,7 @@ public class TowerDirector : MonoBehaviour
         }
     }
 
-    private void AttackAllTargetsInRange()
+    public void AttackAllTargetsInRange()
     {
         targets.Clear();
         int hitCount = Physics.OverlapSphereNonAlloc(

@@ -62,6 +62,7 @@
   <Project Path="QFSW.QC.Parsers.csproj" />
   <Project Path="Unity.Burst.Editor.csproj" />
   <Project Path="Unity.Rider.Editor.csproj" />
+  <Project Path="Unity.Cursor.Editor.csproj" />
   <Project Path="Unity.VisualScripting.State.csproj" />
   <Project Path="Unity.AI.Navigation.Updater.csproj" />
   <Project Path="Coffee.UIEffect.Editor.csproj" />

@@ -1,4 +1,3 @@
-using LitMotion;
 using UnityEngine;
 using UnityEngine.UI;
 

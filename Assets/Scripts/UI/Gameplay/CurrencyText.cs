@@ -28,7 +28,8 @@ public class CurrencyText : MonoBehaviour
 
     public void UpdateCurrencyText(int amount)
     {
-        int start = int.Parse(text.text);
+        if (!int.TryParse(text.text, out int start))
+            start = EconomyManager.Instance.GetCurrencyAmount();
 
         motionHandle.TryCancel();
         motionHandle = LMotion.Create(start, amount, duration).WithEase(ease).BindToText(text).AddTo(gameObject);

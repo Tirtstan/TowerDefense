@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f856d526bdf5794ba94f5099dc7f6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CenterTower
+  towerHealth: {fileID: 0}
 --- !u!114 &7686350860836700349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerSO: {fileID: 11400000, guid: bf89639d097c88c4bb9108ad1ac0ae7f, type: 2}
+  upgradePath: {fileID: 0}
 --- !u!114 &1553645843717211092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +174,8 @@ MonoBehaviour:
   visual: {fileID: 8811880684376672388}
   cinemachineImpulseSource: {fileID: 5422335116801391211}
   shakeForce: 0.15
+  punchForce: 0.2
+  shakeDuration: 0.2
 --- !u!1 &8179350492410284397
 GameObject:
   m_ObjectHideFlags: 0
