@@ -175,10 +175,10 @@ MonoBehaviour:
     m_Value: 0
   grainIntensity:
     m_OverrideState: 1
-    m_Value: 0.465
+    m_Value: 0.619
   scanlineIntensity:
     m_OverrideState: 1
-    m_Value: 0.233
+    m_Value: 0.084
   vignetteIntensity:
     m_OverrideState: 1
     m_Value: 0.374
@@ -187,7 +187,7 @@ MonoBehaviour:
     m_Value: 0.01
   desaturation:
     m_OverrideState: 1
-    m_Value: 0.18
+    m_Value: 0.067
 --- !u!114 &849379129802519247
 MonoBehaviour:
   m_ObjectHideFlags: 3

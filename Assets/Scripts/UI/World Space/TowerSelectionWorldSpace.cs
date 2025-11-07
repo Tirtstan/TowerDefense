@@ -1,5 +1,8 @@
+using System.Collections;
+using Flexalon;
 using LitMotion;
 using LitMotion.Extensions;
+using LitMotion.Extensions.Flexalon;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -37,15 +40,53 @@ public class TowerSelectionWorldSpace : Singleton<TowerSelectionWorldSpace>
 
     [SerializeField]
     private Ease fillEase = Ease.OutCubic;
+
+    [Header("Scale Animation")]
+    [SerializeField]
+    private float scaleDuration = 0.3f;
+
+    [SerializeField]
+    private Ease scaleEase = Ease.OutCubic;
+
+    [Header("Fade Animation")]
+    [SerializeField]
+    private float fadeDuration = 0.3f;
+
+    [SerializeField]
+    private Ease fadeEase = Ease.OutCubic;
+
     private Tower currentTower;
     private MotionHandle fillMotionHandle;
+    private MotionHandle scaleMotionHandle;
+    private MotionHandle fadeMotionHandle;
+    private FlexalonObject flexalonObject;
+    private CanvasGroup canvasGroup;
+    private Vector3 originalScale;
+    private Coroutine scaleOutCoroutine;
 
     protected override void Awake()
     {
         base.Awake();
 
         if (uiContainer != null)
+        {
             uiContainer.SetActive(false);
+
+            // Get FlexalonObject component
+            flexalonObject = uiContainer.GetComponent<FlexalonObject>();
+            if (flexalonObject != null)
+            {
+                originalScale = flexalonObject.Scale;
+            }
+
+            // Get CanvasGroup for fade animation
+            canvasGroup = uiContainer.GetComponent<CanvasGroup>();
+            if (canvasGroup == null)
+            {
+                canvasGroup = uiContainer.AddComponent<CanvasGroup>();
+            }
+            canvasGroup.alpha = 0f;
+        }
 
         if (upgradeButton != null)
             upgradeButton.onClick.AddListener(OnUpgradeButtonClicked);
@@ -95,7 +136,10 @@ public class TowerSelectionWorldSpace : Singleton<TowerSelectionWorldSpace>
             currentTower.OnUpgraded += OnTowerUpgraded;
 
         if (uiContainer != null)
+        {
             uiContainer.SetActive(true);
+            AnimateScaleIn();
+        }
 
         UpdateUpgradeButton();
     }
@@ -109,7 +153,7 @@ public class TowerSelectionWorldSpace : Singleton<TowerSelectionWorldSpace>
         currentTower = null;
 
         if (uiContainer != null)
-            uiContainer.SetActive(false);
+            AnimateScaleOut();
     }
 
     private void OnUpgradeButtonClicked()
@@ -180,6 +224,82 @@ public class TowerSelectionWorldSpace : Singleton<TowerSelectionWorldSpace>
         }
     }
 
+    private void AnimateScaleIn()
+    {
+        if (uiContainer == null || flexalonObject == null)
+            return;
+
+        scaleMotionHandle.TryCancel();
+        fadeMotionHandle.TryCancel();
+        if (scaleOutCoroutine != null)
+        {
+            StopCoroutine(scaleOutCoroutine);
+            scaleOutCoroutine = null;
+        }
+
+        Vector3 initialScale = new(0.05f, 0.2f, 0.3f);
+        flexalonObject.Scale = initialScale;
+        canvasGroup.alpha = 0f;
+
+        scaleMotionHandle = LMotion
+            .Create(flexalonObject.Scale, originalScale, scaleDuration)
+            .WithEase(scaleEase)
+            .WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
+            .BindToFlexalonScale(flexalonObject)
+            .AddTo(gameObject);
+
+        if (canvasGroup != null)
+        {
+            fadeMotionHandle = LMotion
+                .Create(0f, 1f, fadeDuration)
+                .WithEase(fadeEase)
+                .WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
+                .BindToAlpha(canvasGroup)
+                .AddTo(gameObject);
+        }
+    }
+
+    private void AnimateScaleOut()
+    {
+        if (uiContainer == null || flexalonObject == null)
+            return;
+
+        scaleMotionHandle.TryCancel();
+        fadeMotionHandle.TryCancel();
+
+        scaleMotionHandle = LMotion
+            .Create(flexalonObject.Scale, Vector3.zero, scaleDuration)
+            .WithEase(scaleEase)
+            .WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
+            .BindToFlexalonScale(flexalonObject)
+            .AddTo(gameObject);
+
+        if (canvasGroup != null)
+        {
+            float currentAlpha = canvasGroup.alpha;
+            fadeMotionHandle = LMotion
+                .Create(currentAlpha, 0f, fadeDuration)
+                .WithEase(fadeEase)
+                .WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
+                .BindToAlpha(canvasGroup)
+                .AddTo(gameObject);
+        }
+
+        // Start coroutine to deactivate after animation completes
+        if (scaleOutCoroutine != null)
+            StopCoroutine(scaleOutCoroutine);
+        scaleOutCoroutine = StartCoroutine(DeactivateAfterScaleOut());
+    }
+
+    private IEnumerator DeactivateAfterScaleOut()
+    {
+        float maxDuration = Mathf.Max(scaleDuration, fadeDuration);
+        yield return new WaitForSecondsRealtime(maxDuration);
+        if (uiContainer != null)
+            uiContainer.SetActive(false);
+        scaleOutCoroutine = null;
+    }
+
     private void OnDestroy()
     {
         SelectionSystem.OnSelected -= OnTowerSelected;
@@ -188,5 +308,10 @@ public class TowerSelectionWorldSpace : Singleton<TowerSelectionWorldSpace>
 
         if (upgradeButton != null)
             upgradeButton.onClick.RemoveListener(OnUpgradeButtonClicked);
+
+        scaleMotionHandle.TryCancel();
+        fadeMotionHandle.TryCancel();
+        if (scaleOutCoroutine != null)
+            StopCoroutine(scaleOutCoroutine);
     }
 }

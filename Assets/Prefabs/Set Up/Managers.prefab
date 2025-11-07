@@ -83,6 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
   startingCurrency: 250
   maxCurrency: 9999
+  infiniteMoney: 0
 --- !u!1 &2842795499491239695
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,7 +503,7 @@ MonoBehaviour:
     spawner: {fileID: 3704368903273620619}
   - spawnType: 2
     spawner: {fileID: 7392390327293371747}
-  initialDelay: 5
+  initialDelay: 8
   timeBetweenWaves: 3
   baseSpawnInterval: 1
   baseEnemiesToSpawn: 1
