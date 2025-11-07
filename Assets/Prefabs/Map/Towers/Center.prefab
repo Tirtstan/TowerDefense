@@ -76,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f856d526bdf5794ba94f5099dc7f6d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CenterTower
-  towerHealth: {fileID: 0}
 --- !u!114 &7686350860836700349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -90,7 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerSO: {fileID: 11400000, guid: bf89639d097c88c4bb9108ad1ac0ae7f, type: 2}
-  upgradePath: {fileID: 0}
+  upgradePath: {fileID: 11400000, guid: eb0d6fefee3afc84a8e09eb5b5f77565, type: 2}
 --- !u!114 &1553645843717211092
 MonoBehaviour:
   m_ObjectHideFlags: 0

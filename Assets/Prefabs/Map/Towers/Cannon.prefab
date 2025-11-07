@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerSO: {fileID: 11400000, guid: ca5156a02a204ab4c9af6ca0787c7fb5, type: 2}
-  upgradePath: {fileID: 0}
+  upgradePath: {fileID: 11400000, guid: 64d60ebd9c7f0814c8d1200f373d3d27, type: 2}
 --- !u!114 &2406413187064011577
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: UFO Melee A
   m_EditorClassIdentifier: Assembly-CSharp::EnemySO
   Name: UFO Goon
-  Health: 50
+  Health: 60
   Damage: 5
-  Speed: 1
+  Speed: 1.25
   VisionRange: 3.5
   AttackRange: 0.5
   AttackInterval: 2

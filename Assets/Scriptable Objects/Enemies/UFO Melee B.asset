@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: UFO Boss
   Health: 350
   Damage: 35
-  Speed: 0.5
+  Speed: 1
   VisionRange: 4
   AttackRange: 1
   AttackInterval: 3

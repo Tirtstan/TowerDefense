@@ -29,5 +29,6 @@ MonoBehaviour:
     Health: 30
     Cost: 75
     Damage: 12
-    Range: 7.5
+    Range: 6
     AttackInterval: 1.5
+    TargetingType: 0
