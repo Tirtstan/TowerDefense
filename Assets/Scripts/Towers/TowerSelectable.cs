@@ -1,12 +1,10 @@
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Tower))]
 public class TowerSelectable : MonoBehaviour, IGameSelectable
 {
     [Header("Components")]
-    [SerializeField]
-    private MeshRenderer towerMeshRenderer;
-
     [SerializeField]
     private RectTransform rangeElement;
 

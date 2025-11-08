@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c84f0d297c19594faec1fa9e3f625d3, type: 3}
+  m_Name: Bank
+  m_EditorClassIdentifier: Assembly-CSharp::TowerSO
+  Id: 5
+  Name: Bank
+  Description: Generates money!
+  PlaceableLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  Sprite: {fileID: 21300000, guid: eb58489db99b44be4a107656561c8ff3, type: 3}
+  Prefab: {fileID: 8474714792004710613, guid: 709837516a37644f388b9aca41e82217, type: 3}
+  PrefabPreview: {fileID: 8474714792004710613, guid: 25d4e52c4f3c64b38a10778795cf496d, type: 3}
+  OriginalMesh: {fileID: 919132149155446097, guid: 10d61180b93cc9b48836297cbedb54bd, type: 3}
+  Stats:
+    Health: 25
+    Cost: 50
+    Damage: 0
+    Range: 2
+    AttackInterval: 8
+    TargetingType: 3

@@ -19,5 +19,5 @@ MonoBehaviour:
   VisionRange: 4
   AttackRange: 1.1
   AttackInterval: 3
-  CurrencyDropAmount: 35
+  CurrencyDropAmount: 40
   DifficultyRating: 5

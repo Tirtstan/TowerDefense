@@ -5,7 +5,7 @@ public enum EnemySpawnType
 {
     MeleeBasic,
     MeleeTank,
-    RangedBasic
+    RangedBasic,
 }
 
 // Anthropic, 2025
