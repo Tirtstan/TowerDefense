@@ -63,7 +63,7 @@ public class WaveManager : Singleton<WaveManager>
     private int earlyGameThreshold = 2;
 
     private readonly List<Transform> spawnPoints = new();
-    private readonly List<EnemyHealth> activeEnemies = new();
+    private readonly List<Enemy> activeEnemies = new();
     private readonly Dictionary<EnemySpawnType, Spawner> spawnerLookup = new();
     private Coroutine spawnCoroutine;
     private int currentWaveIndex = -1;
@@ -123,7 +123,8 @@ public class WaveManager : Singleton<WaveManager>
                 bossWaveInterval,
                 bossWaveBudgetMultiplier,
                 baseSpawnInterval,
-                baseEnemiesToSpawn
+                baseEnemiesToSpawn,
+                earlyGameThreshold
             );
 
             OnWaveStarted?.Invoke(currentWave);
@@ -164,11 +165,35 @@ public class WaveManager : Singleton<WaveManager>
                     Spawner spawnerToUse = currentWave.GetNextSpawner();
                     if (spawnerToUse != null)
                     {
-                        float cost = spawnerToUse.GetDifficultyCost();
+                        // Get mutation for this spawn with context
+                        float playerHealthPercent = GetPlayerHealthPercentage();
+                        float budgetRemainingPercent = currentWave.GetRemainingBudget() / currentWave.Budget;
+                        EnemyMutation mutation = currentWave.GetMutationForSpawner(
+                            spawnerToUse,
+                            GetPlayerTowerCounts(),
+                            playerHealthPercent,
+                            activeEnemies.Count,
+                            budgetRemainingPercent
+                        );
+
+                        float cost = spawnerToUse.GetDifficultyCost(mutation);
                         if (currentWave.TrySpendBudget(cost))
                         {
                             Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
-                            spawnerToUse.SpawnEnemy(spawnPoint.position, spawnPoint.rotation);
+                            spawnerToUse.SpawnEnemy(spawnPoint.position, spawnPoint.rotation, mutation);
+                        }
+                        else
+                        {
+                            float baseCost = spawnerToUse.GetDifficultyCost();
+                            if (currentWave.TrySpendBudget(baseCost))
+                            {
+                                Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)];
+                                spawnerToUse.SpawnEnemy(
+                                    spawnPoint.position,
+                                    spawnPoint.rotation,
+                                    EnemyMutation.CreateNone()
+                                );
+                            }
                         }
                     }
                 }
@@ -195,9 +220,9 @@ public class WaveManager : Singleton<WaveManager>
 
     public void UnregisterSpawnPoint(Transform transform) => spawnPoints.Remove(transform);
 
-    private void AddActiveEnemy(EnemyHealth enemy) => activeEnemies.Add(enemy);
+    private void AddActiveEnemy(Enemy enemy) => activeEnemies.Add(enemy);
 
-    private void RemoveActiveEnemy(EnemyHealth enemy) => activeEnemies.Remove(enemy);
+    private void RemoveActiveEnemy(Enemy enemy) => activeEnemies.Remove(enemy);
 
     [Command("clear_waves", "Stops all wave spawning and clears active enemies.")]
     private void CleanUp()

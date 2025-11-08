@@ -6,12 +6,12 @@ using UnityEngine.Pool;
 
 public abstract class Spawner : MonoBehaviour
 {
-    public abstract event Action<EnemyHealth> OnSpawned;
-    public virtual event Action<EnemyHealth> OnReleased;
+    public virtual event Action<Enemy> OnSpawned;
+    public virtual event Action<Enemy> OnReleased;
 
     [Header("Enemy")]
     [SerializeField]
-    protected EnemyHealth enemyPrefab;
+    protected Enemy enemyPrefab;
 
     [Header("Pool Settings")]
     [SerializeField]
@@ -19,12 +19,12 @@ public abstract class Spawner : MonoBehaviour
 
     [SerializeField]
     private int maxPoolSize = 100;
-    protected virtual ObjectPool<EnemyHealth> Pool { get; private set; }
-    protected readonly HashSet<EnemyHealth> activeEnemies = new();
+    protected virtual ObjectPool<Enemy> Pool { get; private set; }
+    protected readonly HashSet<Enemy> activeEnemies = new();
 
     protected virtual void Awake()
     {
-        Pool = new ObjectPool<EnemyHealth>(
+        Pool = new ObjectPool<Enemy>(
             createFunc: CreateItem,
             actionOnGet: OnGetFromPool,
             actionOnRelease: OnReturnToPool,
@@ -35,24 +35,21 @@ public abstract class Spawner : MonoBehaviour
         );
     }
 
-    protected virtual EnemyHealth CreateItem()
+    protected virtual Enemy CreateItem()
     {
-        EnemyHealth enemy = Instantiate(enemyPrefab, Vector3.right * 18f, Quaternion.identity);
-        if (enemy.TryGetComponent(out NavMeshAgent agent))
-            agent.enabled = false;
-
+        Enemy enemy = Instantiate(enemyPrefab, Vector3.right * 18f, Quaternion.identity);
         enemy.gameObject.SetActive(false);
         return enemy;
     }
 
-    protected virtual void OnGetFromPool(EnemyHealth enemy)
+    protected virtual void OnGetFromPool(Enemy enemy)
     {
         enemy.gameObject.SetActive(true);
         enemy.Spawner = this;
         activeEnemies.Add(enemy);
     }
 
-    protected virtual void OnReturnToPool(EnemyHealth enemy)
+    protected virtual void OnReturnToPool(Enemy enemy)
     {
         if (enemy.TryGetComponent(out NavMeshAgent agent))
             agent.enabled = false;
@@ -60,11 +57,17 @@ public abstract class Spawner : MonoBehaviour
         enemy.gameObject.SetActive(false);
         activeEnemies.Remove(enemy);
 
-        if (enemy.TryGetComponent(out IDamagable damagable))
-            damagable.Heal(damagable.MaxHealth);
+        // Reset mutation when returning to pool
+        enemy.ApplyMutation(EnemyMutation.CreateNone());
+
+        if (enemy.TryGetComponent(out EnemyHealth enemyHealth))
+        {
+            if (enemyHealth.TryGetComponent(out IDamagable damagable))
+                damagable.Heal(damagable.MaxHealth);
+        }
     }
 
-    protected virtual void OnDestroyPooledItem(EnemyHealth enemy)
+    protected virtual void OnDestroyPooledItem(Enemy enemy)
     {
         if (enemy == null)
             return;
@@ -72,12 +75,30 @@ public abstract class Spawner : MonoBehaviour
         Destroy(enemy.gameObject);
     }
 
-    public abstract void SpawnEnemy(Vector3 position, Quaternion rotation);
-
-    public virtual void ReturnToPool(EnemyHealth enemyHealth)
+    public virtual void SpawnEnemy(Vector3 position, Quaternion rotation, EnemyMutation mutation)
     {
-        OnReleased?.Invoke(enemyHealth);
-        Pool.Release(enemyHealth);
+        Enemy enemy = Pool.Get();
+
+        enemy.ApplyMutation(mutation);
+
+        Vector3 finalPosition = GetSpawnPosition(position);
+        enemy.transform.SetPositionAndRotation(finalPosition, rotation);
+
+        if (enemy.TryGetComponent(out NavMeshAgent agent))
+            agent.enabled = true;
+
+        OnSpawned?.Invoke(enemy);
+    }
+
+    protected virtual Vector3 GetSpawnPosition(Vector3 requestedPosition)
+    {
+        return requestedPosition;
+    }
+
+    public virtual void ReturnToPool(Enemy enemy)
+    {
+        OnReleased?.Invoke(enemy);
+        Pool.Release(enemy);
     }
 
     public abstract void ClearAll();
@@ -85,4 +106,10 @@ public abstract class Spawner : MonoBehaviour
     public EnemySO GetEnemySO() => enemyPrefab.GetEnemySO();
 
     public float GetDifficultyCost() => enemyPrefab.GetEnemySO().DifficultyRating;
+
+    public virtual float GetDifficultyCost(EnemyMutation mutation)
+    {
+        float baseCost = GetDifficultyCost();
+        return baseCost * mutation.DifficultyRatingMultiplier;
+    }
 }

@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField]
-    private EnemySO enemySO;
+    private Enemy enemy;
 
     [SerializeField]
     private NavMeshAgent agent;
@@ -26,20 +26,39 @@ public class EnemyController : MonoBehaviour
     private float attackTimer;
     private bool hasValidTarget;
     private bool pendingDestinationSet;
+    private EnemyStats effectiveStats;
 
     private void Awake()
     {
         visionCollider = GetComponent<SphereCollider>();
+        if (enemy == null)
+            enemy = GetComponent<Enemy>();
+
+        if (enemy != null)
+        {
+            UpdateEffectiveStats();
+            enemy.OnMutationApplied += OnMutationApplied;
+        }
+
         SetupComponents();
+    }
+
+    private void OnMutationApplied(Enemy mutatedEnemy) => UpdateEffectiveStats();
+
+    private void UpdateEffectiveStats()
+    {
+        if (enemy != null)
+            effectiveStats = enemy.GetEffectiveStats();
     }
 
     private void SetupComponents()
     {
-        if (enemySO != null)
+        if (enemy != null && agent != null)
         {
-            agent.speed = enemySO.Speed;
-            agent.stoppingDistance = enemySO.AttackRange;
-            visionCollider.radius = enemySO.VisionRange;
+            effectiveStats = enemy.GetEffectiveStats();
+            agent.speed = effectiveStats.Speed;
+            agent.stoppingDistance = effectiveStats.AttackRange;
+            visionCollider.radius = effectiveStats.VisionRange;
         }
 
         visionCollider.isTrigger = true;
@@ -85,7 +104,7 @@ public class EnemyController : MonoBehaviour
             return;
 
         attackTimer += Time.deltaTime;
-        if (attackTimer >= enemySO.AttackInterval)
+        if (attackTimer >= effectiveStats.AttackInterval)
         {
             attackTimer = 0f;
             TryAttackCurrentTarget();
@@ -323,19 +342,26 @@ public class EnemyController : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
-        if (enemySO == null)
+        if (enemy == null)
             return;
 
+        EnemyStats stats = enemy.GetEffectiveStats();
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, enemySO.VisionRange);
+        Gizmos.DrawWireSphere(transform.position, stats.VisionRange);
 
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, enemySO.AttackRange);
+        Gizmos.DrawWireSphere(transform.position, stats.AttackRange);
 
         if (hasValidTarget && currentTarget != null)
         {
             Gizmos.color = Color.green;
             Gizmos.DrawLine(transform.position, currentTarget.position);
         }
+    }
+
+    private void OnDestroy()
+    {
+        if (enemy != null)
+            enemy.OnMutationApplied -= OnMutationApplied;
     }
 }

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2909787520619707065}
   - component: {fileID: 4317439655422551323}
   - component: {fileID: 7066333920728834197}
+  - component: {fileID: 2717265033973838352}
   - component: {fileID: 8644693996688252603}
   - component: {fileID: 4413841343857687825}
   - component: {fileID: 6238138437052592428}
@@ -111,6 +112,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &2717265033973838352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747583962200913497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a0c49c994e9de47895c35f5c17d6f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  enemySO: {fileID: 11400000, guid: c6463c3809bae2f449f84f79328c6782, type: 2}
 --- !u!114 &8644693996688252603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +137,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d44d74c2d9adb64ab95c507dc69a424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  enemySO: {fileID: 11400000, guid: c6463c3809bae2f449f84f79328c6782, type: 2}
+  enemy: {fileID: 2717265033973838352}
   preventDamage: 0
 --- !u!114 &4413841343857687825
 MonoBehaviour:
@@ -137,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 402a95d54967b4d47b8640917e7a859a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyShooter
-  enemySO: {fileID: 11400000, guid: c6463c3809bae2f449f84f79328c6782, type: 2}
+  enemy: {fileID: 2717265033973838352}
   projectilePrefab: {fileID: -8360906438616686268, guid: f300a7546030e3d43bd76e361149b70d, type: 3}
   shootPoint: {fileID: 6881427063455569255}
   aimer: {fileID: 6238138437052592428}
@@ -281,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34889117c0337584e9dd157e62636d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
-  enemySO: {fileID: 11400000, guid: c6463c3809bae2f449f84f79328c6782, type: 2}
+  enemy: {fileID: 2717265033973838352}
   agent: {fileID: 2909787520619707065}
   enemyAttack: {fileID: 4413841343857687825}
   towerLayer:
