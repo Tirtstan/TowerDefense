@@ -30,17 +30,31 @@ public class Tower : MonoBehaviour
         if (CurrentLevel == 0 || upgradePath == null)
             return baseStats;
 
-        UpgradeTier tier = upgradePath.GetTier(CurrentLevel);
-        if (tier == null)
-            return baseStats;
+        // Accumulate all upgrade tiers from level 1 to CurrentLevel
+        float totalHealthBonus = 0f;
+        float totalDamageMultiplier = 1f;
+        float totalRangeMultiplier = 1f;
+        float totalAttackSpeedMultiplier = 1f;
+
+        for (int level = 1; level <= CurrentLevel; level++)
+        {
+            UpgradeTier tier = upgradePath.GetTier(level);
+            if (tier == null)
+                continue;
+
+            totalHealthBonus += tier.HealthBonus;
+            totalDamageMultiplier *= tier.DamageMultiplier;
+            totalRangeMultiplier *= tier.RangeMultiplier;
+            totalAttackSpeedMultiplier *= tier.AttackSpeedMultiplier;
+        }
 
         return new TowerStats
         {
-            Health = baseStats.Health + tier.HealthBonus,
+            Health = baseStats.Health + totalHealthBonus,
             Cost = baseStats.Cost,
-            Damage = baseStats.Damage * tier.DamageMultiplier,
-            Range = baseStats.Range * tier.RangeMultiplier,
-            AttackInterval = baseStats.AttackInterval / tier.AttackSpeedMultiplier,
+            Damage = baseStats.Damage * totalDamageMultiplier,
+            Range = baseStats.Range * totalRangeMultiplier,
+            AttackInterval = baseStats.AttackInterval / totalAttackSpeedMultiplier,
             TargetingType = baseStats.TargetingType
         };
     }

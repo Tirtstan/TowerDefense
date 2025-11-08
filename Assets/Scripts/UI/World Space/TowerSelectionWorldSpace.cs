@@ -165,10 +165,7 @@ public class TowerSelectionWorldSpace : Singleton<TowerSelectionWorldSpace>
     private void OnTowerUpgraded(Tower tower)
     {
         if (currentTower == tower)
-        {
             UpdateUpgradeButton();
-            HideUI();
-        }
     }
 
     private void OnCurrencyUpdated(int newCurrency)

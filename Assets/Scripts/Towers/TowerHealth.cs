@@ -16,18 +16,26 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
     public Transform Target => transform;
     public float CurrentHealth { get; private set; }
     public float MaxHealth => tower.GetEffectiveStats().Health;
+    private float previousMaxHealth;
 
     private void Awake()
     {
         CurrentHealth = MaxHealth;
+        previousMaxHealth = MaxHealth;
         tower.OnUpgraded += OnTowerUpgraded;
     }
 
     private void OnTowerUpgraded(Tower tower)
     {
-        float healthPercent = CurrentHealth / MaxHealth;
         float newMaxHealth = tower.GetEffectiveStats().Health;
-        Heal(newMaxHealth * healthPercent - CurrentHealth);
+
+        // Add the health increase to both current and max health
+        float healthIncrease = newMaxHealth - previousMaxHealth;
+        if (healthIncrease > 0)
+        {
+            Heal(healthIncrease);
+            previousMaxHealth = newMaxHealth;
+        }
     }
 
     public void TakeDamage(float amount)

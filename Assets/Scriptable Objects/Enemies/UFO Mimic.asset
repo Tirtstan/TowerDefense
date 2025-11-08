@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d23704a08781eb14bba2dcb2393956ce, type: 3}
-  m_Name: UFO Melee B
+  m_Name: UFO Mimic
   m_EditorClassIdentifier: Assembly-CSharp::EnemySO
-  Name: UFO Boss
-  Health: 420
-  Damage: 35
-  Speed: 1
-  VisionRange: 4
+  Name: UFO Mimic
+  Health: 85
+  Damage: 10
+  Speed: 1.35
+  VisionRange: 5
   AttackRange: 1
-  AttackInterval: 3
-  CurrencyDropAmount: 35
-  DifficultyRating: 5
+  AttackInterval: 1.8
+  CurrencyDropAmount: 40
+  DifficultyRating: 3

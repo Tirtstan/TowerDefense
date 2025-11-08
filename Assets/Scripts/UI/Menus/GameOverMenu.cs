@@ -40,16 +40,19 @@ public class GameOverMenu : MonoBehaviour
         if (gameState != GameState.GameOver)
             return;
 
-        // PauseManager.Instance.Pause(); // probably do a different solution? (do this to prevent enemies trying to get center tower pos, null ref)
         infoText.SetText(FormatUtils.FormatTime(GameManager.Instance.TimeSinceStart));
         ShowMenu();
     }
 
-    private void OnRestartClicked() => SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    private void OnRestartClicked() => Debug.Log("Restart Button Clicked");
 
     private void OnOptionsClicked() => Debug.Log("Options Button Clicked");
 
-    private void OnMainMenuClicked() => Debug.Log("Main Menu Button Clicked");
+    private void OnMainMenuClicked()
+    {
+        GameManager.Instance.MainMenu();
+        HideMenu();
+    }
 
     private void OnExitClicked() => Application.Quit();
 

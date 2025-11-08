@@ -99,11 +99,8 @@ public class WaveManager : Singleton<WaveManager>
             case GameState.Playing:
                 spawnCoroutine = StartCoroutine(SpawnRoutine());
                 break;
-            case GameState.GameOver:
-                // Fully halt spawns and clear any remaining enemies on game over
-                CleanUp();
-                break;
-            case GameState.MainMenu:
+            case GameState.GameOver
+            or GameState.MainMenu:
                 CleanUp();
                 break;
         }
