@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3793107648405611418}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: ShootPoint
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 8045771983117612152}
   - component: {fileID: 1372815465104080361}
   - component: {fileID: 8474714792004710613}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: CatapultPreview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerSO: {fileID: 11400000, guid: a66eafbc3faa0c94c96e0ca663be9292, type: 2}
+  upgradePath: {fileID: 0}
 --- !u!1001 &7159347862802815845
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -151,6 +152,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 68300db2e4600944b9864e479743f09e, type: 3}
       propertyPath: m_Name
       value: weapon-catapult
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 68300db2e4600944b9864e479743f09e, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2829518461224114169, guid: 68300db2e4600944b9864e479743f09e, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -298,6 +307,10 @@ PrefabInstance:
       value: WorldCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 3144628900379055325, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144628900379055325, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -309,13 +322,25 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0.7529412
       objectReference: {fileID: 0}
+    - target: {fileID: 4059694687091187862, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5338789997174841623, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 7264769705232907406}
     - target: {fileID: 6343774924690217164, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343774924690217164, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6698561006399550988, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6723307660638050872, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: tower

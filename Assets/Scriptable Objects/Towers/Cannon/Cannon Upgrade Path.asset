@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db7a5faf13b3a7f4fbcec41ba8be46e9, type: 3}
+  m_Name: Cannon Upgrade Path
+  m_EditorClassIdentifier: Assembly-CSharp::UpgradePathSO
+  Tiers:
+  - UpgradeCost: 80
+    DamageMultiplier: 1
+    RangeMultiplier: 1
+    AttackSpeedMultiplier: 1.1
+    HealthBonus: 25
+  - UpgradeCost: 125
+    DamageMultiplier: 1.25
+    RangeMultiplier: 1
+    AttackSpeedMultiplier: 1
+    HealthBonus: 35

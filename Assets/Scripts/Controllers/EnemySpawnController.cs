@@ -20,19 +20,20 @@ public class EnemySpawnController : Singleton<EnemySpawnController>
     protected override void Awake()
     {
         base.Awake();
-        GameManager.OnGameStart += OnGameStart;
-        GameManager.OnGameEnd += OnGameEnd;
+        GameManager.OnGameStateChanged += OnGameStateChanged;
     }
 
-    private void OnGameStart()
+    private void OnGameStateChanged(GameState gameState)
     {
-        spawnCoroutine = StartCoroutine(SpawnRoutine());
-    }
-
-    private void OnGameEnd()
-    {
-        if (spawnCoroutine != null)
-            StopCoroutine(spawnCoroutine);
+        if (gameState == GameState.Playing)
+        {
+            spawnCoroutine = StartCoroutine(SpawnRoutine());
+        }
+        else if (gameState == GameState.GameOver)
+        {
+            if (spawnCoroutine != null)
+                StopCoroutine(spawnCoroutine);
+        }
     }
 
     private IEnumerator SpawnRoutine()
@@ -70,7 +71,6 @@ public class EnemySpawnController : Singleton<EnemySpawnController>
 
     private void OnDestroy()
     {
-        GameManager.OnGameStart -= OnGameStart;
-        GameManager.OnGameEnd -= OnGameEnd;
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
     }
 }

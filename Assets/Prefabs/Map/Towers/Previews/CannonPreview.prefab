@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8045771983117612152}
   - component: {fileID: 1372815465104080361}
   - component: {fileID: 8474714792004710613}
-  m_Layer: 6
+  m_Layer: 12
   m_Name: CannonPreview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerSO: {fileID: 11400000, guid: ca5156a02a204ab4c9af6ca0787c7fb5, type: 2}
+  upgradePath: {fileID: 0}
 --- !u!1001 &1613181215704113606
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120,6 +121,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 9bcb10c31bb6e484d9164e897c8171a8, type: 3}
       propertyPath: m_Name
       value: weapon-cannon
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9bcb10c31bb6e484d9164e897c8171a8, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 7598419493678936200, guid: 9bcb10c31bb6e484d9164e897c8171a8, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -259,6 +268,10 @@ PrefabInstance:
       value: WorldCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 3144628900379055325, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3144628900379055325, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -274,13 +287,25 @@ PrefabInstance:
       propertyPath: m_Color.g
       value: 0.7529412
       objectReference: {fileID: 0}
+    - target: {fileID: 4059694687091187862, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 5338789997174841623, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1290724094552901165}
     - target: {fileID: 6343774924690217164, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6343774924690217164, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6698561006399550988, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6723307660638050872, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: tower

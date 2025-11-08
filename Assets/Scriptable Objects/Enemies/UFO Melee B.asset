@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: UFO Melee B
   m_EditorClassIdentifier: Assembly-CSharp::EnemySO
   Name: UFO Boss
-  Health: 350
+  Health: 420
   Damage: 35
-  Speed: 0.5
+  Speed: 1
   VisionRange: 4
-  AttackRange: 0.5
-  AttackInterval: 6
-  CurrencyDropAmount: 50
+  AttackRange: 1
+  AttackInterval: 3
+  CurrencyDropAmount: 35
   DifficultyRating: 5

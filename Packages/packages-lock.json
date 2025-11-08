@@ -1,5 +1,34 @@
 {
   "dependencies": {
+    "com.annulusgames.lit-motion": {
+      "version": "https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.burst": "1.6.0",
+        "com.unity.collections": "1.5.1",
+        "com.unity.mathematics": "1.0.1"
+      },
+      "hash": "b651c5866fe0e3fba065ce2e56dfdfcd59d3d109"
+    },
+    "com.annulusgames.lit-motion.animation": {
+      "version": "https://github.com/annulusgames/LitMotion.git?path=src/LitMotion/Assets/LitMotion.Animation",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.annulusgames.lit-motion": "2.0.0"
+      },
+      "hash": "b651c5866fe0e3fba065ce2e56dfdfcd59d3d109"
+    },
+    "com.boxqkrtm.ide.cursor": {
+      "version": "https://github.com/boxqkrtm/com.unity.ide.cursor.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.test-framework": "1.1.9"
+      },
+      "hash": "53e1baac3cde90c46934f82ee1d61802d2bd6651"
+    },
     "com.coffee.ui-effect": {
       "version": "https://github.com/mob-sakai/UIEffect.git?path=Packages/src",
       "depth": 0,
@@ -17,6 +46,13 @@
         "com.unity.ugui": "1.0.0"
       },
       "hash": "0e500390d9e1f46adb40b8cc2d5c80cedafdb1a3"
+    },
+    "com.tirt.litmotion-flexalon": {
+      "version": "https://github.com/Tirtstan/LitMotion-Flexalon.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "cea7f69a110b0a80c135ade3d71035736333b159"
     },
     "com.tirt.sentinal": {
       "version": "https://github.com/Tirtstan/Sentinal.git",
@@ -70,7 +106,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.cinemachine": {
-      "version": "3.1.4",
+      "version": "3.1.5",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -146,7 +182,7 @@
     },
     "com.unity.mathematics": {
       "version": "1.3.2",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -285,7 +321,7 @@
       }
     },
     "com.unity.visualscripting": {
-      "version": "1.9.8",
+      "version": "1.9.9",
       "depth": 0,
       "source": "registry",
       "dependencies": {

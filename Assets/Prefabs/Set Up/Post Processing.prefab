@@ -136,7 +136,7 @@ Light:
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
-  m_ColorTemperature: 5000
+  m_ColorTemperature: 9134
   m_UseColorTemperature: 1
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
@@ -185,6 +185,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5498269834362343375}
+  - component: {fileID: 2698706133938421355}
+  - component: {fileID: 8263120046949703470}
   m_Layer: 0
   m_Name: Post Processing
   m_TagString: Untagged
@@ -209,3 +211,32 @@ Transform:
   - {fileID: 4467039649276321227}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2698706133938421355
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563825443386101121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2ce3d20a85c8254dae872159c4561cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FilmGrainOnGameState
+  volume: {fileID: 7724099577853707626}
+  defaultIntensity: 0.4
+  transitionDuration: 1
+--- !u!114 &8263120046949703470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1563825443386101121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05ce5b0d325cf4648ad9e1dbcd26c714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VHSPauseController
+  volume: {fileID: 7724099577853707626}
+  fadeDuration: 0.3

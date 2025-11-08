@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4413841343857687825}
   - component: {fileID: 6238138437052592428}
   - component: {fileID: 8732168730148908782}
+  - component: {fileID: 8091235320434016552}
   m_Layer: 7
   m_Name: Ufo Range A
   m_TagString: Untagged
@@ -47,10 +48,10 @@ NavMeshAgent:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 747583962200913497}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.25
-  m_Speed: 1.25
+  m_Speed: 1.6
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -152,7 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1eda66a2dd706c4cb53ca84ddd96382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleAimer
-  visualToRotate: {fileID: 0}
+  visualToRotate: {fileID: 1586319089215840134}
   turnRate: 10
 --- !u!114 &8732168730148908782
 MonoBehaviour:
@@ -167,9 +168,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShakeOnHit
   duration: 0.2
-  strength: 0.1
+  strength: 0.15
   vibrato: 10
   randomness: 90
+--- !u!114 &8091235320434016552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747583962200913497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ada0d7a4b668d40bd70488e839e034, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CurrencyOnDeath
+  enemyHealth: {fileID: 8644693996688252603}
 --- !u!1 &4065159704348387221
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,8 +361,30 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -7314745045437555281, guid: 1bb28c3e95b449e478741ad92760ded2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6881427063455569255}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1bb28c3e95b449e478741ad92760ded2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8777547647845663659}
   m_SourcePrefab: {fileID: 100100000, guid: 1bb28c3e95b449e478741ad92760ded2, type: 3}
+--- !u!1 &53510196949548920 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1bb28c3e95b449e478741ad92760ded2, type: 3}
+  m_PrefabInstance: {fileID: 900564810532700713}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8777547647845663659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 53510196949548920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 169c0dc9480105f4a8b239ae4aa98ac2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpinObject
+  direction: {x: 0, y: -1, z: 0}
+  spinSpeed: 15
 --- !u!4 &861818727404512706 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1bb28c3e95b449e478741ad92760ded2, type: 3}

@@ -81,8 +81,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e700a46c50c0f3e418472c6050dddc89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EconomyManager
-  startingCurrency: 300
+  startingCurrency: 250
   maxCurrency: 9999
+  infiniteMoney: 0
 --- !u!1 &2842795499491239695
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +175,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 8644693996688252603, guid: 711cdbea74acd5b40bfe98c7bd6820f8, type: 3}
   initialPoolSize: 10
   maxPoolSize: 100
+  navMeshSampleRadius: 2
 --- !u!1 &4467877568918756456
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f12bfaa5c5db9ed43b701ffc926ced01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  timeBeforeStart: 5
 --- !u!1 &7152796208025946235
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,6 +329,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 8644693996688252603, guid: ba39495b7c26a364886ace3a1c426cde, type: 3}
   initialPoolSize: 10
   maxPoolSize: 100
+  navMeshSampleRadius: 2
 --- !u!1 &7500141093415413496
 GameObject:
   m_ObjectHideFlags: 0
@@ -338,6 +340,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5881632492540622167}
   - component: {fileID: 4557855594887479989}
+  - component: {fileID: 8956557188621332938}
   m_Layer: 0
   m_Name: TowerPlacerController
   m_TagString: Untagged
@@ -357,7 +360,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 5667836184419066520}
   m_Father: {fileID: 8451208044262476717}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &4557855594887479989
@@ -375,7 +379,7 @@ MonoBehaviour:
   placingCursor: 7
   invalidCursor: 6
   maxPlacementDistance: 50
-  minTowerDistance: 0.5
+  minTowerDistance: 0.05
   checkLayer:
     serializedVersion: 2
     m_Bits: 1033
@@ -383,6 +387,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   selectOnPlace: 1
+--- !u!114 &8956557188621332938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7500141093415413496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94c1d2bf4ebdb894bb21f5dd41fa7a86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleOnPlace
+  placeParticleSystem: {fileID: 5505101109624566442}
+  offset: {x: 0, y: 0.2, z: 0}
 --- !u!1 &7954088095324422848
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,6 +448,7 @@ MonoBehaviour:
   enemyPrefab: {fileID: 8644693996688252603, guid: 4c5dcfe871748cd44b4b0391fffab024, type: 3}
   initialPoolSize: 10
   maxPoolSize: 100
+  navMeshSampleRadius: 2
 --- !u!1 &8075633289176730774
 GameObject:
   m_ObjectHideFlags: 0
@@ -477,11 +496,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60cc6088d127731498dcf94fcbc957ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
-  enemySpawners:
-  - {fileID: 5919290719966598369}
-  - {fileID: 3704368903273620619}
-  - {fileID: 7392390327293371747}
-  timeBetweenWaves: 5
+  enemySpawnerEntries:
+  - spawnType: 0
+    spawner: {fileID: 5919290719966598369}
+  - spawnType: 1
+    spawner: {fileID: 3704368903273620619}
+  - spawnType: 2
+    spawner: {fileID: 7392390327293371747}
+  initialDelay: 8
+  timeBetweenWaves: 3
   baseSpawnInterval: 1
   baseEnemiesToSpawn: 1
   minBudget: 10
@@ -491,3 +514,70 @@ MonoBehaviour:
   waveCompletionReward: 40
   bossWaveReward: 100
   earlyGameThreshold: 2
+--- !u!1001 &1165391293491731774
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 5881632492540622167}
+    m_Modifications:
+    - target: {fileID: 6810709059391405990, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6810709059391405990, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6810709059391405990, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6810709059391405990, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6810709059391405990, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6810709059391405990, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6810709059391405990, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6810709059391405990, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6810709059391405990, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6810709059391405990, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6813416509558619124, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+      propertyPath: m_Name
+      value: Tower Place Particles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+--- !u!198 &5505101109624566442 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6650199810314842004, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+  m_PrefabInstance: {fileID: 1165391293491731774}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5667836184419066520 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6810709059391405990, guid: fc4b6c1cd87db164e9d9b004192a183d, type: 3}
+  m_PrefabInstance: {fileID: 1165391293491731774}
+  m_PrefabAsset: {fileID: 0}

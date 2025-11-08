@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &212651900016159997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3496732198302054774}
+  - component: {fileID: 4752383889362287185}
+  m_Layer: 6
+  m_Name: TowerParticleAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3496732198302054774
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212651900016159997}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4918981724837299825}
+  m_Father: {fileID: 8045771983117612152}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4752383889362287185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212651900016159997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcdbd0e3d92643d4ab81cb8efcb5bb83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ParticleOnRangeAttack
+  tower: {fileID: 8474714792004710613}
+  towerAttack: {fileID: 1263122176105505709}
+  placeParticleSystem: {fileID: 5083866207492265539}
 --- !u!1 &3508340036517391532
 GameObject:
   m_ObjectHideFlags: 0
@@ -39,6 +87,8 @@ Transform:
   m_Children:
   - {fileID: 4908352266329016839}
   - {fileID: 7690509757119112316}
+  - {fileID: 1599488624312262821}
+  - {fileID: 3496732198302054774}
   - {fileID: 7857199850038579449}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -76,6 +126,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerSO: {fileID: 11400000, guid: af58d0d2f8194dc4092e531616071f92, type: 2}
+  upgradePath: {fileID: 11400000, guid: e8adfe3225568204a830462bd0370285, type: 2}
 --- !u!114 &2406413187064011577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -249,6 +300,51 @@ MonoBehaviour:
     DissipationDistance: 50
     PropagationSpeed: 343
   DefaultVelocity: {x: -0.1, y: -0.1, z: 0.2}
+--- !u!1 &9098819895152320956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1599488624312262821}
+  - component: {fileID: 4070440374750908166}
+  m_Layer: 6
+  m_Name: AttackOnUpgrade
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1599488624312262821
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098819895152320956}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8045771983117612152}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4070440374750908166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098819895152320956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa9feb99ab34b1748aec7f91c3391cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackOnUpgrade
+  tower: {fileID: 8474714792004710613}
 --- !u!1001 &4870433110769741292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -319,6 +415,73 @@ Transform:
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
   m_PrefabInstance: {fileID: 4870433110769741292}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5324655203138753052
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 3496732198302054774}
+    m_Modifications:
+    - target: {fileID: 983828037429990509, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 983828037429990509, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 985483039366664255, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+      propertyPath: m_Name
+      value: Thumper Attack Particles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+--- !u!4 &4918981724837299825 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 983828037429990509, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+  m_PrefabInstance: {fileID: 5324655203138753052}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5083866207492265539 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1110556030845387871, guid: 16fb7aec5808f214d85cfcf253d90fbc, type: 3}
+  m_PrefabInstance: {fileID: 5324655203138753052}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8460326324382020868
 PrefabInstance:
@@ -438,7 +601,7 @@ PrefabInstance:
       objectReference: {fileID: 4908352266329016839}
     - target: {fileID: 9174325256263586098, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: offset.y
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

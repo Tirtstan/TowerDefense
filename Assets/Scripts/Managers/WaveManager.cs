@@ -1,20 +1,32 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using QFSW.QC;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 // Anthropic, 2025
+[CommandPrefix("wave.")]
 public class WaveManager : Singleton<WaveManager>
 {
+    [Serializable]
+    private struct EnemySpawnerEntry
+    {
+        public EnemySpawnType spawnType;
+        public Spawner spawner;
+    }
+
     public static event Action<Wave> OnWaveStarted;
     public static event Action<Wave> OnWaveCompleted;
 
     [Header("Components")]
     [SerializeField]
-    private Spawner[] enemySpawners;
+    private EnemySpawnerEntry[] enemySpawnerEntries;
 
     [Header("Wave Settings")]
+    [SerializeField]
+    private float initialDelay = 5f;
+
     [SerializeField]
     private float timeBetweenWaves = 5f;
 
@@ -52,6 +64,7 @@ public class WaveManager : Singleton<WaveManager>
 
     private readonly List<Transform> spawnPoints = new();
     private readonly List<EnemyHealth> activeEnemies = new();
+    private readonly Dictionary<EnemySpawnType, Spawner> spawnerLookup = new();
     private Coroutine spawnCoroutine;
     private int currentWaveIndex = -1;
     private Wave currentWave;
@@ -59,11 +72,19 @@ public class WaveManager : Singleton<WaveManager>
     protected override void Awake()
     {
         base.Awake();
-        GameManager.OnGameStart += OnGameStart;
-        GameManager.OnGameEnd += OnGameEnd;
+        GameManager.OnGameStateChanged += OnGameStateChanged;
 
-        foreach (var spawner in enemySpawners)
+        RebuildSpawnerLookup();
+
+        foreach (var entry in enemySpawnerEntries)
         {
+            var spawner = entry.spawner;
+            if (spawner == null)
+            {
+                Debug.LogWarning("WaveManager: Encountered null spawner entry during Awake.");
+                continue;
+            }
+
             spawner.OnSpawned += AddActiveEnemy;
             spawner.OnReleased += RemoveActiveEnemy;
         }
@@ -71,13 +92,26 @@ public class WaveManager : Singleton<WaveManager>
 
     public int GetCurrentWaveIndex() => currentWaveIndex;
 
-    private void OnGameStart()
+    private void OnGameStateChanged(GameState gameState)
     {
-        spawnCoroutine = StartCoroutine(SpawnRoutine());
+        switch (gameState)
+        {
+            case GameState.Playing:
+                spawnCoroutine = StartCoroutine(SpawnRoutine());
+                break;
+            case GameState.GameOver
+            or GameState.MainMenu:
+                CleanUp();
+                break;
+        }
     }
 
     private IEnumerator SpawnRoutine()
     {
+        yield return new WaitForSeconds(initialDelay);
+
+        RebuildSpawnerLookup();
+
         var wavesInterval = new WaitForSeconds(timeBetweenWaves);
         while (true)
         {
@@ -93,7 +127,7 @@ public class WaveManager : Singleton<WaveManager>
             );
 
             OnWaveStarted?.Invoke(currentWave);
-            currentWave.SelectSpawners(enemySpawners);
+            currentWave.SelectSpawners(spawnerLookup);
             Debug.Log($"Starting Wave {currentWaveIndex + 1}");
 
             // adjust difficulty based on player performance
@@ -102,13 +136,14 @@ public class WaveManager : Singleton<WaveManager>
             currentWave.AdjustDifficultyForPlayerPerformance(playerHealthPercent, isEarlyGame);
 
             // counter player's tower strategy
-            currentWave.CounterPlayerTowers(GetPlayerTowerCounts(), enemySpawners);
+            currentWave.CounterPlayerTowers(GetPlayerTowerCounts(), spawnerLookup);
 
-            yield return StartCoroutine(WaveExecutionRoutine());
+            // Yield the enumerator directly so stopping the parent coroutine halts wave execution too.
+            yield return WaveExecutionRoutine();
             OnWaveCompleted?.Invoke(currentWave);
 
             int rewardAmount = currentWave.IsBossWave ? bossWaveReward : waveCompletionReward;
-            EconomyManager.Instance.AddCurrency(rewardAmount);
+            EconomyManager.Instance.Deposit(rewardAmount);
 
             yield return wavesInterval;
         }
@@ -156,12 +191,6 @@ public class WaveManager : Singleton<WaveManager>
 
     private Dictionary<TowerSO, int> GetPlayerTowerCounts() => TowerManager.Instance.GetTowersPlaced();
 
-    private void OnGameEnd()
-    {
-        if (spawnCoroutine != null)
-            StopCoroutine(spawnCoroutine);
-    }
-
     public void RegisterSpawnPoint(Transform transform) => spawnPoints.Add(transform);
 
     public void UnregisterSpawnPoint(Transform transform) => spawnPoints.Remove(transform);
@@ -170,13 +199,63 @@ public class WaveManager : Singleton<WaveManager>
 
     private void RemoveActiveEnemy(EnemyHealth enemy) => activeEnemies.Remove(enemy);
 
+    [Command("clear_waves", "Stops all wave spawning and clears active enemies.")]
+    private void CleanUp()
+    {
+        if (spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
+        }
+
+        // Ensure any other coroutines on this Mono are halted as well
+        StopAllCoroutines();
+
+        currentWaveIndex = -1;
+        currentWave = default;
+
+        foreach (var entry in enemySpawnerEntries)
+        {
+            var spawner = entry.spawner;
+            if (spawner == null)
+                continue;
+
+            spawner.ClearAll();
+        }
+
+        activeEnemies.Clear();
+        spawnPoints.Clear();
+    }
+
+    private void RebuildSpawnerLookup()
+    {
+        spawnerLookup.Clear();
+        foreach (var entry in enemySpawnerEntries)
+        {
+            var spawner = entry.spawner;
+            if (spawner == null)
+                continue;
+
+            if (!spawnerLookup.TryAdd(entry.spawnType, spawner))
+            {
+                Debug.LogWarning(
+                    $"WaveManager: Duplicate spawner assignment for {entry.spawnType}. Using the first configured spawner."
+                );
+            }
+        }
+    }
+
     private void OnDestroy()
     {
-        GameManager.OnGameStart -= OnGameStart;
-        GameManager.OnGameEnd -= OnGameEnd;
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
+        CleanUp();
 
-        foreach (var spawner in enemySpawners)
+        foreach (var entry in enemySpawnerEntries)
         {
+            var spawner = entry.spawner;
+            if (spawner == null)
+                continue;
+
             spawner.OnSpawned -= AddActiveEnemy;
             spawner.OnReleased -= RemoveActiveEnemy;
         }

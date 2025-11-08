@@ -89,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerSO: {fileID: 11400000, guid: bf89639d097c88c4bb9108ad1ac0ae7f, type: 2}
+  upgradePath: {fileID: 11400000, guid: eb0d6fefee3afc84a8e09eb5b5f77565, type: 2}
 --- !u!114 &1553645843717211092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,6 +173,8 @@ MonoBehaviour:
   visual: {fileID: 8811880684376672388}
   cinemachineImpulseSource: {fileID: 5422335116801391211}
   shakeForce: 0.15
+  punchForce: 0.2
+  shakeDuration: 0.2
 --- !u!1 &8179350492410284397
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: UFO Range A
   m_EditorClassIdentifier: Assembly-CSharp::EnemySO
   Name: UFO Seeker
-  Health: 35
+  Health: 45
   Damage: 8
-  Speed: 1.25
+  Speed: 1.6
   VisionRange: 6.5
   AttackRange: 5.5
   AttackInterval: 2.2
-  CurrencyDropAmount: 30
+  CurrencyDropAmount: 20
   DifficultyRating: 1.5

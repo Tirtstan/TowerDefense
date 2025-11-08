@@ -1,3 +1,5 @@
+using LitMotion;
+using LitMotion.Extensions;
 using UnityEngine;
 
 public class BallistaAimer : Aimer
@@ -13,10 +15,32 @@ public class BallistaAimer : Aimer
     [SerializeField]
     [Range(1f, 50f)]
     private float turnRate = 10f;
+    private bool canAim;
+
+    private void OnEnable()
+    {
+        if (yAxisBody != null)
+        {
+            LMotion
+                .Create(
+                    yAxisBody.eulerAngles,
+                    new Vector3(yAxisBody.eulerAngles.x, 360f, yAxisBody.eulerAngles.z),
+                    0.9f
+                )
+                .WithEase(Ease.OutCubic)
+                .WithOnComplete(() => canAim = true)
+                .BindToEulerAngles(yAxisBody)
+                .AddTo(gameObject);
+        }
+        else
+        {
+            canAim = true;
+        }
+    }
 
     public override void AimAt(Transform target)
     {
-        if (target == null)
+        if (target == null || !canAim)
             return;
 
         if (yAxisBody != null)

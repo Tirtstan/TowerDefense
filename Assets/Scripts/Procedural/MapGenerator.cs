@@ -628,7 +628,7 @@ public class MapGenerator : Generator
                 if (pos == startPoint)
                 {
                     grid[x, z] = TileType.CenterTile;
-                    newTile = Instantiate(centerTowerTilePrefab, position, Quaternion.identity, mapParent);
+                    Instantiate(centerTowerTilePrefab, position, Quaternion.identity, mapParent);
                     continue;
                 }
 
@@ -636,9 +636,9 @@ public class MapGenerator : Generator
                 {
                     // Keep grid classification simple; visuals come from prefab
                     if (enemyTowerTilePrefab != null)
-                        newTile = Instantiate(enemyTowerTilePrefab, position, Quaternion.identity, mapParent);
+                        Instantiate(enemyTowerTilePrefab, position, Quaternion.identity, mapParent);
                     else
-                        newTile = Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
+                        Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
 
                     continue;
                 }
@@ -648,9 +648,8 @@ public class MapGenerator : Generator
                     grid[x, z] = TileType.Ground;
                     newTile = Instantiate(groundTilePrefab, position, Quaternion.identity, mapParent);
                     if (IsAdjacentToPath(pos))
-                    {
                         newTile.layer = layer;
-                    }
+
                     continue;
                 }
 

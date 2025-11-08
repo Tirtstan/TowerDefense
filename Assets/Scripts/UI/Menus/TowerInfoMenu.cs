@@ -57,6 +57,12 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         HideMenu();
     }
 
+    private void OnTowerUpgraded(Tower tower)
+    {
+        if (currentTower == tower)
+            UpdateDisplay(tower);
+    }
+
     private void OnTowerHealthChanged(IDamagable damagable)
     {
         if (currentHealth.GetTowerSO() == currentTower.GetTowerSO())
@@ -72,6 +78,8 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
             currentHealth.OnDeath += HideMenu;
         }
 
+        currentTower.OnUpgraded += OnTowerUpgraded;
+
         menu.SetActive(true);
         UpdateDisplay(tower);
     }
@@ -81,13 +89,18 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         if (tower == null)
             return;
 
-        TowerStats stats = tower.GetTowerSO().Stats;
+        TowerStats stats = tower.GetEffectiveStats();
 
         nameText.SetText(tower.GetTowerSO().Name);
         nameTextEffect.Refresh();
-        levelText.SetText($"Lvl. {1}"); // TODO: Implement level system
 
-        damageText.SetText($"{stats.Damage} damage");
+        string levelString = "+";
+        for (int i = 0; i < tower.CurrentLevel; i++)
+            levelString += "+";
+
+        levelText.SetText(levelString);
+
+        damageText.SetText($"{stats.Damage:0.##} damage");
         rangeText.SetText($"{stats.Range:0.0} metre(s)");
         attackIntervalText.SetText($"{stats.AttackInterval:0.0} sec(s)");
 
@@ -109,6 +122,11 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         {
             currentHealth.OnHealthChanged -= OnTowerHealthChanged;
             currentHealth.OnDeath -= HideMenu;
+        }
+
+        if (currentTower != null)
+        {
+            currentTower.OnUpgraded -= OnTowerUpgraded;
         }
 
         currentTower = null;

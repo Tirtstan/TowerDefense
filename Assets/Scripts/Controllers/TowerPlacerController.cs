@@ -70,7 +70,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
                 hit.point = new Vector3(Mathf.Round(hit.point.x), hit.point.y, Mathf.Round(hit.point.z));
 
             previewTower.transform.position = hit.point;
-            bool canPlace = CanPlace(ref hit);
+            bool canPlace = CanPlace(in hit);
 
             NTCursors targetCursor = canPlace ? placingCursor : invalidCursor;
 
@@ -87,7 +87,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         if (currentTowerSO == null)
             return;
 
-        if (Raycast(out RaycastHit hit) && CanPlace(ref hit))
+        if (Raycast(out RaycastHit hit) && CanPlace(in hit))
             PlaceTower(hit.point);
     }
 
@@ -97,7 +97,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         return Physics.Raycast(ray, out hit, maxPlacementDistance, checkLayer);
     }
 
-    private bool CanPlace(ref RaycastHit hit)
+    private bool CanPlace(in RaycastHit hit)
     {
         if (currentTowerSO == null || previewTower == null)
             return false;
@@ -108,7 +108,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         if (!HasEnoughCurrency())
             return false;
 
-        if (!IsValidGround(ref hit))
+        if (!IsValidGround(in hit))
             return false;
 
         if (!IsValidDistance())
@@ -119,7 +119,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
 
     private bool HasEnoughCurrency() => EconomyManager.Instance.GetCurrencyAmount() >= currentTowerSO.Stats.Cost;
 
-    private bool IsValidGround(ref RaycastHit hit)
+    private bool IsValidGround(in RaycastHit hit)
     {
         if (hit.collider == null)
             return false;
@@ -205,7 +205,7 @@ public class TowerPlacerController : Singleton<TowerPlacerController>
         Tower placedTower = Instantiate(currentTowerSO.Prefab, position, Quaternion.identity);
         SelectPlacedTower(placedTower);
 
-        EconomyManager.Instance.RemoveCurrency(currentTowerSO.Stats.Cost);
+        EconomyManager.Instance.Spend(currentTowerSO.Stats.Cost);
         OnTowerPlaced?.Invoke(placedTower);
 
         DeselectCurrentTower();

@@ -37,20 +37,16 @@ public abstract class Spawner : MonoBehaviour
 
     protected virtual EnemyHealth CreateItem()
     {
-        EnemyHealth enemy = Instantiate(enemyPrefab);
-        enemy.gameObject.SetActive(false);
-
-        // Disable NavMeshAgent on creation to avoid errors
+        EnemyHealth enemy = Instantiate(enemyPrefab, Vector3.right * 18f, Quaternion.identity);
         if (enemy.TryGetComponent(out NavMeshAgent agent))
             agent.enabled = false;
 
+        enemy.gameObject.SetActive(false);
         return enemy;
     }
 
     protected virtual void OnGetFromPool(EnemyHealth enemy)
     {
-        // Don't activate yet - let the spawner position it first
-        // The spawner will handle NavMeshAgent enabling
         enemy.gameObject.SetActive(true);
         enemy.Spawner = this;
         activeEnemies.Add(enemy);
@@ -58,7 +54,6 @@ public abstract class Spawner : MonoBehaviour
 
     protected virtual void OnReturnToPool(EnemyHealth enemy)
     {
-        // Disable NavMeshAgent before deactivating
         if (enemy.TryGetComponent(out NavMeshAgent agent))
             agent.enabled = false;
 
