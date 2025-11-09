@@ -14,8 +14,10 @@ public class Player : MonoBehaviour
 
     private void OnGameStateChanged(GameState gameState)
     {
-        if (gameState == GameState.GameOver)
+        if (gameState == GameState.GameOver || gameState == GameState.MainMenu)
             playerInput.DeactivateInput();
+        else
+            playerInput.ActivateInput();
     }
 
     private void OnDestroy()

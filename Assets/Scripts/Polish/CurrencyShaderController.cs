@@ -82,10 +82,7 @@ public class CurrencyShaderController : MonoBehaviour
         if (allRenderers == null || allRenderers.Length == 0)
             return;
 
-        // Cancel any existing motion
         motionHandle.TryCancel();
-
-        // Create new motion from current value to target value
         motionHandle = LMotion
             .Create(currentShaderValue, percentage, duration)
             .WithEase(ease)

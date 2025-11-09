@@ -31,6 +31,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1398927874987168500}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2966616061408003766
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7525066081482184776}
+  - component: {fileID: 7579390036707914676}
+  m_Layer: 6
+  m_Name: UpgradeVisual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7525066081482184776
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2966616061408003766}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8045771983117612152}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7579390036707914676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2966616061408003766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46471cdb54d51424cb989db2d75983a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerUpgradeShaderController
+  tower: {fileID: 8474714792004710613}
+  renderers: {fileID: 473348877324488637}
+  intensityPropertyName: _UpgradeIntensity
+  upgradeTransitionDuration: 0.5
+  upgradeEase: 8
+  baseIntensity: 0
+  intensityPerLevel: 0.5
+  maxIntensity: 1
 --- !u!1 &3343411605534976257
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,6 +169,7 @@ Transform:
   - {fileID: 473348877324488637}
   - {fileID: 8508672308078874292}
   - {fileID: 7857199850038579449}
+  - {fileID: 7525066081482184776}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1372815465104080361
@@ -308,6 +361,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: d1ebe6153b25d9641bc5770d4d708f94, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e9a14132622b9c748bb1f8b5721393a2, type: 2}
     - target: {fileID: -3868710468543803471, guid: d1ebe6153b25d9641bc5770d4d708f94, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -316,6 +373,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: weapon-ballista
       objectReference: {fileID: 0}
+    - target: {fileID: 3967493562214342286, guid: d1ebe6153b25d9641bc5770d4d708f94, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e9a14132622b9c748bb1f8b5721393a2, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
