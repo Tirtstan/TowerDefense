@@ -30,5 +30,5 @@ MonoBehaviour:
     Cost: 50
     Damage: 0
     Range: 1
-    AttackInterval: 8
+    AttackInterval: 12
     TargetingType: 3

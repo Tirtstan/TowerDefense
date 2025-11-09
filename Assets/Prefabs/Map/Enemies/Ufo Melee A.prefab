@@ -316,6 +316,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ec2f26b21d39ecd4dbe2c4fca6eb5cc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 875dfceead10d45439709a5a0ab27ec7, type: 2}
     - target: {fileID: 919132149155446097, guid: ec2f26b21d39ecd4dbe2c4fca6eb5cc7, type: 3}
       propertyPath: m_Name
       value: enemy-ufo-a

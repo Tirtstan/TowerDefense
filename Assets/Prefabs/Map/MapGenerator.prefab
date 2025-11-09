@@ -145,8 +145,8 @@ MonoBehaviour:
   createTypeGroups: 1
   decorationConfigs:
   - prefabs:
-    - {fileID: 919132149155446097, guid: f11aa93327c787b46bccf70490726ecb, type: 3}
-    - {fileID: 919132149155446097, guid: 7f41fbdc499d8c84098d172b4e5b68b0, type: 3}
+    - {fileID: 5689789862037064795, guid: a590314a93f47b5408c14aab9a711288, type: 3}
+    - {fileID: 3893087496432433359, guid: 37b21c4bbbcff7a418526370d3f4e8f9, type: 3}
     weight: 1
     minNoiseValue: 0
     maxNoiseValue: 0.4
@@ -160,10 +160,10 @@ MonoBehaviour:
     createChildParent: 0
     childParentName: Decoration Group
   - prefabs:
-    - {fileID: 919132149155446097, guid: a4f279d0783cbe64c95f7c5f0da15354, type: 3}
-    - {fileID: 919132149155446097, guid: 6cf67c87a0e443c4c924f5fcacfea890, type: 3}
-    - {fileID: 919132149155446097, guid: 58cb05f166d79f34faffc812104f8636, type: 3}
-    - {fileID: 919132149155446097, guid: 78431e8eaa3770745a75457b6f925b0f, type: 3}
+    - {fileID: 3749815916762530099, guid: 9e6746db0c7f5cd488226008cf36aa84, type: 3}
+    - {fileID: 4323373868773649822, guid: 63f59c684fac95845b83a3f51d980dff, type: 3}
+    - {fileID: 7692954773547499946, guid: 4b22a79c40dbfd3478228c7c51c230c6, type: 3}
+    - {fileID: 4800013614162167606, guid: 037262f1ce443bb46a21ee2af17d74d0, type: 3}
     weight: 0.2
     minNoiseValue: 0.6
     maxNoiseValue: 1
