@@ -9,9 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8045771983117612152}
-  - component: {fileID: 1372815465104080361}
   - component: {fileID: 8474714792004710613}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: BankPreview
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35,27 +34,6 @@ Transform:
   - {fileID: 7857199850038579449}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1372815465104080361
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3508340036517391532}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 0.6, z: 1}
-  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!114 &8474714792004710613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tower
   towerSO: {fileID: 11400000, guid: d11b5829de61f4ea9a5cbe38f322dd78, type: 2}
-  upgradePath: {fileID: 11400000, guid: 8d17abaaf165d4503b5458f520239ef4, type: 2}
+  upgradePath: {fileID: 0}
 --- !u!1001 &4870433110769741292
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -120,15 +98,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -2757762686403454346, guid: 10d61180b93cc9b48836297cbedb54bd, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -2287223201522926096, guid: 10d61180b93cc9b48836297cbedb54bd, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 412483755840572864, guid: 10d61180b93cc9b48836297cbedb54bd, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 10d61180b93cc9b48836297cbedb54bd, type: 3}
       propertyPath: m_Name
@@ -136,15 +114,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 10d61180b93cc9b48836297cbedb54bd, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3431053464421074118, guid: 10d61180b93cc9b48836297cbedb54bd, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8313631679027101389, guid: 10d61180b93cc9b48836297cbedb54bd, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -187,6 +165,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8045771983117612152}
     m_Modifications:
+    - target: {fileID: 1658888634041186604, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.21
+      objectReference: {fileID: 0}
     - target: {fileID: 1757384987446896125, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -281,11 +263,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3144628900379055325, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3144628900379055325, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3628257755020051234, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3880365216246892059, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_Color.b
@@ -297,7 +283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4059694687091187862, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4059694687091187862, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_IsActive
@@ -309,7 +295,7 @@ PrefabInstance:
       objectReference: {fileID: 4908352266329016839}
     - target: {fileID: 6343774924690217164, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6343774924690217164, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_IsActive
@@ -317,7 +303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6698561006399550988, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_Layer
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6723307660638050872, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: tower
@@ -329,7 +315,7 @@ PrefabInstance:
       objectReference: {fileID: 4908352266329016839}
     - target: {fileID: 9174325256263586098, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: offset.y
-      value: 1.5
+      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

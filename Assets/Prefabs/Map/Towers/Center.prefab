@@ -143,7 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d36e5e835ec0d44bb5f636e962a1dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSelectable
-  towerMeshRenderer: {fileID: 7638450314118050795}
   rangeElement: {fileID: 1958404531637280965}
   alwaysShowRangeIndicator: 0
 --- !u!114 &2337366815163195317
@@ -268,6 +267,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9146267987455670012}
     m_Modifications:
+    - target: {fileID: 1658888634041186604, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.21
+      objectReference: {fileID: 0}
     - target: {fileID: 1757384987446896125, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -356,6 +359,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3628257755020051234, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197591844850252942, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_fontSize
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4197591844850252942, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5338789997174841623, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: target
       value: 
@@ -374,7 +389,7 @@ PrefabInstance:
       objectReference: {fileID: 8811880684376672388}
     - target: {fileID: 9174325256263586098, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: offset.y
-      value: 2.5
+      value: 2.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -452,11 +467,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13d4fc0b91338e84eb5e679eee9f10c5, type: 3}
---- !u!23 &7638450314118050795 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 13d4fc0b91338e84eb5e679eee9f10c5, type: 3}
-  m_PrefabInstance: {fileID: 9061435650612965231}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8811880684376672388 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 13d4fc0b91338e84eb5e679eee9f10c5, type: 3}

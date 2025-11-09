@@ -180,7 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d36e5e835ec0d44bb5f636e962a1dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSelectable
-  towerMeshRenderer: {fileID: 6077278659139973480}
   rangeElement: {fileID: 7092205810508893224}
   alwaysShowRangeIndicator: 0
 --- !u!114 &7164917740303991950
@@ -411,11 +410,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
   m_PrefabInstance: {fileID: 4870433110769741292}
   m_PrefabAsset: {fileID: 0}
---- !u!23 &6077278659139973480 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
-  m_PrefabInstance: {fileID: 4870433110769741292}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5324655203138753052
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -491,6 +485,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8045771983117612152}
     m_Modifications:
+    - target: {fileID: 1658888634041186604, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.21
+      objectReference: {fileID: 0}
     - target: {fileID: 1757384987446896125, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -587,6 +585,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3628257755020051234, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5338789997174841623, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: target
       value: 
@@ -601,7 +603,7 @@ PrefabInstance:
       objectReference: {fileID: 4908352266329016839}
     - target: {fileID: 9174325256263586098, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: offset.y
-      value: 1.5
+      value: 1.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

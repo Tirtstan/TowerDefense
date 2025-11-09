@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using EasyTextEffects;
 using TMPro;
@@ -33,6 +34,9 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
 
     [SerializeField]
     private TextMeshProUGUI attackIntervalText;
+
+    [SerializeField]
+    private TextMeshProUGUI layerPlacementText;
 
     [Header("Text Effects")]
     [SerializeField]
@@ -104,6 +108,9 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         rangeText.SetText($"{stats.Range:0.0} metre(s)");
         attackIntervalText.SetText($"{stats.AttackInterval:0.0} sec(s)");
 
+        string layers = GetLayerNames(tower.GetTowerSO().PlaceableLayer);
+        layerPlacementText.SetText(layers);
+
         UpdateHealthDisplay(currentHealth.CurrentHealth, stats.Health);
     }
 
@@ -143,5 +150,23 @@ public class TowerInfoMenu : Singleton<TowerInfoMenu>
         }
 
         return false;
+    }
+
+    private string GetLayerNames(LayerMask layerMask)
+    {
+        List<string> layerNames = new();
+        int maskValue = layerMask.value;
+
+        for (int i = 0; i < 32; i++)
+        {
+            if ((maskValue & (1 << i)) != 0)
+            {
+                string layerName = LayerMask.LayerToName(i);
+                if (!string.IsNullOrEmpty(layerName))
+                    layerNames.Add(layerName);
+            }
+        }
+
+        return layerNames.Count > 0 ? string.Join(", ", layerNames) : "None";
     }
 }
