@@ -238,8 +238,6 @@ public class WaveManager : Singleton<WaveManager>
         currentWaveIndex = -1;
         currentWave = default;
 
-        // Clear WaveManager's activeEnemies list first to prevent double-processing
-        // when OnReleased callbacks fire during ClearAll()
         activeEnemies.Clear();
 
         foreach (var entry in enemySpawnerEntries)
