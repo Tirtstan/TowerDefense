@@ -9,7 +9,7 @@ public sealed class EnemyShooter : EnemyAttack
 
     [Header("Enemy")]
     [SerializeField]
-    private EnemySO enemySO;
+    private Enemy enemy;
 
     [Header("Projectile")]
     [SerializeField]
@@ -29,6 +29,9 @@ public sealed class EnemyShooter : EnemyAttack
 
     private void Awake()
     {
+        if (enemy == null)
+            enemy = GetComponent<Enemy>();
+
         if (shootPoint == null)
             shootPoint = transform;
 
@@ -63,9 +66,13 @@ public sealed class EnemyShooter : EnemyAttack
 
     private void ShootProjectile(Transform target)
     {
+        if (enemy == null)
+            return;
+
         Projectile projectile = projectilePool.Get();
         projectile.transform.SetPositionAndRotation(shootPoint.position, shootPoint.rotation);
-        projectile.Initialize(enemySO.Damage, target, projectilePool);
+        float damage = enemy.GetEffectiveStats().Damage;
+        projectile.Initialize(damage, target, projectilePool);
     }
 
     private Transform GetClosestTarget(IEnumerable<IDamagable> targets)
@@ -87,5 +94,11 @@ public sealed class EnemyShooter : EnemyAttack
         }
 
         return closest;
+    }
+
+    private void Reset()
+    {
+        if (enemy == null)
+            enemy = GetComponent<Enemy>();
     }
 }

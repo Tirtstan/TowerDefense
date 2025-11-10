@@ -32,4 +32,12 @@ public class FollowTargetWorldSpace : MonoBehaviour
         if (updatePosition)
             transform.position = GetTargetPosition();
     }
+
+    private void OnValidate()
+    {
+        if (target == null)
+            return;
+
+        transform.position = GetTargetPosition();
+    }
 }

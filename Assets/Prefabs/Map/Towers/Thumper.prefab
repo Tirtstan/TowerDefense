@@ -48,6 +48,58 @@ MonoBehaviour:
   tower: {fileID: 8474714792004710613}
   towerAttack: {fileID: 1263122176105505709}
   placeParticleSystem: {fileID: 5083866207492265539}
+--- !u!1 &1773343455410270011
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1779609707231541936}
+  - component: {fileID: 8019074750764254426}
+  m_Layer: 6
+  m_Name: UpgradeVisual
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1779609707231541936
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773343455410270011}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8045771983117612152}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8019074750764254426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1773343455410270011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46471cdb54d51424cb989db2d75983a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TowerUpgradeShaderController
+  tower: {fileID: 8474714792004710613}
+  renderers: {fileID: 4908352266329016839}
+  intensityPropertyName: _UpgradeIntensity
+  upgradeTransitionDuration: 0.5
+  upgradeEase: 8
+  baseIntensity: 0
+  intensityPerLevel: 0.5
+  maxIntensity: 1
 --- !u!1 &3508340036517391532
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +138,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4908352266329016839}
+  - {fileID: 1779609707231541936}
   - {fileID: 7690509757119112316}
   - {fileID: 1599488624312262821}
   - {fileID: 3496732198302054774}
@@ -180,7 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d36e5e835ec0d44bb5f636e962a1dcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TowerSelectable
-  towerMeshRenderer: {fileID: 6077278659139973480}
   rangeElement: {fileID: 7092205810508893224}
   alwaysShowRangeIndicator: 0
 --- !u!114 &7164917740303991950
@@ -393,6 +445,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: e9a14132622b9c748bb1f8b5721393a2, type: 2}
     - target: {fileID: 919132149155446097, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
       propertyPath: m_Name
       value: tower-round-roof-c
@@ -409,11 +465,6 @@ PrefabInstance:
 --- !u!4 &4908352266329016839 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
-  m_PrefabInstance: {fileID: 4870433110769741292}
-  m_PrefabAsset: {fileID: 0}
---- !u!23 &6077278659139973480 stripped
-MeshRenderer:
-  m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: c68a3db22559c4b48bc17b43f2eac43f, type: 3}
   m_PrefabInstance: {fileID: 4870433110769741292}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5324655203138753052
@@ -491,6 +542,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8045771983117612152}
     m_Modifications:
+    - target: {fileID: 1658888634041186604, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.21
+      objectReference: {fileID: 0}
     - target: {fileID: 1757384987446896125, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -587,6 +642,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3628257755020051234, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 5338789997174841623, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: target
       value: 
@@ -601,7 +660,7 @@ PrefabInstance:
       objectReference: {fileID: 4908352266329016839}
     - target: {fileID: 9174325256263586098, guid: 9ecb32e3be37a254abe7899ab453d39d, type: 3}
       propertyPath: offset.y
-      value: 1.5
+      value: 1.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

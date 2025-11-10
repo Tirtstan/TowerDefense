@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da25eef9f5c72c48b60fd87d1ee6420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UfoSpawner
-  enemyPrefab: {fileID: 8644693996688252603, guid: 711cdbea74acd5b40bfe98c7bd6820f8, type: 3}
+  enemyPrefab: {fileID: 2717265033973838352, guid: 711cdbea74acd5b40bfe98c7bd6820f8, type: 3}
   initialPoolSize: 10
   maxPoolSize: 100
   navMeshSampleRadius: 2
@@ -326,7 +326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da25eef9f5c72c48b60fd87d1ee6420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UfoSpawner
-  enemyPrefab: {fileID: 8644693996688252603, guid: ba39495b7c26a364886ace3a1c426cde, type: 3}
+  enemyPrefab: {fileID: 7595114794513057188, guid: ba39495b7c26a364886ace3a1c426cde, type: 3}
   initialPoolSize: 10
   maxPoolSize: 100
   navMeshSampleRadius: 2
@@ -445,7 +445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5da25eef9f5c72c48b60fd87d1ee6420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UfoSpawner
-  enemyPrefab: {fileID: 8644693996688252603, guid: 4c5dcfe871748cd44b4b0391fffab024, type: 3}
+  enemyPrefab: {fileID: 3602622586813331450, guid: 4c5dcfe871748cd44b4b0391fffab024, type: 3}
   initialPoolSize: 10
   maxPoolSize: 100
   navMeshSampleRadius: 2

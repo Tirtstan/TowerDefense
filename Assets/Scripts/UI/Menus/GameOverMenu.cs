@@ -38,13 +38,16 @@ public class GameOverMenu : MonoBehaviour
     private void OnGameStateChanged(GameState gameState)
     {
         if (gameState != GameState.GameOver)
+        {
+            HideMenu();
             return;
+        }
 
         infoText.SetText(FormatUtils.FormatTime(GameManager.Instance.TimeSinceStart));
         ShowMenu();
     }
 
-    private void OnRestartClicked() => Debug.Log("Restart Button Clicked");
+    private void OnRestartClicked() => GameManager.Instance.RestartGame();
 
     private void OnOptionsClicked() => Debug.Log("Options Button Clicked");
 

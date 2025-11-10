@@ -29,15 +29,6 @@
       },
       "hash": "53e1baac3cde90c46934f82ee1d61802d2bd6651"
     },
-    "com.coffee.ui-effect": {
-      "version": "https://github.com/mob-sakai/UIEffect.git?path=Packages/src",
-      "depth": 0,
-      "source": "git",
-      "dependencies": {
-        "com.unity.ugui": "1.0.0"
-      },
-      "hash": "451cbe43021356a6bf07683964e8889956743558"
-    },
     "com.qiaozhilei.easy-text-effects": {
       "version": "https://github.com/LeiQiaoZhi/Easy-Text-Effects-for-Unity.git",
       "depth": 0,

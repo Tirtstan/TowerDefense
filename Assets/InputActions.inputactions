@@ -364,6 +364,17 @@
                 },
                 {
                     "name": "",
+                    "id": "46fe84f8-b2fd-4ed7-bc8a-218cba8657c6",
+                    "path": "<Keyboard>/6",
+                    "interactions": "",
+                    "processors": "Scale(factor=6)",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Hotbar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "67fb5766-5e5c-46c5-bd53-71faa99fe35f",
                     "path": "<Mouse>/position",
                     "interactions": "",

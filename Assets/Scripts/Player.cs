@@ -14,7 +14,9 @@ public class Player : MonoBehaviour
 
     private void OnGameStateChanged(GameState gameState)
     {
-        if (gameState == GameState.GameOver)
+        if (gameState == GameState.Playing)
+            playerInput.ActivateInput();
+        else
             playerInput.DeactivateInput();
     }
 

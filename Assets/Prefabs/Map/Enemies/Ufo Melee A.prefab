@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2909787520619707065}
   - component: {fileID: 4317439655422551323}
   - component: {fileID: 7066333920728834197}
+  - component: {fileID: 7595114794513057188}
   - component: {fileID: 8644693996688252603}
   - component: {fileID: 5025574353215676749}
   - component: {fileID: 8732168730148908782}
@@ -110,6 +111,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &7595114794513057188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747583962200913497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62a0c49c994e9de47895c35f5c17d6f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  enemySO: {fileID: 11400000, guid: 1b00a0bc80142a744abfa558e9868a3d, type: 2}
 --- !u!114 &8644693996688252603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d44d74c2d9adb64ab95c507dc69a424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  enemySO: {fileID: 11400000, guid: 1b00a0bc80142a744abfa558e9868a3d, type: 2}
+  enemy: {fileID: 7595114794513057188}
   preventDamage: 0
 --- !u!114 &5025574353215676749
 MonoBehaviour:
@@ -136,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcfc4e74d62309144904a81f5f4065eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttacker
-  enemySO: {fileID: 11400000, guid: 1b00a0bc80142a744abfa558e9868a3d, type: 2}
+  enemy: {fileID: 7595114794513057188}
 --- !u!114 &8732168730148908782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +246,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34889117c0337584e9dd157e62636d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMove
-  enemySO: {fileID: 11400000, guid: 1b00a0bc80142a744abfa558e9868a3d, type: 2}
+  enemy: {fileID: 7595114794513057188}
   agent: {fileID: 2909787520619707065}
   enemyAttack: {fileID: 5025574353215676749}
   towerLayer:
@@ -302,6 +316,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ec2f26b21d39ecd4dbe2c4fca6eb5cc7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 875dfceead10d45439709a5a0ab27ec7, type: 2}
     - target: {fileID: 919132149155446097, guid: ec2f26b21d39ecd4dbe2c4fca6eb5cc7, type: 3}
       propertyPath: m_Name
       value: enemy-ufo-a
