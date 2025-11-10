@@ -69,6 +69,7 @@ public class EnemyHealth : MonoBehaviour, IDamagable
     public void Die()
     {
         OnDeath?.Invoke();
+        EventBus.Instance.Publish(new OnEnemyDeath(enemy.GetEnemySO(), transform.position));
 
         if (enemy != null && enemy.Spawner != null)
             enemy.Spawner.ReturnToPool(enemy);
@@ -84,4 +85,16 @@ public struct OnEnemyHealthChanged : IGameEvent
     public EnemyHealth EnemyHealth;
 
     public OnEnemyHealthChanged(EnemyHealth enemyHealth) => EnemyHealth = enemyHealth;
+}
+
+public struct OnEnemyDeath : IGameEvent
+{
+    public EnemySO EnemySO;
+    public Vector3 Position;
+
+    public OnEnemyDeath(EnemySO enemySO, Vector3 position)
+    {
+        EnemySO = enemySO;
+        Position = position;
+    }
 }

@@ -11,6 +11,20 @@ public class RangeIndicator : MonoBehaviour
 
     private void OnEnable()
     {
+        tower.OnUpgraded += OnTowerUpgraded;
+        UpdateRangeIndicator();
+    }
+
+    private void UpdateRangeIndicator()
+    {
         rectTransform.sizeDelta = tower.GetTowerSO().Stats.Range * 2 * Vector2.one;
+        rectTransform.position = tower.transform.position;
+    }
+
+    private void OnTowerUpgraded(Tower tower) => UpdateRangeIndicator();
+
+    private void OnDisable()
+    {
+        tower.OnUpgraded -= OnTowerUpgraded;
     }
 }

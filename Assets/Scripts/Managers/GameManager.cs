@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using LitMotion;
 using QFSW.QC;
 using UnityEngine;
@@ -39,6 +40,7 @@ public class GameManager : Singleton<GameManager>
         if (CurrentGameState == GameState.Playing)
             return;
 
+        EconomyManager.Instance.ResetCurrencyToDefault();
         ChangeGameState(GameState.Playing);
 
         motionHandle.TryCancel();
@@ -70,6 +72,20 @@ public class GameManager : Singleton<GameManager>
             .WithEase(Ease.Linear)
             .Bind(value => RenderSettings.fogDensity = value)
             .AddTo(gameObject);
+    }
+
+    [Command("restart_game", "Restarts the game from the beginning.")]
+    public void RestartGame()
+    {
+        // Change to MainMenu first to trigger cleanup (towers, waves, etc.)
+        ChangeGameState(GameState.MainMenu);
+        StartCoroutine(RestartCoroutine());
+    }
+
+    private IEnumerator RestartCoroutine()
+    {
+        yield return null;
+        StartGame();
     }
 
     private void ChangeGameState(GameState newState)

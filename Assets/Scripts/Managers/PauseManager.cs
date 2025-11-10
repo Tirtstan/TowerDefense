@@ -11,9 +11,16 @@ public class PauseManager : Singleton<PauseManager>
     {
         base.Awake();
         SceneManager.sceneLoaded += OnSceneLoaded;
+        GameManager.OnGameStateChanged += OnGameStateChanged;
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode) => Resume();
+
+    private void OnGameStateChanged(GameState state)
+    {
+        if (state != GameState.GameOver)
+            Resume();
+    }
 
     public void Resume()
     {
@@ -32,5 +39,6 @@ public class PauseManager : Singleton<PauseManager>
     private void OnDestroy()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
     }
 }

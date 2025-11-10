@@ -43,18 +43,19 @@ public class PauseMenu : MonoBehaviour
     private void OnGameStateChanged(GameState state)
     {
         if (state == GameState.Playing)
+        {
             playerInput.actions.FindAction("Player/Pause").performed += OnPausePerformed;
+        }
         else
+        {
             playerInput.actions.FindAction("Player/Pause").performed -= OnPausePerformed;
+            menu.SetActive(false);
+        }
     }
 
-    private void Restart() { }
+    private void Restart() => GameManager.Instance.RestartGame();
 
-    private void OpenMainMenu()
-    {
-        GameManager.Instance.MainMenu();
-        OnResumeClicked();
-    }
+    private void OpenMainMenu() => GameManager.Instance.MainMenu();
 
     private void OpenOptions() => Debug.Log("Open Options");
 

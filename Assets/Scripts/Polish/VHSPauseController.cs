@@ -14,6 +14,8 @@ public class VHSPauseController : MonoBehaviour
 
     private VHSPauseEffect vhsEffect;
     private MotionHandle fadeMotion;
+    private bool isPaused;
+    private bool isGameOver;
 
     private void Awake()
     {
@@ -32,9 +34,26 @@ public class VHSPauseController : MonoBehaviour
         }
 
         PauseManager.OnPauseToggle += OnPauseToggle;
+        GameManager.OnGameStateChanged += OnGameStateChanged;
     }
 
-    private void OnPauseToggle(bool isPaused) => AnimateEffect(isPaused ? 1f : 0f);
+    private void OnPauseToggle(bool isPaused)
+    {
+        this.isPaused = isPaused;
+        UpdateEffect();
+    }
+
+    private void OnGameStateChanged(GameState state)
+    {
+        isGameOver = state == GameState.GameOver;
+        UpdateEffect();
+    }
+
+    private void UpdateEffect()
+    {
+        float targetIntensity = (isPaused || isGameOver) ? 1f : 0f;
+        AnimateEffect(targetIntensity);
+    }
 
     private void AnimateEffect(float targetIntensity)
     {
@@ -43,13 +62,14 @@ public class VHSPauseController : MonoBehaviour
             .Create(vhsEffect.intensity.value, targetIntensity, fadeDuration)
             .WithEase(Ease.OutCubic)
             .WithScheduler(MotionScheduler.UpdateIgnoreTimeScale)
-            .Bind(vhsEffect.intensity, (value, parameter) => parameter.value = value)
+            .Bind(vhsEffect, (value, vhsEffect) => vhsEffect.intensity.value = value)
             .AddTo(gameObject);
     }
 
     private void OnDestroy()
     {
         PauseManager.OnPauseToggle -= OnPauseToggle;
+        GameManager.OnGameStateChanged -= OnGameStateChanged;
         fadeMotion.TryCancel();
     }
 }

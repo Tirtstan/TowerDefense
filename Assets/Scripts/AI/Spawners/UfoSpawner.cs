@@ -30,8 +30,8 @@ public sealed class UfoSpawner : Spawner
 
             if (enemy.TryGetComponent(out EnemyHealth enemyHealth))
                 enemyHealth.TakeDamage(enemyHealth.MaxHealth);
-
-            ReturnToPool(enemy);
+            else
+                ReturnToPool(enemy);
         }
 
         activeEnemies.Clear();

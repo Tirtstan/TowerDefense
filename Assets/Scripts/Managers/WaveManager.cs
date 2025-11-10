@@ -233,11 +233,14 @@ public class WaveManager : Singleton<WaveManager>
             spawnCoroutine = null;
         }
 
-        // Ensure any other coroutines on this Mono are halted as well
         StopAllCoroutines();
 
         currentWaveIndex = -1;
         currentWave = default;
+
+        // Clear WaveManager's activeEnemies list first to prevent double-processing
+        // when OnReleased callbacks fire during ClearAll()
+        activeEnemies.Clear();
 
         foreach (var entry in enemySpawnerEntries)
         {
@@ -248,7 +251,6 @@ public class WaveManager : Singleton<WaveManager>
             spawner.ClearAll();
         }
 
-        activeEnemies.Clear();
         spawnPoints.Clear();
     }
 

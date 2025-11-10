@@ -567,13 +567,13 @@ MonoBehaviour:
     m_Center: {x: -204.745, y: 0, z: 0}
     m_Extent: {x: 204.745, y: 376.25543, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 1920, y: 1080, z: 0}
+  FillSize: {x: 2560, y: 1440, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
   TargetPosition: {x: 0, y: 0, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
   TargetRectSize: {x: 409.49, y: 752.51086, z: 0}
-  TransformPosition: {x: 960, y: 0, z: 0}
+  TransformPosition: {x: 0, y: 0, z: 0}
   TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
   TransformRectSize: {x: 409.49, y: 752.51086}
@@ -2828,7 +2828,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: -12, y: -12}
-  m_SizeDelta: {x: 375.06, y: 630.90533}
+  m_SizeDelta: {x: 2560, y: 1440}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &5512621322935705979
 MonoBehaviour:
@@ -2872,25 +2872,25 @@ MonoBehaviour:
   LayoutPosition: {x: 0, y: 0, z: 0}
   LayoutRotation: {x: 0, y: 0, z: 0, w: 1}
   AdapterBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 960, y: 540, z: 0}
+    m_Center: {x: -1280, y: 0, z: 0}
+    m_Extent: {x: 1280, y: 720, z: 0}
   LayoutBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 960, y: 540, z: 0}
+    m_Center: {x: -1280, y: 0, z: 0}
+    m_Extent: {x: 1280, y: 720, z: 0}
   RotatedAndScaledBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 960, y: 540, z: 0}
+    m_Center: {x: -1280, y: 0, z: 0}
+    m_Extent: {x: 1280, y: 720, z: 0}
   ComponentScale: {x: 1, y: 1, z: 1}
-  FillSize: {x: 1920, y: 1080, z: 0}
+  FillSize: {x: 2560, y: 1440, z: 0}
   ShrinkSize: {x: 999999, y: 999999, z: 999999}
   TargetPosition: {x: -12, y: -12, z: 0}
   TargetRotation: {x: 0, y: 0, z: 0, w: 1}
   TargetScale: {x: 1, y: 1, z: 1}
-  TargetRectSize: {x: 1920, y: 1080, z: 0}
-  TransformPosition: {x: 0, y: 0, z: 0}
-  TransformRotation: {x: -0, y: -0, z: -0, w: 1}
+  TargetRectSize: {x: 2560, y: 1440, z: 0}
+  TransformPosition: {x: 1268, y: -12, z: 0}
+  TransformRotation: {x: 0, y: 0, z: 0, w: 1}
   TransformScale: {x: 1, y: 1, z: 1}
-  TransformRectSize: {x: 1920, y: 1080}
+  TransformRectSize: {x: 2560, y: 1440}
 --- !u!114 &3860826693587207026
 MonoBehaviour:
   m_ObjectHideFlags: 0
