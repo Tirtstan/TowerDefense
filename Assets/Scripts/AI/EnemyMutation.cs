@@ -41,7 +41,7 @@ public struct EnemyMutation
             SpeedMultiplier = 1.5f,
             VisionRangeMultiplier = 1f,
             AttackRangeMultiplier = 1f,
-            AttackIntervalMultiplier = 0.7f, // Faster attacks
+            AttackIntervalMultiplier = 0.7f,
             DifficultyRatingMultiplier = 0.9f
         };
     }

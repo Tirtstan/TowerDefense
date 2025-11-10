@@ -33,7 +33,8 @@ public class Healthbar : MonoBehaviour
         IDamagable damagable,
         float displayDuration,
         Camera camera,
-        Canvas canvas
+        Canvas canvas,
+        Color color
     )
     {
         this.controller = controller;
@@ -45,6 +46,8 @@ public class Healthbar : MonoBehaviour
 
         timer = displayDuration;
         isReleasing = false;
+
+        fillImage.color = color;
 
         damagable.OnHealthChanged += UpdateHealthbar;
         damagable.OnDeath += OnTargetDeath;

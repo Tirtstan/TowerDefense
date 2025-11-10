@@ -19,6 +19,12 @@ public class HealthbarController : MonoBehaviour
     [Range(1f, 10f)]
     private float initialDisplayDuration = 3f;
 
+    [SerializeField]
+    private Color friendlyColor = Color.green;
+
+    [SerializeField]
+    private Color enemyColor = Color.red;
+
     private ObjectPool<Healthbar> healthbarPool;
     private readonly Dictionary<IDamagable, Healthbar> activeHealthbars = new();
     private Camera mainCamera;
@@ -39,16 +45,17 @@ public class HealthbarController : MonoBehaviour
     }
 
     private void OnEnemyHealthChanged(OnEnemyHealthChanged evt) =>
-        HandleHealthChanged(evt.EnemyHealth, evt.EnemyHealth.transform);
+        HandleHealthChanged(evt.EnemyHealth, evt.EnemyHealth.transform, isFriendly: false);
 
     private void OnTowerHealthChanged(OnTowerHealthChanged evt) =>
-        HandleHealthChanged(evt.TowerHealth, evt.TowerHealth.transform);
+        HandleHealthChanged(evt.TowerHealth, evt.TowerHealth.transform, isFriendly: true);
 
-    private void HandleHealthChanged(IDamagable damagable, Transform target)
+    private void HandleHealthChanged(IDamagable damagable, Transform target, bool isFriendly)
     {
         if (damagable == null)
             return;
 
+        Color healthbarColor = isFriendly ? friendlyColor : enemyColor;
         if (activeHealthbars.TryGetValue(damagable, out Healthbar existingHealthbar))
         {
             existingHealthbar.ResetTimer();
@@ -56,7 +63,7 @@ public class HealthbarController : MonoBehaviour
         else
         {
             var healthbar = healthbarPool.Get();
-            healthbar.Init(this, target, damagable, initialDisplayDuration, mainCamera, canvas);
+            healthbar.Init(this, target, damagable, initialDisplayDuration, mainCamera, canvas, healthbarColor);
             activeHealthbars[damagable] = healthbar;
         }
     }

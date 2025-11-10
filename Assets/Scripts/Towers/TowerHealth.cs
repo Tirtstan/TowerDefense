@@ -57,6 +57,8 @@ public class TowerHealth : MonoBehaviour, IDamagable, IHealable
     public void Die()
     {
         OnDeath?.Invoke();
+        EventBus.Instance.Publish(new OnTowerDeath(GetTowerSO(), transform.position));
+
         Destroy(gameObject);
     }
 
@@ -79,4 +81,16 @@ public struct OnTowerHealthChanged : IGameEvent
     public TowerHealth TowerHealth;
 
     public OnTowerHealthChanged(TowerHealth towerHealth) => TowerHealth = towerHealth;
+}
+
+public struct OnTowerDeath : IGameEvent
+{
+    public TowerSO TowerSO;
+    public Vector3 Position;
+
+    public OnTowerDeath(TowerSO towerSO, Vector3 position)
+    {
+        TowerSO = towerSO;
+        Position = position;
+    }
 }
