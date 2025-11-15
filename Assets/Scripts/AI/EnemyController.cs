@@ -175,7 +175,7 @@ public class EnemyController : MonoBehaviour
         }
 
         // if we're targeting center tower, immediately switch to any detected tower
-        if (currentTarget == CenterTower.Instance.transform)
+        if (currentTarget == TowerManager.Instance.GetCenterTowerTransform())
         {
             SetTarget(newTower);
             return;
@@ -197,7 +197,7 @@ public class EnemyController : MonoBehaviour
     private bool ShouldSwitchToTower(Transform tower)
     {
         // always switch if targeting center tower
-        if (currentTarget == CenterTower.Instance.transform)
+        if (currentTarget == TowerManager.Instance.GetCenterTowerTransform())
             return true;
 
         // switch if this tower is closer than current target
@@ -219,8 +219,8 @@ public class EnemyController : MonoBehaviour
         Transform bestTarget = GetClosestDetectedTower();
 
         // If no detected towers, default to center tower
-        if (bestTarget == null && CenterTower.Instance != null)
-            bestTarget = CenterTower.Instance.transform;
+        if (bestTarget == null && TowerManager.Instance.GetCenterTowerTransform() != null)
+            bestTarget = TowerManager.Instance.GetCenterTowerTransform();
 
         SetTarget(bestTarget);
     }

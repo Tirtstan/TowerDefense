@@ -205,9 +205,9 @@ public class WaveManager : Singleton<WaveManager>
 
     private float GetPlayerHealthPercentage()
     {
-        if (CenterTower.Instance != null)
+        if (TowerManager.Instance.GetCenterTowerTransform() != null)
         {
-            if (CenterTower.Instance.TryGetComponent(out IDamagable damageable))
+            if (TowerManager.Instance.GetCenterTowerTransform().TryGetComponent(out IDamagable damageable))
                 return damageable.GetHealthPercentage();
         }
 

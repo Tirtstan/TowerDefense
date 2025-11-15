@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GenerateMap : MonoBehaviour
 {
@@ -8,15 +7,9 @@ public class GenerateMap : MonoBehaviour
     private Generator generator;
     private bool isMapDirty;
 
-    private void Awake()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode) => generator.Generate();
-
     private void Start()
     {
+        generator.Generate();
         GameManager.OnGameStateChanged += OnGameStateChanged; // prevent first load marking map as dirty
         isMapDirty = false;
     }
@@ -49,7 +42,6 @@ public class GenerateMap : MonoBehaviour
 
     private void OnDestroy()
     {
-        SceneManager.sceneLoaded -= OnSceneLoaded;
         GameManager.OnGameStateChanged -= OnGameStateChanged;
     }
 }
