@@ -8,6 +8,7 @@ public class TowerManager : Singleton<TowerManager>
 {
     private readonly Dictionary<TowerSO, int> towersPlaced = new();
     private readonly List<Tower> allTowers = new();
+    private CenterTower centerTower;
 
     protected override void Awake()
     {
@@ -68,6 +69,12 @@ public class TowerManager : Singleton<TowerManager>
         allTowers.Clear();
         towersPlaced.Clear();
     }
+
+    public void RegisterCenterTower(CenterTower centerTower) => this.centerTower = centerTower;
+
+    public CenterTower GetCenterTower() => centerTower;
+
+    public Transform GetCenterTowerTransform() => centerTower.transform;
 
     public Dictionary<TowerSO, int> GetTowersPlaced() => towersPlaced;
 

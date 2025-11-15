@@ -30,11 +30,15 @@ public class WaveInfoPanel : MonoBehaviour
 
     private void Awake()
     {
+        WaveManager.OnWaveStarted += OnWaveStarted;
+    }
+
+    private void Start()
+    {
         RectTransform rect = panel.GetComponent<RectTransform>();
         target = panel.Offset.y + rect.sizeDelta.y * 2;
         panel.Offset = new Vector2(panel.Offset.x, target);
-
-        WaveManager.OnWaveStarted += OnWaveStarted;
+        waveText.SetText("Wave 0");
     }
 
     private void OnWaveStarted(Wave wave)
